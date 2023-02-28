@@ -1,0 +1,33 @@
+#!/bin/bash
+
+config="$HOME/.config/alacritty/alacritty.yml"
+
+message () {
+	cat << EOF
+usage: tally-offset [options]
+options:
+	-s set   [x|y] <INT>    set offset x/y value
+	-v value [x|y]          print offset x/y value
+EOF
+}
+
+[[ $# -lt 1 || $# -gt 3 ]] && message && exit 0
+
+case "$1" in
+	-s | set)
+		[[ -z "$2" ]] && message >&2 && exit 1
+		[[ -z "$3" ]] && change='-3'
+		printf "/ *offset:$\n/ *$2:\ns/:.*/: %i\nwq\n" "${change:=$3}" | ed -s "$config" &>/dev/null
+		exit 0
+		;;
+	-v | value)
+		[[ -z "$2" ]] && message >&2 && exit 1
+		echo $(grep -E '\<offset:$' -A2 "$config" | awk -F : '/'"$2"'/ { print $2; exit }' | xargs)
+		exit 0
+		;;
+	*)
+		message >&2
+		exit 1
+esac
+
+exit 0

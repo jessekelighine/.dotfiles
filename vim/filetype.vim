@@ -1,0 +1,1 @@
+../nvim/filetype.vim

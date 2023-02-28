@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ds_list=()
+folders=(
+	"$HOME/Courses"
+	"$HOME/Desktop"
+	"$HOME/Documents"
+	"$HOME/Downloads"
+	"$HOME/Fonts"
+	"$HOME/Pictures"
+	"$HOME/.config"
+)
+
+for folder in "${folders[@]}" ; do
+	ds_list+=( $(find "$folder" -name '.DS_Store') )
+done
+
+[[ -f "$HOME/.DS_Store" ]] && ds_list+=( "$HOME/.DS_Store" );
+
+sed 's/ /\n/g' <<< "${ds_list[@]}"

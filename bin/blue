@@ -1,0 +1,38 @@
+#!/bin/bash
+
+message () {
+	cat << EOF
+usage: blue [options]
+options:
+        on               turn on bluetooth power
+        off              turn off bluetooth power
+        connect <NAME>   connect to bluetooth device
+        status           show power status of bluetooth
+EOF
+}
+
+case "$1" in
+	on)
+		blueutil -p 1 && exit 0
+		;;
+	off)
+		blueutil -p 0 && exit 0
+		;;
+	status)
+		blueutil && exit 0
+		;;
+	connect)
+		[[ $# != 2 ]] && message && exit 1
+		blueutil -p 1
+		blueutil --connect "$2"
+		exit 0
+		;;
+	*)
+		message
+		exit 0
+		;;
+esac
+
+message
+
+exit 0

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+[[ $# -lt 2 ]] && {
+	cat << EOF
+usage: pdftoc [input.pdf] [output.pdf] [pdfmarks]
+
+# "pdfmarks" example:
+
+[/Count 2 /Title (Part I)         /Page  1 /OUT pdfmark
+[/Count 3 /Title (1. Section)     /Page  2 /OUT pdfmark
+[         /Title (1.1 Subsection) /Page  3 /OUT pdfmark
+[         /Title (1.2 Subsection) /Page  4 /OUT pdfmark
+[         /Title (1.3 Subsection) /Page  5 /OUT pdfmark
+[/Count 1 /Title (2. Section)     /Page  6 /OUT pdfmark
+[         /Title (2.1 Subsection) /Page  7 /OUT pdfmark
+[/Count 1 /Title (Part II)        /Page  8 /OUT pdfmark
+[/Count 2 /Title (3. Section)     /Page  9 /OUT pdfmark
+[         /Title (3.1 Subsection) /Page 10 /OUT pdfmark
+[         /Title (3.2 Subsection) /Page 11 /OUT pdfmark
+
+# re-numbering pages:
+
+<< /Type /Catalog /Pages 1 0 R
+   /PageLabels << /Nums [ 0 << /P (Cover) >> % labels 1st page with the string 'Cover'
+                          1 << /S /r >> % numbers pages 2-6 in small roman numerals
+                          6 << /S /D >> % numbers pages 7-x in decimal arabic numerals
+                        ] >>
+>>
+
+# re-numbering pages in "pdfmarks":
+
+[ {Catalog} <<
+/PageLabels << /Nums [ 0 << /P (cover) >>
+                       1 << /S /r >>
+                       5 << /S /D >>
+                     ] >>
+>> /PUT pdfmark
+EOF
+	exit 0
+}
+
+gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="$2" "$1" "${3:-pdfmarks}"
+
+exit 0

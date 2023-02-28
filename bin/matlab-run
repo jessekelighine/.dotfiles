@@ -1,0 +1,3 @@
+#!/bin/bash
+
+matlab -r "run('$1'); exit;"

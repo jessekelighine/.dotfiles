@@ -1,0 +1,14 @@
+# ~/.config/zathura/zathurarc
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set guioptions          ""
+set page-padding        2
+set font                "monospace normal 20"
+set selection-clipboard clipboard
+set highlight-color     "#FFFFFF"
+set scroll-step         40
+
+map m       toggle_statusbar
+map <Right> navigate next
+map <Left>  navigate previous

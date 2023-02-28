@@ -1,0 +1,15 @@
+#!/bin/bash
+
+r_path="/Library/Frameworks/R.framework/Versions"
+
+pushd "$r_path" > /dev/null
+[[ "$1" == "" ]] && {
+	ls -lAhG
+	popd > /dev/null
+	exit 0
+}
+
+unlink Current
+ln -s "$1" Current
+popd > /dev/null
+exit 0

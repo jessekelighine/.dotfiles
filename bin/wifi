@@ -1,0 +1,38 @@
+#!/bin/bash
+
+_message () {
+	cat << EOF
+usage: wifi [options]
+options:
+        on                          turn on wifi
+        off                         turn off wifi
+        connect <NAME> <PASSWORD>   connect to wifi device
+        status                      show power status of wifi
+EOF
+}
+
+case "$1" in
+	on)
+		networksetup -setairportpower en0 on && exit 0
+		;;
+	off)
+		networksetup -setairportpower en0 off && exit 0
+		;;
+	status)
+		networksetup -getairportpower en0 && exit 0
+		;;
+	connect)
+		[[ $# -gt 3 || $# -lt 2 ]] && _message && exit 1
+		networksetup -setairportpower en0 on
+		networksetup -setairportnetwork en0 "$2" "$3" 
+		exit 0
+		;;
+	*)
+		_message
+		exit 0
+		;;
+esac
+
+_message
+
+exit 0

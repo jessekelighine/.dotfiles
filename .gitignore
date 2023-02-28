@@ -1,0 +1,11 @@
+.DS_Store
+zsh/.zsh_history
+zsh/zsh_history
+zsh/.zsh_sessions/*
+zsh/zsh_sessions/*
+bash/.bash_history
+vim/swap/*
+vim/undodir/*
+b2/*
+gnupg/*
+password-store/*

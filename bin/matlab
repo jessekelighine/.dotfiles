@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/Applications/MATLAB_R2022a.app/bin/matlab -nodisplay -nosplash -nodesktop "$@"

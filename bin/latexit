@@ -1,0 +1,145 @@
+#!/bin/bash
+
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Description: latexit: fast way of creating LaTeX snippets.                  #
+# Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
+# Last Modified: 2023-02-16                                                   #
+#                                                                             #
+###############################################################################
+
+_help () {
+	cat << EOF
+usage: latexit [options] <LATEX_COMMAND>
+options:
+        -a --preamble <LATEX_COMMAND> add command to preamble
+        -d --directory <DIRECTORY>    set output directory (default: ~/Desktop)
+	-e --engine <LATEX_ENGIN>     set LaTeX compilation engine (default: pdflatex)
+        -f --format <FORMAT>          set output file format (default: png)
+                * png       png (default: white background)
+                * png-t     png (transparent background)
+                * svg       svg file
+                * pdf       pdf file
+        -n --name <FILENAME>          set output filename (default: latexit_snippet)
+        -p --package <PACKAGE>        add package to preamble
+png options:
+           --density <NUMBER>         set density of png output (default: 1200)
+           --background <HEX_COLOR>   set background of png otput (default: #FFFFFF)
+EOF
+}
+
+### Default Packages and Preamble #############################################
+
+PACKAGES=( "amsmath" "mathtools" "amssymb" "mathrsfs" )
+PREAMBLES=()
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		-a | --preamble)
+			PREAMBLES+="$2"
+			shift; shift
+			;;
+		-d | --directory)
+			directory="$2"
+			shift; shift
+			;;
+		-e | --engine)
+			engine="$2"
+			shift; shift
+			;;
+		-n | --name)
+			filename="$2"
+			shift; shift
+			;;
+		-f | --format)
+			format="$2"
+			shift; shift
+			;;
+		-p | --package)
+			PACKAGES+=("$2")
+			shift; shift
+			;;
+		--density)
+			density="$2"
+			shift; shift
+			;;
+		--background)
+			background="$2"
+			shift; shift
+			;;
+		-* | --*)
+			echo "unknown option $1" >&2
+			exit 1
+			;;
+		*)
+			POSITIONAL_ARGS+=("$1")
+			shift
+			;;
+	esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}"
+
+### Set Variables #############################################################
+
+latexcmd="$1"
+temp="${directory:="$HOME/Desktop"}/.temp_latexit_snippet"
+output="$directory/${filename:-latexit_snippet}"
+
+### Error Check ###############################################################
+
+[[ $# -ne 1 ]] && {
+	_help >&2
+	exit 1
+}
+
+[[ -f "$output.${format:0:3}" ]] && {
+	echo "error: file $output.${format:0:3} already exists." >&2
+	exit 1
+}
+
+### Generate LaTeX ############################################################
+
+touch "$temp.tex"
+{
+	echo '\documentclass{standalone}'
+	for pack in "${PACKAGES[@]}"; do
+		echo '\usepackage{'"$pack"'}'
+	done
+	for preamble in "${PREAMBLES[@]}"; do
+		echo "$preamble"
+	done
+	echo '\begin{document}'
+	echo '$\displaystyle' "$latexcmd" '$'
+	echo '\end{document}'
+} > "$temp.tex"
+
+${engine:-pdflatex} -halt-on-error -output-directory="$directory" "$temp.tex" | grep '^!.*' -A200 --color=always
+mv "$temp.pdf" "$output.pdf"
+rm "${temp:?}"*
+
+### Output Format #############################################################
+
+case ${format:-png} in
+	svg)
+		pdf2svg "$output.pdf" "$output.svg"
+		rm "$output.pdf"
+		;;
+	pdf)
+		;;
+	png)
+		convert -quiet -background "${background:-#FFFFFF}" -flatten -density "${density:-1200}" "$output.pdf" "$output.png"
+		rm "$output.pdf"
+		;;
+	png-t)
+		convert -quiet -density ${density:-1200} "$output.pdf" "$output.png"
+		rm "$output.pdf"
+		;;
+	*)
+		rm "$output.pdf"
+		echo "unrecognised format" >&2
+		;;
+esac
+
+exit 0

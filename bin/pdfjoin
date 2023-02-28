@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+[[ $# -lt 1 ]] && {
+	echo "usage: pdfjoin [output.pdf] [file1.pdf file2.pdf ...]"
+	exit 0
+}
+
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile="$1" "$@"
+
+exit 0

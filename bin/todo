@@ -1,0 +1,25 @@
+#!/bin/bash
+
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
+# Description: `todo`, a fast note keeper.                                    #
+# License: The MIT License (MIT)                                              #
+# Last Modified: 2022-Dec-16                                                  #
+#                                                                             #
+###############################################################################
+
+[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Documents/TODO.md"
+[[ ! -f "$TODO_TARGET" ]] && touch "$TODO_TARGET"
+
+### Main ######################################################################
+
+[[  $# -lt 1    ]] && { $EDITOR "$TODO_TARGET"; exit 0; }
+[[ "$1" == "-l" ]] && { cat "$TODO_TARGET"; exit 0; }
+[[ "$1" == "-h" ]] && {
+	echo "usage: todo [-lh] [text]"
+	exit 0
+}
+
+echo "($(date +'%F %X')) [ ] $@" >> "$TODO_TARGET"
+exit 0

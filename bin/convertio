@@ -1,0 +1,78 @@
+#!/bin/bash
+# Convertio Website: https://developers.convertio.co/
+
+apikey='71769a54cf2f24c91cd68a737434f884'
+apiurl='http://api.convertio.co/convert'
+
+### Helpers ###################################################################
+
+check_status  () {
+	[[ "$(jq -r '.status' <<< "$1")" != 'ok' ]] && exit 1
+}
+
+# check_verbose () { if [[ $verbose == true ]]; echo "$1"; then jq <<< "$2"; fi }
+
+check_verbose () {
+	[[ $verbose == true ]] && echo "$1" && jq <<< "$2"
+}
+
+usage () {
+	cat << EOF
+usage: convertio [options] [file]
+options:
+	-t    filetype
+	-v    verbose
+	-h    print help
+EOF
+}
+
+### Options ###################################################################
+
+verbose=false
+filetype='mobi'
+while getopts 'vht:' options; do
+	case "$options" in
+		t) filetype="$OPTARG" ;;
+		v) verbose=true ;;
+		h) usage; exit 0 ;;
+		?) usage; exit 1 ;;
+	esac
+done
+shift $((OPTIND-1))
+if [[ $# -lt 1 ]]; then usage; exit 0; fi
+
+### Initialize ################################################################
+
+post_json='{"apikey":"'"$apikey"'","input":"upload","file":"'"$1"'","outputformat":"'"$filetype"'"}'
+resp_json=$(curl -s -X POST -d "$post_json" "$apiurl")
+resp_id=$(jq -r '.data.id' <<< "$resp_json")
+check_verbose "Initialized:" "$resp_json"
+check_status "$resp_json"
+
+### Upload ####################################################################
+
+resp_json=$(curl -s -X PUT --upload-file "$1" "$apiurl/$resp_id/$1")
+check_verbose "Uploaded:" "$resp_json"
+check_status "$resp_json"
+
+### Convert ###################################################################
+
+count=0
+echo "$apiurl/$resp_id/status"
+while true ; do sleep 1
+	printf "."
+	[[ $((++count % 60)) == 0 ]] && printf " (%dmin)\n" "$((count/60))"
+	resp_json=$(curl -s -X GET "$apiurl/$resp_id/status")
+	resp_step=$(jq -r '.data.step' <<< "$resp_json")
+	if [ "$resp_step" = 'finish' ]; then break; fi
+done
+check_verbose "Converted:" "$resp_json"
+
+### Download and Delete #######################################################
+
+resp_link=$(jq -r '.data.output.url' <<< "$resp_json")
+curl -s -O "$resp_link"
+resp_json=$(curl -s -X DELETE "$apiurl/$resp_id")
+check_verbose "Deleted:" "$resp_json"
+
+exit 0
