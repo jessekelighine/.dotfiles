@@ -39,7 +39,11 @@ alias 'tml'='tmux ls'
 alias 'tma'='tmux attach -t'
 alias 'tmk'='tmux kill-session'
 alias 'youtube-audio'='youtube-dl -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
+alias 'spiel'='mpv --no-video --loop' # --audio-channels=mono
+alias 'spielliste'='mpv --no-video'
 alias 'weather'='curl "wttr.in/Taipei"'
+alias 'R-mean'='R --no-echo -e '\''x <- scan(file="stdin", quiet=TRUE); mean(x)'\'''
+alias 'R-sd'='R --no-echo -e '\''x <- scan(file="stdin", quiet=TRUE); sd(x)'\'''
 
 source "$HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -59,10 +63,6 @@ decrypt () { openssl enc -aes-256-cbc -a -salt -d -in "$1" } # -out "$2"
 timeout () { perl -e 'alarm shift; exec @ARGV' "$@" }
 tar-compress () { tar zcfv "$@" }
 tar-extract  () { tar zxfv "$@" }
-spiel      () { mpv --no-video --loop "$1" }
-spielliste () { mpv --no-video "$1" }
-R-mean () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); mean(x)' }
-R-sd   () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); sd(x)' }
 
 # PROMPT='%B%F{196}%1~%f%b %# '
 # export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# - [Backblaze](https://www.backblaze.com/cloud-backup.html)
+
 ### Homebrew ##################################################################
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -18,28 +20,24 @@ brew install r
 
 ### Linking ###################################################################
 
-ln -s ~/.dotfiles/.bc        ~/.config/.bc
-ln -s ~/.dotfiles/alacritty  ~/.config/alacritty
-ln -s ~/.dotfiles/b2         ~/.config/b2
-ln -s ~/.dotfiles/bash       ~/.config/bash
-ln -s ~/.dotfiles/iterm2     ~/.config/iterm2
-ln -s ~/.dotfiles/mpv        ~/.config/mpv
-ln -s ~/.dotfiles/nvim       ~/.config/nvim
-ln -s ~/.dotfiles/octave     ~/.config/octave
-ln -s ~/.dotfiles/sc-im      ~/.config/sc-im
-ln -s ~/.dotfiles/skim       ~/.config/skim
-ln -s ~/.dotfiles/tmux       ~/.config/tmux
-ln -s ~/.dotfiles/zathura    ~/.config/zathura
-ln -s ~/.dotfiles/zsh        ~/.config/zsh
-ln -s ~/.dotfiles/.ssh       ~/.ssh
+ln -s ~/.dotfiles/.bc       ~/.config/.bc
+ln -s ~/.dotfiles/alacritty ~/.config/alacritty
+ln -s ~/.dotfiles/b2        ~/.config/b2
+ln -s ~/.dotfiles/bash      ~/.config/bash
+ln -s ~/.dotfiles/iterm2    ~/.config/iterm2
+ln -s ~/.dotfiles/mpv       ~/.config/mpv
+ln -s ~/.dotfiles/nvim      ~/.config/nvim
+ln -s ~/.dotfiles/octave    ~/.config/octave
+ln -s ~/.dotfiles/sc-im     ~/.config/sc-im
+ln -s ~/.dotfiles/skim      ~/.config/skim
+ln -s ~/.dotfiles/tmux      ~/.config/tmux
+ln -s ~/.dotfiles/zathura   ~/.config/zathura
+ln -s ~/.dotfiles/zsh       ~/.config/zsh
 
-ln -s ~/.dotfiles/zsh/.zshrc     ~/.zshrc
-ln -s ~/.dotfiles/gnupg          ~/.gnupg
-ln -s ~/.dotfiles/password-store ~/.password-store
-ln -s ~/.dotfiles/vim            ~/.vim
+ln -s ~/.dotfiles/zsh/.zshrc      ~/.zshrc
+ln -s ~/.dotfiles/.gnupg          ~/.gnupg
+ln -s ~/.dotfiles/.password-store ~/.password-store
+ln -s ~/.dotfiles/.vim            ~/.vim
+ln -s ~/.dotfiles/.ssh            ~/.ssh
 
 ln -s ~/.dotfiles/bin ~/.local/bin
-
-### Others ####################################################################
-
-# - [Backblaze](https://www.backblaze.com/cloud-backup.html)

@@ -15,19 +15,18 @@ sure in the `miramare/colors/miramare.vim` file, `s:HL()` function uses 256term
 defintion.  To do this, set `s:t_Co` to `256`.
 
 ```vim
-call s:HL('CursorLineNr',   s:palette.fg,     s:palette.bg3)
-call s:HL('Visual',         s:palette.none,   s:palette.bg1,  'reverse')
-call s:HL('NonText',        s:palette.bg4,    s:palette.none)
-call s:HL('SpecialKey',     s:palette.bg4,    s:palette.none)
-call s:HL('MatchParen',     s:palette.none,   s:palette.bg4,  'bold')
-call s:HL('TabLineSel',     s:palette.bg0,    s:palette.gold)
-call s:HL('markdownBold',   s:palette.purple, s:palette.none, 'bold')
-call s:HL('markdownItalic', s:palette.blue,   s:palette.none, 'italic')
+call s:HL('CursorLineNr', s:palette.fg, s:palette.bg3)
+call s:HL('Visual', s:palette.none, s:palette.bg1, 'reverse')
+call s:HL('NonText', s:palette.bg4, s:palette.none)
+call s:HL('SpecialKey', s:palette.bg4, s:palette.none)
+call s:HL('MatchParen', s:palette.none, s:palette.bg4, 'bold')
+call s:HL('TabLineSel', s:palette.bg0, s:palette.gold)
+call s:HL('markdownBold', s:palette.purple, s:palette.none, 'bold')
+call s:HL('markdownItalic', s:palette.blue, s:palette.none, 'italic')
 call s:HL('CursorColumn', s:palette.none, s:palette.bg3)
 call s:HL('CursorLine', s:palette.none, s:palette.bg3)
-
-call s:HL('StatusLine',     s:palette.bg1,    s:palette.yellow)
-call s:HL('StatusLineNC',   s:palette.bg1,    s:palette.fg)
+call s:HL('StatusLine', s:palette.bg1, s:palette.yellow)
+call s:HL('StatusLineNC', s:palette.bg1, s:palette.fg)
 ```
 
 ### colors

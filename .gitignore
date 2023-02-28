@@ -8,8 +8,8 @@ vim/swap/*
 vim/undodir/*
 b2/file-with-key-id.txt
 b2/file-with-key.txt
-gnupg/*
-password-store/*
+.gnupg/*
+.password-store/*
 nvim/undodir/*
 nvim/spell/*.spl
 .fzf.bash
