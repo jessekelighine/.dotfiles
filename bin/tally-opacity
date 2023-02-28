@@ -1,6 +1,6 @@
 #!/bin/bash
 
-config="$HOME/.config/alacritty/alacritty.yml"
+config="$HOME/.dotfiles/alacritty/alacritty.yml"
 original=$(awk -F : '/opacity/ { print $2; exit }' "$config" | xargs)
 
 message () {

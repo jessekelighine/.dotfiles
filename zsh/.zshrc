@@ -41,18 +41,18 @@ alias 'tmk'='tmux kill-session'
 alias 'youtube-audio'='youtube-dl -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
 alias 'weather'='curl "wttr.in/Taipei"'
 
-source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOME/.config/zsh/up.sh"
-source "$HOME/.config/zsh/volume.sh"
-source "$HOME/.config/.fzf.zsh"
+source "$HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.dotfiles/zsh/up.sh"
+source "$HOME/.dotfiles/zsh/volume.sh"
+source "$HOME/.dotfiles/.fzf.zsh"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --extended'
 export DEL_DIR="$HOME/.Trash"
-export BC_ENV_ARGS="$HOME/.config/.bc"
-export B2_ACCOUNT_INFO="$HOME/.config/b2/.b2_account_info"
-export B2_APPLICATION_KEY_ID="$(<$HOME/.config/b2/file-with-key-id.txt)"
-export B2_APPLICATION_KEY="$(<$HOME/.config/b2/file-with-key.txt)"
+export BC_ENV_ARGS="$HOME/.dotfiles/.bc"
+export B2_ACCOUNT_INFO="$HOME/.dotfiles/b2/.b2_account_info"
+export B2_APPLICATION_KEY_ID="$(<$HOME/.dotfiles/b2/file-with-key-id.txt)"
+export B2_APPLICATION_KEY="$(<$HOME/.dotfiles/b2/file-with-key.txt)"
 
 encrypt () { openssl enc -aes-256-cbc -a -salt -e -in "$1" } # -out "$2"
 decrypt () { openssl enc -aes-256-cbc -a -salt -d -in "$1" } # -out "$2"

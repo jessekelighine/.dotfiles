@@ -1,0 +1,22 @@
+# Latex Makefile
+
+.PHONY: all clean
+
+MAIN    = homework02
+FIGURES = plots/problem03-plot.pdf
+
+all: $(MAIN).pdf
+
+$(MAIN).pdf: $(MAIN).tex ../settings.tex $(FIGURES)
+	xelatex $(MAIN).tex
+	xelatex $(MAIN).tex
+	open $(MAIN).pdf
+
+plots/%-plot.pdf: plots/%.R
+	cd plots ; Rscript $(<F) ; cd ..
+
+FILES  = "*.{aux,bbl,bcf,blg,log,run.xml,out,snm,nav,toc}"
+clean:
+	eval "rm -rf ${FILES}"
+	rm $(FIGURES)
+	rm $(MAIN).pdf

@@ -1,0 +1,6 @@
+$(MAIN).pdf: $(MAIN).tex $(FIGURES)
+	xelatex $(MAIN).tex
+	biber   $(MAIN)
+	xelatex $(MAIN).tex
+	xelatex $(MAIN).tex
+	open    $(MAIN).pdf

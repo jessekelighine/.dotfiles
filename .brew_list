@@ -18,6 +18,7 @@ figlet
 fltk
 fortune
 freeglut
+fzf
 git
 gl2ps
 glpk
@@ -66,9 +67,3 @@ tokei
 vim
 youtube-dl
 zlib
-alacritty
-firefox
-flycut
-fontforge
-keycastr
-openmtp

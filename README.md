@@ -1,8 +1,12 @@
 ---
-title:  ".config"
+title:  ".dotfiles"
 author: "jessekelighine@gmail.com"
 date:   "2023-02-28"
 ---
+
+# update
+
+# install
 
 # make links
 

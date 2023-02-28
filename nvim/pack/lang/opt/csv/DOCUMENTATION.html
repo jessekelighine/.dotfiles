@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="jessekelighine@gmail.com" />
+  <title>CSV Plug-in: Documentation</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/Users/jessechen/.vim/ftplugin/markdown_snippets/notion.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CSV Plug-in: Documentation</h1>
+<p class="author">jessekelighine@gmail.com</p>
+<p class="date">2021-Aug-17</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+</ul>
+</nav>
+<h1 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<p>This is a ultra-minimal plug-in for CSV <strong>viewing</strong>, not editing. This plug-in Features include</p>
+<ul>
+<li>highlight columns via number or placing the cursor on top of it.</li>
+<li>move cursor to the highlighted column.</li>
+<li>easy navigating from one column to the next/previous.</li>
+<li>select the entry under the cursor in the column.</li>
+<li>display the column names in a split window for easy navigation.</li>
+<li>search for pattern in the highlighted column.</li>
+<li>conceal the deliminator for easy viewing.</li>
+</ul>
+<p>Although editing the CSV file is not the aim, the following features are included in this plug-in:</p>
+<ul>
+<li>convert csv into tsv (safely) and vice versa.</li>
+</ul>
+<p>still some functions in this plug-in that <em>can</em> modify the CSV file, but modifying the file is not the main focus of plug-in.</p>
+<ul>
+<li><strong>simple</strong>: a file is said to be <code>simple</code> if there is no <code>\\"</code> in the document, i.e., there are no quotes immediately after an escaped backslash. A <code>simple</code> file can contain quotes, escaped quotes or deliminator within quotes.</li>
+<li><strong>super_simple</strong>: a file is said to be <code>super_simple</code> if there is no quotes, escaped quotes or escaped deliminator in the file.</li>
+<li><strong>dangerous</strong>: a file is said to be dangerous if there are escaped Backslashs in the file. A <code>dangerous</code> file is not necessary <code>not simple</code>, but a <code>not simple</code> file is <code>dangerous</code>.</li>
+</ul>
+</body>
+</html>

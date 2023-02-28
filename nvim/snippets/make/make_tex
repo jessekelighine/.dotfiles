@@ -1,0 +1,40 @@
+# Latex Makefile
+
+MAIN     = <++>
+SOURCES  = Makefile \
+		   $(MAIN).tex \
+		   <++>.bib
+TEX_FIGS = $(shell find figures -type f -name "*.tex" | \ sed 's/^figures\/fig-[a-zA-Z]*\/\(fig-[a-zA-Z]*\).tex$$/\1/')
+R_FIGS   = $(shell find figures -type f -name "*.R"   | \ sed 's/^figures\/fig-[a-zA-Z]*\/\(fig-[a-zA-Z]*\).R$$/\1/')
+IMAGES   = $(shell find figures -maxdepth 1 -type f)
+TABLES   = $(shell find tables -type f -name "tab-*.tex")
+
+all: $(MAIN).pdf
+
+$(MAIN).pdf: $(SOURCES) $(TABLES) $(IMAGES) figures
+	xelatex $(MAIN).tex
+	biber   $(MAIN)
+	xelatex $(MAIN).tex
+	xelatex $(MAIN).tex
+	open    $(MAIN).pdf
+
+# FIGURES
+figures: $(find figures -type f -name "fig-*.tex") $(find figures -name "fig-*.R")
+	for FIG in $(TEX_FIGS) ; do \
+		eval "xelatex --output-directory figures/$${FIG} figures/$${FIG}/$${FIG}.tex" ; \
+	done
+	for FIG in $(R_FIGS) ; do \
+		eval "cd figures/$${FIG}" ; \
+		eval "Rscript $${FIG}.R" ; \
+		eval "cd ../.." ; \
+	done
+
+# CLEAN
+PATTERN  = "*.{aux,bbl,bcf,blg,log,pdf,run.xml}"
+clean:
+	eval "rm -rf ${PATTERN}"
+	eval "rm -rf figures/**/${PATTERN}"
+	eval "rm -rf tables/${PATTERN}"
+
+.PHONY: clean all figures
+# when using sed, replace "$" with "$$".

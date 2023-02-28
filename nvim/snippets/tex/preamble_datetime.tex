@@ -1,0 +1,9 @@
+%%% Date Time %%%
+\usepackage{datetime}
+\newtimeformat{zeit}%
+{\twodigit{\THEHOUR}:\twodigit{\THEMINUTE}:\twodigit{\THESECOND}}
+\settimeformat{zeit}%
+\newdateformat{meinesdatum}
+{\THEYEAR-\shortmonthname[\THEMONTH]-\twodigit{\THEDAY}}
+\setdefaultdate{\meinesdatum}
+%-----------------------------------------------------------------------------%

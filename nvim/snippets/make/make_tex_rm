@@ -1,0 +1,4 @@
+TEXFILES  = "*.{aux,bbl,bcf,blg,log,run.xml,out,snm,nav,toc}"
+clean:
+	eval "rm -rf ${TEXFILES}"
+	rm $(MAIN).pdf

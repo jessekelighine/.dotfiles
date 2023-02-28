@@ -1,0 +1,213 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% -*- encoding: UTF-8 -*-                                                   %%
+%%                                                                           %%
+%% Title: BibLaTeX settings for Taiwanese Journal of Political Science.      %%
+%% Author: jessekelighine@gmail.com                                          %%
+%% Last Modified: 2022-Mar-17                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TJPS-bib}
+%-----------------------------------------------------------------------------%
+%%% Biblatex %%%
+\usepackage[
+	style        = authoryear,
+	urldate      = long,
+	hyperref     = true,
+	backend      = biber,
+	backref      = false,
+	maxcitenames = 2,
+	sorting      = ynt,
+	maxbibnames  = 99,
+	giveninits,
+]{biblatex}
+\addbibresource{ref.bib}\urlstyle{tt}
+%-----------------------------------------------------------------------------%
+%%% Biblatex: Chinese punctuation %%%
+\DefineBibliographyStrings{english}{andothers = {\iffieldequalstr{keywords}{cjk}{\hspace{-3.33pt}等}{et\addabbrvspace al\adddot}}}%
+\DefineBibliographyStrings{english}{and       = {\iffieldequalstr{keywords}{cjk}{\hspace{-3.33pt}、\hspace{-3.33pt}}{\&}}}%
+\DeclareDelimFormat*{nameyeardelim}{\iffieldequalstr{keywords}{cjk}{，}{\addcomma\space}}%
+\DeclareDelimFormat*{multinamedelim}{\iffieldequalstr{keywords}{cjk}{、}{\addcomma\space}}%
+\DeclareDelimFormat*{finalnamedelim}{\iffieldequalstr{keywords}{cjk}{、}{\space{\&}\space}}%
+\DeclareDelimFormat*{finentrypunct}{\iffieldequalstr{keywords}{cjk}{。}{.}}%
+%-----------------------------------------------------------------------------%
+%%% Biblatex: format %%%
+\newcommand{\BibChineseParen}[1]{（#1）}
+\DeclareFieldFormat*{chineseQuoteDouble}{\printtext{《}{#1}\printtext{》}}\DeclareListFormat*{chineseQuoteDouble}{\printtext{《}{#1}\printtext{》}}
+\DeclareFieldFormat*{chineseQuoteSingle}{\printtext{〈}{#1}\printtext{〉}}\DeclareListFormat*{chineseQuoteSingle}{\printtext{〈}{#1}\printtext{〉}}
+\DeclareFieldFormat*{quotes}{\printtext{{``}}{#1}\printtext{{''}}}
+\DeclareFieldFormat*{mkbibparens}{(#1)}
+\DeclareFieldFormat*{url}{\url{#1}}
+\DeclareFieldFormat*{textit}{\textit{#1}}
+\DeclareFieldFormat*{urldate}{{Last updated}\space\mkbibmonth{\thefield{urlmonth}}\space\printfield{urlday}\space\printfield{urlyear}}
+%-----------------------------------------------------------------------------%
+%%% Biblatex: \cite{} & \parencite{} %%%
+\DeclareCiteCommand{\citeyear}{}{\bibhyperref{\printdate}}{\multicitedelim}{}
+\DeclareCiteCommand{\parencite}[\BibChineseParen]
+{\usebibmacro{prenote}}{\usebibmacro{citeindex}\usebibmacro{cite}}
+{\multicitedelim}{\usebibmacro{postnote}}
+\DeclareMultiCiteCommand{\parencites}[\BibChineseParen]{\parencite}{\multicitedelim}
+\DeclareDelimFormat*{postnotedelim}{\iffieldequalstr{keywords}{cjk}{：}{\addcolon\space}}
+\DeclareFieldFormat*{postnote}{#1}
+%-----------------------------------------------------------------------------%
+%%% BOOK %%%
+\DeclareBibliographyDriver{book}{%
+	\iffieldequalstr{keywords}{cjk}{%
+		\printnames{author}%
+		\setunit{，}\newblock%
+		\printfield{year}%
+		\setunit{，}\newblock%
+		\printfield[chineseQuoteDouble]{title}%
+		\setunit{，}\newblock%
+		\printlist{location}%
+		\setunit*{：}\newblock%
+		\printlist{publisher}%
+		\setunit{，}\newblock%
+		\printfield{isbn}%
+		\finentry%
+	}{%
+		\printnames{author}%
+		\newunit\newblock%
+		\printfield{year}%
+		\newunit\newblock%
+		\printfield{title}%
+		\newunit\newblock%
+		\printlist{location}%
+		\setunit*{\addcolon\space}\newblock%
+		\printlist{publisher}%
+		\setunit{\addcomma\space}\newblock%
+		\printfield{isbn}%
+		\finentry%
+	}
+}
+%-----------------------------------------------------------------------------%
+%%% ARTICLE %%%
+\DeclareBibliographyDriver{article}{%
+	\iffieldequalstr{keywords}{cjk}{%
+		\printnames{author}%
+		\setunit{，}\newblock%
+		\printfield{year}%
+		\setunit{，}\newblock%
+		\printfield[chineseQuoteSingle]{title}%
+		\setunit{，}\newblock%
+		\printlist[chineseQuoteDouble]{jounraltitle}%
+		\setunit{，}\newblock%
+		\printfield{volume}%
+		\printfield[mkbibparens]{number}%
+		\setunit{：}\newblock%
+		\printfield[titlecase]{pages}%
+		\finentry%
+	}{%
+		\printnames{author}%
+		\setunit{\addperiod\space}\newblock%
+		\printfield{year}%
+		\setunit{\addperiod\space}\newblock%
+		\printfield[quotes]{title}%
+		\setunit{\space}\newblock%
+		\textit{\printlist{jounraltitle}}%
+		\setunit{\space}\newblock%
+		\printfield{volume}%
+		\printfield[mkbibparens]{number}%
+		\setunit{\addcolon\space}\newblock%
+		\printfield[titlecase]{pages}%
+		\finentry%
+	}
+}
+%-----------------------------------------------------------------------------%
+%%% ONLINE %%%
+\DeclareBibliographyDriver{online}{%
+	\iffieldequalstr{keywords}{cjk}{%
+		\printnames{author}%
+		\setunit{，}\newblock%
+		\printfield{year}%
+		\setunit{，}\newblock%
+		\printfield[chineseQuoteSingle]{title}%
+		\setunit{，}\newblock%
+		\printlist{publisher}%
+		\setunit{，}\newblock%
+		\printfield{url}%
+		\setunit{，}\newblock%
+		\printfield{urlyear}/\printfield{urlmonth}/\printfield{urlday}%
+		\finentry%
+	}{%
+		\printnames{author}%
+		\newunit\newblock%
+		\printfield{year}%
+		\setunit{\addperiod\space}\newblock%
+		\printfield[quotes]{title}%
+		\setunit{\space}\newblock%
+		\textit{\printlist{publisher}}%
+		\setunit{\space{in}\space}\newblock%
+		\printfield{url}%
+		\setunit{\addperiod\space}\newblock%
+		\printurldate%
+		\finentry%
+	}
+}
+%-----------------------------------------------------------------------------%
+%%% THESIS %%%
+\DeclareBibliographyDriver{thesis}{%
+	\iffieldequalstr{keywords}{cjk}{%
+		\printnames{author}%
+		\setunit{，}\newblock%
+		\printfield{year}%
+		\setunit{，}\newblock%
+		\printfield[chineseQuoteDouble]{title}%
+		\setunit{，}\newblock%
+		\printlist{location}%
+		\setunit*{：}\newblock%
+		\printlist{publisher}%
+		{論文}%
+		\finentry%
+	}{%
+		\printnames{author}%
+		\setunit{\addperiod\space}\newblock%
+		\printfield{year}%
+		\setunit{\addperiod\space}\newblock%
+		\textit{\printfield[titlecase]{title}}%
+		\setunit{\addperiod\space{Doctoral dissertation}\addcomma\space}\newblock%
+		\printlist{publisher}%
+		\setunit{\addcomma\space}%
+		\printlist{location}%
+		\finentry%
+	}
+}
+%-----------------------------------------------------------------------------%
+%%% INBOOK %%%
+\DeclareBibliographyDriver{inbook}{%
+	\iffieldequalstr{keywords}{cjk}{%
+		\printnames{author}%
+		\setunit{，}\newblock%
+		\printfield{year}%
+		\setunit{，}\newblock%
+		\printfield[chineseQuoteSingle]{title}%
+		\setunit{，}\newblock%
+		\printnames{editor}%
+		\setunit{，}\newblock%
+		\printfield[chineseQuoteDouble]{booktitle}%
+		\setunit{，}\newblock%
+		\printlist{location}%
+		\setunit*{：}\newblock%
+		\printlist{publisher}%
+		\setunit{，}\newblock%
+		\printfield[titlecase]{pages}%
+		\finentry%
+	}{%
+		\printnames{author}%
+		\setunit{\addperiod\space}\newblock%
+		\printfield{year}%
+		\setunit{\addperiod\space}\newblock%
+		\printfield[quotes]{title}%
+		\setunit{\space{In}\space}\newblock%
+		\printfield[textit]{booktitle}%
+		\setunit{\addcomma\space{ed.~}}\newblock%
+		\printnames{editor}%
+		\setunit{\addperiod\space}%
+		\printlist{location}%
+		\setunit*{\addcolon\space}%
+		\printlist{publisher}%
+		\setunit{\addcomma\space}%
+		\printfield[titlecase]{pages}%
+		\finentry%
+	}
+}
+%-----------------------------------------------------------------------------%

@@ -1,0 +1,67 @@
+%%% xeCJK Style %%%
+\xeCJKDeclarePunctStyle{mein}{
+fixed-punct-ratio       = nan,
+fixed-margin-width      = 0pt,
+mixed-margin-width      = \maxdimen,
+mixed-margin-ratio      = 0.5,
+middle-margin-width     = \maxdimen,
+middle-margin-ratio     = 0.5,
+add-min-bound-to-margin = true,
+bound-punct-width       = 0em,
+enabled-hanging         = true,
+min-bound-to-kerning    = true,
+kerning-margin-minimum  = 0.1em}
+\xeCJKsetup{PunctStyle=mein,CheckFullRight=true,CJKmath=true}
+\setlength\parindent{2em}
+%-----------------------------------------------------------------------------%
+%%% Punctuation width %%%
+\xeCJKsetwidth{、}{0.55em}
+\xeCJKsetwidth{，}{0.6em}
+\xeCJKsetwidth{：}{0.65em}
+\xeCJKsetwidth{；}{0.65em}
+\xeCJKsetwidth{。}{0.7em}
+\xeCJKsetwidth{・}{0.7em}
+\xeCJKsetwidth{〈〉}{0.7em}
+\xeCJKsetwidth{《》}{0.7em}
+\xeCJKsetwidth{「」}{0.7em}
+\xeCJKsetwidth{『』}{0.7em}
+\xeCJKsetwidth{【】}{0.7em}
+\xeCJKsetwidth{（）}{0.7em}
+%-----------------------------------------------------------------------------%
+%%% Punctuation Kerning %%%
+% Pairs-with-punctuation kerning (after).
+\xeCJKsetkern{〉}{、}{0.2em} \xeCJKsetkern{〉}{，}{0.2em} \xeCJKsetkern{〉}{。}{0.2em} \xeCJKsetkern{〉}{；}{0.2em} \xeCJKsetkern{〉}{：}{0.2em}
+\xeCJKsetkern{》}{、}{0.2em} \xeCJKsetkern{》}{，}{0.2em} \xeCJKsetkern{》}{。}{0.2em} \xeCJKsetkern{》}{；}{0.2em} \xeCJKsetkern{》}{：}{0.2em}
+\xeCJKsetkern{」}{、}{0.2em} \xeCJKsetkern{」}{，}{0.2em} \xeCJKsetkern{」}{。}{0.2em} \xeCJKsetkern{」}{；}{0.2em} \xeCJKsetkern{」}{：}{0.2em}
+\xeCJKsetkern{』}{、}{0.2em} \xeCJKsetkern{』}{，}{0.2em} \xeCJKsetkern{』}{。}{0.2em} \xeCJKsetkern{』}{；}{0.2em} \xeCJKsetkern{』}{：}{0.2em}
+\xeCJKsetkern{】}{、}{0.2em} \xeCJKsetkern{】}{，}{0.2em} \xeCJKsetkern{】}{。}{0.2em} \xeCJKsetkern{】}{；}{0.2em} \xeCJKsetkern{】}{：}{0.2em}
+\xeCJKsetkern{）}{、}{0.2em} \xeCJKsetkern{）}{，}{0.2em} \xeCJKsetkern{）}{。}{0.2em} \xeCJKsetkern{）}{；}{0.2em} \xeCJKsetkern{）}{：}{0.2em}
+% Pairs-with-punctuation kerning (before).
+\xeCJKsetkern{、}{〈}{0.4em} \xeCJKsetkern{。}{〈}{0.4em} \xeCJKsetkern{，}{〈}{0.4em} \xeCJKsetkern{：}{〈}{0.4em} \xeCJKsetkern{；}{〈}{0.4em}
+\xeCJKsetkern{、}{《}{0.4em} \xeCJKsetkern{。}{《}{0.4em} \xeCJKsetkern{，}{《}{0.4em} \xeCJKsetkern{：}{《}{0.4em} \xeCJKsetkern{；}{《}{0.4em}
+\xeCJKsetkern{、}{「}{0.4em} \xeCJKsetkern{。}{「}{0.4em} \xeCJKsetkern{，}{「}{0.4em} \xeCJKsetkern{：}{「}{0.4em} \xeCJKsetkern{；}{「}{0.4em}
+\xeCJKsetkern{、}{『}{0.4em} \xeCJKsetkern{。}{『}{0.4em} \xeCJKsetkern{，}{『}{0.4em} \xeCJKsetkern{：}{『}{0.4em} \xeCJKsetkern{；}{『}{0.4em}
+\xeCJKsetkern{、}{【}{0.4em} \xeCJKsetkern{。}{【}{0.4em} \xeCJKsetkern{，}{【}{0.4em} \xeCJKsetkern{：}{【}{0.4em} \xeCJKsetkern{；}{【}{0.4em}
+\xeCJKsetkern{、}{（}{0.4em} \xeCJKsetkern{。}{（}{0.4em} \xeCJKsetkern{，}{（}{0.4em} \xeCJKsetkern{：}{（}{0.4em} \xeCJKsetkern{；}{（}{0.4em}
+% Pairwise kerning (back-to-back).
+\xeCJKsetkern{〉}{〈}{0.4em} \xeCJKsetkern{〉}{《}{0.4em} \xeCJKsetkern{〉}{「}{0.4em} \xeCJKsetkern{〉}{『}{0.4em} \xeCJKsetkern{〉}{【}{0.4em} \xeCJKsetkern{〉}{（}{0.4em}
+\xeCJKsetkern{》}{〈}{0.4em} \xeCJKsetkern{》}{《}{0.4em} \xeCJKsetkern{》}{「}{0.4em} \xeCJKsetkern{》}{『}{0.4em} \xeCJKsetkern{》}{【}{0.4em} \xeCJKsetkern{》}{（}{0.4em}
+\xeCJKsetkern{」}{〈}{0.4em} \xeCJKsetkern{」}{《}{0.4em} \xeCJKsetkern{」}{「}{0.4em} \xeCJKsetkern{」}{『}{0.4em} \xeCJKsetkern{」}{【}{0.4em} \xeCJKsetkern{」}{（}{0.4em}
+\xeCJKsetkern{』}{〈}{0.4em} \xeCJKsetkern{』}{《}{0.4em} \xeCJKsetkern{』}{「}{0.4em} \xeCJKsetkern{』}{『}{0.4em} \xeCJKsetkern{』}{【}{0.4em} \xeCJKsetkern{』}{（}{0.4em}
+\xeCJKsetkern{】}{〈}{0.4em} \xeCJKsetkern{】}{《}{0.4em} \xeCJKsetkern{】}{「}{0.4em} \xeCJKsetkern{】}{『}{0.4em} \xeCJKsetkern{】}{【}{0.4em} \xeCJKsetkern{】}{（}{0.4em}
+\xeCJKsetkern{）}{〈}{0.4em} \xeCJKsetkern{）}{《}{0.4em} \xeCJKsetkern{）}{「}{0.4em} \xeCJKsetkern{）}{『}{0.4em} \xeCJKsetkern{）}{【}{0.4em} \xeCJKsetkern{）}{（}{0.4em}
+% Pairwise kerning (front-to-back).
+\xeCJKsetkern{〈}{〈}{0.2em} \xeCJKsetkern{〈}{《}{0.2em} \xeCJKsetkern{〈}{「}{0.2em} \xeCJKsetkern{〈}{『}{0.2em} \xeCJKsetkern{〈}{【}{0.2em} \xeCJKsetkern{〈}{（}{0.2em}
+\xeCJKsetkern{《}{〈}{0.2em} \xeCJKsetkern{《}{《}{0.2em} \xeCJKsetkern{《}{「}{0.2em} \xeCJKsetkern{《}{『}{0.2em} \xeCJKsetkern{《}{【}{0.2em} \xeCJKsetkern{《}{（}{0.2em}
+\xeCJKsetkern{「}{〈}{0.2em} \xeCJKsetkern{「}{《}{0.2em} \xeCJKsetkern{「}{「}{0.2em} \xeCJKsetkern{「}{『}{0.2em} \xeCJKsetkern{「}{【}{0.2em} \xeCJKsetkern{「}{（}{0.2em}
+\xeCJKsetkern{『}{〈}{0.2em} \xeCJKsetkern{『}{《}{0.2em} \xeCJKsetkern{『}{「}{0.2em} \xeCJKsetkern{『}{『}{0.2em} \xeCJKsetkern{『}{【}{0.2em} \xeCJKsetkern{『}{（}{0.2em}
+\xeCJKsetkern{【}{〈}{0.2em} \xeCJKsetkern{【}{《}{0.2em} \xeCJKsetkern{【}{「}{0.2em} \xeCJKsetkern{【}{『}{0.2em} \xeCJKsetkern{【}{【}{0.2em} \xeCJKsetkern{【}{（}{0.2em}
+\xeCJKsetkern{（}{〈}{0.2em} \xeCJKsetkern{（}{《}{0.2em} \xeCJKsetkern{（}{「}{0.2em} \xeCJKsetkern{（}{『}{0.2em} \xeCJKsetkern{（}{【}{0.2em} \xeCJKsetkern{（}{（}{0.2em}
+% Pairwise kerning (back-to-front).
+\xeCJKsetkern{〉}{〉}{0.2em} \xeCJKsetkern{〉}{》}{0.2em} \xeCJKsetkern{〉}{」}{0.2em} \xeCJKsetkern{〉}{』}{0.2em} \xeCJKsetkern{〉}{】}{0.2em} \xeCJKsetkern{〉}{）}{0.2em}
+\xeCJKsetkern{》}{〉}{0.2em} \xeCJKsetkern{》}{》}{0.2em} \xeCJKsetkern{》}{」}{0.2em} \xeCJKsetkern{》}{』}{0.2em} \xeCJKsetkern{》}{】}{0.2em} \xeCJKsetkern{》}{）}{0.2em}
+\xeCJKsetkern{」}{〉}{0.2em} \xeCJKsetkern{」}{》}{0.2em} \xeCJKsetkern{」}{」}{0.2em} \xeCJKsetkern{」}{』}{0.2em} \xeCJKsetkern{」}{】}{0.2em} \xeCJKsetkern{」}{）}{0.2em}
+\xeCJKsetkern{』}{〉}{0.2em} \xeCJKsetkern{』}{》}{0.2em} \xeCJKsetkern{』}{」}{0.2em} \xeCJKsetkern{』}{』}{0.2em} \xeCJKsetkern{』}{】}{0.2em} \xeCJKsetkern{』}{）}{0.2em}
+\xeCJKsetkern{】}{〉}{0.2em} \xeCJKsetkern{】}{》}{0.2em} \xeCJKsetkern{】}{」}{0.2em} \xeCJKsetkern{】}{』}{0.2em} \xeCJKsetkern{】}{】}{0.2em} \xeCJKsetkern{】}{）}{0.2em}
+\xeCJKsetkern{）}{〉}{0.2em} \xeCJKsetkern{）}{》}{0.2em} \xeCJKsetkern{）}{」}{0.2em} \xeCJKsetkern{）}{』}{0.2em} \xeCJKsetkern{）}{】}{0.2em} \xeCJKsetkern{）}{）}{0.2em}
+%-----------------------------------------------------------------------------%

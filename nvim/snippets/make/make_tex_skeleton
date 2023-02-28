@@ -1,0 +1,19 @@
+# Latex Makefile
+
+MAIN  =
+FILES =
+# FIGURES =
+
+.PHONY: all clean
+
+all: $(MAIN).pdf
+
+clean:
+	latexmk -C
+
+$(MAIN).pdf: $(MAIN).tex $(FILES)
+	latexmk -xelatex $(MAIN).tex
+	grep -o '.' $(MAIN).tex | rg '[^\x00-\x7F]' | wc -l | xargs echo "Chinese Word Count:"
+
+# figures/%.pdf: figures/%.tex
+# 	latexmk -outdir=figures -xelatex $<

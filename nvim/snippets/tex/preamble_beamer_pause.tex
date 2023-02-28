@@ -1,0 +1,12 @@
+%%% Beamer Pause (Math) %%%
+\makeatletter
+\renewrobustcmd{\beamer@@pause}[1][]{%
+  \unless\ifmeasuring@%
+  \ifblank{#1}%
+    {\stepcounter{beamerpauses}}%
+    {\setcounter{beamerpauses}{#1}}%
+  \onslide<\value{beamerpauses}->\relax%
+  \fi%
+}
+\makeatother
+%-----------------------------------------------------------------------------%

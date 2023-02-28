@@ -1,0 +1,6 @@
+%%% Underdot %%%
+\usepackage{ifthen}
+\def\xloop<#1#2>{\ifx\relax#1%
+\else\ifthenelse{\equal{#1}{\z}}{\z}{\d{#1}}\xloop<#2>\fi}
+\def\underdot#1{\xloop<#1\relax>}
+%-----------------------------------------------------------------------------%

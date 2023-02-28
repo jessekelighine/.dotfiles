@@ -1,0 +1,23 @@
+% <scalar> <x1> <y1> scalar.pre <x> <y>
+/scalar.pre { 3 -1 roll dup 4 1 roll mul 3 1 roll mul } def
+
+% <x1> <y1> <scalar> scalar.post <x> <y>
+/scalar.post { dup 4 1 roll mul 3 1 roll mul } def
+
+% <x1> <y1> <x2> <y2> vec.add <x> <y>
+/vec.add { exch 4 -1 roll add 3 1 roll add } def
+
+% <x1> <y1> <x2> <y2> vec.sub <x> <y>
+/vec.sub { 3 -1 roll sub neg 3 1 roll sub exch } def
+
+% <x1> <y1> <x2> <y2> norm <distance>
+/norm { vec.sub 2 exp exch 2 exp add sqrt } def
+
+% <string> hori_center <dx>.
+/hori_center { stringwidth pop 2 div neg } def
+
+% <string> left_align <dx>
+/left_align { stringwidth pop neg } def
+
+% <x1> <y1> <x2> <y2> slope <angle>
+/slope { 4 -2 roll exch vec.sub atan } def

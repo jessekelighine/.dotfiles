@@ -1,0 +1,17 @@
+# LaTeX Makefile
+
+MAIN = 
+
+.PHONY: all
+all: $(MAIN).pdf
+
+$(MAIN).pdf: $(MAIN).tex
+	xelatex $(MAIN).tex
+	# xelatex $(MAIN).tex
+	# open $(MAIN).pdf
+
+.PHONY: clean
+FILES  = "*.{aux,bbl,bcf,blg,log,run.xml,out,snm,nav,toc,fdb_latexmk,fls,xdv}"
+clean:
+	eval "rm -rf ${FILES}"
+	rm $(MAIN).pdf

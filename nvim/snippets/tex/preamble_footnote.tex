@@ -1,0 +1,7 @@
+%%% Footnote %%%
+\makeatletter\renewcommand{\@makefnmark}
+{\makebox{\normalfont\@thefnmark}}\makeatother
+\newcommand{\foot}[1]{\footnote{\setstretch{1.2}\;#1\par}}
+\renewcommand{\thefootnote}{[\arabic{footnote}]} % {\fnsymbol{footnote}}
+\usepackage[bottom]{footmisc}
+%-----------------------------------------------------------------------------%

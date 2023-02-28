@@ -1,6 +1,6 @@
 #!/bin/bash
 
-config="$HOME/.config/alacritty/alacritty.yml"
+config="$HOME/.dotfiles/alacritty/alacritty.yml"
 
 message () {
 	cat << EOF

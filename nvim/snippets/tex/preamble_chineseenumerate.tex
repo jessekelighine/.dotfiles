@@ -1,0 +1,53 @@
+%%% Chinese Enumerate （一） %%%
+\makeatletter\def\chinese#1{\expandafter\@chinese\csname c@#1\endcsname}
+\def\@chinese#1{\ifcase#1
+\or   一 \or   二 \or   三 \or   四 \or   五 \or   六 \or   七 \or   八 \or   九 \or   十
+\or 十一 \or 十二 \or 十三 \or 十四 \or 十五 \or 十六 \or 十七 \or 十八 \or 十九 \or 二十
+\or 二一 \or 二二 \or 二三 \or 二四 \or 二五 \or 二六 \or 二七 \or 二八 \or 二九 \or 三十
+\or 三一 \or 三二 \or 三三 \or 三四 \or 三五 \or 三六 \or 三七 \or 三八 \or 三九 \or 四十
+\or 四一 \or 四二 \or 四三 \or 四四 \or 四五 \or 四六 \or 四七 \or 四八 \or 四九 \or 五十
+\or 五一 \or 五二 \or 五三 \or 五四 \or 五五 \or 五六 \or 五七 \or 五八 \or 五九 \or 六十
+\or 六一 \or 六二 \or 六三 \or 六四 \or 六五 \or 六六 \or 六七 \or 六八 \or 六九 \or 七十
+\or 七一 \or 七二 \or 七三 \or 七四 \or 七五 \or 七六 \or 七七 \or 七八 \or 七九 \or 八十
+\or 八一 \or 八二 \or 八三 \or 八四 \or 八五 \or 八六 \or 八七 \or 八八 \or 八九 \or 九十
+\or 九一 \or 九二 \or 九三 \or 九四 \or 九五 \or 九六 \or 九七 \or 九八 \or 九九 \or 一百
+\fi}\makeatother\AddEnumerateCounter{\chinese}{\@chinese}{〇〇}
+%-----------------------------------------------------------------------------%
+%%% Chinese Enumerate （壹） %%%
+\makeatletter\def\Chinese#1{\expandafter\@Chinese\csname c@#1\endcsname}
+\def\@Chinese#1{\ifcase#1
+\or   壹 \or   貳 \or   參 \or   肆 \or   伍 \or   陸 \or   柒 \or   捌 \or   玖 \or   拾
+\or 拾壹 \or 拾貳 \or 拾參 \or 拾肆 \or 拾伍 \or 拾陸 \or 拾柒 \or 拾捌 \or 拾玖 \or 貳拾
+\or 貳壹 \or 貳貳 \or 貳參 \or 貳肆 \or 貳伍 \or 貳陸 \or 貳柒 \or 貳捌 \or 貳玖 \or 參拾
+\or 參壹 \or 參貳 \or 參參 \or 參肆 \or 參伍 \or 參陸 \or 參柒 \or 參捌 \or 參玖 \or 肆拾
+\or 肆壹 \or 肆貳 \or 肆參 \or 肆肆 \or 肆伍 \or 肆陸 \or 肆柒 \or 肆捌 \or 肆玖 \or 伍拾
+\or 伍壹 \or 伍貳 \or 伍參 \or 伍肆 \or 伍伍 \or 伍陸 \or 伍柒 \or 伍捌 \or 伍玖 \or 陸拾
+\or 陸壹 \or 陸貳 \or 陸參 \or 陸肆 \or 陸伍 \or 陸陸 \or 陸柒 \or 陸捌 \or 陸玖 \or 柒拾
+\or 柒壹 \or 柒貳 \or 柒參 \or 柒肆 \or 柒伍 \or 柒陸 \or 柒柒 \or 柒捌 \or 柒玖 \or 捌拾
+\or 捌壹 \or 捌貳 \or 捌參 \or 捌肆 \or 捌伍 \or 捌陸 \or 捌柒 \or 捌捌 \or 捌玖 \or 玖拾
+\or 玖壹 \or 玖貳 \or 玖參 \or 玖肆 \or 玖伍 \or 玖陸 \or 玖柒 \or 玖捌 \or 玖玖 \or 壹佰
+\fi}\makeatother\AddEnumerateCounter{\Chinese}{\@Chinese}{〇〇}
+%-----------------------------------------------------------------------------%
+%%% Chinese Enumerate （甲子） %%%
+\makeatletter\def\ganzhi#1{\expandafter\@ganzhi\csname c@#1\endcsname}
+\def\@ganzhi#1{\ifcase#1
+\or 甲子 \or 乙丑 \or 丙寅 \or 丁卯 \or 戊辰 \or 己巳 \or 庚午 \or 辛未 \or 壬申 \or 癸酉
+\or 甲戌 \or 乙亥 \or 丙子 \or 丁丑 \or 戊寅 \or 己卯 \or 庚辰 \or 辛己 \or 壬午 \or 癸未
+\or 甲申 \or 乙酉 \or 丙戌 \or 丁亥 \or 戊子 \or 己丑 \or 庚寅 \or 辛卯 \or 壬辰 \or 癸巳
+\or 甲午 \or 乙未 \or 丙申 \or 丁酉 \or 戊戌 \or 己亥 \or 庚子 \or 辛丑 \or 壬寅 \or 癸丑
+\or 甲辰 \or 乙巳 \or 丙午 \or 丁未 \or 戊申 \or 己酉 \or 庚戌 \or 辛亥 \or 壬子 \or 癸丑
+\fi}\makeatother\AddEnumerateCounter{\ganzhi}{\@ganzhi}{〇〇}
+%-----------------------------------------------------------------------------%
+%%% Chinese Enumerate （甲） %%%
+\makeatletter\def\tiangan#1{\expandafter\@tiangan\csname c@#1\endcsname}
+\def\@tiangan#1{\ifcase#1
+\or 甲 \or 乙 \or 丙 \or 丁 \or 戊 \or 己 \or 庚 \or 辛 \or 壬 \or 癸
+\fi}\makeatother\AddEnumerateCounter{\tiangan}{\@tiangan}{〇〇}
+%-----------------------------------------------------------------------------%
+%%% Chinese Enumerate （子） %%%
+\makeatletter\def\dizhi#1{\expandafter\@dizhi\csname c@#1\endcsname}
+\def\@dizhi#1{\ifcase#1
+\or 子 \or 丑 \or 寅 \or 卯 \or 辰 \or 巳
+\or 午 \or 未 \or 申 \or 酉 \or 戌 \or 亥
+\fi}\makeatother\AddEnumerateCounter{\dizhi}{\@dizhi}{〇〇}
+%-----------------------------------------------------------------------------%
