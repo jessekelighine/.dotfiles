@@ -114,9 +114,11 @@ for file in "$@"; do
 	dump="$DEL_DIR/$(basename "$file")"
 	[[ -d "$dump" || -f "$dump" ]] && {
 		count=0
+		_redump "$dump" "$(date +'%Y%m%d%H%M%S')"
+		dump="$redump"
 		while : ; do
-			_redump "$dump" "$((++count))"
 			[[ ! -d "$redump" && ! -f "$redump" ]] && break
+			_redump "$dump" "$((++count))"
 		done
 		dump="$redump"
 	}

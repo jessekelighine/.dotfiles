@@ -6,7 +6,7 @@ date:   "2023-02-28"
 
 # Modifications
 
-## miramare
+## franbach/miramare
 
 Here are the needed modifications to `miramare`.
 
@@ -55,17 +55,17 @@ These are the `miramare` colors:
 | `light_grey` | `#5b5b5b` | `245`   | `LightGrey` |
 | `gold`       | `#d8caac` | `214`   | `Yellow`    |
 
-## vim-peekaboo
+## junegunn/vim-peekaboo
 
 Make the mappings in `plugin/peekaboo.vim` not `<buffer>` specific, i.e., remove `<buffer>`.
 
-# Bulk (Batch) Rename files
+# Bulk (Batch) Rename Files
 
 1. `\ls | vim -`: read all the files into vim
 2. `%s/.*/mv -i <PATTERN>/g`: rename files
 3. `:%!bash`: write and run the commands
 
-# Old copy in vimrc
+# Old Copy MacOS
 
 The following can copy to the system clipboard on a Mac.  However, if feature
 `clipboard` is included in the vim you are using, then one can simply yank to
@@ -82,7 +82,7 @@ defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 ```
 
-# tpope/vim-fugitive settings
+# Git settings ( tpope/vim-fugitive )
 
 ```vim
 nnoremap <leader>ga :Git add<space>
@@ -98,16 +98,16 @@ nnoremap <leader>gr :Git reset<space>
 nnoremap <leader>gt :Git checkout<space>
 ```
 
-# Indent files
+# Indent Files
 
 - [How to write indent files](https://psy.swansea.ac.uk/staff/carter/vim/vim_indent.htm)
 
-# hex editing
+# Hex Editing
 
 ```sh
 :%!xxd
 ```
-# Regex tips
+# Regex Tips
 
 - using the search pattern in `/` in `:%s`.
 	- In general, an empty regular expression means to use the previously 
@@ -120,3 +120,8 @@ nnoremap <leader>gt :Git checkout<space>
   specifies that the replacement is only done in the selected block.
 - Note that atoms in `[]`'s have different meanings. E.g., `.` outside of `[]`
   means any character, but in `[]` it means literally `.`.
+
+# Follow Symlink in Netrw
+
+Netrw for some reason fails to follow symlinks in tree mode.
+To follow symlinks, change listing style with `i` and then open symlink.

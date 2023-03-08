@@ -4,5 +4,5 @@
 
 " highlight def link MatlabSection Type
 
-syntax region MatlabAnonymousFunction matchgroup=MatlabAnonymousFunctionBound start="@\s*(" end=")"
-highlight def link MatlabAnonymousFunctionBound Type
+syntax region MatlabAnonymousFunction matchgroup=MatlabAnonymousFunctionBounds start="@\s*(" end=")"
+highlight def link MatlabAnonymousFunctionBounds Type

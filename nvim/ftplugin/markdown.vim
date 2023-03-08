@@ -39,3 +39,5 @@ inoremap <buffer> $<Tab>  <C-G>u$$<Left>
 inoremap <buffer> $$<Tab> <C-G>u$$$$<Left><Left>
 inoremap <buffer> *<Tab>  <C-G>u**<Left>
 inoremap <buffer> **<Tab> <C-G>u****<Left><Left>
+xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
+onoremap <silent><buffer> i<bar>      :norm! F<bar>lvt<bar><CR>

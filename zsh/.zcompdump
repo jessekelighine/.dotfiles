@@ -952,7 +952,6 @@ _comps=(
 'mpc' '_mpc'
 'mplayer' '_mplayer'
 'mpstat' '_sysstat'
-'mpv' '_mpv'
 'mr' '_myrepos'
 'mrd' '_mtools'
 'mread' '_mtools'
@@ -1042,6 +1041,7 @@ _comps=(
 'packf' '_mh'
 'pandoc' '_pandoc'
 'parsehdlist' '_urpmi'
+'pass' '_pass'
 'passwd' '_users'
 'paste' '_paste'
 'patch' '_patch'
@@ -1794,7 +1794,7 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _alacritty _brew _fd _git _meson \
-            _mpv _ninja _rg _yt-dlp _SUSEconfig \
+            _ninja _pass _rg _yt-dlp _SUSEconfig \
             _a2ps _a2utils _aap _abcde _absolute_command_paths \
             _ack _acpi _acpitool _acroread _adb \
             _add-zle-hook-widget _add-zsh-hook _alias _aliases _all_labels \

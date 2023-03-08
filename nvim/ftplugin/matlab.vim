@@ -3,7 +3,7 @@
 " ~/.config/nvim/snippets/matlab/
 
 set expandtab
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(%* Last Modified: *\)[^ ]*',6)
+command! -buffer -nargs=0 LastMod :call my#LastMod('^\(%* Last Modified: *\)[^ ]*',10)
 
 " FUNCTION KEYS: compile.
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/matlab.vim<CR>

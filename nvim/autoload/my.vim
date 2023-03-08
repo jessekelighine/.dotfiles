@@ -173,10 +173,15 @@ endfunction
 
 " Resize stacking panes like tmux
 function! my#Resize2Panes(key) abort
-	let l:up = win_screenpos(winnr())[0]<=2
-	if     a:key=="Up"   &&  l:up | exec "resize-5"
-	elseif a:key=="Up"   && !l:up | exec "resize+5"
-	elseif a:key=="Down" &&  l:up | exec "resize+5"
-	elseif a:key=="Down" && !l:up | exec "resize-5"
+	let l:up   = win_screenpos(winnr())[0] <= 2
+	let l:left = win_screenpos(winnr())[1] <= 1
+	if     a:key=="Up"    &&  l:up   | exec "resize-5"
+	elseif a:key=="Up"    && !l:up   | exec "resize+5"
+	elseif a:key=="Down"  &&  l:up   | exec "resize+5"
+	elseif a:key=="Down"  && !l:up   | exec "resize-5"
+	elseif a:key=="Left"  &&  l:left | exec "vertical resize-5"
+	elseif a:key=="Left"  && !l:left | exec "vertical resize+5"
+	elseif a:key=="Right" &&  l:left | exec "vertical resize+5"
+	elseif a:key=="Right" && !l:left | exec "vertical resize-5"
 	endif
 endfunction

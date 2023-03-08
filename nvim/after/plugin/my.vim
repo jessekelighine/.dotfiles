@@ -1,17 +1,19 @@
 " ~/.config/nvim/after/plugin/my.vim
 
-nnoremap <silent> <Plug>(ChineseSpelling)   :call my#ChineseSpelling()<CR>
-nnoremap <silent> <Plug>(MakeRoomAbove)     :<C-U>exe "call my#MakeRoom('above',".v:count1.")"<CR>
-nnoremap <silent> <Plug>(MakeRoomBelow)     :<C-U>exe "call my#MakeRoom('below',".v:count1.")"<CR>
-nnoremap <silent> <Plug>(DeletePair)        :call surround#Delete()<CR>
-nnoremap <silent> <Plug>(ToggleLineNumber)  :call my#ToggleLineNumber()<CR>
-nnoremap <silent> <Plug>(ToggleVirtualEdit) :call my#ToggleVirtualEdit()<CR>
-xnoremap <silent> ia  <Esc>:call my#SelectArgument("i")<CR>
-xnoremap <silent> aa  <Esc>:call my#SelectArgument("a")<CR>
-onoremap <silent> ia       :call my#SelectArgument("i")<CR>
-onoremap <silent> aa       :call my#SelectArgument("a")<CR>
-nnoremap <silent> <S-Up>   :call my#Resize2Panes("Up")<CR>
-nnoremap <silent> <S-Down> :call my#Resize2Panes("Down")<CR>
+inoremap <silent> :date<Tab> <C-R>=strftime("%F")<CR>
+nnoremap <silent> [<Space>   :<C-U>exe "call my#MakeRoom('above',".v:count1.")"<CR>
+nnoremap <silent> ]<Space>   :<C-U>exe "call my#MakeRoom('below',".v:count1.")"<CR>
+nnoremap <silent> <leader>s  :call my#ChineseSpelling()<CR>
+nnoremap <silent> <leader>n  :call my#ToggleLineNumber()<CR>
+xnoremap <silent> ia    <Esc>:call my#SelectArgument("i")<CR>
+xnoremap <silent> aa    <Esc>:call my#SelectArgument("a")<CR>
+onoremap <silent> ia         :call my#SelectArgument("i")<CR>
+onoremap <silent> aa         :call my#SelectArgument("a")<CR>
+nnoremap <silent> <S-Up>     :call my#Resize2Panes("Up")<CR>
+nnoremap <silent> <S-Down>   :call my#Resize2Panes("Down")<CR>
+nnoremap <silent> <S-Left>   :call my#Resize2Panes("Left")<CR>
+nnoremap <silent> <S-Right>  :call my#Resize2Panes("Right")<CR>
+nnoremap <silent> dm         :call surround#Delete()<CR>
 
 command! -nargs=1 TabSize              :call my#TabSize(<args>)
 command! -nargs=? LocalVimrc           :call my#LocalVimrc(<args>)

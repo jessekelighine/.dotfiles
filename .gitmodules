@@ -19,9 +19,6 @@
 [submodule "nvim/pack/main/start/vim-repeat"]
 	path = nvim/pack/main/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "nvim/pack/main/start/vim-vinegar"]
-	path = nvim/pack/main/start/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar
 [submodule "nvim/pack/main/start/fzf.vim"]
 	path = nvim/pack/main/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
@@ -40,3 +37,6 @@
 [submodule "nvim/pack/main/opt/goyo.vim"]
 	path = nvim/pack/main/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim
+[submodule "nvim/pack/main/start/vim-vinegar"]
+	path = nvim/pack/main/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar

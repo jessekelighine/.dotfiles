@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # brew packages
+brew autoremove
+brew cleanup
 brew leaves > .brew_list
 brew list --cask > .brew_cask
 

@@ -1,15 +1,19 @@
 #!/bin/bash
 
 ds_list=()
-folders=(
-	"$HOME/Courses"
-	"$HOME/Desktop"
-	"$HOME/Documents"
-	"$HOME/Downloads"
-	"$HOME/Fonts"
-	"$HOME/Pictures"
-	"$HOME/.config"
-)
+if [[ $1 == '' ]]; then
+	folders=(
+		"$HOME/Courses"
+		"$HOME/Desktop"
+		"$HOME/Documents"
+		"$HOME/Downloads"
+		"$HOME/Fonts"
+		"$HOME/Pictures"
+		"$HOME/.config"
+		)
+else
+	folders=( "$1" )
+fi
 
 for folder in "${folders[@]}" ; do
 	ds_list+=( $(find "$folder" -name '.DS_Store') )

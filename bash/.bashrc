@@ -1,18 +1,17 @@
 #!/bin/bash
 
-PATH="$HOME/.local/bin:$PATH"
-
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'
 bind -m vi-insert 'Control-l: clear-screen'
 shopt -s autocd
 
+export PATH="$HOME/.local/bin:$PATH"
 export LSCOLORS='exfxcxdxbxegedabagacad'
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export LESSHISTFILE=-
-export HISTFILE="$HOME/.config/bash/.bash_history"
-export BC_ENV_ARGS="$HOME/.config/.bc"
+export HISTFILE="$HOME/.dotfiles/bash/.bash_history"
+export BC_ENV_ARGS="$HOME/.dotfiles/.bc"
 export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
 export SHELL_SESSIONS_DISABLE=1
@@ -38,9 +37,9 @@ alias 'tma'='tmux attach -t'
 alias 'tmk'='tmux kill-session'
 alias 'youtube-audio'='youtube-dl -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
 
-source "$HOME/.config/.fzf.bash"
-source "$HOME/.config/bash/up.sh"
-source "$HOME/.config/bash/volume.sh"
+source "$HOME/.dotfiles/.fzf.bash"
+source "$HOME/.dotfiles/bash/up.sh"
+source "$HOME/.dotfiles/bash/volume.sh"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --extended'
 export DEL_DIR="$HOME/.Trash"

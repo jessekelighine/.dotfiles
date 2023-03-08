@@ -1,4 +1,4 @@
-%%% Custom Title %%%
+%%% Default Title %%%
 \makeatletter\def\@maketitle{%
 \newpage\null\vskip2em%
 \begin{center}%
@@ -15,4 +15,10 @@
 \end{center}%
 \par\vskip1.5em}
 \makeatother
+%-----------------------------------------------------------------------------%
+%%% Minimal Title %%%
+\makeatletter\def\@maketitle{%
+\noindent{\sffamily\bfseries\@title}%
+\hfill\texttt{\@date}\\{\ }\null\hfill\texttt{\@author}
+\par\vskip1.5em}\makeatother
 %-----------------------------------------------------------------------------%

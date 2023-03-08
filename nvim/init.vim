@@ -19,7 +19,7 @@
 	xmap ga <Plug>(EasyAlign)
 	nmap ga <Plug>(EasyAlign)
 " fzf.vim
-	set rtp+=~/.config/.fzf " where fzf is installed
+	set rtp+=/usr/local/Cellar/fzf/0.38.0 " where fzf is installed
 	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 	let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
 	let g:fzf_preview_window = [ 'right:40%' ]
@@ -47,13 +47,7 @@
 	let g:vindent_object_XX_ai = 'ai'
 	let g:vindent_object_XX_aI = 'aI'
 	let g:vindent_jumps = 1
-" my
-	nmap [<Space>   <Plug>(MakeRoomAbove)
-	nmap ]<Space>   <Plug>(MakeRoomBelow)
-	nmap <leader>s  <Plug>(ChineseSpelling)
-	nmap <leader>n  <Plug>(ToggleLineNumber)
-	nmap dm         <Plug>(DeletePair)
-	imap :date<Tab> <C-R>=strftime("%F")<CR>
+	let g:vindent_count = 0
 
 language en_US.UTF-8
 filetype plugin on
@@ -79,6 +73,10 @@ inoremap (<Tab> ()<Left>
 inoremap [<Tab> []<Left>
 inoremap {<Tab> {}<Left>
 inoremap <<Tab> <><Left>
+inoremap )<Tab> ()<Left>
+inoremap ]<Tab> []<Left>
+inoremap }<Tab> {}<Left>
+inoremap ><Tab> <><Left>
 inoremap '<Tab> ''<Left>
 inoremap `<Tab> ``<Left>
 inoremap "<Tab> ""<Left>
@@ -144,11 +142,12 @@ set nrformats+=alpha
 set nrformats-=bin,hex
 set lazyredraw ttyfast re=1
 set timeoutlen=500 ttimeoutlen=50
-let g:netrw_liststyle=3
-let g:netrw_altv=1
-let g:html_number_lines=1
 set updatetime=300
 set shortmess-=S " Show number of matches
+let g:html_number_lines=1
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_altv=1
 
 augroup CommentAndIndent
 	autocmd!
@@ -166,7 +165,7 @@ if has('nvim')
 	set laststatus=3
 	set undofile undodir=~/.config/nvim/undodir/
 	set directory^=~/.config/nvim/swap/
-	lua require("init")
+	" lua require("init")
 else
 	let &t_SI="\e[5 q"
 	let &t_EI="\e[2 q"
