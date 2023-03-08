@@ -40,3 +40,6 @@
 [submodule "nvim/pack/main/start/vim-vinegar"]
 	path = nvim/pack/main/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar
+[submodule "del"]
+	path = del
+	url = https://github.com/jessekelighine/del
