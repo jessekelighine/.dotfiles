@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # brew packages
+brew upgrade
 brew autoremove
 brew cleanup
 brew leaves > .brew_list

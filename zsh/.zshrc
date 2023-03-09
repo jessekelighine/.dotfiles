@@ -7,6 +7,8 @@ setopt HIST_EXPIRE_DUPS_FIRST
 
 set -o vi
 autoload -U colors && colors
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export PATH="$HOME/.local/bin:$PATH"
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$ZDOTDIR/.zsh_history"
@@ -30,23 +32,16 @@ alias 'la'='ls -lAhG'
 alias 'lad'='ls -lAhGd */'
 alias 'mkdir'='mkdir -pv'
 alias 'md5sum'='md5 -r'
-
-alias 'pd'='pushd'
-alias 'ppd'='popd'
-alias 'dirs'='dirs -v'
-
-alias 'youtube-audio'='youtube-dl -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
-alias 'weather'='curl "wttr.in/Taipei"'
+alias pd='pushd'
+alias ppd='popd'
 alias 'vim'='/usr/local/bin/nvim'
 alias 'scim'='sc-im'
-
+alias 'youtube-audio'='youtube-dl -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
+alias 'weather'='curl "wttr.in/Taipei"'
 alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
-
-alias spiel='mpv --ytdl=no --no-video --loop' # --audio-channels=mono
-alias spielliste='mpv --ytdl=no --no-video'
 
 source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -69,6 +64,10 @@ volume () { cd "/Volumes/$1" }
 eject  () { diskutil eject "$1" }
 R-mean () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); mean(x)' }
 R-sd   () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); sd(x)'   }
+spiel           () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video --loop "$1" }
+spiel-mono      () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" }
+spielliste      () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video "$1" }
+spielliste-mono () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video --audio-channels=mono "$1" }
 
 # PROMPT='%B%F{196}%1~%f%b %# '
 # export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "

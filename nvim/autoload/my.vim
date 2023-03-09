@@ -172,16 +172,12 @@ function! my#GetChar(line=line('.'),col=col('.'))
 endfunction
 
 " Resize stacking panes like tmux
-function! my#Resize2Panes(key) abort
+function! my#Resize2Panes(key, size=5) abort
 	let l:up   = win_screenpos(winnr())[0] <= 2
 	let l:left = win_screenpos(winnr())[1] <= 1
-	if     a:key=="Up"    &&  l:up   | exec "resize-5"
-	elseif a:key=="Up"    && !l:up   | exec "resize+5"
-	elseif a:key=="Down"  &&  l:up   | exec "resize+5"
-	elseif a:key=="Down"  && !l:up   | exec "resize-5"
-	elseif a:key=="Left"  &&  l:left | exec "vertical resize-5"
-	elseif a:key=="Left"  && !l:left | exec "vertical resize+5"
-	elseif a:key=="Right" &&  l:left | exec "vertical resize+5"
-	elseif a:key=="Right" && !l:left | exec "vertical resize-5"
+	if     a:key=="Up"    | exe      "resize" . ( l:up   ? "-" : "+" ) . a:size
+	elseif a:key=="Down"  | exe      "resize" . ( l:up   ? "+" : "-" ) . a:size
+	elseif a:key=="Left"  | exe "vert resize" . ( l:left ? "-" : "+" ) . a:size
+	elseif a:key=="Right" | exe "vert resize" . ( l:left ? "+" : "-" ) . a:size
 	endif
 endfunction

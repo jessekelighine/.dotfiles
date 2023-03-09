@@ -13,7 +13,7 @@ let b:surround_98="**\r**"
 let b:surround_99="<!-- \r -->"
 
 " AUTOLOAD: toggles.
-" let g:markdown_fenced_languages = [ 'tex' ]
+" let g:markdown_fenced_languages = ['bash']
 let b:markdown_code_syntax_toggle=0
 
 " COMPILER: types = {number, nonumber, plain}.
@@ -25,11 +25,11 @@ nnoremap <buffer> <leader>c :call markdown#ClearCodeSyntax()<CR>
 nnoremap <buffer> <leader>p :! open %:r.html<CR><CR>
 
 " SETUP: snippets, markdown items.
-imap <buffer> :qui<Tab>  <esc>:call my#GetSnippets('markdown','skeleton.md')<CR>:LastMod<CR>
-imap <buffer> :c<Tab> <C-G>u<!--  --><esc>hhhi
-imap <buffer> :e<Tab> <C-G>u\[\]<Left><Left>
-imap <buffer> :q<Tab> <C-G>u(**)<Left><Left>
-imap <buffer> :t<Tab> <C-G>u<!-- TODO:  --><esc>hhhi
+imap <buffer> :qui<Tab> <esc>:call my#GetSnippets('markdown','skeleton.md')<CR>:LastMod<CR>
+imap <buffer> :c<Tab>   <C-G>u<!--  --><esc>hhhi
+imap <buffer> :e<Tab>   <C-G>u\[\]<Left><Left>
+imap <buffer> :q<Tab>   <C-G>u(**)<Left><Left>
+imap <buffer> :t<Tab>   <C-G>u<!-- TODO:  --><esc>hhhi
 
 " TAB COMPLETION: tab complete markdown syntax.
 inoremap <buffer> _<Tab>  <C-G>u_{}<Left>

@@ -29,6 +29,7 @@ pass
 pdf2svg
 python@3.8
 qt
+r
 ripgrep
 sc-im
 shellcheck

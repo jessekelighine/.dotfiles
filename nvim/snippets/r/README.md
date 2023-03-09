@@ -1,16 +1,10 @@
 ---
-title:  "VIM - R Project"
+title:  "R"
 author: "jessekelighine@gmail.com"
-date:   "2020-Nov-21"
+date:   "2023-03-09"
 ---
 
-# misc
+# Library Paths (2023-03-09)
 
-- vim as IDE for R: [video](https://www.youtube.com/watch?v=nm45WagtV3w&t=1793s)
-- [autocomplete](https://www.youtube.com/watch?v=2f8h45YR494)
-
-# Plugins 
-
-```vim
-Plug 'jalvesaq/Nvim-R'
-```
+- `/usr/local/lib/R/4.2/site-library`
+- `/usr/local/Cellar/r/4.2.2_1/lib/R/library`
