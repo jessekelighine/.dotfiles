@@ -22,3 +22,6 @@ git submodule add https://github.com/junegunn/goyo.vim          main/opt/goyo.vi
 # git submodule add https://github.com/wellle/targets.vim     main/start/targets.vim
 # git submodule add https://github.com/tpope/vim-fugitive     main/start/vim-fugitive
 # git submodule add https://github.com/google/vim-searchindex main/opt/vim-searchindex
+
+git submodule add https://github.com/jessekelighine/vim-peekaboo main/start/vim-peekaboo
+git submodule add https://github.com/jessekelighine/miramare     color/start/miramare

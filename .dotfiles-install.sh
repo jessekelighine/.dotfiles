@@ -9,9 +9,6 @@
 #     - [cwTeX](https://github.com/l10n-tw/cwtex-q-fonts)
 #     - GenWanMinTJ: b2
 
-# repo path
-dotfiles="$HOME/.dotfiles"
-
 ### Homebrew ##################################################################
 
 # install brew
@@ -19,27 +16,28 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/in
 
 ## fzf ( to install key-bindings )
 $(brew --prefix)/opt/fzf/install
-mv -i "$HOME/.fzf.bash" "$dotfiles/.fzf.bash"
-mv -i "$HOME/.fzf.zsh"  "$dotfiles/.fzf.zsh"
+mv -i "$HOME/.fzf.bash" "~/.dotfiles/.fzf.bash"
+mv -i "$HOME/.fzf.zsh"  "~/.dotfiles/.fzf.zsh"
 
 ### Linking ###################################################################
 
-ln -s "$dotfiles/bin"             "$HOME/.local/bin"
-ln -s "$dotfiles/zsh/.zshrc"      "$HOME/.zshrc"
-ln -s "$dotfiles/.gnupg"          "$HOME/.gnupg"
-ln -s "$dotfiles/.password-store" "$HOME/.password-store"
-ln -s "$dotfiles/.vim"            "$HOME/.vim"
-ln -s "$dotfiles/.ssh"            "$HOME/.ssh"
-ln -s "$dotfiles/alacritty"       "$HOME/.config/alacritty"
-ln -s "$dotfiles/b2"              "$HOME/.config/b2"
-ln -s "$dotfiles/iterm2"          "$HOME/.config/iterm2"
-ln -s "$dotfiles/mpv"             "$HOME/.config/mpv"
-ln -s "$dotfiles/nvim"            "$HOME/.config/nvim"
-ln -s "$dotfiles/octave"          "$HOME/.config/octave"
-ln -s "$dotfiles/sc-im"           "$HOME/.config/sc-im"
-ln -s "$dotfiles/skim"            "$HOME/.config/skim"
-ln -s "$dotfiles/tmux"            "$HOME/.config/tmux"
-ln -s "$dotfiles/zathura"         "$HOME/.config/zathura"
-ln -s "$dotfiles/zsh"             "$HOME/.config/zsh"
-ln -s "$dotfiles/.fzf.zsh"        "$HOME/.config/.fzf.zsh"
-ln -s "$dotfiles/.bc"             "$HOME/.config/.bc"
+ln -s "$HOME/.dotfiles/bin"             "$HOME/.local/bin"
+ln -s "$HOME/.dotfiles/zsh/.zshrc"      "$HOME/.zshrc"
+ln -s "$HOME/.dotfiles/.gitconfig"      "$HOME/.gitconfig"
+ln -s "$HOME/.dotfiles/.gnupg"          "$HOME/.gnupg"
+ln -s "$HOME/.dotfiles/.password-store" "$HOME/.password-store"
+ln -s "$HOME/.dotfiles/.vim"            "$HOME/.vim"
+ln -s "$HOME/.dotfiles/.ssh"            "$HOME/.ssh"
+ln -s "$HOME/.dotfiles/alacritty"       "$HOME/.config/alacritty"
+ln -s "$HOME/.dotfiles/b2"              "$HOME/.config/b2"
+ln -s "$HOME/.dotfiles/iterm2"          "$HOME/.config/iterm2"
+ln -s "$HOME/.dotfiles/mpv"             "$HOME/.config/mpv"
+ln -s "$HOME/.dotfiles/nvim"            "$HOME/.config/nvim"
+ln -s "$HOME/.dotfiles/octave"          "$HOME/.config/octave"
+ln -s "$HOME/.dotfiles/sc-im"           "$HOME/.config/sc-im"
+ln -s "$HOME/.dotfiles/skim"            "$HOME/.config/skim"
+ln -s "$HOME/.dotfiles/tmux"            "$HOME/.config/tmux"
+ln -s "$HOME/.dotfiles/zathura"         "$HOME/.config/zathura"
+ln -s "$HOME/.dotfiles/zsh"             "$HOME/.config/zsh"
+ln -s "$HOME/.dotfiles/.fzf.zsh"        "$HOME/.config/.fzf.zsh"
+ln -s "$HOME/.dotfiles/.bc"             "$HOME/.config/.bc"

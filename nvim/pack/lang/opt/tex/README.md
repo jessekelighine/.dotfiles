@@ -11,7 +11,7 @@ list of all the things that must be done for me to use LaTeX in Vim easily.
 
 # Tips
 
-- Install "BasicTeX".
+- Install "BasicTeX" ( use `brew install --cask basictex` ).
 - Set default papaer size: `sudo tlmgr paper a4`
 - Installing new packages: `sudo tlmgr install <pkg-name>`
 - Biber fuck-up fix: 

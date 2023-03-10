@@ -1,8 +1,8 @@
 ---
 title:  ".dotfiles"
 author: "jessekelighine@gmail.com"
-date:   "2023-03-09"
+date:   "2023-03-10"
 ---
 
-- update  `.dotfiles`: `./.dotfiles-update.sh`
-- install `.dotfiles`: `./.dotfiles-install.sh`
+- update:  `.dotfiles-update.sh`
+- install: `.dotfiles-install.sh`

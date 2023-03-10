@@ -4,6 +4,7 @@ i amscls: AMS document classes for LaTeX
 i amsfonts: TeX fonts from the American Mathematical Society
 i amsmath: AMS mathematical facilities for LaTeX
 i anysize: A simple package to set up document margins
+i appendixnumberbeamer: Manage frame numbering in appendixes in beamer
 i arabxetex: An ArabTeX-like interface for XeLaTeX
 i arphic: Arphic (Chinese) font packages
 i atbegshi: Execute stuff at \shipout time
@@ -65,9 +66,11 @@ i colorprofiles: Collection of free ICC profiles
 i colortbl: Add colour to LaTeX tables
 i cqubeamer: LaTeX Beamer Template for Chongqing University
 i crop: Support for cropmarks
+i csvsimple: Simple CSV file processing
 i ctable: Flexible typesetting of table and figure floats using key/value directives
 i ctablestack: Catcode table stable support
 i ctex: LaTeX classes and packages for Chinese typesetting
+i datetime: Change format of \today with commands for current time
 i dehyph: German hyphenation patterns for traditional orthography
 i drv: Derivation trees with MetaPost
 i dviincl: Include a DVI page into MetaPost output
@@ -78,6 +81,7 @@ i dvips.universal-darwin: universal-darwin files of dvips
 i ec: Computer modern fonts in T1 and TS1 encodings
 i emp: "Encapsulate" MetaPost figures in a document
 i enctex: A TeX extension that translates input on its way into TeX
+i enumitem: Control layout of itemize, enumerate, description
 i epsincl: Include EPS in MetaPost figures
 i epstopdf-pkg: Call epstopdf "on the fly"
 i eso-pic: Add picture commands (or backgrounds) to every page
@@ -108,6 +112,7 @@ i fix2col: Fix miscellaneous two column mode features
 i fixlatvian: Improve Latvian language support in XeLaTeX
 i fiziko: A MetaPost library for physics textbook illustrations
 i float: Improved interface for floating objects
+i fmtcount: Display the value of a LaTeX counter in a variety of formats
 i font-change-xetex: Macros to change text and mathematics fonts in plain XeTeX
 i fontbook: Generate a font book
 i fonts-tlwg: Thai fonts for LaTeX from TLWG
@@ -168,6 +173,7 @@ i l3backend: LaTeX3 backend drivers
 i l3experimental: Experimental LaTeX3 concepts
 i l3kernel: LaTeX3 programming conventions
 i l3packages: High-level LaTeX3 concepts
+i lastpage: Reference last page for Page N of M type footers
 i latex: A TeX macro package that defines LaTeX
 i latex-base-dev: Development pre-release of the LaTeX kernel
 i latex-bin: LaTeX executables and man pages
@@ -235,6 +241,7 @@ i mptopdf: mpost to PDF, native MetaPost graphics inclusion
 i mptopdf.universal-darwin: universal-darwin files of mptopdf
 i mptrees: Probability trees with MetaPost
 i ms: Various LaTeX packages by Martin Schroder
+i multirow: Create tabular cells spanning multiple rows
 i na-position: Tables of relative positions of curves and asymptotes or tangents in Arabic documents
 i natbib: Flexible bibliography support
 i newfloat: Define new floating environments
@@ -276,6 +283,7 @@ i rerunfilecheck: Checksum based rerun checks on auxiliary files
 i revtex: Styles for various Physics Journals
 i roex: Metafont-PostScript conversions
 i roundrect: MetaPost macros for highly configurable rounded rectangles (optionally with text)
+i rsfs: Ralph Smith's Formal Script font
 i sansmath: Maths in a sans font
 i scheme-basic: basic scheme (plain and latex)
 i scheme-infraonly: infrastructure-only scheme (no TeX at all)
@@ -315,6 +323,7 @@ i thumbpdf: Thumbnails for pdfTeX and dvips/ps2pdf
 i thumbpdf.universal-darwin: universal-darwin files of thumbpdf
 i times: URW 'Base 35' font pack for LaTeX
 i tipa: Fonts and macros for IPA phonetics characters
+i titlesec: Select alternative section titles
 i tlshell: GUI frontend (tcl/tk-based) for tlmgr
 i tlshell.universal-darwin: universal-darwin files of tlshell
 i tools: The LaTeX standard tools bundle

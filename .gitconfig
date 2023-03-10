@@ -1,0 +1,11 @@
+[alias]
+	unstage = reset HEAD --
+	co = checkout
+	br = branch
+	st = status
+	llog = log --oneline --decorate --graph
+[user]
+	name = Jesse C. Chen
+	email = jessekelighine@gmail.com
+[core]
+	editor = nvim

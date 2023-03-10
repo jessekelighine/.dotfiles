@@ -4,9 +4,6 @@
 [submodule "zsh/zsh-autosuggestions"]
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "nvim/pack/color/start/miramare"]
-	path = nvim/pack/color/start/miramare
-	url = https://github.com/franbach/miramare
 [submodule "nvim/pack/main/start/vindent.vim"]
 	path = nvim/pack/main/start/vindent.vim
 	url = https://github.com/jessekelighine/vindent.vim
@@ -25,9 +22,6 @@
 [submodule "nvim/pack/main/start/vim-easy-align"]
 	path = nvim/pack/main/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
-[submodule "nvim/pack/main/start/vim-peekaboo"]
-	path = nvim/pack/main/start/vim-peekaboo
-	url = https://github.com/junegunn/vim-peekaboo
 [submodule "nvim/pack/main/start/undotree"]
 	path = nvim/pack/main/start/undotree
 	url = https://github.com/mbbill/undotree
@@ -43,3 +37,9 @@
 [submodule "del"]
 	path = del
 	url = https://github.com/jessekelighine/del
+[submodule "nvim/pack/main/start/vim-peekaboo"]
+	path = nvim/pack/main/start/vim-peekaboo
+	url = https://github.com/jessekelighine/vim-peekaboo
+[submodule "nvim/pack/color/start/miramare"]
+	path = nvim/pack/color/start/miramare
+	url = https://github.com/jessekelighine/miramare
