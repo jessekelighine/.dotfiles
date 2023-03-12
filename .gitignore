@@ -14,3 +14,4 @@ nvim/undodir/*
 nvim/spell/*.spl
 .fzf.bash
 .fzf.zsh
+.ssh/*

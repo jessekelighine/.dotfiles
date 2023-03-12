@@ -16,8 +16,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/in
 
 ## fzf ( to install key-bindings )
 $(brew --prefix)/opt/fzf/install
-mv -i "$HOME/.fzf.bash" "~/.dotfiles/.fzf.bash"
-mv -i "$HOME/.fzf.zsh"  "~/.dotfiles/.fzf.zsh"
+mv -i "$HOME/.fzf.bash" "$HOME/.dotfiles/.fzf.bash"
+mv -i "$HOME/.fzf.zsh"  "$HOME/.dotfiles/.fzf.zsh"
 
 ### Linking ###################################################################
 

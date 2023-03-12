@@ -12,7 +12,8 @@ let R_disable_cmds = [ "RSendLine" ]
 setlocal cpoptions=M " for anonymous function shorthand
 setlocal winminwidth=1
 setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)
+command! -buffer -nargs=0 LastMod          :call my#LastMod('^\\(#* *Last Modified: *\\)[^ ]*',10)
+command! -buffer -nargs=1 DatatableExplain :call system("open ~/.config/nvim/snippets/r/datatable-".<q-args>.".png")
 
 " Utilities:
 xnoremap <buffer><silent> as :call r#GetSection('a')<CR>
@@ -42,17 +43,3 @@ nnoremap <buffer><silent> <leader>;  :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9
 inoremap <buffer><silent> {<CR>      {}<esc>i<CR><esc><S-O>
 inoremap <buffer><silent> %<Tab>     %%<Left>
 inoremap <buffer><silent> ^<Tab>     ^()<Left>
-
-" Vim Slime: IDE-like key-bindings.
-" nnoremap <buffer><silent> <leader>v       :call vimslime#tmux_vars()<CR>
-" xnoremap <buffer><silent> <leader>ss   "9y:call vimslime#send_to_pane(@9)<CR>
-" nnoremap <buffer><silent> <leader>pp "9yip:call vimslime#send_to_pane(@9)<CR>
-" nnoremap <buffer><silent> <leader>d   "9yy:call vimslime#send_to_pane(@9)<CR>
-" nnoremap <buffer><silent> <leader>rr      :call vimslime#send_to_pane("<C-l>")<CR>
-" nnoremap <buffer><silent> <leader>ro      :call vimslime#send_to_pane("ls()\n")<CR>
-" nnoremap <buffer><silent> <leader>rp "9yiw:call vimslime#send_to_pane("print(".@9.")\n")<CR>
-" nnoremap <buffer><silent> <leader>rg "9yiw:call vimslime#send_to_pane("glimpse(".@9.")\n")<CR>
-" nnoremap <buffer><silent> <leader>rh "9yiw:call vimslime#send_to_pane("?".@9."\n")<CR>
-" nnoremap <buffer><silent> <leader>rs "9yiw:call vimslime#send_to_pane("summary(".@9.")\n")<CR>
-" nnoremap <buffer><silent> <leader>rq      :call vimslime#send_to_pane("<C-D>n\n<C-D>")<CR>
-" nnoremap <buffer><silent> <leader>qq      :call vimslime#send_to_pane("q")<CR>

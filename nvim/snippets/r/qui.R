@@ -7,9 +7,9 @@
 #                                                                             #
 # Last Modified: OOOO-OO-OO                                                   #
 ###############################################################################
+library(conflicted)
 library(data.table)
 library(tidyverse)
-library(conflicted)
 ###############################################################################
 
 rm(list=ls()); gc()
