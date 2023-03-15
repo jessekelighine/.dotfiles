@@ -1,6 +1,6 @@
 " ~/.config/nvim/autoload/csv.vim
 
-"### General Functions ########################################################
+"-- General Functions --------------------------------------------------------"
 
 " initialise csv: (1) detect delim; (2) count number of columns.
 function! csv#InitializeCSV()
@@ -61,7 +61,7 @@ function! csv#PrevNextColumn(direction)
 	endif
 endfunction
 
-"### Search String Building ###################################################
+"-- Search String Building -"
 
 " Returns a search string for column b:csv_column.  
 " Sample String: \(""\|"\(\\\\\|\\"\|[^\\"]\)\+"\|[^,"]\{-}\)\s*,\s*
@@ -72,7 +72,7 @@ function! <SID>BuildSearchString(prepend="",append="")
 	return a:prepend.l:pattern.a:append
 endfunction
 
-"### Get/Set Column Numbers/Names #############################################
+"-- Get/Set Column Numbers/Names ---------------------------------------------"
 
 " Return the number of column the cursor is on.
 function! <SID>GetColumnNumber()
@@ -117,7 +117,7 @@ function! <SID>GetColumnInfo(number=b:csv_column,name=b:csv_column_name,delim=b:
 				\ ' ( Deliminator = ' . a:delim . ' )'
 endfunction
 
-"### Helper Functions #########################################################
+"-- Helper Functions ---------------------------------------------------------"
 
 " Returns number of matches from search result.
 " E.g., input "10 matches on 2 line" will return "10".

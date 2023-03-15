@@ -60,6 +60,8 @@ packloadall
 " nnoremap kj <Esc>
 " nnoremap <expr> n 'Nn'[v:searchforward]
 " nnoremap <expr> N 'nN'[v:searchforward]
+xnoremap ''     "*y
+nnoremap ''     "*y
 nnoremap Y      y$
 nnoremap zS     zszH
 inoremap <C-L>  <C-G>u<Esc>[s1z=`]a<C-G>u
@@ -82,7 +84,6 @@ inoremap `<Tab> ``<Left>
 inoremap "<Tab> ""<Left>
 xnoremap >      >gv
 xnoremap <      <gv
-xnoremap ''     "*y
 xnoremap //     y/\V<C-R>=escape(@",'/\')<CR><CR>
 xnoremap <silent> p pgvy
 xnoremap <silent> <leader>p p

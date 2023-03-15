@@ -27,7 +27,7 @@ onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 packadd vim-slime
 nnoremap <buffer><silent> <leader>v  :call vimslime#tmux_vars()<CR>
 nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#send_to_pane(@9)<CR>`'
-xnoremap <buffer><silent> <leader>ss m'"9y:call vimslime#send_to_pane(@9)<CR>`'
+xnoremap <buffer><silent> <leader>ss m'"9y:call vimslime#send_to_pane(@9."\n")<CR>`'
 nnoremap <buffer><silent> <leader>rp m'"9yiw:call vimslime#send_to_pane(@9."\n")<CR>`'
 nnoremap <buffer><silent> <leader>rs m'"9yiw:call vimslime#send_to_pane('size('.@9.")\n")<CR>`'
 nnoremap <buffer><silent> <leader>rh m'"9yiw:call vimslime#send_to_pane("help ".@9."\n")<CR>`'
@@ -36,4 +36,4 @@ nnoremap <buffer><silent> <leader>pp m'"9yip:call vimslime#send_to_pane(@9)<CR>`
 nnoremap <buffer><silent> <leader>ss m':call matlab#GetSection('i')<CR>"9y:call vimslime#send_to_pane(@9)<CR>`'
 nnoremap <buffer><silent> <leader>ro :call vimslime#send_to_pane("who\n")<CR>
 nnoremap <buffer><silent> <leader>rr :call vimslime#send_to_pane("clc\n")<CR>
-nnoremap <buffer><silent> <leader>rq :call vimslime#send_to_pane("exit;\n")<CR>
+nnoremap <buffer><silent> <leader>rq :call vimslime#send_to_pane("exit;\nexit\n")<CR>
