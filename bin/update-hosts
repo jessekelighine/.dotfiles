@@ -7,16 +7,24 @@ hosts_zero="$HOME/Desktop/.peepeepoopoo_hosts_zero"
 hosts_fine="$HOME/Desktop/.peepeepoopoo_hosts_fine"
 ed_command="/^### AD-BLOCK\nc\n### AD-BLOCK ( $(date +'%F %X') )\n.\n.+2,\$d\nwq\n"
 
-[[ -f "$hosts_temp" ]] && echo "File '$hosts_temp' already exists." && exit 1
-[[ -f "$hosts_zero" ]] && echo "File '$hosts_zero' already exists." && exit 1
-[[ -f "$hosts_fine" ]] && echo "File '$hosts_fine' already exists." && exit 1
+# run as root
+[[ $(id -u) != 0 ]] && {
+	echo "update-hosts: error: please run as root." >&2
+	exit 1
+}
+
+# check if "### AD-BLOCK" line is present in "/etc/hosts".
+grep -q "### AD-BLOCK" "$hosts_orig"
+[[ $? -ne 0 ]] && {
+	echo "Puting '### AD-BLOCK' line in '$hosts_orig'..."
+	sudo echo "### AD-BLOCK" >> "$hosts_orig"
+}
 
 curl -s "$hosts_site" > "$hosts_zero"
 cp "$hosts_orig" "$hosts_temp"
-printf "$ed_command" | ed -s "$hosts_temp"
+printf "$ed_command" | ed -s "$hosts_temp" > /dev/null
 cat "$hosts_temp" "$hosts_zero" > "$hosts_fine"
 sudo mv "$hosts_fine" "$hosts_orig"
-
 rm -rf "$hosts_temp" "$hosts_zero"
 
 exit 0

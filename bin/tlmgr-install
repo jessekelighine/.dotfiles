@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# usage
+[ -z "$1" ] && {
+	echo "usage: tlmgr-install [package]"
+	exit 0
+}
+
+# update package list
+package_list="../nvim/pack/lang/opt/tex/PACKAGES.txt"
+echo "$1" >> "$package_list"
+{
+	for package in $( cat "$package_list" | sort | uniq )
+	do
+		echo "$package"
+	done
+} > "$package_list"
+
+# install the actual package
+sudo tlmgr install "$1"
+
+exit 0

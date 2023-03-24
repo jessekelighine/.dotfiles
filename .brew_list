@@ -1,8 +1,8 @@
 adwaita-icon-theme
 automake
 b2-tools
-bash
 blueutil
+cmatrix
 coreutils
 cowsay
 fd
@@ -27,12 +27,13 @@ opencc
 pandoc
 pass
 pdf2svg
+pipes-sh
 python@3.8
 qt
-r
 ripgrep
 sc-im
 shellcheck
+speedtest-cli
 sphinx-doc
 tmux
 vim

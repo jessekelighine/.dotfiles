@@ -1,19 +1,18 @@
 " autoload/vimslime.vim
 
 " Send "a:text" to a tmux pane.
-function! vimslime#send_to_pane(text)
-	if !exists("b:vimslime_tmux_target") | call vimslime#tmux_vars() | end
-	echo system("tmux send-keys -t " . b:vimslime_tmux_target . " '" . substitute(a:text, "'", "'\\\\''", 'g') . "'")
-endfunction
-
-" Get a list of active panes of tmux.
-function! vimslime#tmux_pane_names(A,L,P)
-	return system("tmux list-panes -a | awk -F : '{ printf \"%s:%s\\n\", $1, $2 }'")
+function! vimslime#Send(text, return=0) abort
+	if !exists("b:vimslime_id") | call vimslime#SetPane() | end
+	let l:cmd = "'" . substitute(a:text, "'", "'\\\\''", 'g') . ( a:return ? "\n" : "" ) . "'"
+	echo system("tmux send-keys -t ".b:vimslime_id." ".l:cmd)
 endfunction
 
 " Figure out which tmux pane to send the text to.
-function vimslime#tmux_vars()
-	if !exists("b:vimslime_tmux_target") | let b:vimslime_tmux_target = "%1" | end
-	echo system("tmux list-panes -a | awk -F : '{ printf \"%s:%s\\n\", $1, $2 }'")
-	let b:vimslime_tmux_target = input("session:window.pane> ", "", "custom,vimslime#tmux_pane_names")
+function! vimslime#SetPane() abort
+	let b:vimslime_id = input("session:window.pane> ","","custom,vimslime#PaneNames")
+endfunction
+
+" Get a list of active panes of tmux.
+function! vimslime#PaneNames(A,L,P) abort
+	return system("tmux list-panes -a | awk -F : '{ printf \"%s:%s\\n\", $1, $2 }'")
 endfunction

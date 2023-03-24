@@ -10,9 +10,10 @@ date:   "2023-02-28"
 
 Here are the needed modifications to `miramare`.
 
-Also, the correct colors (or the colors I like) are defined using 256term, so make
-sure in the `miramare/colors/miramare.vim` file, `s:HL()` function uses 256term
-defintion.  To do this, set `s:t_Co` to `256`.
+Also, the correct colors (or the colors I like) are defined using 256term,
+so make sure in the `miramare/colors/miramare.vim` file,
+`s:HL()` function uses 256term defintion.
+To do this, set `s:t_Co` to `256`.
 
 ```vim
 call s:HL('CursorLineNr', s:palette.fg, s:palette.bg3)
@@ -67,9 +68,10 @@ Make the mappings in `plugin/peekaboo.vim` not `<buffer>` specific, i.e., remove
 
 # Old Copy MacOS
 
-The following can copy to the system clipboard on a Mac.  However, if feature
-`clipboard` is included in the vim you are using, then one can simply yank to
-register `*`, which is represents the system clipboard register.
+The following can copy to the system clipboard on a Mac.
+However, if feature `clipboard` is included in the vim you are using,
+then one can simply yank to register `*`,
+which is represents the system clipboard register.
 
 ```vim
 xnoremap <silent> '' :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
@@ -110,16 +112,15 @@ nnoremap <leader>gt :Git checkout<space>
 # Regex Tips
 
 - using the search pattern in `/` in `:%s`.
-	- In general, an empty regular expression means to use the previously 
-	  entered regular expression, so `:%s//\1/g` should do what you want.
+	- In general, an empty regular expression means to use the previously entered regular expression,
+	  so `:%s//\1/g` should do what you want.
 	- Also, if you want to verify or modify the last used pattern, 
-	  you can use `<C-R>` then `/` to insert the contents of the search 
-	  pattern register `/` directly into a partially typed command line.
+	  you can use `<C-R>/` to insert the contents of the search pattern register `/` directly into a partially typed command line.
 - Replacing in visual block: 
-  use command `:'<,'>s/\%V{pattern}/{replace}/{option}` where the `\%V` 
-  specifies that the replacement is only done in the selected block.
-- Note that atoms in `[]`'s have different meanings. E.g., `.` outside of `[]`
-  means any character, but in `[]` it means literally `.`.
+  use command `:'<,'>s/\%V{pattern}/{replace}/{option}`
+  where the `\%V` specifies that the replacement is only done in the selected block.
+- Note that atoms in `[]`'s have different meanings.
+  E.g., `.` outside of `[]` means any character, but in `[]` it means literally `.`.
 
 # Follow Symlink in Netrw
 

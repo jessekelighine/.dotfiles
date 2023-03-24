@@ -1,7 +1,7 @@
 ---
 title:  ".dotfiles"
 author: "jessekelighine@gmail.com"
-date:   "2023-03-15"
+date:   "2023-03-24"
 ---
 
 - update:  `.dotfiles-update.sh`

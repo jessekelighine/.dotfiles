@@ -8,6 +8,7 @@
 #     - [Noto CJK](https://github.com/notofonts/noto-cjk)
 #     - [cwTeX](https://github.com/l10n-tw/cwtex-q-fonts)
 #     - GenWanMinTJ: b2
+# - [Okular](https://invent.kde.org/packaging/homebrew-kde/)
 
 ### Homebrew ##################################################################
 
@@ -28,6 +29,7 @@ ln -s "$HOME/.dotfiles/.gnupg"          "$HOME/.gnupg"
 ln -s "$HOME/.dotfiles/.password-store" "$HOME/.password-store"
 ln -s "$HOME/.dotfiles/.vim"            "$HOME/.vim"
 ln -s "$HOME/.dotfiles/.ssh"            "$HOME/.ssh"
+ln -s "$HOME/.dotfiles/.screenrc"       "$HOME/.screenrc"
 ln -s "$HOME/.dotfiles/alacritty"       "$HOME/.config/alacritty"
 ln -s "$HOME/.dotfiles/b2"              "$HOME/.config/b2"
 ln -s "$HOME/.dotfiles/iterm2"          "$HOME/.config/iterm2"

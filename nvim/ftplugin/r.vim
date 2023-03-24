@@ -7,8 +7,6 @@
 " Nvim-R
 let R_assign = 0
 let R_disable_cmds = [ "RSendLine" ]
-
-" packadd vim-slime
 setlocal winminwidth=1
 setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 command! -buffer -nargs=0 LastMod          :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)

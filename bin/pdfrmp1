@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+[[ $# -lt 1 ]] && {
+	cat << EOF
+usage: pdfrmp1 [file.pdf]
+description: remove first page of pdf
+EOF
+	exit 0
+}
+
+temp=".temp-$(date '+%X-%F').pdf"
+pages=$( pdfinfo "$1" | awk -F : '/Pages/ { print $2 ; exit }' | xargs )
+
+pdfsplit "$1" 2 "$pages" "$temp"
+
+[[ -f "$temp" ]] && {
+	rm "$1"
+	mv "$temp" "$1"
+	exit 0
+}
+
+echo "$0: an error occurred." >&2
+exit 1

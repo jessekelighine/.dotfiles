@@ -48,7 +48,6 @@ encrypt () { openssl enc -aes-256-cbc -a -salt -e -in "$1" ; } # -out "$2"
 decrypt () { openssl enc -aes-256-cbc -a -salt -d -in "$1" ; } # -out "$2"
 timeout () { perl -e 'alarm shift; exec @ARGV' "$@" ; }
 tar-compress () { tar zcfv "$@" ; }
-tar-extract  () { tar zxfv "$@" ; }
 spiel      () { mpv --no-video --loop "$1" ; }
 spielliste () { mpv --no-video "$1" ; }
 R-mean () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); mean(x)' ; }

@@ -20,7 +20,13 @@ export CLICOLOR=1
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export LESSHISTFILE=-
-export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$reset_color%}%B@%{$fg[blue]%}%m %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}%%%b "
+export PS1="%B%{$fg[red]%}["           # [
+export PS1="$PS1%{$fg[yellow]%}%n"     # username
+export PS1="$PS1%{$reset_color%}%B@"   # @
+export PS1="$PS1%{$fg[blue]%}%m "      # hostname
+export PS1="$PS1%{$fg[magenta]%}%~"    # working directory
+export PS1="$PS1%{$fg[red]%}]"         # ]
+export PS1="$PS1%{$reset_color%}%%%b " # %
 autoload -Uz compinit && compinit
 
 alias 'mv'='mv -i'
@@ -43,6 +49,8 @@ alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
+alias 'cmatrix'='cmatrix -ab -u 2'
+alias 'pipes.sh'='pipes.sh -r 5000 -R -f 100 -s 10'
 
 source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -56,11 +64,10 @@ export B2_ACCOUNT_INFO="$HOME/.config/b2/.b2_account_info"
 export B2_APPLICATION_KEY_ID="$(<$HOME/.config/b2/file-with-key-id.txt)"
 export B2_APPLICATION_KEY="$(<$HOME/.config/b2/file-with-key.txt)"
 
+# tar-compress () { tar zcfv "$@" }
 timeout () { perl -e 'alarm shift; exec @ARGV' "$@" }
 encrypt () { openssl enc -aes-256-cbc -a -salt -e -in "$1" } # -out "$2"
 decrypt () { openssl enc -aes-256-cbc -a -salt -d -in "$1" } # -out "$2"
-tar-compress () { tar zcfv "$@" }
-tar-extract  () { tar zxfv "$@" }
 volume () { cd "/Volumes/$1" }
 eject  () { diskutil eject "$1" }
 R-mean () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); mean(x)' }

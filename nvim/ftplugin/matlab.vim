@@ -3,7 +3,7 @@
 " ~/.config/nvim/snippets/matlab/
 
 set expandtab
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(%* Last Modified: *\)[^ ]*',10)
+command! -buffer -nargs=0 LastMod :call my#LastMod('^\(%* Last Modified: *\)[^ ]*',min([10,line("$")]))
 
 " FUNCTION KEYS: compile.
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/matlab.vim<CR>
@@ -24,16 +24,18 @@ xnoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 
 " Vim Slime: IDE-like key-bindings.
-packadd vim-slime
-nnoremap <buffer><silent> <leader>v  :call vimslime#tmux_vars()<CR>
-nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#send_to_pane(@9)<CR>`'
-xnoremap <buffer><silent> <leader>ss m'"9y:call vimslime#send_to_pane(@9."\n")<CR>`'
-nnoremap <buffer><silent> <leader>rp m'"9yiw:call vimslime#send_to_pane(@9."\n")<CR>`'
-nnoremap <buffer><silent> <leader>rs m'"9yiw:call vimslime#send_to_pane('size('.@9.")\n")<CR>`'
-nnoremap <buffer><silent> <leader>rh m'"9yiw:call vimslime#send_to_pane("help ".@9."\n")<CR>`'
-nnoremap <buffer><silent> <leader>rG m'"9yG:call vimslime#send_to_pane(@9)<CR>`'
-nnoremap <buffer><silent> <leader>pp m'"9yip:call vimslime#send_to_pane(@9)<CR>`'
-nnoremap <buffer><silent> <leader>ss m':call matlab#GetSection('i')<CR>"9y:call vimslime#send_to_pane(@9)<CR>`'
-nnoremap <buffer><silent> <leader>ro :call vimslime#send_to_pane("who\n")<CR>
-nnoremap <buffer><silent> <leader>rr :call vimslime#send_to_pane("clc\n")<CR>
-nnoremap <buffer><silent> <leader>rq :call vimslime#send_to_pane("exit;\nexit\n")<CR>
+packadd! vim-slime
+nnoremap <buffer><silent> <leader>v  :call vimslime#SetPane()<CR>
+nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#Send(@9)<CR>`'
+nnoremap <buffer><silent> <leader>rp m'"9yiw:call vimslime#Send(@9,1)<CR>`'
+nnoremap <buffer><silent> <leader>rs m'"9yiw:call vimslime#Send('size('.@9.")",1)<CR>`'
+nnoremap <buffer><silent> <leader>rh m'"9yiw:call vimslime#Send("help ".@9,1)<CR>`'
+nnoremap <buffer><silent> <leader>rG m'"9yG:call vimslime#Send(@9)<CR>`'
+nnoremap <buffer><silent> <leader>pp m'"9yip:call vimslime#Send(@9)<CR>`'
+nnoremap <buffer><silent> <leader>ss m':call matlab#GetSection('i')<CR>"9y:call vimslime#Send(@9)<CR>`'
+nnoremap <buffer><silent> <leader>ro :call vimslime#Send("who",1)<CR>
+nnoremap <buffer><silent> <leader>rr :call vimslime#Send("clc",1)<CR>
+nnoremap <buffer><silent> <leader>rq :call vimslime#Send("exit;\nexit",1)<CR>
+xnoremap <buffer><silent> <leader>ss m'"9y:call vimslime#Send(@9,1)<CR>`'
+xnoremap <buffer><silent> <leader>rs m'"9y:call vimslime#Send("size(".@9.")",1)<CR>`'
+xnoremap <buffer><silent> <leader>rp m'"9y:call vimslime#Send(@9,1)<CR>`'
