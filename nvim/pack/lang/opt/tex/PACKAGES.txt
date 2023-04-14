@@ -1,9 +1,12 @@
+algorithms
 appendixnumberbeamer
+cancel
 caption
 csvsimple
 datetime
 enumitem
 fmtcount
+hyphenat
 lastpage
 latexmk
 multirow

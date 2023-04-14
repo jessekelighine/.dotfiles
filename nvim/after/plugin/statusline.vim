@@ -34,5 +34,5 @@ exe 'hi User9 ctermbg='.s:c.bla.2.' guibg='.s:c.bla.h
 
 set noshowmode
 set statusline=
-set statusline+=%{%g:statusline_change[mode()]%}\ [%M]\ %8*\ %f\ %y\ %9*
+set statusline+=%{%g:statusline_change[mode()]%}\ [%M]\ %8*\ %F\ %y\ %9*
 set statusline+=%=%(%c%V\ %{%'%'.len(line('$')).'l'%}/%L\ %3p%%\ %8*\ [%{&fileencoding}]\ %)

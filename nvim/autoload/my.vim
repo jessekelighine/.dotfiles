@@ -14,8 +14,8 @@ function! my#GetSnippets(type, path, indent=1, delete_begin=1, cursor_begin=1)
 endfunction
 
 " source a local vimrc file if exists.
-function! my#LocalVimrc(filename='.vimrc')
-	if filereadable(a:filename) | call execute('source .vimrc') | endif
+function! my#LocalVimrc(filename=".vimrc")
+	if filereadable(a:filename) | call execute("source .vimrc") | endif
 endfunction
 
 " remove trailing white spaces.
@@ -165,19 +165,21 @@ endfunction
 "-- Git ----------------------------------------------------------------------"
 
 " highlight git merge conflict.
-let g:my_git_conflict_highlight_toggle = 1
+let g:my_git_conflict_highlight = 0
 function! my#ConflictHighlight()
-	syntax match GitConflict "^<<<<<<<.*$"
-	syntax match GitConflict "^=======$"
-	syntax match GitConflict "^>>>>>>>.*$"
-	if g:my_git_conflict_highlight_toggle
-		let g:my_git_conflict_highlight_toggle = 0
-		highlight GitConflict ctermfg=White ctermbg=Red guifg=White guibg=Red
-		redraw | echom "--> Merge conflict highlighted."
+	if !g:my_git_conflict_highlight
+		match GitConflict /^\(<<<<<<<.*\|=======\|>>>>>>>.*\)$/
+		highlight GitConflict ctermbg=red ctermfg=white
+		execute "let b:match_words" .
+					\ ( exists("b:match_words") ? "+=" : "=" ) . "'" .
+					\ ( exists("b:match_words") ? "," : "" ) .
+					\ '\(<<<<<<<\):\(=======\):\(>>>>>>>\)' . "'"
+		let g:my_git_conflict_highlight = 1
+		redraw | echom "--> Git Merge Conflict Highlighted: ON"
 	else
-		let g:my_git_conflict_highlight_toggle = 1
+		match
 		silent syntax clear GitConflict
-		redraw | echom "--> Clear merge conflict highlight."
+		let g:my_git_conflict_highlight = 0
+		redraw | echom "--> Git Merge Conflict Highlight: OFF"
 	endif
-	exec "norm! /<<<<<<<\<CR>"
 endfunction

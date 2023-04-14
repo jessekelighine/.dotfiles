@@ -1,3 +1,0 @@
-# DIR/NAME.pdf
-DIR/NAME.pdf: DIR/NAME.R
-	cd DIR ; Rscript NAME.R ; cd ..

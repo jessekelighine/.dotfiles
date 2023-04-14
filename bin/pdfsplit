@@ -10,8 +10,8 @@
 # obvious and the required defines are not listed in the manual page. 
 
 [[ $# -lt 4 ]] && {
-	echo "usage: pdfsplit [input.pdf] [first_page] [last_page] [output.pdf]"
-	exit 0
+	echo "usage: $(basename $0) [input.pdf] [first_page] [last_page] [output.pdf]" >&2
+	exit 1
 }
 
 

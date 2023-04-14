@@ -9,7 +9,7 @@
 ###############################################################################
 
 window_id="9"
-window_name="music"
+window_name="musik"
 window_list=$( tmux list-windows | awk -F : '{ print $1 }' )
 
 for id in ${window_list[@]} ; do

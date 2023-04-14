@@ -1,3 +1,0 @@
-# DIR/NAME.pdf
-DIR/NAME.pdf: DIR/NAME.tex
-	xelatex --output-directory DIR DIR/NAME.tex

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 [[ $# -ne 2 ]] && {
-	echo "usage: pdfmonochrome [input.pdf] [output.pdf]"
-	exit 0
+	echo "usage: $(basename $0) [input.pdf] [output.pdf]" >&2
+	exit 1
 }
 
 gs -sDEVICE=pdfwrite -sProcessColorModel=DeviceGray -sColorConversionStrategy=Gray -dOverrideICC -o "$2" -f "$1"

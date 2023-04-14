@@ -19,6 +19,7 @@ imagemagick
 jq
 libnotify
 libproxy
+lolcat
 meson
 mpv
 neovim
@@ -28,8 +29,11 @@ pandoc
 pass
 pdf2svg
 pipes-sh
+pyenv
 python@3.8
 qt
+recode
+rename
 ripgrep
 sc-im
 shellcheck
@@ -38,3 +42,4 @@ sphinx-doc
 tmux
 vim
 youtube-dl
+zlib

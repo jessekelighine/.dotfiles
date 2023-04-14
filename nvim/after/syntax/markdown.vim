@@ -15,20 +15,22 @@ highlight def link rmdYamlFieldTtl Identifier
 highlight def link yamlFlowString String
 
 " added by me (migrated from after/syntax)
-syntax match   MarkdownListExpand "^\s*\(-\|+\|\*\|\d\{-}\.\|(\d.\{-})\)\s"
-syntax region  MarkdownComment    start="<!--" end="-->" contains=MarkdownTODO
-syntax region  TexMath            matchgroup=TexDollar start="\$"   end="\$"   contains=@NoSpell
-syntax region  TexMathEnv         matchgroup=TexDollar start="\$\$" end="\$\$" contains=@NoSpell
-syntax keyword MarkdownTODO       TODO
+syntax match   MarkdownEscapeDollar /\\\$/
+syntax match   MarkdownListExpand   "^\s*\(-\|+\|\*\|\d\{-}\.\|(\d.\{-})\)\s"
+syntax region  MarkdownComment      start="<!--" end="-->" contains=MarkdownTODO
+syntax region  MarkdownTexMath      matchgroup=MarkdownTexDollar start="\$"   end="\$"   contains=@NoSpell
+syntax region  MarkdownTexMathEnv   matchgroup=MarkdownTexDollar start="\$\$" end="\$\$" contains=@NoSpell
+syntax keyword MarkdownTODO         TODO
 
-highlight def link MarkdownListExpand Red
-highlight def link TexDollar          Grey
-highlight def link TexMath            String
-highlight def link TexMathEnv         String
-highlight def link MarkdownComment    Comment
-highlight def link MarkdownTODO       Todo
+highlight def link MarkdownEscapeDollar SpecialChar
+highlight def link MarkdownListExpand   Red
+highlight def link MarkdownTexDollar    Grey
+highlight def link MarkdownTexMath      String
+highlight def link MarkdownTexMathEnv   String
+highlight def link MarkdownComment      Comment
+highlight def link MarkdownTODO         Todo
 
 " Footnote ( 2023-02-16 )
 syntax region      markdownFootnotes matchgroup=markdownFootnotesBounds start="\^\[" skip="\\]" end="\]"
-highlight def link markdownFootnotes       Identifier
+highlight def link markdownFootnotes       String
 highlight def link markdownFootnotesBounds Grey

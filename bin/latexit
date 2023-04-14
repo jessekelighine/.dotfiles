@@ -1,38 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
 # Description: latexit: fast way of creating LaTeX snippets.                  #
 # Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
-# Last Modified: 2023-02-16                                                   #
+# Last Modified: 2023-04-06                                                   #
 #                                                                             #
 ###############################################################################
-
-_help () {
-	cat << EOF
-usage: latexit [options] <LATEX_COMMAND>
-options:
-        -a --preamble <LATEX_COMMAND> add command to preamble
-        -d --directory <DIRECTORY>    set output directory (default: ~/Desktop)
-	-e --engine <LATEX_ENGIN>     set LaTeX compilation engine (default: pdflatex)
-        -f --format <FORMAT>          set output file format (default: png)
-                * png       png (default: white background)
-                * png-t     png (transparent background)
-                * svg       svg file
-                * pdf       pdf file
-        -n --name <FILENAME>          set output filename (default: latexit_snippet)
-        -p --package <PACKAGE>        add package to preamble
-png options:
-           --density <NUMBER>         set density of png output (default: 1200)
-           --background <HEX_COLOR>   set background of png otput (default: #FFFFFF)
-EOF
-}
 
 ### Default Packages and Preamble #############################################
 
 PACKAGES=( "amsmath" "mathtools" "amssymb" "mathrsfs" )
 PREAMBLES=()
 POSITIONAL_ARGS=()
+error () { echo "$(basename $0): error: $1" >&2 ; }
 
 while [[ $# -gt 0 ]]; do
 	case $1 in
@@ -69,7 +50,7 @@ while [[ $# -gt 0 ]]; do
 			shift; shift
 			;;
 		-* | --*)
-			echo "unknown option $1" >&2
+			error "unknown option $1."
 			exit 1
 			;;
 		*)
@@ -89,13 +70,35 @@ output="$directory/${filename:-latexit_snippet}"
 
 ### Error Check ###############################################################
 
+message () {
+	cat << EOF
+usage: $(basename $0) [options] <LATEX_COMMAND>
+options:
+        -a --preamble <LATEX_COMMAND> add command to preamble
+        -d --directory <DIRECTORY>    set output directory (default: ~/Desktop)
+	-e --engine <LATEX_ENGIN>     set LaTeX compilation engine (default: pdflatex)
+        -f --format <FORMAT>          set output file format (default: png)
+                * png       png (default: white background)
+                * png-t     png (transparent background)
+                * svg       svg file
+                * pdf       pdf file
+        -n --name <FILENAME>          set output filename (default: latexit_snippet)
+        -p --package <PACKAGE>        add package to preamble
+                * default packages:
+                  ${PACKAGES[@]}
+png options:
+           --density <NUMBER>         set density of png output (default: 1200)
+           --background <HEX_COLOR>   set background of png otput (default: #FFFFFF)
+EOF
+}
+
 [[ $# -ne 1 ]] && {
-	_help >&2
+	message >&2
 	exit 1
 }
 
 [[ -f "$output.${format:0:3}" ]] && {
-	echo "error: file $output.${format:0:3} already exists." >&2
+	error "file $output.${format:0:3} already exists."
 	exit 1
 }
 
@@ -138,7 +141,7 @@ case ${format:-png} in
 		;;
 	*)
 		rm "$output.pdf"
-		echo "unrecognised format" >&2
+		error "unrecognised format."
 		;;
 esac
 

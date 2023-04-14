@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 [[ $# -lt 1 ]] && {
-	echo "usage: pdfjoin [output.pdf] [file1.pdf file2.pdf ...]"
-	exit 0
+	echo "usage: $(basename $0) [output.pdf] [file1.pdf file2.pdf ...]" >&2
+	exit 1
 }
 
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile="$1" "$@"

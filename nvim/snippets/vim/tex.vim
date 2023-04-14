@@ -14,7 +14,7 @@ call textoggle#Set('doc', 1)
 call textoggle#Set('pre', 1)
 call textoggle#Set('beamer', 1)
 call textoggle#Set('tikz', 1)
-call textoggle#Reload(0)
+call textoggle#Reload()
 
 nnoremap <buffer> <F5> :call tex#Compile("make",'jobstart')<CR>
 nnoremap <buffer> <F6> :call tex#Compile("make",'termopen')<CR>

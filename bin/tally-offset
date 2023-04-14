@@ -4,14 +4,14 @@ config="$HOME/.dotfiles/alacritty/alacritty.yml"
 
 message () {
 	cat << EOF
-usage: tally-offset [options]
+usage: $(basename $0) [options]
 options:
 	-s set   [x|y] <INT>    set offset x/y value
 	-v value [x|y]          print offset x/y value
 EOF
 }
 
-[[ $# -lt 1 || $# -gt 3 ]] && message && exit 0
+[[ $# -lt 1 || $# -gt 3 ]] && message >&2 && exit 1
 
 case "$1" in
 	-s | set)

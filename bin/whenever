@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue;  blue=$(tput bold && tput setaf 12)
+	local norm;  norm=$(tput sgr0)
+	cat << EOF
+${green}usage:${norm} ${blue}$(basename $0)${norm} [file] [command]
+${green}description:${norm} run [command] whenever [file] is modified.
+EOF
+}
+
+[[ $# -lt 2 ]] && {
+	message >&2
+	exit 1
+}
+
+: ${WHENEVER_INTERVAL:=1}
+: ${WHENEVER_COMMAND:=md5sum}
+
+count=0
+value_prev=$( $WHENEVER_COMMAND "$1" )
+while : ; do sleep $WHENEVER_INTERVAL
+	value_curr=$( $WHENEVER_COMMAND "$1" )
+	[[ "$value_curr" != "$value_prev" ]] && {
+		value_prev="$value_curr"
+		${@:2}
+		printf "============ whenever: %d ============\n" $((++count))
+	}
+done

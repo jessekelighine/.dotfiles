@@ -2,10 +2,18 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[default]
 \makeatother
+\setbeamertemplate{headline}{%
+\begin{beamercolorbox}{title in head/foot}
+\end{beamercolorbox}}
 \setbeamertemplate{footline}{\leavevmode\hbox{%
-\begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
 	\usebeamerfont{title in head/foot}%
-	\insertshorttitle%
+	\hfill\insertsectionhead\hspace{0.7em}
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.25ex,dp=1ex]{block body}%
+	\usebeamerfont{title in head/foot}%
+	\usebeamercolor[fg]{section in head/foot}
+	\hspace{0.7em}\insertsubsectionhead
 	\hfill\textbf{\insertframenumber/\inserttotalframenumber{\ \ \ }}%
 \end{beamercolorbox}%
 }\vskip0pt}

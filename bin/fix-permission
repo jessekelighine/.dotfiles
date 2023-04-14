@@ -1,10 +1,14 @@
 #!/bin/bash
 
 message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue;  blue=$(tput bold && tput setaf 12)
+	local norm;  norm=$(tput sgr0)
 	cat << EOF
-usage: fix-permission <DIRECTORY/FILE>
-description: Fix file permissions, mostly needed when files
-             are being transfered from a DOS system.
+${green}usage:${norm} ${blue}$(basename $0)${norm} [directory|file]
+${green}description:${norm}
+	Fix file permissions, mostly needed when
+	files are being transfered from a DOS system.
 EOF
 }
 

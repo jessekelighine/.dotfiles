@@ -1,0 +1,20 @@
+#!/usr/bin/env python3.11
+
+import re
+import sys
+import pandas
+
+def main():
+
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        print("usage: xlsx2tsv [filename]")
+        sys.exit(1)
+
+    newname = re.sub('\.[^.]*$', '.tsv', filename)
+    read_file = pandas.read_excel(filename)
+    read_file.to_csv(newname, index=None, header=True, sep="\t")
+
+if __name__ == "__main__":
+    main()

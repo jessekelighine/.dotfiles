@@ -147,6 +147,7 @@ set updatetime=300
 set shortmess-=S " Show number of matches
 let g:html_number_lines=1
 let g:netrw_banner=0
+let g:netrw_fastbrowse=0
 let g:netrw_liststyle=3
 let g:netrw_altv=1
 

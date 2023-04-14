@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 ### Update Hosts: AD-BLOCK ####################################################
 
 sudo update-hosts
@@ -9,16 +7,16 @@ sudo update-hosts
 ### Homebrew ##################################################################
 
 # update packages
-brew update
-brew upgrade
-brew outdated --cask --greedy --verbose |\
-	grep -v '(latest)' |\
-	awk '{print $1}' |\
-	xargs brew reinstall --cask
+brew update -v
+brew upgrade -v
+brew outdated --cask --greedy --verbose | \
+	grep -v '(latest)' | \
+	awk '{print $1}' | \
+	xargs brew reinstall --cask -v
 
 # clean-up
-brew autoremove
-brew cleanup
+brew autoremove -v
+brew cleanup -v
 
 # list packages
 brew leaves > .brew_list

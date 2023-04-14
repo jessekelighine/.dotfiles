@@ -51,6 +51,8 @@ alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
 alias 'cmatrix'='cmatrix -ab -u 2'
 alias 'pipes.sh'='pipes.sh -r 5000 -R -f 100 -s 10'
+alias ':q'='cowsay "You are not in Vim!" | lolcat'
+alias ':wq'='cowsay "You are not in Vim!" | lolcat'
 
 source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -72,10 +74,14 @@ volume () { cd "/Volumes/$1" }
 eject  () { diskutil eject "$1" }
 R-mean () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); mean(x)' }
 R-sd   () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); sd(x)'   }
-spiel           () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video --loop "$1" }
-spiel-mono      () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" }
-spielliste      () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video "$1" }
-spielliste-mono () { yt-dlp --skip-download --get-title "$1" ; mpv --ytdl=no --no-video --audio-channels=mono "$1" }
+spiel           () { mpv --ytdl=no --no-video --loop "$1" }
+spiel-mono      () { mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" }
+spielliste      () { mpv --ytdl=no --no-video "$1" }
+spielliste-mono () { mpv --ytdl=no --no-video --audio-channels=mono "$1" }
+
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"
 
 # PROMPT='%B%F{196}%1~%f%b %# '
 # export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "

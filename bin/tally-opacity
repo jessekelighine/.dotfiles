@@ -5,7 +5,7 @@ original=$(awk -F : '/opacity/ { print $2; exit }' "$config" | xargs)
 
 message () {
 	cat << EOF
-usage: tally-opacity [options]
+usage: $(basename $0) [options]
 options:
 	-s set      <VALUE>   set opacity value
 	-i increase <VALUE>   increase opacity value

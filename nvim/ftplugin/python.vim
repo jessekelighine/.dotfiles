@@ -3,7 +3,6 @@
 
 " GENERAL SETTINGS: disables 8-wide tab, sensible listchars.
 " let g:python_recommended_style = 0
-packadd vim-slime
 setlocal winminwidth=1
 setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 setl listchars=tab:┊\ ,trail:·,extends:»,precedes:«,nbsp:+
@@ -16,11 +15,17 @@ nnoremap <buffer> <leader>; :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9_]')<CR>
 " SNIPPETS: shebang, template.
 inoremap <buffer> :bang<Tab> <Esc>:call my#GetSnippets('python','python_bang.py')<CR>
 inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('python','skeleton.py')<CR>
+inoremap <buffer> :sign<Tab> <Esc>:call my#GetSnippets('python','sign.py')<CR>
 
 " Vim Slime: IDE-like key-bindings.
-nnoremap <buffer><silent> <leader>v       :call vimslime#tmux_vars()<CR>
-xnoremap <buffer><silent> <leader>ss   "9y:call vimslime#send_to_pane(@9."\n")<CR>
-nnoremap <buffer><silent> <leader>pp "9yip:call vimslime#send_to_pane(@9."\n")<CR>
-nnoremap <buffer><silent> <leader>d   "9yy:call vimslime#send_to_pane(@9."\n")<CR>
-nnoremap <buffer><silent> <leader>rr      :call vimslime#send_to_pane("<C-l>")<CR>
-nnoremap <buffer><silent> <leader>rp "9yiw:call vimslime#send_to_pane("print(".@9.")\n")<CR>
+packadd vim-slime
+nnoremap <buffer><silent> <leader>v  :call vimslime#SetPane()<CR>
+nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#Send(@9)<CR>`'
+nnoremap <buffer><silent> <leader>rp m'"9yiw:call vimslime#Send("print(".@9.")",1)<CR>`'
+xnoremap <buffer><silent> <leader>ss m'"9y:call vimslime#Send(@9,1)<CR>`'
+xnoremap <buffer><silent> <leader>rs m'"9y:call vimslime#Send("size(".@9.")",1)<CR>`'
+xnoremap <buffer><silent> <leader>rp m'"9y:call vimslime#Send(@9,1)<CR>`'
+nnoremap <buffer><silent> <leader>rG m'"9yG:call vimslime#Send(@9)<CR>`'
+nnoremap <buffer><silent> <leader>pp m'"9yip:call vimslime#Send(@9,"1")<CR>`'
+nnoremap <buffer><silent> <leader>rr :call vimslime#Send("<C-l>")<CR>
+nnoremap <buffer><silent> <leader>rq :call vimslime#Send("exit",1)<CR>

@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
-[[ $# -lt 1 ]] && {
+message () {
 	cat << EOF
-usage: pdfrmp1 [file.pdf]
+usage: $(basename $0) [file.pdf]
 description: remove first page of pdf
 EOF
-	exit 0
+}
+
+[[ $# -lt 1 ]] && {
+	message >&2
+	exit 1
 }
 
 temp=".temp-$(date '+%X-%F').pdf"
@@ -19,5 +23,5 @@ pdfsplit "$1" 2 "$pages" "$temp"
 	exit 0
 }
 
-echo "$0: an error occurred." >&2
+echo "$(basename $0): an error occurred." >&2
 exit 1

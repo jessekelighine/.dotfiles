@@ -5,11 +5,11 @@
 # Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
 # Description: `todo`, a fast note keeper.                                    #
 # License: The MIT License (MIT)                                              #
-# Last Modified: 2022-Dec-16                                                  #
+# Last Modified: 2023-04-12                                                   #
 #                                                                             #
 ###############################################################################
 
-[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Documents/TODO.md"
+[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Documents/.TODO.md"
 [[ ! -f "$TODO_TARGET" ]] && touch "$TODO_TARGET"
 
 ### Main ######################################################################

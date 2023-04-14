@@ -1,30 +1,51 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 hosts_site='https://someonewhocares.org/hosts/zero/hosts'
 hosts_orig="/etc/hosts"
-hosts_temp="$HOME/Desktop/.peepeepoopoo_hosts_temp"
-hosts_zero="$HOME/Desktop/.peepeepoopoo_hosts_zero"
-hosts_fine="$HOME/Desktop/.peepeepoopoo_hosts_fine"
-ed_command="/^### AD-BLOCK\nc\n### AD-BLOCK ( $(date +'%F %X') )\n.\n.+2,\$d\nwq\n"
+
+# temp files
+hosts_temp=$(mktemp -t "hosts_temp") || exit 1
+hosts_zero=$(mktemp -t "hosts_zero") || exit 1
+hosts_fine=$(mktemp -t "hosts_fine") || exit 1
+trap "$(which rm) -rf $hosts_temp $hosts_zero $hosts_fine" EXIT ERR
+
+# message
+message () {
+	local textbf; textbf=$(tput bold)
+	local textrm; textrm=$(tput sgr0)
+	echo "${textbf}$(basename $0)${textrm}: $1" ;
+}
 
 # run as root
 [[ $(id -u) != 0 ]] && {
-	echo "update-hosts: error: please run as root." >&2
+	message "error: please run as root." >&2
 	exit 1
 }
 
 # check if "### AD-BLOCK" line is present in "/etc/hosts".
 grep -q "### AD-BLOCK" "$hosts_orig"
 [[ $? -ne 0 ]] && {
-	echo "Puting '### AD-BLOCK' line in '$hosts_orig'..."
-	sudo echo "### AD-BLOCK" >> "$hosts_orig"
+	message "puting '### AD-BLOCK' line in '$hosts_orig'..."
+	sudo printf "\n### AD-BLOCK" >> "$hosts_orig"
 }
 
+### Main ######################################################################
+
+message "downloading..."
 curl -s "$hosts_site" > "$hosts_zero"
+message "downloaded"
+
 cp "$hosts_orig" "$hosts_temp"
+
+message "modifying..."
+ed_command="/^### AD-BLOCK\nc\n### AD-BLOCK ( $(date +'%F %X') )\n.\n.+2,\$d\nwq\n"
 printf "$ed_command" | ed -s "$hosts_temp" > /dev/null
 cat "$hosts_temp" "$hosts_zero" > "$hosts_fine"
-sudo mv "$hosts_fine" "$hosts_orig"
-rm -rf "$hosts_temp" "$hosts_zero"
+message "new hosts created"
+
+message "finishing..."
+mv "$hosts_fine" "$hosts_orig"
+chmod 644 "$hosts_orig"
+message "finished"
 
 exit 0

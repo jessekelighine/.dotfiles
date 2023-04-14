@@ -1,18 +1,22 @@
 # alacritty.yml
 
 window:
-  opacity: .9
-  dimensions:
+  opacity: .8
+  dimensions: # character dimension
     columns: 155
     lines: 42
+  position: # absolute position of window
+    x: 22
+    y: 35
   padding:
     x: 0
     y: 0
   decorations: none
+  dynamic_title: true
+
 scrolling:
   history: 10000
   multiplier: 3
-window.dynamic_title: true
 
 font:
   normal:
@@ -39,6 +43,15 @@ colors:
   primary:
     background: '#1d2021'
     foreground: '#ebdbb2'
+  selection:
+    text:       '0xffffff'
+    background: '0xFFAF00'
+    white:      '0xffffff'
+  cursor:
+    style: Block
+    unfocused_hollow: true
+    cursor: '0xffffff'
+    text:   '0x000000'
   normal:
     black:   '#282828'
     red:     '#cc241d'
@@ -57,15 +70,6 @@ colors:
     magenta: '#d3869b'
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
-  selection:
-    text:       '0xffffff'
-    background: '0xFFAF00'
-    white:      '0xffffff'
-  cursor:
-    style: Block
-    unfocused_hollow: true
-    cursor: '0xffffff'
-    text:   '0x000000'
 
 mouse:
   hide_when_typing: true

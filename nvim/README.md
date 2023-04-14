@@ -1,12 +1,12 @@
 ---
 title:  "Nvim"
 author: "jessekelighine@gmail.com"
-date:   "2023-02-28"
+date:   "2023-03-29"
 ---
 
 # Modifications
 
-## franbach/miramare
+## `franbach/miramare`
 
 Here are the needed modifications to `miramare`.
 
@@ -29,8 +29,6 @@ call s:HL('CursorLine', s:palette.none, s:palette.bg3)
 call s:HL('StatusLine', s:palette.bg1, s:palette.yellow)
 call s:HL('StatusLineNC', s:palette.bg1, s:palette.fg)
 ```
-
-### colors
 
 These are the `miramare` colors:
 
@@ -56,7 +54,7 @@ These are the `miramare` colors:
 | `light_grey` | `#5b5b5b` | `245`   | `LightGrey` |
 | `gold`       | `#d8caac` | `214`   | `Yellow`    |
 
-## junegunn/vim-peekaboo
+## `junegunn/vim-peekaboo`
 
 Make the mappings in `plugin/peekaboo.vim` not `<buffer>` specific, i.e., remove `<buffer>`.
 
@@ -109,14 +107,15 @@ nnoremap <leader>gt :Git checkout<space>
 ```sh
 :%!xxd
 ```
+
 # Regex Tips
 
 - using the search pattern in `/` in `:%s`.
 	- In general, an empty regular expression means to use the previously entered regular expression,
 	  so `:%s//\1/g` should do what you want.
-	- Also, if you want to verify or modify the last used pattern, 
+	- Also, if you want to verify or modify the last used pattern,
 	  you can use `<C-R>/` to insert the contents of the search pattern register `/` directly into a partially typed command line.
-- Replacing in visual block: 
+- Replacing in visual block:
   use command `:'<,'>s/\%V{pattern}/{replace}/{option}`
   where the `\%V` specifies that the replacement is only done in the selected block.
 - Note that atoms in `[]`'s have different meanings.

@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
-[[ $# -lt 2 ]] && {
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue;  blue=$(tput bold && tput setaf 12)
+	local norm;  norm=$(tput sgr0)
 	cat << EOF
-usage: pdftoc [input.pdf] [output.pdf] [pdfmarks]
+${green}usage:${norm} ${blue}$(basename $0)${norm} [input.pdf] [output.pdf] [pdfmarks]
+${green}description:${norm}
+	If [pdfmarks] is not provided, $(basename 0) will automatically
+	search for a file named 'pdfmarks' in the current directory.
 
-# "pdfmarks" example:
+${blue}"pdfmarks" example:${norm}
 
 [/Count 2 /Title (Part I)         /Page  1 /OUT pdfmark
 [/Count 3 /Title (1. Section)     /Page  2 /OUT pdfmark
@@ -18,26 +24,27 @@ usage: pdftoc [input.pdf] [output.pdf] [pdfmarks]
 [         /Title (3.1 Subsection) /Page 10 /OUT pdfmark
 [         /Title (3.2 Subsection) /Page 11 /OUT pdfmark
 
-# re-numbering pages:
+${blue}re-numbering pages:${norm}
 
 << /Type /Catalog /Pages 1 0 R
    /PageLabels << /Nums [ 0 << /P (Cover) >> % labels 1st page with the string 'Cover'
-                          1 << /S /r >> % numbers pages 2-6 in small roman numerals
-                          6 << /S /D >> % numbers pages 7-x in decimal arabic numerals
-                        ] >>
+			  1 << /S /r >> % numbers pages 2-6 in small norm numerals
+			  6 << /S /D >> % numbers pages 7-x in decimal arabic numerals
+			] >>
 >>
 
-# re-numbering pages in "pdfmarks":
+${blue}re-numbering pages in "pdfmarks":${norm}
 
 [ {Catalog} <<
 /PageLabels << /Nums [ 0 << /P (cover) >>
-                       1 << /S /r >>
-                       5 << /S /D >>
-                     ] >>
+		       1 << /S /r >>
+		       5 << /S /D >>
+		     ] >>
 >> /PUT pdfmark
 EOF
-	exit 0
 }
+
+[[ $# -lt 2 ]] && message >&2 && exit 1
 
 gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="$2" "$1" "${3:-pdfmarks}"
 

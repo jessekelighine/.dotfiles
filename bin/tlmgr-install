@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
 
-# usage
-[ -z "$1" ] && {
-	echo "usage: tlmgr-install [package]"
-	exit 0
+message () {
+	cat << EOF
+usage: $(basename $0) [package]
+note: please run as root.
+EOF
 }
 
+# check argument and if run as root
+[[ -z "$1" || $(id -u) != 0 ]] && {
+	message >&2
+	exit 1
+}
+
+# packages list path
+package_list="$HOME/.config/nvim/pack/lang/opt/tex/PACKAGES.txt"
+package_temp="$HOME/.config/nvim/pack/lang/opt/tex/.temp-PACKAGES.txt"
+
 # update package list
-package_list="../nvim/pack/lang/opt/tex/PACKAGES.txt"
 echo "$1" >> "$package_list"
-{
-	for package in $( cat "$package_list" | sort | uniq )
-	do
-		echo "$package"
-	done
-} > "$package_list"
+cat "$package_list" | sort | uniq > "$package_temp"
+mv "$package_temp" "$package_list"
 
 # install the actual package
-sudo tlmgr install "$1"
+tlmgr install "$1"
 
 exit 0

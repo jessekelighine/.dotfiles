@@ -10,15 +10,13 @@ check_status  () {
 	[[ "$(jq -r '.status' <<< "$1")" != 'ok' ]] && exit 1
 }
 
-# check_verbose () { if [[ $verbose == true ]]; echo "$1"; then jq <<< "$2"; fi }
-
 check_verbose () {
 	[[ $verbose == true ]] && echo "$1" && jq <<< "$2"
 }
 
-usage () {
+message () {
 	cat << EOF
-usage: convertio [options] [file]
+usage: $(basename $0) [options] [file]
 options:
 	-t    filetype
 	-v    verbose
@@ -34,12 +32,12 @@ while getopts 'vht:' options; do
 	case "$options" in
 		t) filetype="$OPTARG" ;;
 		v) verbose=true ;;
-		h) usage; exit 0 ;;
-		?) usage; exit 1 ;;
+		h) message >&2 ; exit 1 ;;
+		?) message >&2 ; exit 1 ;;
 	esac
 done
 shift $((OPTIND-1))
-if [[ $# -lt 1 ]]; then usage; exit 0; fi
+[[ $# -lt 1 ]] && message >&2 && exit 1
 
 ### Initialize ################################################################
 
@@ -64,7 +62,7 @@ while true ; do sleep 1
 	[[ $((++count % 60)) == 0 ]] && printf " (%dmin)\n" "$((count/60))"
 	resp_json=$(curl -s -X GET "$apiurl/$resp_id/status")
 	resp_step=$(jq -r '.data.step' <<< "$resp_json")
-	if [ "$resp_step" = 'finish' ]; then break; fi
+	[ "$resp_step" = 'finish' ] && break
 done
 check_verbose "Converted:" "$resp_json"
 

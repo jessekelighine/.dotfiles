@@ -32,5 +32,8 @@ For `mpv` to use this local script, use the `--ytdl=no` option.
 ## Playlist
 
 The YouTube player format is `www.youtube.com/playlist?list=` and then the list id.
+For example:
 
+```bash
 mpv 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma' --no-video # GoodGood
+```

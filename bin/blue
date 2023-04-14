@@ -1,9 +1,12 @@
 #!/bin/bash
 
 message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue;  blue=$(tput bold && tput setaf 12)
+	local norm;  norm=$(tput sgr0)
 	cat << EOF
-usage: blue [options]
-options:
+${green}usage:${norm} ${blue}$(basename $0)${norm} [options]
+${green}options:${norm}
         on               turn on bluetooth power
         off              turn off bluetooth power
         connect <NAME>   connect to bluetooth device
@@ -22,17 +25,13 @@ case "$1" in
 		blueutil && exit 0
 		;;
 	connect)
-		[[ $# != 2 ]] && message && exit 1
+		[[ $# != 2 ]] && message >&2 && exit 1
 		blueutil -p 1
 		blueutil --connect "$2"
 		exit 0
 		;;
 	*)
-		message
-		exit 0
+		message >&2
+		exit 1
 		;;
 esac
-
-message
-
-exit 0

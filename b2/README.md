@@ -12,6 +12,7 @@ date:   "2023-03-09"
 # tips
 
 ```bash
+b2 list-buckets
 b2 create-bucket [bucket name] [allPrivate|allPublic]
 b2 ls [bucket name]
 b2 upload-file [bucket name] [local filename] [b2 filename]

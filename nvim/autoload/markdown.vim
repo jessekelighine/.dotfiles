@@ -1,13 +1,31 @@
 " ~/.config/nvim/autoload/markdown.vim
 
+" compile markdown to HTML on save
+function! markdown#PandocPVC(type="")
+	if !exists("b:markdown_pandoc_pvc_type") || a:type!=""
+		let b:markdown_pandoc_pvc_type = a:type=="" ? "plain" : a:type
+		call markdown#ToHtml(b:markdown_pandoc_pvc_type)
+		augroup PandocPVC
+			autocmd!
+			autocmd! BufWritePost *.md :call markdown#ToHtml(b:markdown_pandoc_pvc_type)
+		augroup END
+		echo "--> PandocPVC: ON (".b:markdown_pandoc_pvc_type.")"
+	else
+		unlet b:markdown_pandoc_pvc_type
+		autocmd! PandocPVC
+		echo "--> PandocPVC: OFF"
+	endif
+endfunction
+
 " convert from markdown to html.
 function! markdown#ToHtml(type)
+	let l:css = "~/.config/nvim/snippets/markdown/style.css"
+	let l:cjk = "markdown+east_asian_line_breaks"
+	let l:to  = "-o ".expand("%:r").".html"
 	silent write
-	if     a:type == "plain"    | ! pandoc -f markdown+east_asian_line_breaks -s                                   -c ~/.config/nvim/snippets/markdown/notion.css % -o %:r.html
-	elseif a:type == "nonumber" | ! pandoc -f markdown+east_asian_line_breaks -s --toc                   --mathjax -c ~/.config/nvim/snippets/markdown/notion.css % -o %:r.html
-	elseif a:type == "number"   | ! pandoc -f markdown+east_asian_line_breaks -s --toc --number-sections --mathjax -c ~/.config/nvim/snippets/markdown/notion.css % -o %:r.html
-	elseif a:type == "test"     | ! pandoc -f markdown+east_asian_line_breaks -s --toc --number-sections --mathjax -c ~/Desktop/test.css                          % -o %:r.html
-	elseif a:type == "local"    | ! pandoc -f markdown+east_asian_line_breaks -s --toc --number-sections --mathjax -c ./notion.css                                % -o %:r.html
+	if     a:type == "plain"    | call system("pandoc -f ".l:cjk." -s                         --mathjax -c ".l:css." ".expand("%")." ".l:to)
+	elseif a:type == "nonumber" | call system("pandoc -f ".l:cjk." -s --toc                   --mathjax -c ".l:css." ".expand("%")." ".l:to)
+	elseif a:type == "number"   | call system("pandoc -f ".l:cjk." -s --toc --number-sections --mathjax -c ".l:css." ".expand("%")." ".l:to)
 	else | echom "ERROR: wrong compiler code" | endif
 endfunction
 

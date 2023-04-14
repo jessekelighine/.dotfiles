@@ -21,4 +21,6 @@ done
 
 [[ -f "$HOME/.DS_Store" ]] && ds_list+=( "$HOME/.DS_Store" );
 
-sed 's/ /\n/g' <<< "${ds_list[@]}"
+for item in "${ds_list[@]}"; do
+	echo "$item"
+done

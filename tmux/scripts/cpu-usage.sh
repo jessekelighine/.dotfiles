@@ -3,9 +3,9 @@
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
 # Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
-# Last Modified: 2023-03-24                                                   #
 # Description: Show CPU usage                                                 #
 #                                                                             #
+# Last Modified: 2023-03-25                                                   #
 ###############################################################################
 
 ### Linux #####################################################################
@@ -26,7 +26,7 @@ cpu_idle=$(echo "$cpu_line" | awk '{ print $5 }' | sed 's/%//' )
 ### Output ####################################################################
 
 [ $(echo "$cpu_idle < 70" | bc -l) -eq 1 ] && idle_color="yellow"
-[ $(echo "$cpu_idle < 50" | bc -l) -eq 1 ] && idle_color="red"
+[ $(echo "$cpu_idle < 40" | bc -l) -eq 1 ] && idle_color="red"
 
 printf "%4.1f %4.1f #[bg=${idle_color:=green}] %4.1f" "$cpu_user" "$cpu_syst" "$cpu_idle"
 exit 0

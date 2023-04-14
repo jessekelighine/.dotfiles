@@ -70,6 +70,5 @@ function! textoggle#Reload(local_vimrc=0) abort
 	xmapclear <buffer>
 	silent setlocal filetype=tex
 	call <SID>ReloadToggleDict()
-	" search for local .vimrc
 	if a:local_vimrc | call my#LocalVimrc() | endif
 endfunction

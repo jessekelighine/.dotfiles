@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue;  blue=$(tput bold && tput setaf 12)
+	local norm;  norm=$(tput sgr0)
+	cat << EOF
+${green}usage:${norm} ${blue}$(basename $0)${norm} [base file] [secondary file] [output file]
+${green}description:${norm}
+	Merge changes from [secondary file] into the [base file]
+	and output to [output file] if provided. If [output file]
+	is not provided, the output will be written directly to
+	[base file]. The [secondary file] is not modified.
+EOF
+}
+
+# error handling
+set -e
+[[ $# -lt 1 || $# -gt 3 ]] && {
+	message >&2
+	exit 1
+}
+
+# make a temporary file for merge
+temp_file=$(mktemp -t $(basename $0)) || exit 1
+trap "$(which rm) -rf $temp_file" EXIT
+
+# merge file
+[ -n "$3" ] && cp "$1" "$3"
+git merge-file "${3:-$1}" "$temp_file" "$2"
+
+exit 0

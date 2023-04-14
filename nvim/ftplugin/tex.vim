@@ -36,7 +36,7 @@ nnoremap <silent><buffer> <F6> :call tex#Compile('xelatex',(has("nvim")?'termope
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 LastMod      :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
-command! -buffer -nargs=0 ReloadTeX    :call textoggle#Reload()
+command! -buffer -nargs=0 ReloadTeX    :call textoggle#Reload(1)
 command! -buffer -nargs=0 ShowToggles  :call textoggle#Show()
 command! -buffer -nargs=0 ClearToggles :call textoggle#Clear()
 command! -buffer -nargs=0 FindSection  :call tex#FindSection()
@@ -115,10 +115,10 @@ xnoremap <silent><buffer> i$ <Esc>:norm! F$lvt$<CR>
 xnoremap <silent><buffer> a$ <Esc>:norm! F$vf$<CR>
 onoremap <silent><buffer> i$      :norm! F$lvt$<CR>
 onoremap <silent><buffer> a$      :norm! F$vf$<CR>
-xnoremap <silent><buffer> i<bar> <Esc>F<bar>lvt<bar>
-xnoremap <silent><buffer> a<bar> <Esc>F<bar>vf<bar>
-onoremap <silent><buffer> i<bar>      F<bar>lvt<bar>
-onoremap <silent><buffer> a<bar>      F<bar>vf<bar>
+xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
+xnoremap <silent><buffer> a<bar> <Esc>:norm! F<bar>vf<bar><CR>
+onoremap <silent><buffer> i<bar>      :norm! F<bar>lvt<bar><CR>
+onoremap <silent><buffer> a<bar>      :norm! F<bar>vf<bar><CR>
 xnoremap <silent><buffer> as :call tex#GetSection('a')<CR>
 xnoremap <silent><buffer> is :call tex#GetSection('i')<CR>
 onoremap <silent><buffer> as :call tex#GetSection('a')<CR>

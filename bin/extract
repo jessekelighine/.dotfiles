@@ -2,16 +2,15 @@
 # github: https://github.com/xvoland/Extract/blob/master/extract.sh
 
 [ $# -eq 0 ] && {
-	echo "usage: extract [filenames]"
-	exit 0
+	echo "usage: $(basename $0) [filenames]" >&2
+	exit 1
 }
 
 for n in "$@"; do
 	[ ! -f "$n" ] && {
-		echo "$0: error: '$n' - file doesn't exist" >&2
+		echo "$(basename $0): error: '$n' - file doesn't exist" >&2
 		exit 1
 	}
-
 	case "${n#*.}" in
 		cbt|tar.bz2|tar.gz|tar.xz|tbz2|tgz|txz|tar)
 			tar xvf -p "$n" 
@@ -65,7 +64,7 @@ for n in "$@"; do
 			hdiutil mount ./"$n" -mountpoint "./$n.mounted"
 			;;
 		*)
-			echo "$0: error: '$n' - unknown archive method" >&2
+			echo "$(basename $0): error: '$n' - unknown archive method" >&2
 			exit 1
 			;;
 	esac
