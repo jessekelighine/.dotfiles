@@ -7,32 +7,9 @@
 
 command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}"\).\{-}\("\)', min([line("$"),5]))
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()
-command! -buffer -range   FormatTable :'<,'>!pandoc -t commonmark_x
+command! -buffer -nargs=0 View        :call markdown#View()
 command! -buffer -nargs=? PandocPVC   :call markdown#PandocPVC(<q-args>)
-command! -buffer -nargs=0 View        :! open -a Firefox %
-
-" PREVIEW: real time preview
-packadd markdown-preview.nvim
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_markdown_css = expand('~/.config/nvim/snippets/markdown/style.css')
-let g:mkdp_browserfunc = 'markdown#OpenMarkdownPreview'
-let g:mkdp_page_title = '${name}'
-let g:mkdp_theme = 'light'
-let g:mkdp_preview_options = {
-	\ 'mkit': {},
-	\ 'katex': {},
-	\ 'uml': {},
-	\ 'maid': {},
-	\ 'disable_sync_scroll': 0,
-	\ 'sync_scroll_type': 'middle',
-	\ 'hide_yaml_meta': 1,
-	\ 'sequence_diagrams': {},
-	\ 'flowchart_diagrams': {},
-	\ 'content_editable': v:false,
-	\ 'disable_filename': 1,
-	\ 'toc': {}
-	\ }
+command! -buffer -range   FormatTable :'<,'>!pandoc -t commonmark_x
 
 " SURROUND: surround settings.
 let b:surround_98="**\r**"
@@ -50,7 +27,7 @@ nnoremap <buffer> <F5>      :call markdown#ToHtml("plain")<CR><CR>
 nnoremap <buffer> <F6>      :call markdown#ToHtml("nonumber")<CR><CR>
 nnoremap <buffer> <F7>      :call markdown#ToHtml("number")<CR><CR>
 nnoremap <buffer> <leader>c :call markdown#ClearCodeSyntax()<CR>
-nnoremap <buffer> <leader>p :! open %:r.html<CR><CR>
+nnoremap <buffer> <leader>p :! open -a firefox<CR>
 nnoremap <silent><buffer> <leader><Space> :call markdown#PandocPVC()<CR>
 
 " SETUP: snippets, markdown items.
@@ -61,18 +38,29 @@ imap <buffer> :q<Tab>   <C-G>u(**)<Left><Left>
 imap <buffer> :t<Tab>   <C-G>u<!-- TODO:  --><esc>hhhi
 
 " TAB COMPLETION: tab complete markdown syntax.
-inoremap <buffer> _<Tab>  <C-G>u_{}<Left>
-inoremap <buffer> ^<Tab>  <C-G>u^{}<Left>
 inoremap <buffer> `<Tab>  <C-G>u``<Left>
-inoremap <buffer> $<Tab>  <C-G>u$$<Left>
-inoremap <buffer> $$<Tab> <C-G>u$$$$<Left><Left>
-inoremap <buffer> $$<CR>  <C-G>u$$$$<Left><Left><CR><Esc>O
 inoremap <buffer> *<Tab>  <C-G>u**<Left>
 inoremap <buffer> **<Tab> <C-G>u****<Left><Left>
 
+" TABLE: Commands
 xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
 onoremap <silent><buffer> i<bar>      :norm! F<bar>lvt<bar><CR>
-xnoremap <silent><buffer> a$     <Esc>:norm! F$vf$<CR>
-xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
-onoremap <silent><buffer> i$          :norm! F$lvt$<CR>
-onoremap <silent><buffer> a$          :norm! F$vf$<CR>
+
+" LATEX: LaTeX
+let b:surround_66 ="\\Big\r\\Big"
+let b:surround_98 ="\\big\r\\big"
+let b:surround_108="\\left\r\\right"
+xnoremap <silent><buffer> a$      <Esc>:norm! F$vf$<CR>
+xnoremap <silent><buffer> i$      <Esc>:norm! F$lvt$<CR>
+onoremap <silent><buffer> i$           :norm! F$lvt$<CR>
+onoremap <silent><buffer> a$           :norm! F$vf$<CR>
+inoremap <silent><buffer> $<Tab>  <C-G>u$$<Left>
+inoremap <silent><buffer> $$<Tab> <C-G>u$$$$<Left><Left>
+inoremap <silent><buffer> $$<CR>  <C-G>u$$$$<Left><Left><CR><Esc>O
+inoremap <silent><buffer> _<Tab>  <C-G>u_{}<Left>
+inoremap <silent><buffer> ^<Tab>  <C-G>u^{}<Left>
+inoremap <silent><buffer> \t<Tab> \text{}<Left>
+inoremap <silent><buffer> ]<Tab>  <C-G>u\left[\right]<Esc><S-F>[a
+inoremap <silent><buffer> )<Tab>  <C-G>u\left(\right)<Esc><S-F>(a
+inoremap <silent><buffer> }<Tab>  <C-G>u\left\{\right\}<Esc><S-F>{a
+inoremap <silent><buffer> {{<Tab> <C-G>u\{\}<Esc><S-F>{a

@@ -1,9 +1,15 @@
 " init.vim
 
-" miramare
+filetype plugin on
+filetype indent on
+syntax on
+
+if filereadable(expand("~/.config/nvim/pack/pack.sh"))
+	" miramare
 	let g:miramare_transparent_background = 1
 	let g:miramare_disable_italic_comment = has('nvim') ? 0 : 1
-" vim-surround
+	colorscheme miramare
+	" vim-surround
 	augroup VimSurround
 		autocmd!
 		autocmd VimEnter,BufNewFile,BufRead * let b:surround_49="（\r）"
@@ -13,12 +19,12 @@
 		autocmd VimEnter,BufNewFile,BufRead * let b:surround_97="\1anything: \1\r\1\1"
 		autocmd VimEnter,BufNewFile,BufRead * let b:surround_122="\1anything(1): \1\r\2anything(2): \2"
 	augroup END
-" vim-peekaboo
+	" vim-peekaboo
 	let g:peekaboo_compact = 1
-" vim-easy-align
+	" vim-easy-align
 	xmap ga <Plug>(EasyAlign)
 	nmap ga <Plug>(EasyAlign)
-" fzf.vim
+	" fzf.vim
 	set rtp+=/usr/local/opt/fzf " where fzf is installed
 	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 	let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
@@ -27,9 +33,9 @@
 	nnoremap <C-B> :Buffers<CR>
 	nnoremap <C-T> :Files<CR>
 	nnoremap <C-F> :Lines<CR>
-" undotree
+	" undotree
 	nnoremap <leader>u :UndotreeToggle<CR>
-" vindent.vim
+	" vindent.vim
 	let g:vindent_motion_OO_prev = '[l'
 	let g:vindent_motion_OO_next = ']l'
 	let g:vindent_motion_less_prev = '[-'
@@ -46,12 +52,9 @@
 	let g:vindent_object_XX_aI = 'aI'
 	let g:vindent_jumps = 1
 	let g:vindent_count = 0
+endif
 
 language en_US.UTF-8
-filetype plugin on
-filetype indent on
-syntax on
-colorscheme miramare
 packloadall
 
 " nnoremap jk <Esc>

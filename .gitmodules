@@ -46,6 +46,3 @@
 [submodule "nvim/pack/main/start/nvim-treesitter"]
 	path = nvim/pack/main/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
-[submodule "nvim/pack/main/opt/markdown-preview.nvim"]
-	path = nvim/pack/main/opt/markdown-preview.nvim
-	url = https://github.com/iamcco/markdown-preview.nvim.git
