@@ -2,8 +2,7 @@
 
 ### Notes #####################################################################
 
-# - [Backblaze](https://www.backblaze.com/cloud-backup.html)
-# Fonts:
+# - Fonts:
 #     - [IBM Plex Mono](https://github.com/IBM/plex)
 #     - [Noto CJK](https://github.com/notofonts/noto-cjk)
 #     - [cwTeX](https://github.com/l10n-tw/cwtex-q-fonts)
@@ -11,20 +10,18 @@
 #     - [LXGW WenKai / 霞鹜文楷](https://github.com/lxgw/LxgwWenKai)
 #     - GenWanMinTJ: b2
 # - [Okular](https://invent.kde.org/packaging/homebrew-kde/)
-
-### Homebrew ##################################################################
-
-# install brew
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-## fzf ( to install key-bindings )
-$(brew --prefix)/opt/fzf/install
-mv -i "$HOME/.fzf.bash" "$HOME/.dotfiles/.fzf.bash"
-mv -i "$HOME/.fzf.zsh"  "$HOME/.dotfiles/.fzf.zsh"
+# - [Backblaze](https://www.backblaze.com/cloud-backup.html)
+# - Firefox Add-ons:
+#     - Adblock Plus - free ad blocker
+#     - Behind The Overlay
+#     - Bypass Paywalls
+#     - Markdown Viewer
+#     - uBlock Origin
 
 ### Linking ###################################################################
 
 ln -s "$HOME/.dotfiles/bin"             "$HOME/.local/bin"
+ln -s "$HOME/.dotfiles/.R"              "$HOME/.R"
 ln -s "$HOME/.dotfiles/zsh/.zshrc"      "$HOME/.zshrc"
 ln -s "$HOME/.dotfiles/.gitconfig"      "$HOME/.gitconfig"
 ln -s "$HOME/.dotfiles/.gnupg"          "$HOME/.gnupg"
@@ -46,3 +43,14 @@ ln -s "$HOME/.dotfiles/zsh"             "$HOME/.config/zsh"
 ln -s "$HOME/.dotfiles/.fzf.zsh"        "$HOME/.config/.fzf.zsh"
 ln -s "$HOME/.dotfiles/.fzf.bash"       "$HOME/.config/.fzf.bash"
 ln -s "$HOME/.dotfiles/.bc"             "$HOME/.config/.bc"
+
+### Homebrew ##################################################################
+
+# install brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle install
+
+## fzf ( to install key-bindings )
+$(brew --prefix)/opt/fzf/install
+mv -i "$HOME/.fzf.bash" "$HOME/.dotfiles/.fzf.bash"
+mv -i "$HOME/.fzf.zsh"  "$HOME/.dotfiles/.fzf.zsh"

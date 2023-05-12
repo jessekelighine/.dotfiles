@@ -4,9 +4,9 @@ hosts_site='https://someonewhocares.org/hosts/zero/hosts'
 hosts_orig="/etc/hosts"
 
 # temp files
-hosts_temp=$(mktemp -t "hosts_temp") || exit 1
-hosts_zero=$(mktemp -t "hosts_zero") || exit 1
-hosts_fine=$(mktemp -t "hosts_fine") || exit 1
+hosts_temp="$HOME/Desktop/.temp-hosts-temp-$(date +"%F-%X")"
+hosts_zero="$HOME/Desktop/.temp-hosts-zero-$(date +"%F-%X")"
+hosts_fine="$HOME/Desktop/.temp-hosts-fine-$(date +"%F-%X")"
 trap "$(which rm) -rf $hosts_temp $hosts_zero $hosts_fine" EXIT ERR
 
 # message
@@ -18,7 +18,7 @@ message () {
 
 # run as root
 [[ $(id -u) != 0 ]] && {
-	message "error: please run as root." >&2
+	message "please run as root." >&2
 	exit 1
 }
 
@@ -26,24 +26,24 @@ message () {
 grep -q "### AD-BLOCK" "$hosts_orig"
 [[ $? -ne 0 ]] && {
 	message "puting '### AD-BLOCK' line in '$hosts_orig'..."
-	sudo printf "\n### AD-BLOCK" >> "$hosts_orig"
+	sudo printf "\n\n### AD-BLOCK" >> "$hosts_orig"
 }
 
 ### Main ######################################################################
 
 message "downloading..."
 curl -s "$hosts_site" > "$hosts_zero"
+[[ ! -f "$hosts_zero" ]] && { message "curl failed" >&2 ; exit 1 ; }
 message "downloaded"
-
-cp "$hosts_orig" "$hosts_temp"
 
 message "modifying..."
 ed_command="/^### AD-BLOCK\nc\n### AD-BLOCK ( $(date +'%F %X') )\n.\n.+2,\$d\nwq\n"
+cp "$hosts_orig" "$hosts_temp"
 printf "$ed_command" | ed -s "$hosts_temp" > /dev/null
 cat "$hosts_temp" "$hosts_zero" > "$hosts_fine"
 message "new hosts created"
 
-message "finishing..."
+message "moving and changing permission..."
 mv "$hosts_fine" "$hosts_orig"
 chmod 644 "$hosts_orig"
 message "finished"

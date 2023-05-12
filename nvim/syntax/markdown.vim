@@ -1,4 +1,4 @@
-" Vim syntax file (modified by me: jessekelighine@gmail.com)
+" Vim syntax file (modified by me)
 " Language:     Markdown
 " Maintainer:   Tim Pope <vimNOSPAM@tpope.org>
 " Filenames:    *.markdown

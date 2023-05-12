@@ -43,7 +43,7 @@ function! texcomplete#Labs(findstart,base) abort
 		let l:suggestions = []
 		cal texcomplete#GenerateLabs()
 		for l:item in g:texcomplete_labs
-			if l:item['word']=~'^'.a:base
+			if l:item['word']=~'^'..a:base
 				call add(l:suggestions, l:item)
 			endif
 		endfor
@@ -73,7 +73,7 @@ function! texcomplete#Bibs(findstart,base)
 		let l:suggestions = []
 		cal texcomplete#GenerateBibs()
 		for l:item in g:texcomplete_bibs
-			if l:item['word']=~'^'.a:base
+			if l:item['word']=~'^'..a:base
 				call add(l:suggestions, l:item)
 			endif
 		endfor

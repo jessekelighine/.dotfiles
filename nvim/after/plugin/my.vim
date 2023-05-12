@@ -23,4 +23,4 @@ command! -nargs=0 SudoWrite            :writ !sudo tee % > /dev/null " This only
 command! -nargs=0 StatuslineReload     :source $HOME/.config/nvim/after/plugin/statusline.vim
 command! -range   ChineseWordCount     :<line1>,<line2>s/[^\x00-\xff]//gn
 command! -range -bang SplitChineseSentence :exec <line1>.','.<line2>.'s/\([，。？！；'.eval('<bang>0?"、":""').']\)\n\{0,1}/\1\r/g'
-command! -nargs=0 ConflictHighlight    :call my#ConflictHighlight()
+command! -nargs=0 GitConflictHighlight    :call my#GitConflictHighlight()

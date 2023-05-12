@@ -1,5 +1,5 @@
 ---
 title:  ""
-author: "jessekelighine@gmail.com"
+author: ""
 date:   ""
 ---

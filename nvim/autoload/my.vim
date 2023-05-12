@@ -166,7 +166,7 @@ endfunction
 
 " highlight git merge conflict.
 let g:my_git_conflict_highlight = 0
-function! my#ConflictHighlight()
+function! my#GitConflictHighlight()
 	if !g:my_git_conflict_highlight
 		match GitConflict /^\(<<<<<<<.*\|=======\|>>>>>>>.*\)$/
 		highlight GitConflict ctermbg=red ctermfg=white

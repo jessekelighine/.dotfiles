@@ -2,7 +2,7 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: R11323013@ntu.edu.tw                                                #
+# Author:                                                                     #
 #                                                                             #
 #                                                                             #
 # Last Modified: OOOO-OO-OO                                                   #
@@ -14,6 +14,7 @@ library(tidyverse)
 
 rm(list=ls()); gc()
 options(scipen=999999)
+options(datatable.verbose=FALSE)
 set.seed(1234)
 
 ###############################################################################

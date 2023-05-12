@@ -1,5 +1,5 @@
 ###############################################################################
-# Author: Jesse C. Chen (jessekelighine@gmail.com)                            #
+# Author:                                                                     #
 # Last Modified: OOOO-OOO-OO                                                  #
 #                                                                             #
 #                                                                             #

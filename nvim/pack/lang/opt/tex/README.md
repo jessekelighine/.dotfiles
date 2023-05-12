@@ -16,7 +16,7 @@ list of all the things that must be done for me to use LaTeX in Vim easily.
 - Installing new packages: `sudo tlmgr install <pkg-name>`
 - Biber fuck-up fix: 
   ```sh
-  rm -rf `biber --cache`
+  rm -rf $(biber --cache)
   ```
 - Use bopomofo and normal Chinese ellipsis in xeCJK:
   add `"02CA, "02C7 , "02CB , "02D9 , "22EF,` after `"3100,` in the file

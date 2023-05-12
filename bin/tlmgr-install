@@ -7,22 +7,25 @@ note: please run as root.
 EOF
 }
 
+add_to_list () {
+	# packages list path
+	local me='jessechen'
+	local package_list="$HOME/.config/nvim/pack/lang/opt/tex/PACKAGES.txt"
+	local package_temp="$HOME/.config/nvim/pack/lang/opt/tex/.temp-PACKAGES.txt"
+	# update package list
+	echo "$1" >> "$package_list"
+	cat "$package_list" | sort | uniq > "$package_temp"
+	mv "$package_temp" "$package_list"
+	chown "$me" "$package_list"
+}
+
 # check argument and if run as root
 [[ -z "$1" || $(id -u) != 0 ]] && {
 	message >&2
 	exit 1
 }
 
-# packages list path
-package_list="$HOME/.config/nvim/pack/lang/opt/tex/PACKAGES.txt"
-package_temp="$HOME/.config/nvim/pack/lang/opt/tex/.temp-PACKAGES.txt"
-
-# update package list
-echo "$1" >> "$package_list"
-cat "$package_list" | sort | uniq > "$package_temp"
-mv "$package_temp" "$package_list"
-
-# install the actual package
-tlmgr install "$1"
+# install the package
+tlmgr install "$1" && add_to_list "$1"
 
 exit 0

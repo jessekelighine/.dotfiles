@@ -81,9 +81,9 @@ up() {
 }
 
 # zsh compatibility
-if [[ -n ${ZSH_VERSION-} ]]; then
-	autoload -U +X bashcompinit && bashcompinit
-fi
+# if [[ -n ${ZSH_VERSION-} ]]; then
+# 	autoload -U +X bashcompinit && bashcompinit
+# fi
 
 # tab-completion
 # complete -o nospace -F _up up

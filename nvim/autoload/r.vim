@@ -1,5 +1,20 @@
 " ~/.config/nvim/autoload/R.vim
 
+" Toggle between two pipes: `%>%` and `|>`.
+function! r#PipeSwitch()
+	if !exists("b:r_pipe_type") || b:r_pipe_type == '%>%'
+		inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
+		inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>
+		let b:r_pipe_type = '|>'
+		redraw | echom " Pipe: |>"
+	else
+		inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab',"%>%")<CR>
+		inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR',"%>%")<CR>
+		let b:r_pipe_type = '%>%'
+		redraw | echom " Pipe: %>%"
+	endif
+endfunction
+
 " Visual select a "section" defined by matlab.
 " type = { "a", "i" }.
 function! r#GetSection(type='a')
@@ -30,7 +45,7 @@ endfunction
 " expand pipe symbol
 function! r#PipeExpand(type, symbol="|>")
 	execut 'norm! a' . ( getline(".")[col(".")-1]!=" " ? " " : "" ) . a:symbol
-	if     a:type=='CR'  | call feedkeys("a\<CR>")
-	elseif a:type=='Tab' | call feedkeys("a\<Space>")
+	if     a:type=='CR'  | call feedkeys( "a\<CR>" )
+	elseif a:type=='Tab' | call feedkeys( "a" . ( getline(".")[col(".")]==" " ? "" : "\<Space>" ) )
 	endif
 endfunction

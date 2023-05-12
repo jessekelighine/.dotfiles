@@ -9,6 +9,8 @@ set -o vi
 autoload -U colors && colors
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+# export LANG=C
+# export LC_ALL=C
 export PATH="$HOME/.local/bin:$PATH"
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$ZDOTDIR/.zsh_history"
@@ -27,7 +29,7 @@ export PS1="$PS1%{$fg[blue]%}%m "      # hostname
 export PS1="$PS1%{$fg[magenta]%}%~"    # working directory
 export PS1="$PS1%{$fg[red]%}]"         # ]
 export PS1="$PS1%{$reset_color%}%%%b " # %
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
 
 alias 'mv'='mv -i'
 alias 'rg'='rg --smart-case'
@@ -49,18 +51,19 @@ alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
+alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
 alias 'cmatrix'='cmatrix -ab -u 2'
 alias 'pipes.sh'='pipes.sh -r 5000 -R -f 100 -s 10'
 alias ':q'='cowsay "You are not in Vim!" | lolcat'
 alias ':wq'='cowsay "You are not in Vim!" | lolcat'
 
-source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOME/.config/zsh/up.sh"
-source "$HOME/.config/.fzf.zsh"
+ssource () { [ -f "$1" ] && source "$1"; }
+ssource "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+ssource "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+ssource "$HOME/.config/zsh/up.sh"
+ssource "$HOME/.config/.fzf.zsh"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --extended'
-export DEL_DIR="$HOME/.Trash"
 export BC_ENV_ARGS="$HOME/.config/.bc"
 export B2_ACCOUNT_INFO="$HOME/.config/b2/.b2_account_info"
 export B2_APPLICATION_KEY_ID="$(<$HOME/.config/b2/file-with-key-id.txt)"

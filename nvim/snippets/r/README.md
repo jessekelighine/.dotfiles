@@ -1,7 +1,6 @@
 ---
-title:  "R"
-author: "jessekelighine@gmail.com"
-date:   "2023-03-09"
+title: "R"
+date:  "2023-03-09"
 ---
 
 # Library Paths (2023-03-09)

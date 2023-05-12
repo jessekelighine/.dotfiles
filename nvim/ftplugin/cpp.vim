@@ -17,6 +17,7 @@ nnoremap <buffer> <leader>; :call my#DelFuncCall('[a-zA-Z]','[:a-zA-Z0-9_]')<CR>
 inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets("cpp","skeleton.cpp")<CR>
 inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("cpp","sign.cpp")<CR>
 inoremap <buffer> :rcpp<Tab> <Esc>:call my#GetSnippets("cpp","Rcpp.cpp")<CR>
+inoremap <buffer> :arma<Tab> <Esc>:call my#GetSnippets("cpp","RcppArmadillo.cpp")<CR>
 inoremap <buffer> :cl<Tab>   <Esc>:call my#GetSnippets("cpp","class.cpp")<CR>/<++><CR>ca<
 inoremap <buffer> :c<Tab>   /*<Space><Space>*/<left><left><left>
 

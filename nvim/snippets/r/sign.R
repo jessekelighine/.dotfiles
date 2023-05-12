@@ -2,8 +2,8 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen (jessekelighine@gmail.com)                            #
-# Last Modified: OOOO-OOO-OO                                                  #
+# Author:                                                                     #
+# Last Modified: OOOO-OO-OO                                                   #
 #                                                                             #
 #                                                                             #
 ###############################################################################

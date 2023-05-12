@@ -2,15 +2,14 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
 # Description: Creates a new window that plays music.                         #
-#                                                                             #
 # Last Modified: 2023-03-19                                                   #
+#                                                                             #
 ###############################################################################
 
 window_id="9"
 window_name="musik"
-window_list=$( tmux list-windows | awk -F : '{ print $1 }' )
+window_list=$(tmux list-windows | awk -F : '{ print $1 }')
 
 for id in ${window_list[@]} ; do
 	[ $id = $window_id ] && {

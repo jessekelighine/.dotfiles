@@ -13,8 +13,9 @@ def main():
         sys.exit(1)
 
     newname = re.sub('\.[^.]*$', '.tsv', filename)
-    read_file = pandas.read_excel(filename)
-    read_file.to_csv(newname, index=None, header=True, sep="\t")
+    data = pandas.read_excel(filename)
+    data.to_csv(newname, index=None, header=True, sep="\t")
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()

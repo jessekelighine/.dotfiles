@@ -1,3 +1,4 @@
 startup_message off
+term screen-256color
 hardstatus alwayslastline
 hardstatus alwayslastline "%-Lw%{= yk}%50>%n%f* %t%{-}%+Lw%<"

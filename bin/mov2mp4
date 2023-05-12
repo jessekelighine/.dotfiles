@@ -1,0 +1,10 @@
+#!/bin/bash
+
+help () {
+	cat << EOF
+usage: $0: [file] [output]
+desription: convert [file] to mp4 format with name [output].
+EOF
+}
+
+ffmpeg -i "$1" -vcodec h264 -acodec mp2 "${2:-$1.mp4}"

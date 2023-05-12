@@ -17,3 +17,11 @@ git submodule add https://github.com/mbbill/undotree             main/start/undo
 
 # ~/.config/nvim/pack/main/opt
 git submodule add https://github.com/junegunn/goyo.vim           main/opt/goyo.vim
+
+# Nvim Stuff
+git submodule add https://github.com/nvim-treesitter/nvim-treesitter main/start/nvim-treesitter
+
+git submodule add https://github.com/iamcco/markdown-preview.nvim.git main/opt/markdown-preview.nvim
+cd main/opt/markdown-preview.nvim
+yarn install
+yarn build

@@ -11,6 +11,11 @@ setlocal winminwidth=1
 setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 command! -buffer -nargs=0 LastMod          :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)
 command! -buffer -nargs=1 DatatableExplain :call system("open ~/.config/nvim/snippets/r/datatable-".<q-args>.".png")
+command! -buffer -nargs=0 PipeSwitch       :call r#PipeSwitch()
+let b:surround_116 ="tic()\rtoc()"
+
+packadd matchit
+let b:match_words = '\<tic\>:\<toc\>'
 
 " Utilities:
 xnoremap <buffer><silent> as :call r#GetSection('a')<CR>

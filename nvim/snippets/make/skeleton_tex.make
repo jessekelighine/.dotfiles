@@ -21,12 +21,12 @@ $(NAME).pdf: $(MAIN).pdf
 	cp $(MAIN).pdf $(NAME).pdf
 
 $(NAME).pdf: $(MAIN).tex .runcode
-	grep -o '.' $(MAIN).tex | rg '[^\x00-\x7F]' | wc -l | xargs echo "Chinese Word Count:"
+	# grep -o '.' $(MAIN).tex | rg '[^\x00-\x7F]' | wc -l | xargs echo "Chinese Word Count:"
 	latexmk -xelatex $(MAIN).tex
 
 .runcode: code
 	cd bin ; Rscript $(shell basename $<) ; cd ..
-	touch .runcode
+	touch $@
 
 figures/%.pdf: figures/%.tex
 	latexmk -outdir=figures -xelatex $<

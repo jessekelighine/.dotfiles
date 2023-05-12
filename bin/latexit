@@ -4,21 +4,22 @@
 # -*- encoding: UTF-8 -*-                                                     #
 # Description: latexit: fast way of creating LaTeX snippets.                  #
 # Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
-# Last Modified: 2023-04-06                                                   #
+# Last Modified: 2023-04-30                                                   #
 #                                                                             #
 ###############################################################################
 
 ### Default Packages and Preamble #############################################
 
-PACKAGES=( "amsmath" "mathtools" "amssymb" "mathrsfs" )
-PREAMBLES=()
-POSITIONAL_ARGS=()
 error () { echo "$(basename $0): error: $1" >&2 ; }
+
+packages=( "amsmath" "mathtools" "amssymb" "mathrsfs" )
+preambles=()
+positional_args=()
 
 while [[ $# -gt 0 ]]; do
 	case $1 in
 		-a | --preamble)
-			PREAMBLES+="$2"
+			preambles+="$2"
 			shift; shift
 			;;
 		-d | --directory)
@@ -38,7 +39,7 @@ while [[ $# -gt 0 ]]; do
 			shift; shift
 			;;
 		-p | --package)
-			PACKAGES+=("$2")
+			packages+=("$2")
 			shift; shift
 			;;
 		--density)
@@ -54,18 +55,18 @@ while [[ $# -gt 0 ]]; do
 			exit 1
 			;;
 		*)
-			POSITIONAL_ARGS+=("$1")
+			positional_args+=("$1")
 			shift
 			;;
 	esac
 done
 
-set -- "${POSITIONAL_ARGS[@]}"
+set -- "${positional_args[@]}"
 
 ### Set Variables #############################################################
 
 latexcmd="$1"
-temp="${directory:="$HOME/Desktop"}/.temp_latexit_snippet"
+temp="${directory:="$HOME/Desktop"}/.latexit_snippet-$(date +'%Y%m%d%H%M%S')"
 output="$directory/${filename:-latexit_snippet}"
 
 ### Error Check ###############################################################
@@ -76,7 +77,7 @@ usage: $(basename $0) [options] <LATEX_COMMAND>
 options:
         -a --preamble <LATEX_COMMAND> add command to preamble
         -d --directory <DIRECTORY>    set output directory (default: ~/Desktop)
-	-e --engine <LATEX_ENGIN>     set LaTeX compilation engine (default: pdflatex)
+        -e --engine <LATEX_ENGIN>     set LaTeX compilation engine (default: pdflatex)
         -f --format <FORMAT>          set output file format (default: png)
                 * png       png (default: white background)
                 * png-t     png (transparent background)
@@ -85,7 +86,7 @@ options:
         -n --name <FILENAME>          set output filename (default: latexit_snippet)
         -p --package <PACKAGE>        add package to preamble
                 * default packages:
-                  ${PACKAGES[@]}
+                  ${packages[@]}
 png options:
            --density <NUMBER>         set density of png output (default: 1200)
            --background <HEX_COLOR>   set background of png otput (default: #FFFFFF)
@@ -107,10 +108,10 @@ EOF
 touch "$temp.tex"
 {
 	echo '\documentclass{standalone}'
-	for pack in "${PACKAGES[@]}"; do
+	for pack in "${packages[@]}" ; do
 		echo '\usepackage{'"$pack"'}'
 	done
-	for preamble in "${PREAMBLES[@]}"; do
+	for preamble in "${preambles[@]}" ; do
 		echo "$preamble"
 	done
 	echo '\begin{document}'
@@ -119,6 +120,13 @@ touch "$temp.tex"
 } > "$temp.tex"
 
 ${engine:-pdflatex} -halt-on-error -output-directory="$directory" "$temp.tex" | grep '^!.*' -A200 --color=always
+
+[[ ! -f "$temp.pdf" ]] && {
+	rm "${temp:?}"*
+	error "something went wrong, no files created."
+	exit 1
+}
+
 mv "$temp.pdf" "$output.pdf"
 rm "${temp:?}"*
 

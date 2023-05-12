@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+: ${WHENEVER_INTERVAL:=1}
+: ${WHENEVER_COMMAND:=md5sum}
+
 message () {
 	local green; green=$(tput bold && tput setaf 10)
 	local blue;  blue=$(tput bold && tput setaf 12)
@@ -10,13 +13,16 @@ ${green}description:${norm} run [command] whenever [file] is modified.
 EOF
 }
 
+progress () {
+	local yellow; yellow=$(tput bold && tput setaf 214)
+	local norm;   norm=$(tput sgr0)
+	printf "${yellow}============ whenever: %d ============${norm}\n" $1
+}
+
 [[ $# -lt 2 ]] && {
 	message >&2
 	exit 1
 }
-
-: ${WHENEVER_INTERVAL:=1}
-: ${WHENEVER_COMMAND:=md5sum}
 
 count=0
 value_prev=$( $WHENEVER_COMMAND "$1" )
@@ -25,6 +31,6 @@ while : ; do sleep $WHENEVER_INTERVAL
 	[[ "$value_curr" != "$value_prev" ]] && {
 		value_prev="$value_curr"
 		${@:2}
-		printf "============ whenever: %d ============\n" $((++count))
+		progress $((++count))
 	}
 done

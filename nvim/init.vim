@@ -19,7 +19,7 @@
 	xmap ga <Plug>(EasyAlign)
 	nmap ga <Plug>(EasyAlign)
 " fzf.vim
-	set rtp+=/usr/local/Cellar/fzf/0.38.0 " where fzf is installed
+	set rtp+=/usr/local/opt/fzf " where fzf is installed
 	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 	let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
 	let g:fzf_preview_window = [ 'right:40%' ]
@@ -36,8 +36,6 @@
 	let g:vindent_motion_less_next = ']-'
 	let g:vindent_motion_more_prev = '[='
 	let g:vindent_motion_more_next = ']='
-	let g:vindent_motion_diff_prev = '[;'
-	let g:vindent_motion_diff_next = '];'
 	let g:vindent_motion_XX_ss = '[p'
 	let g:vindent_motion_XX_se = ']p'
 	let g:vindent_motion_OX_ss = '[P'
@@ -58,8 +56,8 @@ packloadall
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
-" nnoremap <expr> n 'Nn'[v:searchforward]
-" nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
 xnoremap ''     "*y
 nnoremap ''     "*y
 nnoremap Y      y$

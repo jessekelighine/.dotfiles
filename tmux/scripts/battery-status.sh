@@ -2,9 +2,8 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
-# Last Modified: 2023-03-21                                                   #
 # Description: Display Battery Status.                                        #
+# Last Modified: 2023-03-21                                                   #
 #                                                                             #
 ###############################################################################
 

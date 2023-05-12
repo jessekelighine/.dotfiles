@@ -1,7 +1,6 @@
 -- complete.lua
 
 vim.cmd [[packadd nvim-cmp]]
-
 vim.cmd [[packadd cmp-buffer]]
 vim.cmd [[packadd cmp-path]]
 vim.cmd [[packadd cmp-nvim-lsp]]

@@ -1,5 +1,10 @@
 " ~/.config/nvim/autoload/markdown.vim
 
+" custom function for markdown-preview.nvim
+function! markdown#OpenMarkdownPreview(url)
+	exe "silent ! firefox --new-window " . a:url
+endfunction
+
 " compile markdown to HTML on save
 function! markdown#PandocPVC(type="")
 	if !exists("b:markdown_pandoc_pvc_type") || a:type!=""

@@ -66,6 +66,7 @@ inoremap <buffer> :qui<tab>     <Esc>:call my#GetSnippets('tex','skeleton.tex')<
 inoremap <buffer> :letter<tab>  <Esc>:call my#GetSnippets('tex','skeleton_letter.tex')<CR>
 inoremap <buffer> :beamer<tab>  <Esc>:call my#GetSnippets('tex','preamble_beamer.tex')<CR>
 inoremap <buffer> :std<tab>     <Esc>:call my#GetSnippets('tex','preamble_standalone.tex')<CR>
+inoremap <buffer> :alg<tab>     <Esc>:call my#GetSnippets('tex','preamble_algorithm.tex')<CR>
 inoremap <buffer> :cjk<tab>     <Esc>:call my#GetSnippets('tex','preamble_xeCJK.tex')<CR>
 inoremap <buffer> :cw<tab>      <Esc>:call my#GetSnippets('tex','preamble_cwtex.tex')<CR>
 inoremap <buffer> :punct<tab>   <Esc>:call my#GetSnippets('tex','preamble_punct.tex')<CR>
@@ -201,3 +202,4 @@ inoremap <buffer> \enuma<Tab>  <Esc>:call my#GetSnippets('tex','indoc_enum_alph.
 inoremap <buffer> \item<Tab>   <Esc>:call my#GetSnippets('tex','indoc_item.tex')<CR>
 inoremap <buffer> \iff<Tab>    <Esc>:call my#GetSnippets('tex','indoc_iff_arrow.tex')<CR>
 inoremap <buffer> \iffc<Tab>   <Esc>:call my#GetSnippets('tex','indoc_iff_cup.tex')<CR>
+inoremap <buffer> \alg<Tab>    <Esc>:call my#GetSnippets('tex','indoc_algorithm.tex')<CR>

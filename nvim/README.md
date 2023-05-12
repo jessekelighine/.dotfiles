@@ -111,10 +111,11 @@ nnoremap <leader>gt :Git checkout<space>
 # Regex Tips
 
 - using the search pattern in `/` in `:%s`.
-	- In general, an empty regular expression means to use the previously entered regular expression,
-	  so `:%s//\1/g` should do what you want.
-	- Also, if you want to verify or modify the last used pattern,
-	  you can use `<C-R>/` to insert the contents of the search pattern register `/` directly into a partially typed command line.
+    - In general, an empty regular expression means to use the previously
+      entered regular expression, so `:%s//\1/g` should do what you want.
+    - Also, if you want to verify or modify the last used pattern,
+      you can use `<C-R>/` to insert the contents of the search pattern register `/`
+      directly into a partially typed command line.
 - Replacing in visual block:
   use command `:'<,'>s/\%V{pattern}/{replace}/{option}`
   where the `\%V` specifies that the replacement is only done in the selected block.
