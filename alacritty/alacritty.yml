@@ -1,7 +1,7 @@
 # alacritty.yml
 
 window:
-  opacity: .9
+  opacity: .7
   dimensions: # character dimension
     columns: 155
     lines: 42
