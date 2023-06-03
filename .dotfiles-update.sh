@@ -13,8 +13,10 @@ brew upgrade
 # update Cask
 outdated_casks=$(brew outdated --cask --greedy --verbose)
 [[ -n "$outdated_casks" ]] && {
+	echo ""
+	echo "$(tput bold)# Outdated Casks: $(tput sgr0)"
 	echo "$outdated_casks"
-	read -r -p "$(tput bold)>>> Update Casks? [Yn]: $(tput sgr0)"
+	read -r -p "$(tput bold)==> Update Casks? [Yn]: $(tput sgr0)"
 	[[ "$REPLY" == Y ]] && {
 		echo "$outdated_casks" | \
 			grep -v '(latest)' | \
@@ -24,6 +26,7 @@ outdated_casks=$(brew outdated --cask --greedy --verbose)
 }
 
 # update mas
+echo "$(tput bold)==> Running MAS$(tput sgr0)"
 mas outdated
 mas upgrade
 

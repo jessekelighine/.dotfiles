@@ -56,27 +56,55 @@ function! tex#DelLeftRight()
 	endif
 endfunction
 
-" Continuous Compilation.
-function! tex#ContiCompi(checkout=0,engine='xelatex') abort
-	if a:checkout
-		execut 'buffer '.b:tex_conticompi_bufnr
-		return 0
+function! tex#ContiCompiTmux(start,engine='xelatex') abort
+	packadd! vim-slime
+	if a:start && vimslime#Target()==""
+		let l:command = 'tmux split -c "$PWD";'
+					\ . 'tmux resize-pane -U 12;'
+					\ . "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
+					\ . 'tmux last-pane;'
+		let l:targets = system(l:command)->split('\n')->map('split(v:val," ")')
+		for l:pane in l:targets | if l:pane[1]==1 | break | endif | endfor
+		call vimslime#SetTarget(l:pane[0])
+		let l:command = 'latexmk '
+					\ . ( a:engine=='xelatex' ? '-pdfxe' : '-pdflatex' )
+					\ . ' -pvc -view=none -halt-on-error ' . @%
+		call vimslime#Send(l:command,1)
+		augroup ContiCompiTmux
+			autocmd!
+			autocmd VimLeave * exe vimslime#Target()=="" ? "" : 'call vimslime#Send("\<C-C>exit",1)'
+		augroup END
+	elseif  a:start && vimslime#Target()!=""
+		call system("tmux resize-pane -Z")
+	elseif !a:start && vimslime#Target()!=""
+		call vimslime#Send("\<C-C>exit",1)
+		call vimslime#UnsetTarget()
+	elseif !a:start && vimslime#Target()==""
+		redraw | echom "--> No Tmux Pane to close."
 	endif
-	if !exists('b:tex_conticompi_bufnr')
-		let l:orig = bufnr()
-		sil exec 'norm! :term latexmk ' . ( a:engine=='xelatex' ? '-pdfxe' : '-pdflatex' ) . ' -pvc -view=none -halt-on-error '.@%."\<CR>"
-		sil exec 'nnoremap <silent><buffer> <Space> :buffer '.l:orig."\<CR>"
-		let l:term = bufnr()
-		sil exec 'buffer '.l:orig
-		let b:tex_conticompi_bufnr = l:term
-		redraw | echo '--> Continuous Compilation: ON ('.a:engine.')'
-	else
-		silen execute ':bd! '.b:tex_conticompi_bufnr
-		unlet b:tex_conticompi_bufnr
-		redra | echo '--> Continuous Compilation: OFF'
-	endif
-	return 0
 endfunction
+
+" Continuous Compilation.
+" function! tex#ContiCompi(checkout=0,engine='xelatex') abort
+" 	if a:checkout
+" 		execut 'buffer '.b:tex_conticompi_bufnr
+" 		return 0
+" 	endif
+" 	if !exists('b:tex_conticompi_bufnr')
+" 		let l:orig = bufnr()
+" 		silent exec 'norm! :term latexmk ' . ( a:engine=='xelatex' ? '-pdfxe' : '-pdflatex' ) . ' -pvc -view=none -halt-on-error '.@%."\<CR>"
+" 		silent exec 'nnoremap <silent><buffer> <Space> :buffer '.l:orig."\<CR>"
+" 		let l:term = bufnr()
+" 		silent exec 'buffer '.l:orig
+" 		let b:tex_conticompi_bufnr = l:term
+" 		redraw | echo '--> Continuous Compilation: ON ('.a:engine.')'
+" 	else
+" 		silent execute ':bd! '.b:tex_conticompi_bufnr
+" 		unlet b:tex_conticompi_bufnr
+" 		redraw | echo '--> Continuous Compilation: OFF'
+" 	endif
+" 	return 0
+" endfunction
 
 " Compile LaTeX files.
 function! tex#Compile(type='xelatex', call_type='jobstart')

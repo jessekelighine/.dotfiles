@@ -20,7 +20,7 @@ $(NAME).zip: $(MAIN).pdf
 $(NAME).pdf: $(MAIN).pdf
 	cp $(MAIN).pdf $(NAME).pdf
 
-$(NAME).pdf: $(MAIN).tex .runcode
+$(MAIN).pdf: $(MAIN).tex .runcode
 	# grep -o '.' $(MAIN).tex | rg '[^\x00-\x7F]' | wc -l | xargs echo "Chinese Word Count:"
 	latexmk -xelatex $(MAIN).tex
 

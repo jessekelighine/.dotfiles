@@ -45,7 +45,7 @@ alias ppd='popd'
 alias dirs='dirs -v'
 alias 'vim'='/usr/local/bin/nvim'
 alias 'scim'='sc-im'
-alias 'youtube-audio'='youtube-dl -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
+alias 'youtube-audio'='yt-dlp -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
 alias 'weather'='curl "wttr.in/Taipei"'
 alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
@@ -70,6 +70,7 @@ export B2_APPLICATION_KEY_ID="$(<$HOME/.config/b2/file-with-key-id.txt)"
 export B2_APPLICATION_KEY="$(<$HOME/.config/b2/file-with-key.txt)"
 
 # tar-compress () { tar zcfv "$@" }
+tldr    () { open -a Firefox "https://tldr.inbrowser.app"; echo "$@" > /dev/null }
 timeout () { perl -e 'alarm shift; exec @ARGV' "$@" }
 encrypt () { openssl enc -aes-256-cbc -a -salt -e -in "$1" } # -out "$2"
 decrypt () { openssl enc -aes-256-cbc -a -salt -d -in "$1" } # -out "$2"

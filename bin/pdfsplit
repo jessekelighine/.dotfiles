@@ -10,7 +10,7 @@
 # obvious and the required defines are not listed in the manual page. 
 
 [[ $# -lt 4 ]] && {
-	echo "usage: $(basename $0) [input.pdf] [first_page] [last_page] [output.pdf]" >&2
+	echo "usage: $(basename $0) [input.pdf] [first page] [last page] [output.pdf]" >&2
 	exit 1
 }
 

@@ -1,8 +1,11 @@
 " ~/.config/nvim/autoload/markdown.vim
 
 " open markdown in firefox
-function! markdown#View()
-	execute '! firefox --new-window ' . expand("%:p")
+function! markdown#View(start)
+	" execute '! firefox --new-window ' . expand("%:p")
+	if a:start | call system('open -a firefox '.expand("%:p"))
+	else       | call system('open -a firefox')
+	endif
 endfunction
 
 " compile markdown to HTML on save

@@ -53,8 +53,8 @@ endfunction
 " toggle syntax/ftplygins.
 function! textoggle#Master() abort
 	call textoggle#Show()
-	let l:key  = input('Toggle LaTeX Syntax: ') | if l:key==''             | return | endif
-	let l:keys = keys(g:textoggle_dict)         | if index(l:keys,l:key)<0 | return | endif
+	let l:key  = input('--> Toggle LaTeX Syntax: ') | if l:key==''             | return | endif
+	let l:keys = keys(g:textoggle_dict)             | if index(l:keys,l:key)<0 | return | endif
 	call textoggle#Toggle(l:key)
 	call textoggle#Reload()
 	redraw | echom '--> '.g:textoggle_dict[l:key]['display'].' syntax: '

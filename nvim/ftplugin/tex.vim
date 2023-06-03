@@ -32,7 +32,13 @@ let b:surround_103="($\r$)"
 " FUNCTION KEYS:
 nnoremap <silent><buffer> <F1> :tabnew ~/.config/nvim/ftplugin/tex.vim<CR>
 nnoremap <silent><buffer> <F2> :tabnew ~/.config/nvim/syntax/tex.vim<CR>
-nnoremap <silent><buffer> <F6> :call tex#Compile('xelatex',(has("nvim")?'termopen':'!'))<CR>
+
+" COMPILATION:
+nnoremap <silent><buffer> <F6>            :call tex#Compile('xelatex',(has("nvim")?'termopen':'!'))<CR>
+nnoremap <silent><buffer> <leader><Space> :call tex#ContiCompiTmux(1)<CR>
+nnoremap <silent><buffer> <leader>rf      :call tex#ContiCompiTmux(1)<CR>
+nnoremap <silent><buffer> <leader>rq      :call tex#ContiCompiTmux(0)<CR>
+" nnoremap <buffer> <leader><Space> :call tex#ContiCompi(exists('b:tex_conticompi_bufnr'))<CR>
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 LastMod      :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
@@ -41,8 +47,7 @@ command! -buffer -nargs=0 ShowToggles  :call textoggle#Show()
 command! -buffer -nargs=0 ClearToggles :call textoggle#Clear()
 command! -buffer -nargs=0 FindSection  :call tex#FindSection()
 command! -buffer -nargs=0 JunkRemove   :! latexmk -C %:r
-command! -buffer -nargs=? -bang ContiCompi :call tex#ContiCompi(<bang>0,<f-args>) " args: pdflatex, pdfxe
-nnoremap <buffer><silent> <leader><Space> :call tex#ContiCompi(exists('b:tex_conticompi_bufnr'))<CR>
+command! -buffer -nargs=? -bang ContiCompi :call tex#ContiCompi(<bang>0,<f-args>) " args: pdflatex, xelatex
 nnoremap <buffer><silent> <leader>c :call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d :call tex#EnvironmentDelete()<CR>
 nnoremap <buffer><silent> <leader>, :call tex#DelLeftRight()<CR>

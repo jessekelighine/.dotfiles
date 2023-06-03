@@ -1,8 +1,14 @@
 ---
 title:  "ffmeg notes"
 author: "jessekelighine@gmail.com"
-date:   "2021-Jul-25"
+date:   "2023-05-26"
 ---
+
+# trim mp3
+
+```sh
+ffmpeg -i spongebob-foghorn.mp3 -ss 9 -to 51 -c libmp3lame output.mp3
+```
 
 # fade-out music
 

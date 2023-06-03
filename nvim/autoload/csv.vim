@@ -61,7 +61,22 @@ function! csv#PrevNextColumn(direction)
 	endif
 endfunction
 
-"-- Search String Building -"
+" Print Header
+function! csv#FindColumn() abort
+	let l:pos = getpos('.')
+	echo "Col.Number  Col.Name"
+	echo "============================"
+	echo split(getline(1),b:csv_delim)->map("printf('% 3d',str2nr(v:key)+1).repeat(' ',9).v:val")->join("\n")
+	let l:input = input("--> Highlight Column: ")
+	if l:input=~'\d\+'
+		call csv#HighlightColumn(l:input)
+		call csv#GoToColumn()
+	else
+		call setpos('.',l:pos)
+	endif
+endfunction
+
+"-- Search String Building ---------------------------------------------------"
 
 " Returns a search string for column b:csv_column.  
 " Sample String: \(""\|"\(\\\\\|\\"\|[^\\"]\)\+"\|[^,"]\{-}\)\s*,\s*
@@ -96,8 +111,8 @@ endfunction
 
 " set the focused column number and name.
 function! <SID>SetColumn(number=-1,name="")
-	let b:csv_column      = a:number == -1 ? <SID>GetColumnNumber(): a:number
-	let b:csv_column_name = a:name   == "" ? <SID>GetColumnName():   a:name
+	let b:csv_column      = a:number == -1 ? <SID>GetColumnNumber() : a:number
+	let b:csv_column_name = a:name   == "" ? <SID>GetColumnName()   : a:name
 endfunction
 
 " Set `b:csv_total_column_number` to the total number of column numbers. Does

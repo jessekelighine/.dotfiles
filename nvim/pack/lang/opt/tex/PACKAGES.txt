@@ -17,6 +17,7 @@ lastpage
 latexmk
 mathalpha
 multirow
+pdfjam
 rsfs
 standalone
 stickstoo

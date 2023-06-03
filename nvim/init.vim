@@ -1,10 +1,6 @@
 " init.vim
 
-filetype plugin on
-filetype indent on
-syntax on
-
-if filereadable(expand("~/.config/nvim/pack/pack.sh"))
+if expand("~/.config/nvim/pack/pack.sh")->filereadable()
 	" miramare
 	let g:miramare_transparent_background = 1
 	let g:miramare_disable_italic_comment = has('nvim') ? 0 : 1
@@ -52,26 +48,31 @@ if filereadable(expand("~/.config/nvim/pack/pack.sh"))
 	let g:vindent_object_XX_aI = 'aI'
 	let g:vindent_jumps = 1
 	let g:vindent_count = 0
+	let g:vindent_begin = 1
 endif
 
+filetype plugin on
+filetype indent plugin on
+syntax on
 language en_US.UTF-8
 packloadall
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
+nnoremap <Space> <Nop>
 nnoremap <expr> n 'Nn'[v:searchforward]
 nnoremap <expr> N 'nN'[v:searchforward]
 xnoremap ''     "*y
 nnoremap ''     "*y
 nnoremap Y      y$
 nnoremap zS     zszH
-inoremap <C-L>  <C-G>u<Esc>[s1z=`]a<C-G>u
 nnoremap <Up>   gk
 nnoremap <Down> gj
 nnoremap <C-j>  <C-W>j
 nnoremap <C-k>  <C-W>k
 nnoremap <C-h>  <C-W>h
 nnoremap <C-l>  <C-W>l
+inoremap <C-l>  <C-G>u<Esc>[s1z=`]a<C-G>u
 inoremap (<Tab> ()<Left>
 inoremap [<Tab> []<Left>
 inoremap {<Tab> {}<Left>
@@ -89,7 +90,6 @@ xnoremap //     y/\V<C-R>=escape(@",'/\')<CR><CR>
 xnoremap <silent> p pgvy
 xnoremap <silent> <leader>p p
 nnoremap <silent> <leader>l :set list!<CR>
-nnoremap <silent> <leader>f :set cursorcolumn!<CR>:set cursorline!<CR>
 nnoremap <silent> <CR>      :noh<Bar>redraw!<Bar>echo''<CR>
 nnoremap <silent> <F12>     :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <C-N> :tabnew<CR>
@@ -170,10 +170,10 @@ if has('nvim')
 	set directory^=~/.config/nvim/swap/
 	" lua require("init")
 else
+	tnoremap <silent> <Esc><Esc> <C-W><S-N>
 	let &t_SI="\e[5 q"
 	let &t_EI="\e[2 q"
 	let &t_SR="\e[4 q"
-	tnoremap <silent> <Esc><Esc> <C-W><S-N>
 	set viminfofile=NONE
 	set undofile undodir=~/.vim/undodir/
 	set directory^=~/.vim/swap/

@@ -5,9 +5,9 @@ message () {
 	local blue;  blue=$(tput bold && tput setaf 12)
 	local norm;  norm=$(tput sgr0)
 	cat << EOF
-${green}usage:${norm} ${blue}$(basename $0)${norm} [input.pdf] [output.pdf] [pdfmarks]
+${green}usage:${norm} ${blue}$(basename "$0")${norm} [input.pdf] [output.pdf] [pdfmarks]
 ${green}description:${norm}
-	If [pdfmarks] is not provided, $(basename 0) will automatically
+	If [pdfmarks] is not provided, $(basename "$0") will automatically
 	search for a file named 'pdfmarks' in the current directory.
 
 ${blue}"pdfmarks" example:${norm}

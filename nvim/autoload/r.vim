@@ -1,4 +1,4 @@
-" ~/.config/nvim/autoload/R.vim
+" ~/.config/nvim/autoload/r.vim
 
 " Toggle between two pipes: `%>%` and `|>`.
 function! r#PipeSwitch()

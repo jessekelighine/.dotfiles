@@ -4,9 +4,9 @@ hosts_site='https://someonewhocares.org/hosts/zero/hosts'
 hosts_orig="/etc/hosts"
 
 # temp files
-hosts_temp="$HOME/Desktop/.temp-hosts-temp-$(date +"%F-%X")"
-hosts_zero="$HOME/Desktop/.temp-hosts-zero-$(date +"%F-%X")"
-hosts_fine="$HOME/Desktop/.temp-hosts-fine-$(date +"%F-%X")"
+hosts_temp="$HOME/Desktop/.temp-hosts-temp-$(date +'%Y%m%d%H%M%S')"
+hosts_zero="$HOME/Desktop/.temp-hosts-zero-$(date +'%Y%m%d%H%M%S')"
+hosts_fine="$HOME/Desktop/.temp-hosts-fine-$(date +'%Y%m%d%H%M%S')"
 trap "$(which rm) -rf $hosts_temp $hosts_zero $hosts_fine" EXIT ERR
 
 # message

@@ -11,6 +11,7 @@ ${green}options:${norm}
         off                         turn off wifi
         connect <NAME> <PASSWORD>   connect to wifi device
         status                      show power status of wifi
+        list                        list available wifi networks
 EOF
 }
 
@@ -23,6 +24,9 @@ case "$1" in
 		;;
 	status)
 		networksetup -getairportpower en0 && exit 0
+		;;
+	list)
+		/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan
 		;;
 	connect)
 		[[ $# -gt 3 || $# -lt 2 ]] && message >&2 && exit 1

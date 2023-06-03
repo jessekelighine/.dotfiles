@@ -1,8 +1,10 @@
 ---
 title:  "SAFARI BOOKMARKS"
 author: "jessekelighine@gmail.com"
-date:   "2021-Aug-02"
+date:   "2023-05-21"
 ---
+
+https://gist.github.com/cemerson/043d3b455317d762bb1378aeac3679f3
 
 # misc
 

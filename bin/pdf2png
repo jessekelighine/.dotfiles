@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+help () {
+	cat << EOF
+usage: $(basename "$0") [file] [output]
+EOF
+}
+
+[[ $# -lt 2 || $# -gt 2 ]] && {
+	help >&2
+	exit 1
+}
+
+# gs -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sOutputFile="$2" -r1000 "$1" > /dev/null
+convert -background "#FFFFFF" -flatten -density 600 "$1" "$2"
