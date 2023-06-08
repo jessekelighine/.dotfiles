@@ -54,14 +54,14 @@ alias tmk='tmux kill-session'
 alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
 alias 'cmatrix'='cmatrix -ab -u 2'
 alias 'pipes.sh'='pipes.sh -r 5000 -R -f 100 -s 10'
+alias 'opencc'='opencc -c s2tw.json'
 alias ':q'='cowsay "You are not in Vim!" | lolcat'
 alias ':wq'='cowsay "You are not in Vim!" | lolcat'
 
-ssource () { [ -f "$1" ] && source "$1"; }
-ssource "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-ssource "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-ssource "$HOME/.config/zsh/up.sh"
-ssource "$HOME/.config/.fzf.zsh"
+[[ -d "$HOME/.config/zsh"      ]] && source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -d "$HOME/.config/zsh"      ]] && source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -d "$HOME/.config/zsh"      ]] && source "$HOME/.config/zsh/up.sh"
+[[ -f "$HOME/.config/.fzf.zsh" ]] && source "$HOME/.config/.fzf.zsh"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --extended'
 export BC_ENV_ARGS="$HOME/.config/.bc"
@@ -78,10 +78,12 @@ volume () { cd "/Volumes/$1" }
 eject  () { diskutil eject "$1" }
 R-mean () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); mean(x)' }
 R-sd   () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); sd(x)'   }
-spiel           () { mpv --ytdl=no --no-video --loop "$1" }
-spiel-mono      () { mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" }
-spielliste      () { mpv --ytdl=no --no-video "$1" }
-spielliste-mono () { mpv --ytdl=no --no-video --audio-channels=mono "$1" }
+
+SPIEL_LOCATION="$HOME/Documents/.music.sh"
+spiel           () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop "$1" }
+spiel-mono      () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" }
+spielliste      () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video "$1" }
+spielliste-mono () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --audio-channels=mono "$1" }
 
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"

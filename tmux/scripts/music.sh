@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-###############################################################################
-# -*- encoding: UTF-8 -*-                                                     #
-# Description: Creates a new window that plays music.                         #
-# Last Modified: 2023-03-19                                                   #
-#                                                                             #
-###############################################################################
-
 window_id="9"
 window_name="musik"
 window_list=$(tmux list-windows | awk -F : '{ print $1 }')

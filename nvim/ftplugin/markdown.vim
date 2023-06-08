@@ -16,7 +16,7 @@ let b:surround_98="**\r**"
 let b:surround_99="<!-- \r -->"
 
 " AUTOLOAD: toggles.
-" let g:markdown_fenced_languages = ['bash']
+" let g:markdown_fenced_languages = [ 'sh', 'bash', 'vim' ]
 " let g:markdown_minlines = 100
 let b:markdown_code_syntax_toggle=0
 

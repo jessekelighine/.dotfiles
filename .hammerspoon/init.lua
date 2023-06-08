@@ -5,12 +5,13 @@ HYPER_SHIFT = { "alt", "shift" }
 
 -- Applications ---------------------------------------------------------------
 
-hs.hotkey.bindSpec({ HYPER, "a" }, function () hs.application.open("Alacritty") end)
-hs.hotkey.bindSpec({ HYPER, "f" }, function () hs.application.open("Finder")    end)
-hs.hotkey.bindSpec({ HYPER, "l" }, function () hs.application.open("Line")      end)
-hs.hotkey.bindSpec({ HYPER, "p" }, function () hs.application.open("Preview")   end)
-hs.hotkey.bindSpec({ HYPER, "s" }, function () hs.application.open("Skim")      end)
-hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")   end)
+hs.hotkey.bindSpec({ HYPER, "a" }, function () hs.application.open("Alacritty")  end)
+hs.hotkey.bindSpec({ HYPER, "d" }, function () hs.application.open("Dictionary") end)
+hs.hotkey.bindSpec({ HYPER, "f" }, function () hs.application.open("Finder")     end)
+hs.hotkey.bindSpec({ HYPER, "l" }, function () hs.application.open("Line")       end)
+hs.hotkey.bindSpec({ HYPER, "p" }, function () hs.application.open("Preview")    end)
+hs.hotkey.bindSpec({ HYPER, "s" }, function () hs.application.open("Skim")       end)
+hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")    end)
 
 -- Bluetooth ------------------------------------------------------------------
 

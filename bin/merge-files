@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 message () {
-	local green; green=$(tput bold && tput setaf 10)
-	local blue;  blue=$(tput bold && tput setaf 12)
-	local norm;  norm=$(tput sgr0)
+	local g; g=$(tput bold && tput setaf 10)
+	local b; b=$(tput bold && tput setaf 12)
+	local n; n=$(tput sgr0)
 	cat << EOF
-${green}usage:${norm} ${blue}$(basename $0)${norm} [base file] [secondary file] [output file]
-${green}description:${norm}
+${g}usage:${n} ${b}$(basename $0)${n} [base file] [secondary file] [output file]
+${g}description:${n}
 	Merge changes from [secondary file] into the [base file]
 	and output to [output file] if provided. If [output file]
 	is not provided, the output will be written directly to

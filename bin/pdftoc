@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 message () {
-	local green; green=$(tput bold && tput setaf 10)
-	local blue;  blue=$(tput bold && tput setaf 12)
-	local norm;  norm=$(tput sgr0)
+	local g; g=$(tput bold && tput setaf 10)
+	local b;  b=$(tput bold && tput setaf 12)
+	local n;  n=$(tput sgr0)
 	cat << EOF
-${green}usage:${norm} ${blue}$(basename "$0")${norm} [input.pdf] [output.pdf] [pdfmarks]
-${green}description:${norm}
+${g}usage:${n} ${b}$(basename "$0")${n} [input.pdf] [output.pdf] [pdfmarks]
+${g}description:${n}
 	If [pdfmarks] is not provided, $(basename "$0") will automatically
 	search for a file named 'pdfmarks' in the current directory.
 
-${blue}"pdfmarks" example:${norm}
+${g}"pdfmarks" example:${n}
 
 [/Count 2 /Title (Part I)         /Page  1 /OUT pdfmark
 [/Count 3 /Title (1. Section)     /Page  2 /OUT pdfmark
@@ -24,16 +24,16 @@ ${blue}"pdfmarks" example:${norm}
 [         /Title (3.1 Subsection) /Page 10 /OUT pdfmark
 [         /Title (3.2 Subsection) /Page 11 /OUT pdfmark
 
-${blue}re-numbering pages:${norm}
+${g}re-numbering pages:${n}
 
 << /Type /Catalog /Pages 1 0 R
    /PageLabels << /Nums [ 0 << /P (Cover) >> % labels 1st page with the string 'Cover'
-			  1 << /S /r >> % numbers pages 2-6 in small norm numerals
+			  1 << /S /r >> % numbers pages 2-6 in small roman numerals
 			  6 << /S /D >> % numbers pages 7-x in decimal arabic numerals
 			] >>
 >>
 
-${blue}re-numbering pages in "pdfmarks":${norm}
+${g}re-numbering pages in "pdfmarks":${n}
 
 [ {Catalog} <<
 /PageLabels << /Nums [ 0 << /P (cover) >>

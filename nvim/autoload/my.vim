@@ -137,10 +137,10 @@ function! my#SelectArgument(type='i',open='(\|[',close=')\|]',sep=',')
 	for l:i in range(strlen(l:line)) | let l:i+=1
 		let l:curr = l:col - l:i
 		let l:char = l:line[l:curr]
-		if l:char=~a:close                      | let l:bracket_count+=1 | continue | endif
-		if l:char=~a:open && l:bracket_count!=0 | let l:bracket_count-=1 | continue | endif
-		if l:bracket_count!=0                                            | continue | endif
-		if l:char=~a:sep.'\|'.a:open | let l:begin = l:curr + 2 | break | endif
+		if l:char=~a:close                      | let l:bracket_count+=1   | continue | endif
+		if l:char=~a:open && l:bracket_count!=0 | let l:bracket_count-=1   | continue | endif
+		if l:bracket_count!=0                                              | continue | endif
+		if l:char=~a:sep.'\|'.a:open            | let l:begin = l:curr + 2 | break    | endif
 	endfor
 	" Looking forwards
 	let l:bracket_count = 0
@@ -151,7 +151,7 @@ function! my#SelectArgument(type='i',open='(\|[',close=')\|]',sep=',')
 		if l:char=~a:open                        | let l:bracket_count+=1 | continue | endif
 		if l:char=~a:close && l:bracket_count!=0 | let l:bracket_count-=1 | continue | endif
 		if l:bracket_count!=0                                             | continue | endif
-		if l:char=~a:sep.'\|'.a:close | let l:end = l:curr | break | endif
+		if l:char=~a:sep.'\|'.a:close            | let l:end = l:curr     | break    | endif
 	endfor
 	" Type 'i' or 'a'
 	if     a:type=='a' && l:line[l:end]    =~a:sep | let l:end   += 1

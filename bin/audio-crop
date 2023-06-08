@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+help () {
+	cat << EOF
+usage: $(basename $0) [input] [start time] [end time] [output]
+EOF
+}
+
+[[ $# -lt 3 || $# -gt 4 ]] && {
+	help >&2
+	exit 1
+}
+
+ffmpeg -i "$1" -ss "$2" -to "$3" -c libmp3lame "${3:-output-$1}"

@@ -3,14 +3,14 @@
 
 " toggle dictionary for textoggle#Master().
 let g:textoggle_dict = {
-			\ 'fig':    { 'display':'Figs & Tables', 'status':0, 'syntax':'figure.vim',    'plugin':''              },
-			\ 'ref':    { 'display':'Refs & Cites',  'status':0, 'syntax':'refcite.vim',   'plugin':''              },
-			\ 'notes':  { 'display':'Math Notes',    'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
-			\ 'tex':    { 'display':'Plain Tex',     'status':0, 'syntax':'plain_tex.vim', 'plugin':''              },
-			\ 'doc':    { 'display':'Document',      'status':0, 'syntax':'document.vim',  'plugin':''              },
-			\ 'pre':    { 'display':'Preamble',      'status':0, 'syntax':'preamble.vim',  'plugin':''              },
-			\ 'beamer': { 'display':'Beamer',        'status':0, 'syntax':'beamer.vim',    'plugin':'beamer.vim'    },
-			\ 'tikz':   { 'display':'TikZ',          'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
+			\ 'doc':    { 'display':'(-) Document',     'status':0, 'syntax':'',              'plugin':''              },
+			\ 'ref':    { 'display':'(-) Refs & Cites', 'status':0, 'syntax':'',              'plugin':''              },
+			\ 'pre':    { 'display':'(-) Preamble',     'status':0, 'syntax':'',              'plugin':''              },
+			\ 'beamer': { 'display':'Beamer',           'status':0, 'syntax':'beamer.vim',    'plugin':'beamer.vim'    },
+			\ 'fig':    { 'display':'Figs & Tables',    'status':0, 'syntax':'figure.vim',    'plugin':''              },
+			\ 'notes':  { 'display':'Math Notes',       'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
+			\ 'tex':    { 'display':'Plain Tex',        'status':0, 'syntax':'plain_tex.vim', 'plugin':''              },
+			\ 'tikz':   { 'display':'TikZ',             'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
 			\ }
 
 " Reload the toggle dictionary. Helper function for textoggle#Reload().

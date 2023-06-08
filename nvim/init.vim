@@ -138,7 +138,7 @@ set autochdir
 set history=1000
 set formatoptions+=jnmB " line joining for CJK characters
 set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:+,eol:¬,space:·
-set matchpairs+=（:） mps+=「:」 mps+=『:』 mps+=《:》 mps+=【:】 mps+=〈:〉
+set matchpairs+=（:） mps+=「:」 mps+=『:』 mps+=《:》 mps+=【:】 mps+=〈:〉 mps+=“:”
 set splitbelow
 set nrformats+=alpha
 set nrformats-=bin,hex
