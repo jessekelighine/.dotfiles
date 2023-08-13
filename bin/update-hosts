@@ -1,51 +1,92 @@
 #!/usr/bin/env bash
 
-hosts_site='https://someonewhocares.org/hosts/zero/hosts'
-hosts_orig="/etc/hosts"
+set -e
 
-# temp files
-hosts_temp="$HOME/Desktop/.temp-hosts-temp-$(date +'%Y%m%d%H%M%S')"
-hosts_zero="$HOME/Desktop/.temp-hosts-zero-$(date +'%Y%m%d%H%M%S')"
-hosts_fine="$HOME/Desktop/.temp-hosts-fine-$(date +'%Y%m%d%H%M%S')"
-trap "$(which rm) -rf $hosts_temp $hosts_zero $hosts_fine" EXIT ERR
-
-# message
 message () {
-	local textbf; textbf=$(tput bold)
-	local textrm; textrm=$(tput sgr0)
-	echo "${textbf}$(basename $0)${textrm}: $1" ;
+	local head;     head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
+	local pid;      pid=$!
+	local delay;    delay=0.12
+	local symb_succ; symb_succ="$(tput setaf 10)OK$(tput sgr0)"
+	local symb_fail; symb_fail="$(tput setaf 9 )NO$(tput sgr0)"
+	# local symbols1; symbols1='|>-     ->'
+	# local symbols2; symbols2='   -<|<-  '
+	local symbols1; symbols1='|\-     -/'
+	local symbols2; symbols2='   -/|\-  '
+	local symb_len; symb_len="10"
+	local i;        i=0
+	while kill -0 $pid 2> /dev/null
+	do
+		i=$(( ( i + 1 ) % symb_len ))
+		printf "\r[ ${symbols1:$i:1}${symbols2:$i:1} ] $head"
+		sleep $delay
+	done
+	local symb_fin; symb_fin=$symb_fail
+	if [ -n $2 ]
+	then
+		[[ $2 -eq 0 ]] && symb_fin=$symb_succ
+	else
+		wait $pid
+		[[ $? -eq 0 ]] && symb_fin=$symb_succ
+	fi
+	printf "\r[ $symb_fin ] $head\n"
+	# local head;     head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
+	# local pid;      pid=$!
+	# local delay;    delay=0.12
+	# local symb_fin; symb_fin="v"
+	# local symbols;  symbols='-\|/'
+	# local symb_len; symb_len="4"
+	# local i;        i=0
+	# while kill -0 $pid 2> /dev/null
+	# do
+	# 	i=$(( ( i + 1 ) % symb_len ))
+	# 	printf "\r[ ${symbols:$i:1} ] $head"
+	# 	sleep $delay
+	# done
+	# printf "\r[ $symb_fin ] $head\n"
 }
 
-# run as root
+### MAIN ######################################################################
+
+hosts_site='https://someonewhocares.org/hosts/zero/hosts'
+temp_prefix="$HOME/Desktop/.temp-$(date +'%Y%m%d%H%M%S')-update-hosts"
+hosts_original="/etc/hosts"
+hosts_temp="$temp_prefix-hosts"
+hosts_zero="$temp_prefix-hosts-zero"
+hosts_final="$temp_prefix-hosts-final"
+
+## Run as root
 [[ $(id -u) != 0 ]] && {
-	message "please run as root." >&2
+	message "please run as root." 1 >&2
 	exit 1
 }
 
-# check if "### AD-BLOCK" line is present in "/etc/hosts".
-grep -q "### AD-BLOCK" "$hosts_orig"
+## Check if "### AD-BLOCK" line is present in "/etc/hosts".
+grep -q "### AD-BLOCK" "$hosts_original"
 [[ $? -ne 0 ]] && {
-	message "puting '### AD-BLOCK' line in '$hosts_orig'..."
-	sudo printf "\n\n### AD-BLOCK" >> "$hosts_orig"
+	message "puting '### AD-BLOCK' line in '$hosts_original'..."
+	printf "\n\n### AD-BLOCK" | sudo tee -a "$hosts_original"
 }
 
-### Main ######################################################################
+## Get ad-block file
+curl -s "$hosts_site" > "$hosts_zero" & message "downloading hosts file"
 
-message "downloading..."
-curl -s "$hosts_site" > "$hosts_zero"
-[[ ! -f "$hosts_zero" ]] && { message "curl failed" >&2 ; exit 1 ; }
-message "downloaded"
+## Split original hosts file
+cp "$hosts_original" "$hosts_temp"
+csplit -s -n 1 -f "$temp_prefix-split-" -k "$hosts_temp" "/^### AD-BLOCK/"
 
-message "modifying..."
-ed_command="/^### AD-BLOCK\nc\n### AD-BLOCK ( $(date +'%F %X') )\n.\n.+2,\$d\nwq\n"
-cp "$hosts_orig" "$hosts_temp"
-printf "$ed_command" | ed -s "$hosts_temp" > /dev/null
-cat "$hosts_temp" "$hosts_zero" > "$hosts_fine"
-message "new hosts created"
+## Construct new hosts file
+{
+	cat "$temp_prefix-split-0"
+	printf "### AD-BLOCK ( $(date +'%F %X') )\n\n"
+	cat "$hosts_zero"
+} > "$hosts_final"
 
-message "moving and changing permission..."
-mv "$hosts_fine" "$hosts_orig"
-chmod 644 "$hosts_orig"
-message "finished"
+## Move new hosts file to location
+mv "$hosts_final" "$hosts_original"
+chmod 644 "$hosts_original"
 
+## Remove all side products
+rm -rf "$temp_prefix"*
+
+message "hosts updated"
 exit 0

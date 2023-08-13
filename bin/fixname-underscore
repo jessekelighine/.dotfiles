@@ -6,7 +6,8 @@ message () {
 	local norm;  norm=$(tput sgr0)
 	cat << EOF
 ${green}usage:${norm} ${blue}$(basename $0)${norm} [file]
-${green}description:${norm} make the name of [file] sensible.
+${green}description:
+	${norm}make name of [file] sensible with separating underscores.
 EOF
 }
 
@@ -14,7 +15,7 @@ EOF
 
 path=$(dirname "$1")
 file=$(basename "$1" | awk '{ print tolower($0) }' | sed -E 's/[^a-z0-9.-]+/_/g')
-body=$(echo "${file%.*}" | sed -E -e 's/[^a-z0-9]+/-/g' -e 's/-+/-/g' -e 's/(^-+|-+$)//g')
+body=$(echo "${file%.*}" | sed -E -e 's/[^a-z0-9-]+/_/g' -e 's/_+/_/g' -e 's/(^_+|_+$)//g')
 
 if [[ "$file" == *.* ]]
 then file="$body.$(echo "$file" | rev | cut -f 1 -d '.' | rev)"

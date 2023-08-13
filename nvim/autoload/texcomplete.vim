@@ -68,7 +68,7 @@ endfunction
 
 " Auto-complete for items in `bib` files.
 function! texcomplete#Bibs(findstart,base)
-	if a:findstart | return matchstrpos(getline('.'),'.*\({\|,\)')[2]
+	if a:findstart | return matchstrpos(getline('.'),'.*{')[2]
 	else
 		let l:suggestions = []
 		cal texcomplete#GenerateBibs()

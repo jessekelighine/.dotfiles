@@ -3,14 +3,14 @@
 
 " toggle dictionary for textoggle#Master().
 let g:textoggle_dict = {
-			\ 'doc':    { 'display':'(-) Document',     'status':0, 'syntax':'',              'plugin':''              },
-			\ 'ref':    { 'display':'(-) Refs & Cites', 'status':0, 'syntax':'',              'plugin':''              },
-			\ 'pre':    { 'display':'(-) Preamble',     'status':0, 'syntax':'',              'plugin':''              },
-			\ 'beamer': { 'display':'Beamer',           'status':0, 'syntax':'beamer.vim',    'plugin':'beamer.vim'    },
-			\ 'fig':    { 'display':'Figs & Tables',    'status':0, 'syntax':'figure.vim',    'plugin':''              },
-			\ 'notes':  { 'display':'Math Notes',       'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
-			\ 'tex':    { 'display':'Plain Tex',        'status':0, 'syntax':'plain_tex.vim', 'plugin':''              },
-			\ 'tikz':   { 'display':'TikZ',             'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
+			\ 'doc':    { 'display':'(-)   Document', 'status':1, 'syntax':'',              'plugin':''              },
+			\ 'pre':    { 'display':'(-)   Preamble', 'status':1, 'syntax':'',              'plugin':''              },
+			\ 'ref':    { 'display':'(-)   Ref/Cite', 'status':1, 'syntax':'',              'plugin':''              },
+			\ 'beamer': { 'display':'Beamer',         'status':0, 'syntax':'beamer.vim',    'plugin':'beamer.vim'    },
+			\ 'fig':    { 'display':'Figures/Tables', 'status':0, 'syntax':'figure.vim',    'plugin':''              },
+			\ 'notes':  { 'display':'Math Notes',     'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
+			\ 'tex':    { 'display':'Plain Tex',      'status':0, 'syntax':'plain_tex.vim', 'plugin':''              },
+			\ 'tikz':   { 'display':'TikZ',           'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
 			\ }
 
 " Reload the toggle dictionary. Helper function for textoggle#Reload().
@@ -44,9 +44,17 @@ endfunction
 " print all the toggle status.
 function! textoggle#Show() abort
 	redraw
+	let l:max_key = 1
+	let l:max_dis = 1
 	for l:key in keys(g:textoggle_dict)
-		let l:message = g:textoggle_dict[l:key]['status'] ? '+' : '-'
-		echo printf("%2s%10s%15s",l:message,'['.l:key.']',g:textoggle_dict[l:key]['display'])
+		let l:max_key = { l -> l > l:max_key ? l : l:max_key }( len(l:key)+3 )
+		let l:max_dis = { l -> l > l:max_dis ? l : l:max_dis }( len(g:textoggle_dict[l:key]['display'])+1 )
+	endfor
+	for l:key in keys(g:textoggle_dict)
+		let l:format  = " " . ( g:textoggle_dict[l:key]['status'] ? '(+)' : '(-)' )
+					\ . "%" . l:max_key . "s"
+					\ . "%" . l:max_dis . "s"
+		echo printf(l:format, '['.l:key.']', g:textoggle_dict[l:key]['display'])
 	endfor
 endfunction
 

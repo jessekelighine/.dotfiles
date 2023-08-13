@@ -25,8 +25,8 @@ $(MAIN).pdf: $(MAIN).tex .runcode
 	latexmk -xelatex $(MAIN).tex
 
 .runcode: code
-	cd bin ; Rscript $(shell basename $<) ; cd ..
+	cd bin ; Rscript $(<F) ; cd ..
 	touch $@
 
 figures/%.pdf: figures/%.tex
-	latexmk -outdir=figures -xelatex $<
+	latexmk -outdir=$(<D) -xelatex $<

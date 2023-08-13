@@ -3,7 +3,7 @@
 
 if ( &ft == "markdown" ) | finish | endif
 
-let g:R_rmdchunk = 0
+" let g:R_rmdchunk = 0
 
 source ~/.config/nvim/ftplugin/r.vim
 source ~/.config/nvim/ftplugin/markdown.vim

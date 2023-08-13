@@ -9,6 +9,7 @@ set -o vi
 autoload -U colors && colors
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export MAILCHECK=0
 # export LANG=C
 # export LC_ALL=C
 export PATH="$HOME/.local/bin:$PATH"
@@ -69,15 +70,16 @@ export B2_ACCOUNT_INFO="$HOME/.config/b2/.b2_account_info"
 export B2_APPLICATION_KEY_ID="$(<$HOME/.config/b2/file-with-key-id.txt)"
 export B2_APPLICATION_KEY="$(<$HOME/.config/b2/file-with-key.txt)"
 
-# tar-compress () { tar zcfv "$@" }
+# tar-compress () { tar zvcf "$@" }
+# tar-extract  () { tar zvxf "$@" }
 tldr    () { open -a Firefox "https://tldr.inbrowser.app"; echo "$@" > /dev/null }
 timeout () { perl -e 'alarm shift; exec @ARGV' "$@" }
-encrypt () { openssl enc -aes-256-cbc -a -salt -e -in "$1" } # -out "$2"
-decrypt () { openssl enc -aes-256-cbc -a -salt -d -in "$1" } # -out "$2"
-volume () { cd "/Volumes/$1" }
-eject  () { diskutil eject "$1" }
-R-mean () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); mean(x)' }
-R-sd   () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); sd(x)'   }
+encrypt () { openssl enc -aes-256-cbc -a -md md5 -salt -e -in "$1" } # -out "$2"
+decrypt () { openssl enc -aes-256-cbc -a -md md5 -salt -d -in "$1" } # -out "$2"
+volume  () { cd "/Volumes/$1" }
+eject   () { diskutil eject "$1" }
+R-mean  () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); mean(x)' }
+R-sd    () { R --no-echo -e 'x <- scan(file="stdin",quiet=TRUE); sd(x)'   }
 
 SPIEL_LOCATION="$HOME/Documents/.music.sh"
 spiel           () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop "$1" }

@@ -16,8 +16,8 @@ hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")   
 -- Bluetooth ------------------------------------------------------------------
 
 blueutil         = "/usr/local/bin/blueutil"
-blueutil_off     = blueutil .. " -p 0;"
-blueutil_connect = blueutil .. " -p 1;" .. blueutil .. " --connect Sicherung"
+blueutil_off     = blueutil .. " -p 0; "
+blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect Sicherung"
 hs.hotkey.bindSpec({ HYPER_SHIFT, "b" }, function () hs.execute(blueutil_off)     end)
 hs.hotkey.bindSpec({ HYPER,       "b" }, function () hs.execute(blueutil_connect) end)
 
@@ -28,8 +28,9 @@ hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function () hs.wifi.setPower(false, wif
 hs.hotkey.bindSpec({ HYPER,       "w" }, function ()
 	hs.wifi.setPower(true, wifi_interface)
 	local dt = hs.wifi.availableNetworks(wifi_interface)
-	if     ( dt["Utopie"] ~= nil ) then hs.wifi.associate("Utopie", "1997aaaaaa", wifi_interface)
-	elseif ( dt["cos"]    ~= nil ) then hs.wifi.associate("cos",    "0906802822", wifi_interface)
+	if     ( dt["Utopie"]        ~= nil ) then hs.wifi.associate("Utopie",        "1997aaaaaa", wifi_interface)
+	elseif ( dt["Jesse的iPhone"] ~= nil ) then hs.wifi.associate("Jesse的iPhone", "1997aaaaaa", wifi_interface)
+	elseif ( dt["cos"]           ~= nil ) then hs.wifi.associate("cos",           "0906802822", wifi_interface)
 	end
 end)
 

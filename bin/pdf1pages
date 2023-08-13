@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+[[ $# -lt 1 ]] && {
+	echo "usage: $(basename $0) [input.pdf] " >&2
+	exit 1
+}
+
+prefix="output-pages"
+pages=$(pdfinfo "$1" | grep Pages: | awk '{ print $2 }')
+count=0
+while : ; do
+	pdfsplit "$1" $((++count)) $count "$prefix-$count.pdf"
+	echo "Page $count"
+	[ $count -eq $pages ] && exit 0
+done

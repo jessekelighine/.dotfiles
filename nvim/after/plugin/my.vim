@@ -15,12 +15,13 @@ nnoremap <silent> <S-Left>   :call my#Resize2Panes("Left")<CR>
 nnoremap <silent> <S-Right>  :call my#Resize2Panes("Right")<CR>
 nnoremap <silent> dm         :call surround#Delete()<CR>
 
-command! -nargs=1 TabSize              :call my#TabSize(<args>)
-command! -nargs=? LocalVimrc           :call my#LocalVimrc(<args>)
-command! -nargs=0 RemoveTrailingSpaces :call my#RemoveTrailingSpaces()
-command! -nargs=0 VirtualEditToggle    :call my#ToggleVirtualEdit()
-command! -nargs=0 SudoWrite            :writ !sudo tee % > /dev/null " This only works for vim, not neovim.
-command! -nargs=0 StatuslineReload     :source $HOME/.config/nvim/after/plugin/statusline.vim
-command! -range   ChineseWordCount     :<line1>,<line2>s/[^\x00-\xff]//gn
-command! -range -bang SplitChineseSentence :exec <line1>.','.<line2>.'s/\([，。？！；'.eval('<bang>0?"、":""').']\)\n\{0,1}/\1\r/g'
-command! -nargs=0 GitConflictHighlight    :call my#GitConflictHighlight()
+command! -nargs=?       LocalVimrc           :call my#LocalVimrc(<args>)
+command! -nargs=1       TabSize              :call my#TabSize(<args>)
+command! -nargs=0       SudoWrite            :write !sudo tee % > /dev/null " This only works for vim, not neovim.
+command! -nargs=0       StatuslineReload     :source $HOME/.config/nvim/after/plugin/statusline.vim
+command! -nargs=0       VirtualEditToggle    :call my#ToggleVirtualEdit()
+command! -nargs=0       RemoveTrailingSpaces :call my#RemoveTrailingSpaces()
+command! -nargs=0       GitConflictHighlight :call my#GitConflictHighlight()
+command! -nargs=0 -bang FocusCursor          :call my#FocusCursor(<bang>1)
+command! -range   -bang SplitChineseSentence :exec <line1>.','.<line2>.'s/\([，。？！；'.eval('<bang>0?"、":""').']\)\n\{0,1}/\1\r/g'
+command! -range         ChineseWordCount     :<line1>,<line2>s/[^\x00-\xff]//gn

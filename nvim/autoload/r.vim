@@ -46,6 +46,6 @@ endfunction
 function! r#PipeExpand(type, symbol="|>")
 	execut 'norm! a' . ( getline(".")[col(".")-1]!=" " ? " " : "" ) . a:symbol
 	if     a:type=='CR'  | call feedkeys( "a\<CR>" )
-	elseif a:type=='Tab' | call feedkeys( "a" . ( getline(".")[col(".")]==" " ? "" : "\<Space>" ) )
+	elseif a:type=='Tab' | call feedkeys( "a" . ( getline(".")[col(".")]==" " ? "" : " " ) )
 	endif
 endfunction

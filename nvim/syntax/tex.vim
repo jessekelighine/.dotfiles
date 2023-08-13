@@ -19,13 +19,13 @@ syntax match   TexSection            "\\\(sub\)\{0,2}\(section\|paragraph\|chapt
 syntax match   TexSection            "\\appendix\>"
 syntax match   TexComment            "%.*"  contains=@NoSpell,TexTODO
 syntax match   TexSubTodo            "%%.*" contains=TexTODO
-syntax match   TexIgnore             "\\\(%\|{\|}\|\$\|#\|&\|!\|\^\|,\|;\|:\|`\|'\|\"\|_\|=\||\|\[\|\]\)"
+syntax match   TexIgnore             "\\\(%\|{\|}\|\$\|#\|&\|!\|\^\|,\|;\|:\|`\|'\|\"\|_\|=\||\|\[\|\]\|\~\)"
 syntax match   TexSubPreambleFirst   "\\\<\(NeedsTeXFormat\|documentclass\|ProvidesPackage\)\>" contains=@NoSpell
 syntax match   TexSubPreambleCommand "\\\<\(usepackage\|newcommand\|renewcommand\)\>"           contains=@NoSpell
 syntax match   TexSubArguments       "#\d\>"
-syntax region  TexMaths              matchgroup=TexDollar start="\$" end="\$" contains=@NoSpell,TexCommand,TexIgnore,TexSubLR,TexSubRef
-syntax region  TexEnviron            start="\\\(begin\|end\){" end="}" contains=TexBeginEnd,TexDocEnv,TikzPicEnv,BeamerEnv,AmsthmEnv,TexFigEnv
+syntax region  TexMaths              matchgroup=TexDollar start="\$" end="\$"          contains=@NoSpell,TexSubRef,TexCommand,TexIgnore,TexSubLR
 syntax region  TexSubRefEnviron      start="\\\(label\|ref\|pageref\|eqref\){" end="}" contains=@NoSpell,TexSubRef,TexSubRefExtra,TexSubCiteExtra
+syntax region  TexEnviron            start="\\\(begin\|end\){" end="}"                 contains=TexBeginEnd,TexDocEnv,TikzPicEnv,BeamerEnv,AmsthmEnv,TexFigEnv
 
 highlight def link TexCommand            Green
 highlight def link TexComment            Comment

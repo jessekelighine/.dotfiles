@@ -40,22 +40,27 @@ imap <buffer> :q<Tab>   <C-G>u(**)<Left><Left>
 imap <buffer> :t<Tab>   <C-G>u<!-- TODO:  --><esc>hhhi
 
 " TAB COMPLETION: tab complete markdown syntax.
-inoremap <buffer> `<Tab>  <C-G>u``<Left>
-inoremap <buffer> *<Tab>  <C-G>u**<Left>
-inoremap <buffer> **<Tab> <C-G>u****<Left><Left>
+inoremap <buffer> `<Tab>   <C-G>u``<Left>
+inoremap <buffer> ```<Tab> <C-G>u```<CR>```<Esc>O
+inoremap <buffer> *<Tab>   <C-G>u**<Left>
+inoremap <buffer> **<Tab>  <C-G>u****<Left><Left>
 
 " TABLE: Commands
 xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
 onoremap <silent><buffer> i<bar>      :norm! F<bar>lvt<bar><CR>
 
 " LATEX: LaTeX
-let b:surround_66 ="\\Big\r\\Big"
-let b:surround_98 ="\\big\r\\big"
+" let b:surround_66 ="\\Big\r\\Big"
+" let b:surround_98 ="\\big\r\\big"
 let b:surround_108="\\left\r\\right"
 xnoremap <silent><buffer> a$      <Esc>:norm! F$vf$<CR>
 xnoremap <silent><buffer> i$      <Esc>:norm! F$lvt$<CR>
 onoremap <silent><buffer> i$           :norm! F$lvt$<CR>
 onoremap <silent><buffer> a$           :norm! F$vf$<CR>
+xnoremap <silent><buffer> a*      <Esc>:norm! F*vf*<CR>
+xnoremap <silent><buffer> i*      <Esc>:norm! F*lvt*<CR>
+onoremap <silent><buffer> i*           :norm! F*lvt*<CR>
+onoremap <silent><buffer> a*           :norm! F*vf*<CR>
 inoremap <silent><buffer> $<Tab>  <C-G>u$$<Left>
 inoremap <silent><buffer> $$<Tab> <C-G>u$$$$<Left><Left>
 inoremap <silent><buffer> $$<CR>  <C-G>u$$$$<Left><Left><CR><Esc>O

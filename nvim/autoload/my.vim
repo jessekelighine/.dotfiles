@@ -5,9 +5,9 @@
 " read from snippets.
 function! my#GetSnippets(type, path, indent=1, delete_begin=1, cursor_begin=1)
 	let [ l:begin, l:lines ] = [ line("."), line("$") ]
-	exe "read ".$HOME."/.config/nvim/snippets/".a:type."/".a:path
+	execute "read ".$HOME."/.config/nvim/snippets/".a:type."/".a:path
 	let l:end = l:begin + ( line("$") - l:lines ) - 1
-	cal cursor(l:begin,0)
+	call cursor(l:begin,0)
 	if a:delete_begin | call execute('norm dd')                   | endif
 	if a:indent       | call execute(l:begin.','.l:end.'norm v=') | endif
 	if a:cursor_begin | call cursor(l:begin,0)                    | endif
@@ -22,10 +22,10 @@ endfunction
 function! my#RemoveTrailingSpaces()
 	let l:pos = getpos(".")
 	try
-		silent %s/^\(.\{-}\)\s\+$/\1/g
-		redraw | echom "--> Trailing white spaces removed!"
+		silent execute '%s/^\(.\{-}\)\s\+$/\1/g'
+		redraw | echom " Remove Trailing Spaces: REMOVED!"
 	catch
-		redraw | echom "--> No trailing white spaces found."
+		redraw | echom " Remove Trailing Spaces: NONE FOUND."
 	endtry
 	call setpos('.',l:pos)
 endfunction
@@ -102,6 +102,12 @@ function! my#ToggleVirtualEdit()
 	endif
 endfunction
 
+function! my#FocusCursor(on)
+	if a:on | set   cursorline   cursorcolumn
+	else    | set nocursorline nocursorcolumn
+	endif
+endfunction
+
 "-- Arguments and Functions --------------------------------------------------"
 
 " Delete surrounding function calls: 'print(...)' --> '...'. A function assumes
@@ -115,7 +121,7 @@ function! my#DelFuncCall(head='[a-zA-Z]', body='[a-zA-Z0-9]', brackets='()')
 		if  l:char=~a:head && l:i==0 | continue | endif
 		if  l:char=~a:body           | continue | endif
 		if  l:char==a:brackets[0]    | break    | endif
-		execu 'norm va'.a:brackets[0]."o\<Esc>"
+		execute 'norm va'.a:brackets[0]."o\<Esc>"
 		break
 	endfor
 	call search(a:head.a:body.'\{-}'.a:brackets[0], 'cb')

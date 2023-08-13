@@ -14,7 +14,9 @@ garamond-math
 gensymb
 hyphenat
 lastpage
+latexdiff
 latexmk
+listings
 mathalpha
 multirow
 pdfjam

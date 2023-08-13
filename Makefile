@@ -1,0 +1,19 @@
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Author: jessekelighine at gmail dot com                                     #
+# Description: update or install the dotfiles.                                #
+#                                                                             #
+# Last Modified: 2023-06-18                                                   #
+###############################################################################
+
+.PHONY: all
+all:
+	# Use `make update` or `make install`
+
+.PHONY: update
+update:
+	./.dotfiles-update.sh
+
+.PHONY: install
+install:
+	./.dotfiles-install.sh

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ### Notes #####################################################################
 
@@ -20,9 +20,13 @@
 
 ### Linking ###################################################################
 
+[ ! -d "$HOME/.config" ] && mkdir "$HOME/.config"
+[ ! -d "$HOME/.local"  ] && mkdir "$HOME/.local"
+
 ln -s "$HOME/.dotfiles/bin"             "$HOME/.local/bin"
 ln -s "$HOME/.dotfiles/.R"              "$HOME/.R"
 ln -s "$HOME/.dotfiles/zsh/.zshrc"      "$HOME/.zshrc"
+ln -s "$HOME/.dotfiles/.latexmkrc"      "$HOME/.latexmkrc"
 ln -s "$HOME/.dotfiles/.gitconfig"      "$HOME/.gitconfig"
 ln -s "$HOME/.dotfiles/.gnupg"          "$HOME/.gnupg"
 ln -s "$HOME/.dotfiles/.password-store" "$HOME/.password-store"

@@ -40,15 +40,15 @@ if expand("~/.config/nvim/pack/pack.sh")->filereadable()
 	let g:vindent_motion_more_next = ']='
 	let g:vindent_motion_XX_ss = '[p'
 	let g:vindent_motion_XX_se = ']p'
-	let g:vindent_motion_OX_ss = '[P'
-	let g:vindent_motion_OX_se = ']P'
+	let g:vindent_motion_OO_ss = '[P'
+	let g:vindent_motion_OO_se = ']P'
 	let g:vindent_object_OO_ii = 'iI'
 	let g:vindent_object_XX_ii = 'ii'
 	let g:vindent_object_XX_ai = 'ai'
 	let g:vindent_object_XX_aI = 'aI'
 	let g:vindent_jumps = 1
-	let g:vindent_count = 0
 	let g:vindent_begin = 1
+	let g:vindent_count = 0
 endif
 
 filetype plugin on
@@ -64,6 +64,7 @@ nnoremap <expr> n 'Nn'[v:searchforward]
 nnoremap <expr> N 'nN'[v:searchforward]
 xnoremap ''     "*y
 nnoremap ''     "*y
+onoremap ''     "*y
 nnoremap Y      y$
 nnoremap zS     zszH
 nnoremap <Up>   gk
@@ -107,8 +108,10 @@ nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
 xnoremap a' 2i'
 xnoremap a" 2i"
+xnoremap a` 2i`
 onoremap a' 2i'
 onoremap a" 2i"
+onoremap a` 2i`
 onoremap F  vF
 onoremap T  vT
 

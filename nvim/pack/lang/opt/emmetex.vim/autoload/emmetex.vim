@@ -146,7 +146,7 @@ endfunction
 " Expand EmmeTex: Expand EmmeTex command string to list of output text.
 function! emmetex#Expand(string)
 	let l:stack = []
-	let l:input = <SID>parse(a:string)-><SID>shunting_yard()
+	let l:input = <SID>shunting_yard(<SID>parse(a:string))
 	for l:item in l:input
 		if     s:is_opnd(l:item) | let l:stack+=[ <SID>expand_opnd(l:item) ]
 		elseif s:is_optr(l:item) | let l:stack+=[ <SID>expand_optr(s:pop_list(l:stack),s:pop_list(l:stack),l:item) ]
