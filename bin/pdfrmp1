@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
-message () {
-	cat << EOF
-usage: $(basename $0) [file.pdf]
-description: remove first page of pdf
-EOF
-}
-
 [[ $# -lt 1 ]] && {
-	message >&2
+	cat << EOF >&2
+usage: $(basename $0) [file.pdf]
+description: remove first page of pdf.
+EOF
 	exit 1
 }
 
-temp=".temp-$(date '+%X-%F').pdf"
+temp=".temp-$(date '+%Y%m%d%H%M%S').pdf"
 pages=$( pdfinfo "$1" | awk -F : '/Pages/ { print $2 ; exit }' | xargs )
 
 pdfsplit "$1" 2 "$pages" "$temp"

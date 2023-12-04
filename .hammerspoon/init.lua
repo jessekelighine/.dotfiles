@@ -1,7 +1,7 @@
 -- init.lua
 
-HYPER       = { "alt" }
-HYPER_SHIFT = { "alt", "shift" }
+HYPER   = { "alt" }
+HYPER_S = { "alt", "shift" }
 
 -- Applications ---------------------------------------------------------------
 
@@ -18,19 +18,26 @@ hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")   
 blueutil         = "/usr/local/bin/blueutil"
 blueutil_off     = blueutil .. " -p 0; "
 blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect Sicherung"
-hs.hotkey.bindSpec({ HYPER_SHIFT, "b" }, function () hs.execute(blueutil_off)     end)
-hs.hotkey.bindSpec({ HYPER,       "b" }, function () hs.execute(blueutil_connect) end)
+hs.hotkey.bindSpec({ HYPER_S, "b" }, function () hs.execute(blueutil_off)     end)
+hs.hotkey.bindSpec({ HYPER,   "b" }, function () hs.execute(blueutil_connect) end)
 
 -- Wifi -----------------------------------------------------------------------
 
 wifi_interface = "en0"
-hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function () hs.wifi.setPower(false, wifi_interface) end)
-hs.hotkey.bindSpec({ HYPER,       "w" }, function ()
+known_networks = {
+	["Utopie"]          = "1997aaaaaa",
+	["cos"]             = "0906802822",
+	["RickyWramLin_5G"] = "room656656",
+}
+hs.hotkey.bindSpec({ HYPER_S, "w" }, function () hs.wifi.setPower(false, wifi_interface) end)
+hs.hotkey.bindSpec({ HYPER,   "w" }, function ()
 	hs.wifi.setPower(true, wifi_interface)
 	local dt = hs.wifi.availableNetworks(wifi_interface)
-	if     ( dt["Utopie"]        ~= nil ) then hs.wifi.associate("Utopie",        "1997aaaaaa", wifi_interface)
-	elseif ( dt["Jesse的iPhone"] ~= nil ) then hs.wifi.associate("Jesse的iPhone", "1997aaaaaa", wifi_interface)
-	elseif ( dt["cos"]           ~= nil ) then hs.wifi.associate("cos",           "0906802822", wifi_interface)
+	for network, password in pairs(known_networks) do
+		if ( dt[network] ~= nil ) then
+			hs.wifi.associate(network, password, wifi_interface)
+			break
+		end
 	end
 end)
 

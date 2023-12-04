@@ -1,0 +1,60 @@
+\documentclass[10pt]{article} % This is some comment.
+%<--------------------------------------------------------------------------->%
+%%% Custom Title %%%
+\makeatletter\def\@maketitle{%
+\newpage\null\vskip2em%
+\begin{center}%
+	\let\footnote\thanks%
+	{\LARGE\@title\par}%
+	\vskip1.5em%
+	{\large\lineskip.5em%
+	\begin{tabular}[t]{c}%
+		\@author%
+	\end{tabular}%
+	\par}%
+	\vskip1em%
+	{\large\@date}%
+\end{center}%
+\par\vskip1.5em}
+\makeatother
+%<--------------------------------------------------------------------------->%
+%%% Math %%%
+\usepackage{amsmath,amssymb}
+%<--------------------------------------------------------------------------->%
+
+\begin{document} 
+
+\section*{Test Section}
+
+\begin{figure}[!th]
+	\centering
+	\includegraphics[scale=1]{file_name}
+	\caption{Cool pic here}
+	\label{fig_cool}
+\end{figure}
+
+\begin{enumerate}[label = \arabic*.]
+	\item something interesting.
+	\item \ref{temp}.
+	\item \cite[100]{chen2020}
+\end{enumerate}
+
+\begin{definition}
+	Something here, this is $\left\{x:x\in\mathbb{R}\right\}$.
+	\footnote{some information}
+	\begin{align}\label{temp}
+		\begin{bmatrix}
+			1 & 2 & 3 \\
+			4 & 5 & 6
+		\end{bmatrix}
+		\tag{equation}
+	\end{align}
+\end{definition}
+
+\begin{tikzpicture}[scale=1/2,thick,line cap=round]
+	\tikzstyle{jiao}=[solid,circle,draw,fill=white,inner sep=.8pt];
+	\draw[fill=orange] (0,0) rectangle (10,10);
+	\draw[label=below:{$A$},draw=red] ($(0,0)!0.5!(0,1)$) -- (10,10);
+\end{tikzpicture}
+
+\end{document}

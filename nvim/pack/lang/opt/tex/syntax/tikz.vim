@@ -9,7 +9,7 @@ syntax match TikzOption "\(,\|=\)" contained
 syntax match TikzYellow "\<\(child\|at\|controls\|and\|intersections*\|parent\)\>"
 syntax match TikzYellow "\((\$\|\$)\)"
 syntax match TikzBlue   "\<\(let\|in\)\>"
-syntax region TikzOptionRegion start='\[' end='\]' contains=TikzOption,TikzOptDir,TikzLabel,TexSubMaths,TikzOptNum,TexCommand
+syntax region TikzOptionRegion start='\[' end='\]' contains=TikzOption,TikzOptDir,TikzLabel,TexSubMaths,TikzOptNum,TexCommand,TexMaths
 
 syntax match TikzPicEnv "{\zs\(tikzpicture\|scope\)\ze}" contained
 

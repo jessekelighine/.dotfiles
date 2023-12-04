@@ -1,0 +1,10 @@
+#!/bin/bash
+
+[[ $# -ne 2 ]] && {
+	cat << EOF >&2
+usage: $(basename $0) [input.pdf]  [output.pdf]
+EOF
+	exit 1
+}
+
+pdfjam --fitpaper true --rotateoversize true --angle  90 "$1" --outfile "$2"

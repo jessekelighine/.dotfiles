@@ -1,0 +1,18 @@
+#!/bin/bash
+
+[[ $# -lt 1 ]] && {
+	cat << EOF >&2
+usage: $(basename $0) [input.pdf] [output.pdf]
+description:
+	+---------+         +---------+
+	|         |         | output  |
+	|         |         | 1       |
+	|  input  |   -->   +---------+
+	|         |         | output  |
+	|         |         | 2       |
+	+---------+         +---------+
+EOF
+	exit 1
+}
+
+mutool poster -y 2 "$1" "$2"

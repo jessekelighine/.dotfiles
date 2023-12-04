@@ -14,9 +14,11 @@ bash/.bash_history
 
 b2/file-with-key-id.txt
 b2/file-with-key.txt
+b2/.b2_account_info
 
 .gnupg/*
 .password-store/*
+.github-recovery-codes.txt
 
 nvim/undodir/*
 nvim/spell/*.spl

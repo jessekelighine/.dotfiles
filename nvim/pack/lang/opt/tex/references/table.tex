@@ -1,0 +1,26 @@
+\documentclass{article}
+%-----------------------------------------------------------------------------%
+%%% Table %%%
+\usepackage{booktabs} % \toprule, \midrule, \bottomrule
+\usepackage{array} % complex tabular notation
+\usepackage{multirow}
+\usepackage{adjustbox}
+%-----------------------------------------------------------------------------%
+
+\begin{document}
+
+\begin{table}[t]
+	\centering
+	\begin{tabular}{>{\bfseries}p{10em}!{\vrule width 2pt}cr<{ symbol}}
+		\toprule
+		A & B & C \\
+		\midrule
+		alpha    & beta    & gamma    \\
+		$\alpha$ & $\beta$ & $\gamma$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Test Table}
+	\label{tab:table}
+\end{table}
+
+\end{document}

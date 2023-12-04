@@ -7,15 +7,16 @@
 " Nvim-R
 let R_assign = 0
 let R_disable_cmds = [ "RSendLine" ]
+
+" Settings:
+packadd matchit
 setlocal winminwidth=1
 setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
-command! -buffer -nargs=0 LastMod          :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)
-command! -buffer -nargs=1 DatatableExplain :call system("open ~/.config/nvim/snippets/r/datatable-".<q-args>.".png")
-command! -buffer -nargs=0 PipeSwitch       :call r#PipeSwitch()
-let b:surround_116 ="tic()\rtoc()"
-
-packadd matchit
 let b:match_words = '\<tic\>:\<toc\>'
+let b:surround_116 ="tic()\rtoc()"
+command! -buffer -nargs=0 LastMod    :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)
+command! -buffer -nargs=0 PipeSwitch :call r#PipeSwitch()
+command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
 
 " Utilities:
 xnoremap <buffer><silent> as :call r#GetSection('a')<CR>
@@ -23,7 +24,7 @@ xnoremap <buffer><silent> is :call r#GetSection('i')<CR>
 onoremap <buffer><silent> as :call r#GetSection('a')<CR>
 onoremap <buffer><silent> is :call r#GetSection('i')<CR>
 
-" Snippets: snippets.
+" Snippets:
 inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("r","sign.R",1,1,0)<CR>
 inoremap <buffer> :bl<Tab>    <Esc>:call my#GetSnippets("r","block.R")<CR>
 inoremap <buffer> :qui<Tab>   <Esc>:call my#GetSnippets("r","qui.R",1,1,0)<CR>
@@ -36,7 +37,7 @@ inoremap <buffer> :cl<Tab>    <Esc>:call my#GetSnippets("r","consolelog.R")<CR>
 inoremap <buffer> :mode<Tab>  <Esc>:call my#GetSnippets("r","modus.R")<CR>
 inoremap <buffer> :rm<Tab>    <Esc>:call my#GetSnippets("r","rm.R")<CR>
 
-" Mappings: mappings.
+" Mappings:
 nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/ftplugin/r.vim<CR>
 nnoremap <buffer><silent> <F2>       :tabnew ~/.config/nvim/after/syntax/r.vim<CR>
 inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab',"%>%")<CR>
@@ -45,3 +46,4 @@ nnoremap <buffer><silent> <leader>;  :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9
 inoremap <buffer><silent> {<CR>      {}<esc>i<CR><esc><S-O>
 inoremap <buffer><silent> %<Tab>     %%<Left>
 inoremap <buffer><silent> ^<Tab>     ^()<Left>
+nnoremap <buffer><silent> <leader>cc :RStop<CR>

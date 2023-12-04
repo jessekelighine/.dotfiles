@@ -35,7 +35,7 @@ function! <SID>GetSection()
 	let l:patt = '^###'
 	let l:list = []
 	for l:line in range(line('$')) | let l:line += 1
-		if match(getline(l:line),l:patt) != -1 
+		if match(getline(l:line),l:patt) != -1
 			let l:list = l:list + [	l:line ]
 		endif
 	endfor
@@ -48,4 +48,12 @@ function! r#PipeExpand(type, symbol="|>")
 	if     a:type=='CR'  | call feedkeys( "a\<CR>" )
 	elseif a:type=='Tab' | call feedkeys( "a" . ( getline(".")[col(".")]==" " ? "" : " " ) )
 	endif
+endfunction
+
+" explain "dcast" and "melt" from data.table
+function! r#DatatableExplain(name)
+	exec "split $HOME/.config/nvim/snippets/r/datatable-" . a:name . ".md"
+endfunction
+function! r#DatatableExplainComplete(ArgLead, CmdLine, CursorPos)
+	return "dcast"."\n"."melt"
 endfunction

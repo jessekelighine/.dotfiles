@@ -14,7 +14,7 @@ syntax match   TexSubRef             "\\\(refeq\|refer\|figref\|tabref\|nameref\
 syntax match   TexSubRef             "\\\(href\|url\|href\|hyperref\|hyperlink\)\>"  contains=@NoSpell
 syntax match   TexSubCite            "\\\(parencite\|citelist\|textcite\|citefield\|citename\|footcite\|cite\)\>" contains=@NoSpell
 syntax match   TexSubLR              "\\\(left\|right\|big\|Big\|middle\|Bigg\)\>" contains=@NoSpell
-syntax match   TexSubFoot            "\\\(footnotemark\|footnote\)\>" contains=@NoSpell
+syntax match   TexSubFoot            "\\\(footnotemark\|footnote\|sidenote\)\>" contains=@NoSpell
 syntax match   TexSection            "\\\(sub\)\{0,2}\(section\|paragraph\|chapter\)\>" contains=@NoSpell
 syntax match   TexSection            "\\appendix\>"
 syntax match   TexComment            "%.*"  contains=@NoSpell,TexTODO

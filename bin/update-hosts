@@ -8,11 +8,9 @@ message () {
 	local delay;    delay=0.12
 	local symb_succ; symb_succ="$(tput setaf 10)OK$(tput sgr0)"
 	local symb_fail; symb_fail="$(tput setaf 9 )NO$(tput sgr0)"
-	# local symbols1; symbols1='|>-     ->'
-	# local symbols2; symbols2='   -<|<-  '
-	local symbols1; symbols1='|\-     -/'
-	local symbols2; symbols2='   -/|\-  '
-	local symb_len; symb_len="10"
+	local symbols1; symbols1='.o08o.  '
+	local symbols2; symbols2='   o08o.'
+	local symb_len; symb_len="8"
 	local i;        i=0
 	while kill -0 $pid 2> /dev/null
 	do
@@ -29,20 +27,6 @@ message () {
 		[[ $? -eq 0 ]] && symb_fin=$symb_succ
 	fi
 	printf "\r[ $symb_fin ] $head\n"
-	# local head;     head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
-	# local pid;      pid=$!
-	# local delay;    delay=0.12
-	# local symb_fin; symb_fin="v"
-	# local symbols;  symbols='-\|/'
-	# local symb_len; symb_len="4"
-	# local i;        i=0
-	# while kill -0 $pid 2> /dev/null
-	# do
-	# 	i=$(( ( i + 1 ) % symb_len ))
-	# 	printf "\r[ ${symbols:$i:1} ] $head"
-	# 	sleep $delay
-	# done
-	# printf "\r[ $symb_fin ] $head\n"
 }
 
 ### MAIN ######################################################################

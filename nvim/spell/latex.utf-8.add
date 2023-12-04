@@ -78,3 +78,7 @@ appendixnumberbeamer
 datetime
 meinesdatum
 sidewaystable
+parskip
+marginnote
+itemsep
+adjustbox

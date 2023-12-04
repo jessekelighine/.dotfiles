@@ -21,7 +21,7 @@ let b:surround_99="<!-- \r -->"
 let b:markdown_code_syntax_toggle=0
 
 " VIEW:
-nnoremap <buffer> <leader>p :call markdown#View(0)<CR>
+nnoremap <buffer> <leader>p :call markdown#View()<CR>
 
 " COMPILER: types = {number, nonumber, plain}.
 nnoremap <buffer> <F1>      :tabnew ~/.config/nvim/ftplugin/markdown.vim<CR>

@@ -6,7 +6,7 @@ date:   "2023-03-29"
 
 # Modifications
 
-## `franbach/miramare`
+## franbach/miramare
 
 Here are the needed modifications to `miramare`.
 
@@ -54,7 +54,7 @@ These are the `miramare` colors:
 | `light_grey` | `#5b5b5b` | `245`   | `LightGrey` |
 | `gold`       | `#d8caac` | `214`   | `Yellow`    |
 
-## `junegunn/vim-peekaboo`
+## junegunn/vim-peekaboo
 
 Make the mappings in `plugin/peekaboo.vim` not `<buffer>` specific, i.e., remove `<buffer>`.
 

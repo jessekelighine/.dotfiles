@@ -1,9 +1,10 @@
 " ~/.config/nvim/autoload/markdown.vim
 
 " open markdown in firefox
-function! markdown#View(start)
+let g:markdown_view = 0
+function! markdown#View(start=!g:markdown_view)
 	" execute '! firefox --new-window ' . expand("%:p")
-	if a:start | call system('open -a firefox '.expand("%:p"))
+	if a:start | call system('open -a firefox '.expand("%:p")) | let g:markdown_view = 1
 	else       | call system('open -a firefox')
 	endif
 endfunction

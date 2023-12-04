@@ -1,0 +1,19 @@
+#!/bin/bash
+
+[[ $# -ne 2 ]] && {
+	cat << EOF >&2
+usage: $(basename $0) [input-1.pdf] [input-2.pdf] [output.pdf]
+description:
+	+--------+       +--------+
+	| input  |       | input  |
+	| 1      |       | 1      |
+	+--------+  -->  +--------+
+	+--------+       | input  |
+	| intput |       | 2      |
+	| 2      |       +--------+
+	+--------+         output  
+EOF
+	exit 1
+}
+
+pdfjam "$1" "$2" --nup 2x1 --outfile "$3"

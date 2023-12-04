@@ -11,5 +11,5 @@ EOF
 	exit 1
 }
 
-# gs -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sOutputFile="$2" -r1000 "$1" > /dev/null
-convert -background "#FFFFFF" -flatten -density 600 "$1" "$2"
+gs -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sOutputFile="$2" -r1000 "$1" > /dev/null
+# convert -background "#FFFFFF" -flatten -density 600 "$1" "$2"

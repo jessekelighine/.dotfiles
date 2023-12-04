@@ -4,6 +4,7 @@
 " Homepage:     https://github.com/jalvesaq/R-Vim-runtime
 " Last Change:	Sun Aug 19, 2018  09:14PM
 
+set noexpandtab
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")

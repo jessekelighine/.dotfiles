@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 [[ $# -lt 1 ]] && {
-	echo "usage: $(basename $0) [input.pdf] " >&2
+	cat << EOF >&2
+usage: $(basename $0) [input.pdf]
+description:
+	Turn a multi-page pdf into one-page-files.
+	The original file in unaffected.
+EOF
 	exit 1
 }
 
