@@ -7,6 +7,8 @@
 " ~/.config/nvim/autoload/textoggle.vim
 " ~/.config/nvim/autoload/texcomplete.vim
 
+command! -buffer -nargs=0 HighlightTikz  :source ~/Desktop/vim-bunttex/syntax-additional/tikz.vim
+
 " SETTINGS: fast syntax, comment, spell, indent environment.
 packadd  matchit
 setlocal synmaxcol=200

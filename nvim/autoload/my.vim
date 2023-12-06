@@ -19,10 +19,10 @@ function! my#LocalVimrc(filename=".vimrc")
 endfunction
 
 " remove trailing white spaces.
-function! my#RemoveTrailingSpaces()
+function! my#RemoveTrailingSpaces(line1=1,line2=line('$'))
 	let l:pos = getpos(".")
 	try
-		silent execute '%s/^\(.\{-}\)\s\+$/\1/g'
+		silent execute join([a:line1,a:line2],',') . 's/^\(.\{-}\)\s\+$/\1/g'
 		redraw | echom " Remove Trailing Spaces: REMOVED!"
 	catch
 		redraw | echom " Remove Trailing Spaces: NONE FOUND."
@@ -55,7 +55,7 @@ function! my#LastMod(pattern, line=6)
 	call setpos(".", l:pos)
 endfunction
 
-" Resize stacking panes like tmux
+" resize stacking panes like tmux
 function! my#Resize2Panes(key, size=5) abort
 	let l:up   = win_screenpos(winnr())[0] <= 2
 	let l:left = win_screenpos(winnr())[1] <= 1
@@ -64,6 +64,17 @@ function! my#Resize2Panes(key, size=5) abort
 	elseif a:key=="Left"  | exe "vert resize" . ( l:left ? "-" : "+" ) . a:size
 	elseif a:key=="Right" | exe "vert resize" . ( l:left ? "+" : "-" ) . a:size
 	endif
+endfunction
+
+" create a scratch buffer
+function! my#Scratch(height=5)
+	new
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal nobuflisted
+	resize -1000
+	execute "resize +" . ( max([a:height-1,0]) )
 endfunction
 
 "-- Toggle Settings ----------------------------------------------------------"

@@ -1,21 +1,21 @@
 " ~/.config/nvim/autoload/textoggle.vim
-" ~/.config/nvim/pack/lang/opt/tex
+" ~/.config/nvim/pack/lang/opt/tex/
+" ~/.config/nvim/pack/lang/opt/vim-bunttex/
 
 " toggle dictionary for textoggle#Master().
 let g:textoggle_dict = {
-			\ 'doc':    { 'display':'(-)   Document', 'status':1, 'syntax':'',              'plugin':''              },
-			\ 'pre':    { 'display':'(-)   Preamble', 'status':1, 'syntax':'',              'plugin':''              },
-			\ 'ref':    { 'display':'(-)   Ref/Cite', 'status':1, 'syntax':'',              'plugin':''              },
 			\ 'beamer': { 'display':'Beamer',         'status':0, 'syntax':'beamer.vim',    'plugin':'beamer.vim'    },
+			\ 'doc':    { 'display':'Document',       'status':0, 'syntax':'document.vim',  'plugin':''              },
 			\ 'fig':    { 'display':'Figures/Tables', 'status':0, 'syntax':'figure.vim',    'plugin':''              },
 			\ 'notes':  { 'display':'Math Notes',     'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
 			\ 'tex':    { 'display':'Plain Tex',      'status':0, 'syntax':'plain_tex.vim', 'plugin':''              },
 			\ 'tikz':   { 'display':'TikZ',           'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
+			\ 'acr':    { 'display':'Acronym',        'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
 			\ }
 
 " Reload the toggle dictionary. Helper function for textoggle#Reload().
 function! <SID>ReloadToggleDict() abort
-	let l:syntax = 'source ~/.config/nvim/pack/lang/opt/tex/syntax/'
+	let l:syntax = 'source ~/.config/nvim/pack/lang/opt/vim-bunttex/syntax-additional/'
 	let l:plugin = 'source ~/.config/nvim/pack/lang/opt/tex/ftplugin/'
 	for l:key in keys(g:textoggle_dict)
 		if g:textoggle_dict[l:key]['status']

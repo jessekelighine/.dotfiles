@@ -49,3 +49,6 @@
 [submodule "whenever"]
 	path = whenever
 	url = https://github.com/jessekelighine/whenever
+[submodule "nvim/pack/lang/opt/vim-bunttex"]
+	path = nvim/pack/lang/opt/vim-bunttex
+	url = https://github.com/jessekelighine/vim-bunttex

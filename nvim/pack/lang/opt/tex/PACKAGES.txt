@@ -19,6 +19,7 @@ fontaxes
 garamond-math
 gensymb
 geometry
+glossaries
 hardwrap
 hyperref
 hyphenat

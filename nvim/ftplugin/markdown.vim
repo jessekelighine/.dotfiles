@@ -10,6 +10,7 @@ command! -buffer -nargs=0 FindSection :call markdown#FindSection()
 command! -buffer -nargs=0 View        :call markdown#View(1)
 command! -buffer -nargs=? PandocPVC   :call markdown#PandocPVC(<q-args>)
 command! -buffer -range   FormatTable :'<,'>!pandoc -t commonmark_x
+command! -buffer -nargs=0 TexScratch  :silent exec "norm! :Scratch\r:setl ft=tex\ra\\[\r\r\\]\ek"
 
 " SURROUND: surround settings.
 let b:surround_98="**\r**"
@@ -53,6 +54,7 @@ onoremap <silent><buffer> i<bar>      :norm! F<bar>lvt<bar><CR>
 " let b:surround_66 ="\\Big\r\\Big"
 " let b:surround_98 ="\\big\r\\big"
 let b:surround_108="\\left\r\\right"
+nnoremap <silent><buffer> <leader>t :TexScratch<CR>:call feedkeys("a")<CR>
 xnoremap <silent><buffer> a$      <Esc>:norm! F$vf$<CR>
 xnoremap <silent><buffer> i$      <Esc>:norm! F$lvt$<CR>
 onoremap <silent><buffer> i$           :norm! F$lvt$<CR>
