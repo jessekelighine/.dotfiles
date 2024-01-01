@@ -1,13 +1,11 @@
 " ~/.config/nvim/ftplugin/tex.vim
-" ~/.config/nvim/syntax/tex.vim
-" ~/.config/nvim/snippets/tex/
 " ~/.config/nvim/after/indent/tex.vim
-" ~/.config/nvim/pack/lang/opt/tex/
 " ~/.config/nvim/autoload/tex.vim
 " ~/.config/nvim/autoload/textoggle.vim
 " ~/.config/nvim/autoload/texcomplete.vim
-
-command! -buffer -nargs=0 HighlightTikz  :source ~/Desktop/vim-bunttex/syntax-additional/tikz.vim
+" ~/.config/nvim/snippets/tex/
+" ~/.config/nvim/pack/lang/opt/tex/
+" ~/.config/nvim/pack/lang/start/vim-bunttex/
 
 " SETTINGS: fast syntax, comment, spell, indent environment.
 packadd  matchit
@@ -16,47 +14,50 @@ setlocal commentstring=%\ %s
 setlocal spellfile=~/.config/nvim/spell/en.utf-8.add,~/.config/nvim/spell/latex.utf-8.add
 setlocal foldmethod=manual
 setlocal foldnestmax=1
-let g:tex_noindent_env='document\|verbatim\|lstlisting\|multicols\|letter'
+let g:tex_noindent_env='document\|verbatim\|lstlisting\|multicols\|letter\|appendix'
 let g:tex_indent_brace=0
 
 " SURROUND: surround settings.
-let b:surround_indent=1
-let b:surround_66 ="\\Big\r\\Big"
-let b:surround_98 ="\\big\r\\big"
-let b:surround_99 ="\\\1--> Command: \1{\r}"
-let b:surround_67 ="\\left\\{\r\\right."
-let b:surround_81 ="``\r''"
-let b:surround_113="`\r'"
-let b:surround_101="\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
-let b:surround_108="\\left\r\\right"
-let b:surround_103="($\r$)"
-
-" FUNCTION KEYS:
-nnoremap <silent><buffer> <F1> :tabnew ~/.config/nvim/ftplugin/tex.vim<CR>
-nnoremap <silent><buffer> <F2> :tabnew ~/.config/nvim/syntax/tex.vim<CR>
+let b:surround_indent = 1
+let b:surround_66  = "\\Big\r\\Big"
+let b:surround_98  = "\\big\r\\big"
+let b:surround_67  = "\\left\\{\r\\right."
+let b:surround_81  = "``\r''"
+let b:surround_113 = "`\r'"
+let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
+let b:surround_108 = "\\left\r\\right"
+let b:surround_103 = "($\r$)"
 
 " COMPILATION:
-nnoremap <silent><buffer> <F6>            :call tex#Compile('xelatex',(has("nvim")?'termopen':'!'))<CR>
-nnoremap <silent><buffer> <leader><Space> :call tex#ContiCompiTmux(1)<CR>
-nnoremap <silent><buffer> <leader>rf      :call tex#ContiCompiTmux(1)<CR>
-nnoremap <silent><buffer> <leader>rq      :call tex#ContiCompiTmux(0)<CR>
-" nnoremap <buffer> <leader><Space> :call tex#ContiCompi(exists('b:tex_conticompi_bufnr'))<CR>
+let b:tex_compile_command = "xelatex " .. my#quote(expand("%")) .. "; "
+			\ .. "convert "
+			\ .. "-background '#FFFFFF' -flatten "
+			\ .. "-density 600 "
+			\ .. my#quote(expand("%:r") .. ".pdf") .. " "
+			\ .. my#quote(expand("%:r") .. ".png")
+let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -view=none -halt-on-error " .. my#quote(expand("%"))
+let b:tex_compile_make    = "make ; whenever . make"
+let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
+nnoremap <silent><buffer> <leader><Space> :call tex#OpenTmux(b:tex_compile_command)<CR>
+command! -buffer -nargs=0 OpenTmuxLatexmk :call tex#OpenTmux(b:tex_compile_xelatex)
+command! -buffer -nargs=0 OpenTmuxMake    :call tex#OpenTmux(b:tex_compile_make)
 
 " UTILITIES: utilities.
-command! -buffer -nargs=0 LastMod      :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
-command! -buffer -nargs=0 ReloadTeX    :call textoggle#Reload(1)
-command! -buffer -nargs=0 ShowToggles  :call textoggle#Show()
-command! -buffer -nargs=0 ClearToggles :call textoggle#Clear()
-command! -buffer -nargs=0 FindSection  :call tex#FindSection()
-command! -buffer -nargs=0 JunkRemove   :! latexmk -C %:r
-command! -buffer -nargs=? -bang ContiCompi :call tex#ContiCompi(<bang>0,<f-args>) " args: pdflatex, xelatex
-nnoremap <buffer><silent> <leader>c :call tex#EnvironmentChange()<CR>
-nnoremap <buffer><silent> <leader>d :call tex#EnvironmentDelete()<CR>
-nnoremap <buffer><silent> <leader>, :call tex#DelLeftRight()<CR>
-nnoremap <buffer><silent> <leader>8 :call tex#EnvironmentStar()<CR>
-nnoremap <buffer><silent> <leader>t :call textoggle#Master()<CR>
-nnoremap <buffer><silent> <leader>; :call my#DelFuncCall('\\','[a-zA-Z]','{}')<CR>
-nnoremap <buffer><silent> <leader>p :! open %:r.pdf<CR><CR>
+command! -buffer -nargs=0 LastMod       :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
+command! -buffer -nargs=0 ReloadTeX     :call textoggle#Reload(1)
+command! -buffer -nargs=0 ShowToggles   :call textoggle#Show()
+command! -buffer -nargs=0 ClearToggles  :call textoggle#Clear()
+command! -buffer -nargs=0 FindSection   :call tex#FindSection()
+command! -buffer -nargs=0 JunkRemove    :! latexmk -C %:r
+command! -buffer -nargs=0 ConcealToggle :call tex#ConcealToggle()
+nnoremap <buffer><silent> <leader>c     :call tex#EnvironmentChange()<CR>
+nnoremap <buffer><silent> <leader>d     :call tex#EnvironmentDelete()<CR>
+nnoremap <buffer><silent> <leader>,     :call tex#DelLeftRight()<CR>
+nnoremap <buffer><silent> <leader>8     :call tex#EnvironmentStar()<CR>
+nnoremap <buffer><silent> <leader>t     :call textoggle#Master()<CR>
+nnoremap <buffer><silent> <leader>;     :call my#DelFuncCall('\\','[a-zA-Z]','{}')<CR>
+nnoremap <buffer><silent> <leader>p     :! open %:r.pdf<CR><CR>
+nnoremap <silent><buffer> <F1>          :tabnew ~/.config/nvim/ftplugin/tex.vim<CR>
 
 " COMPLETETION: `Lables` and `Biblography` complete settings.
 setlocal completefunc=texcomplete#Labs
@@ -117,34 +118,31 @@ inoremap <buffer> :verb<tab>    <Esc>:call my#GetSnippets('tex','preamble_fancyv
 inoremap <buffer> :blind<tab>   <Esc>:call my#GetSnippets('tex','preamble_blindtext.tex')<CR>
 inoremap <buffer> :date<Tab>    <Esc>:call my#GetSnippets('tex','preamble_datetime.tex')<CR>
 inoremap <buffer> :dinkus<Tab>  <Esc>:call my#GetSnippets('tex','preamble_dinkus.tex')<CR>
+inoremap <buffer> :gloss<Tab>   <Esc>:call my#GetSnippets('tex','preamble_glossaries.tex')<CR>
 
 " TEXT OBJECT: TeX specific objects.
-xnoremap <silent><buffer> i$ <Esc>:norm! F$lvt$<CR>
-xnoremap <silent><buffer> a$ <Esc>:norm! F$vf$<CR>
-onoremap <silent><buffer> i$      :norm! F$lvt$<CR>
-onoremap <silent><buffer> a$      :norm! F$vf$<CR>
+xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
+xnoremap <silent><buffer> a$     <Esc>:norm! F$vf$<CR>
+onoremap <silent><buffer> i$     :norm! F$lvt$<CR>
+onoremap <silent><buffer> a$     :norm! F$vf$<CR>
 xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
 xnoremap <silent><buffer> a<bar> <Esc>:norm! F<bar>vf<bar><CR>
-onoremap <silent><buffer> i<bar>      :norm! F<bar>lvt<bar><CR>
-onoremap <silent><buffer> a<bar>      :norm! F<bar>vf<bar><CR>
-xnoremap <silent><buffer> as :call tex#GetSection('a')<CR>
-xnoremap <silent><buffer> is :call tex#GetSection('i')<CR>
-onoremap <silent><buffer> as :call tex#GetSection('a')<CR>
-onoremap <silent><buffer> is :call tex#GetSection('i')<CR>
-xnoremap <silent><buffer> ia <Esc>:call my#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
-xnoremap <silent><buffer> aa <Esc>:call my#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
-onoremap <silent><buffer> ia      :call my#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
-onoremap <silent><buffer> aa      :call my#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
-xnoremap <silent><buffer> iQ :<C-U>call tex#Quotes("i",1)<CR>
-xnoremap <silent><buffer> aQ :<C-U>call tex#Quotes("a",1)<CR>
-onoremap <silent><buffer> iQ :<C-U>call tex#Quotes("i",1)<CR>
-onoremap <silent><buffer> aQ :<C-U>call tex#Quotes("a",1)<CR>
-onoremap <silent><buffer> QQ :<C-U>call tex#Quotes("q",1)<CR>
-xnoremap <silent><buffer> iq :<C-U>call tex#Quotes("i",0)<CR>
-xnoremap <silent><buffer> aq :<C-U>call tex#Quotes("a",0)<CR>
-onoremap <silent><buffer> iq :<C-U>call tex#Quotes("i",0)<CR>
-onoremap <silent><buffer> aq :<C-U>call tex#Quotes("a",0)<CR>
-onoremap <silent><buffer> qq :<C-U>call tex#Quotes("q",0)<CR>
+onoremap <silent><buffer> i<bar> :norm! F<bar>lvt<bar><CR>
+onoremap <silent><buffer> a<bar> :norm! F<bar>vf<bar><CR>
+xnoremap <silent><buffer> ia     <Esc>:call my#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
+xnoremap <silent><buffer> aa     <Esc>:call my#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
+onoremap <silent><buffer> ia          :call my#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
+onoremap <silent><buffer> aa          :call my#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
+xnoremap <silent><buffer> iQ     :<C-U>call tex#Quotes("i",1)<CR>
+xnoremap <silent><buffer> aQ     :<C-U>call tex#Quotes("a",1)<CR>
+onoremap <silent><buffer> iQ     :<C-U>call tex#Quotes("i",1)<CR>
+onoremap <silent><buffer> aQ     :<C-U>call tex#Quotes("a",1)<CR>
+onoremap <silent><buffer> QQ     :<C-U>call tex#Quotes("q",1)<CR>
+xnoremap <silent><buffer> iq     :<C-U>call tex#Quotes("i",0)<CR>
+xnoremap <silent><buffer> aq     :<C-U>call tex#Quotes("a",0)<CR>
+onoremap <silent><buffer> iq     :<C-U>call tex#Quotes("i",0)<CR>
+onoremap <silent><buffer> aq     :<C-U>call tex#Quotes("a",0)<CR>
+onoremap <silent><buffer> qq     :<C-U>call tex#Quotes("q",0)<CR>
 
 " MISC: page environments.
 inoremap <buffer> \cbreak<Tab>  <C-G>u\vfill\null\columnbreak
@@ -156,16 +154,18 @@ inoremap <buffer> `<Tab>        `'<Left>
 inoremap <buffer> ``<Tab>       ``''<Left><Left>
 
 " MATH: math shortcuts.
-inoremap <buffer> _<Tab>          <C-G>u_{}<Left>
-inoremap <buffer> ^<Tab>          <C-G>u^{}<Left>
-inoremap <buffer> $<Tab>          <C-G>u$$<Left>
-inoremap <buffer> ]<Tab>          <C-G>u\left[\right]<Esc><S-F>[a
-inoremap <buffer> )<Tab>          <C-G>u\left(\right)<Esc><S-F>(a
-inoremap <buffer> }<Tab>          <C-G>u\left\{\right\}<Esc><S-F>{a
-inoremap <buffer> {{<Tab>         <C-G>u\{\}<Esc><S-F>{a
-inoremap <buffer> <bar><Tab>      <C-G>u<bar><bar><Left>
-inoremap <buffer> <bar><bar><Tab> <C-G>u\left<bar>\right<bar><Esc>6hi
-inoremap <buffer> \ma<Tab>        <Esc>:call my#GetSnippets('tex','indoc_matrix.tex')<CR>
+inoremap <buffer> _<Tab>           <C-G>u_{}<Left>
+inoremap <buffer> ^<Tab>           <C-G>u^{}<Left>
+inoremap <buffer> $<Tab>           <C-G>u$$<Left>
+inoremap <buffer> ]<Tab>           <C-G>u\left[\right]<Esc><S-F>[a
+inoremap <buffer> )<Tab>           <C-G>u\left(\right)<Esc><S-F>(a
+inoremap <buffer> }<Tab>           <C-G>u\left\{\right\}<Esc><S-F>{a
+inoremap <buffer> {{<Tab>          <C-G>u\{\}<Esc><S-F>{a
+inoremap <buffer> <bar><Tab>       <C-G>u<bar><bar><Left>
+inoremap <buffer> <bar><bar><Tab>  <C-G>u\left<bar>\right<bar><Esc>6hi
+inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
+inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
+inoremap <buffer> \ma<Tab>         <Esc>:call my#GetSnippets('tex','indoc_matrix.tex')<CR>
 
 " TEXT: text/font modifiers.
 inoremap <buffer> \bf<Tab> <C-G>u\textbf{}<Left>

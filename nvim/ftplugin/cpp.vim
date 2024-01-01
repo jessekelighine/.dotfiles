@@ -24,7 +24,7 @@ inoremap <buffer> :c<Tab>   /*<Space><Space>*/<left><left><left>
 inoremap <buffer> {<CR>      {}<Esc>i<CR><Esc><S-O>
 inoremap <buffer> :for<Tab>  for ( int i { 0 }; i < ; i++ )<Esc>F<<Right>a
 inoremap <buffer> :forj<Tab> for ( int j { 0 }; j < ; j++ )<Esc>F<<Right>a
-inoremap <buffer> :out<Tab>  std::cout <<  << '\n';<Esc>F<;;<Right>a
+inoremap <buffer> :out<Tab>  std::cout <<  << std::endl;<Esc>F<;;<Right>a
 inoremap <buffer> :in<Tab>   std::cin >> ;<Left>
 inoremap <buffer> :str<Tab>  std::string
 inoremap <buffer> :strv<Tab>  std::string_view

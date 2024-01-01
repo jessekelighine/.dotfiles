@@ -7,8 +7,8 @@ sudo update-hosts
 ### Homebrew ##################################################################
 
 # update packages
-brew update -v
-brew upgrade
+brew update
+brew upgrade --verbose
 brew upgrade --cask --greedy --verbose
 
 # update mas

@@ -26,17 +26,22 @@ hs.hotkey.bindSpec({ HYPER,   "b" }, function () hs.execute(blueutil_connect) en
 wifi_interface = "en0"
 known_networks = {
 	["Utopie"]          = "1997aaaaaa",
-	["cos"]             = "0906802822",
-	["RickyWramLin_5G"] = "room656656",
+	["cos"]             = "0906802822", -- Room 645
+	["RickyWramLin_5G"] = "room656656", -- Room 656
 }
 hs.hotkey.bindSpec({ HYPER_S, "w" }, function () hs.wifi.setPower(false, wifi_interface) end)
 hs.hotkey.bindSpec({ HYPER,   "w" }, function ()
 	hs.wifi.setPower(true, wifi_interface)
-	local dt = hs.wifi.availableNetworks(wifi_interface)
+	local available_networks = hs.wifi.availableNetworks(wifi_interface)
 	for network, password in pairs(known_networks) do
-		if ( dt[network] ~= nil ) then
-			hs.wifi.associate(network, password, wifi_interface)
-			break
+		print("Checking if", network, "is available...")
+		for _, available_network in pairs(available_networks) do
+			if ( network == available_network ) then
+				print("Network", network, "is available, connecting...")
+				hs.wifi.associate(network, password, wifi_interface)
+				print("Network", network, "connected.")
+				return
+			end
 		end
 	end
 end)

@@ -10,4 +10,4 @@ nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/sh.vim<CR>
 inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('sh','shebang.sh')<CR>
 inoremap <buffer> :sign<Tab> <Esc>:call my#GetSnippets('sh','sign.sh')<CR>
 
-inoremap <buffer><silent> {<CR> {}<Esc>i<CR><Esc><S-O>
+inoremap <buffer><silent> {<CR> <Esc>:call sh#CurlyExpand()<CR>

@@ -18,7 +18,7 @@ b2/.b2_account_info
 
 .gnupg/*
 .password-store/*
-.github-recovery-codes.txt
+.github-recovery-codes.txt.enc
 
 nvim/undodir/*
 nvim/spell/*.spl
@@ -28,3 +28,6 @@ nvim/spell/*.spl
 .ssh/*
 
 */.netrwhist
+
+archive/lasciate.txt.enc
+archive/oignon.txt.enc

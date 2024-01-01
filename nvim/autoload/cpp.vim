@@ -6,5 +6,4 @@ function! cpp#Compile()
 				\ . (expand('%:r')) . '.o '
 				\ . (expand('%'))
 	execute '! ' . l:cmd
-	" call terminal#Open(l:cmd)
 endfunction

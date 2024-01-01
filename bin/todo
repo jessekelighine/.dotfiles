@@ -2,24 +2,43 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
+# Author: Jesse C. Chen  (jessekelighine.com)                                 #
 # Description: `todo`, a fast note keeper.                                    #
 # License: The MIT License (MIT)                                              #
-# Last Modified: 2023-09-16                                                   #
 #                                                                             #
+# Last Modified: 2023-12-21                                                   #
 ###############################################################################
 
-[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Documents/.TODO.md"
+[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Documents/zettelkasten/TODO.md"
 [[ ! -f "$TODO_TARGET" ]] && touch "$TODO_TARGET"
 
 ### Main ######################################################################
 
-[[  $# -lt 1    ]] && { $EDITOR "$TODO_TARGET"; exit 0; }
-[[ "$1" == "-l" ]] && { cat "$TODO_TARGET"; exit 0; }
-[[ "$1" == "-h" ]] && {
-	echo "usage: todo [-lh] [text]"
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue;  blue=$(tput bold && tput setaf 12)
+	local norm;  norm=$(tput sgr0)
+	cat << EOF
+${green}usage:${norm} ${blue}$(basename $0)${norm} [options] [text]
+${green}options:${norm}
+	add          add item to "$(basename "$TODO_TARGET")"
+	directory    return the directory of "$(basename "$TODO_TARGET")"
+	edit         edit "$(basename "$TODO_TARGET")"
+	help         show this help
+	show         cat out what is in "$(basename "$TODO_TARGET")"
+EOF
+}
+
+pattern="^$1"
+[[  $# -lt 1 ]] && { message; exit 0; }
+[[ "show"      =~ $pattern ]] && { cat "$TODO_TARGET"; exit 0; }
+[[ "edit"      =~ $pattern ]] && { $EDITOR "$TODO_TARGET"; exit 0; }
+[[ "help"      =~ $pattern ]] && { message; exit 0; }
+[[ "directory" =~ $pattern ]] && { echo "$(dirname "$TODO_TARGET")"; exit 0; }
+[[ "add"       =~ $pattern ]] && {
+	echo "($(date '+%F %X')) [ ] ${@:2}" >> "$TODO_TARGET"
 	exit 0
 }
 
-echo "($(date '+%F %X')) [ ] $@" >> "$TODO_TARGET"
-exit 0
+message >&2
+exit 1

@@ -1,1 +1,0 @@
-../pack/lang/opt/vim-bunttex/syntax/tex.vim

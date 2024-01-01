@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+[[ $# < 1 ]] && {
+	echo "no arguments"
+	exit 0
+}
+
+extension="zettel"
+id="$(date '+%Y%m%d%H%M%S')"
+filename="${1/%.$extension/}.${extension}"
+editor="nvim"
+author="jcc@jessekelighine.com"
+
+[[ -f "$filename" ]] && {
+	$editor "$filename"
+	exit 0
+}
+
+touch "$filename"
+$editor +'silent setlocal filetype=markdown |
+	silent call my#GetSnippets("markdown","zettel.md") |
+	silent g/author/s/:\(\s*\)\S*/:\1"'"${author}"'"/ |
+	silent g/date/s/:\(\s*\)\S*/:\1"'"$(date +'%F')"'"/ |
+	silent g/id/s/:\(\s*\)\S*/:\1"'"${id}"'"/ |
+	silent execute "norm G" |
+	noh | silent write | redraw | echo ""' "${filename}"
+exit 0

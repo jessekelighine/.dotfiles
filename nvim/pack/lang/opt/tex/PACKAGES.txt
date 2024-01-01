@@ -1,5 +1,6 @@
 adjustbox
 algorithms
+appendix
 appendixnumberbeamer
 biber
 biblatex
@@ -51,6 +52,7 @@ subcaption
 textcase
 thmtools
 titlesec
+tocloft
 xcolor
 xecjk
 xifthen

@@ -1,17 +1,24 @@
 " my.vim
 
-"-- Miscellaneous ------------------------------------------------------------"
+""" Snippets """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " read from snippets.
-function! my#GetSnippets(type, path, indent=1, delete_begin=1, cursor_begin=1)
+function! my#GetSnippets(type, name, indent=1, delete_begin=1, cursor_begin=1)
 	let [ l:begin, l:lines ] = [ line("."), line("$") ]
-	execute "read ".$HOME."/.config/nvim/snippets/".a:type."/".a:path
+	execute "read ".$HOME."/.config/nvim/snippets/".a:type."/".a:name
 	let l:end = l:begin + ( line("$") - l:lines ) - 1
 	call cursor(l:begin,0)
 	if a:delete_begin | call execute('norm dd')                   | endif
 	if a:indent       | call execute(l:begin.','.l:end.'norm v=') | endif
 	if a:cursor_begin | call cursor(l:begin,0)                    | endif
 endfunction
+
+function! my#GetSnippetsAuthor()
+	let l:path = $HOME . "/.dotfiles/nvim/snippets/email"
+	return readfile(l:path)[0]
+endfunction
+
+""" Miscellaneous """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " source a local vimrc file if exists.
 function! my#LocalVimrc(filename=".vimrc")
@@ -74,10 +81,16 @@ function! my#Scratch(height=5)
     setlocal noswapfile
     setlocal nobuflisted
 	resize -1000
-	execute "resize +" . ( max([a:height-1,0]) )
+	execute "resize +" .. max([a:height-1,0])
 endfunction
 
-"-- Toggle Settings ----------------------------------------------------------"
+" quote a string
+function! my#quote(string,type=1)
+	let l:quote = a:type==1 ? "'" : '"'
+	return l:quote .. a:string .. l:quote
+endfunction
+
+""" Toggle Settings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " toggles spelling, ignoring Chinese characters.
 function! my#ChineseSpelling(de=0)
@@ -119,7 +132,7 @@ function! my#FocusCursor(on)
 	endif
 endfunction
 
-"-- Arguments and Functions --------------------------------------------------"
+""" Arguments and Functions """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Delete surrounding function calls: 'print(...)' --> '...'. A function assumes
 " the form "<HEAD><BODY>\{-}<BRACKETS_OPEN>...<BRACKETS_CLOSE>".
@@ -179,7 +192,7 @@ function! my#SelectArgument(type='i',open='(\|[',close=')\|]',sep=',')
 	exec 'norm! v' . ( l:end - l:begin ) . 'l'
 endfunction
 
-"-- Git ----------------------------------------------------------------------"
+""" Git """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " highlight git merge conflict.
 let g:my_git_conflict_highlight = 0

@@ -1,7 +1,7 @@
 ---
 title:  ".dotfiles"
 author: "jessekelighine@gmail.com"
-date:   "2023-12-04"
+date:   "2024-01-01"
 ---
 
 - update:  `make update`

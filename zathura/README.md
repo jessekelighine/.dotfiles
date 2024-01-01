@@ -1,7 +1,7 @@
 ---
 title:  "Zathura Installation"
 author: "jessekelighine@gmail.com"
-date:   "2021-Aug-02"
+date:   "2021-08-02"
 ---
 
 - [mac zathura repo](https://github.com/zegervdv/homebrew-zathura)

@@ -26,3 +26,4 @@ command! -nargs=0 -bang FocusCursor          :call my#FocusCursor(<bang>1)
 command! -range   -bang SplitChineseSentence :exec <line1>.','.<line2>.'s/\([，。？！；'.eval('<bang>0?"、":""').']\)\n\{0,1}/\1\r/g'
 command! -range         ChineseWordCount     :<line1>,<line2>s/[^\x00-\xff]//gn
 command! -nargs=?       Scratch              :call my#Scratch(<args>)
+command! -nargs=?       TallyOpacity         :! tally-opacity <args>

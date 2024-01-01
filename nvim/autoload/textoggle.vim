@@ -8,14 +8,14 @@ let g:textoggle_dict = {
 			\ 'doc':    { 'display':'Document',       'status':0, 'syntax':'document.vim',  'plugin':''              },
 			\ 'fig':    { 'display':'Figures/Tables', 'status':0, 'syntax':'figure.vim',    'plugin':''              },
 			\ 'notes':  { 'display':'Math Notes',     'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
-			\ 'tex':    { 'display':'Plain Tex',      'status':0, 'syntax':'plain_tex.vim', 'plugin':''              },
+			\ 'tex':    { 'display':'Plain Tex',      'status':0, 'syntax':'plaintex.vim',  'plugin':''              },
 			\ 'tikz':   { 'display':'TikZ',           'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
 			\ 'acr':    { 'display':'Acronym',        'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
 			\ }
 
 " Reload the toggle dictionary. Helper function for textoggle#Reload().
 function! <SID>ReloadToggleDict() abort
-	let l:syntax = 'source ~/.config/nvim/pack/lang/opt/vim-bunttex/syntax-additional/'
+	let l:syntax = 'source ~/.config/nvim/pack/lang/start/vim-bunttex/syntax-additional/'
 	let l:plugin = 'source ~/.config/nvim/pack/lang/opt/tex/ftplugin/'
 	for l:key in keys(g:textoggle_dict)
 		if g:textoggle_dict[l:key]['status']
@@ -51,10 +51,10 @@ function! textoggle#Show() abort
 		let l:max_dis = { l -> l > l:max_dis ? l : l:max_dis }( len(g:textoggle_dict[l:key]['display'])+1 )
 	endfor
 	for l:key in keys(g:textoggle_dict)
-		let l:format  = " " . ( g:textoggle_dict[l:key]['status'] ? '(+)' : '(-)' )
-					\ . "%" . l:max_key . "s"
-					\ . "%" . l:max_dis . "s"
-		echo printf(l:format, '['.l:key.']', g:textoggle_dict[l:key]['display'])
+		let l:format  = " " .. ( g:textoggle_dict[l:key]['status'] ? '(+)' : '(-)' )
+					\ .. "%" .. l:max_key .. "s"
+					\ .. "%" .. l:max_dis .. "s"
+		echo printf(l:format, '[' .. l:key .. ']', g:textoggle_dict[l:key]['display'])
 	endfor
 endfunction
 
@@ -65,8 +65,8 @@ function! textoggle#Master() abort
 	let l:keys = keys(g:textoggle_dict)             | if index(l:keys,l:key)<0 | return | endif
 	call textoggle#Toggle(l:key)
 	call textoggle#Reload()
-	redraw | echom '--> '.g:textoggle_dict[l:key]['display'].' syntax: '
-				\ .( g:textoggle_dict[l:key]['status'] ? 'ON' : 'OFF' )
+	redraw | echom '--> ' .. g:textoggle_dict[l:key]['display'].' syntax: '
+				\ .. ( g:textoggle_dict[l:key]['status'] ? 'ON' : 'OFF' )
 endfunction
 
 " reload <buffer> key-mappings and toggles.
