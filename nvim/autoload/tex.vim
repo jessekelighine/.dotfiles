@@ -2,8 +2,8 @@
 
 " Toggle Conceal Level
 if !exists("g:tex_conceal_level") | let g:tex_conceal_level=0 | endif
-function! tex#ConcealToggle() abort
-	let g:tex_conceal_level = { 0:2, 2:3, 3:0 }[ g:tex_conceal_level ]
+function! tex#ConcealToggle(level=-1) abort
+	let g:tex_conceal_level = a:level >= 0 ? a:level : ( g:tex_conceal_level + 1 ) % 4
 	execute "setlocal conceallevel=" .. g:tex_conceal_level
 	echom " Conceal Level: " ..
 				\ ( g:tex_conceal_level==0 ? "Original Text"
@@ -19,16 +19,19 @@ function! tex#FindSection() abort
 	let  l:header_format = "%6s %6s  %s"
 	let  l:header = printf(l:header_format, "Line", "Index", "Title")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
-	global/^\\\(sub\)*\(section\|paragraph\|chapter\)/
-				\ execute 'norm! "9yi{' | let l:temp = @9 |
-				\ let l:temp = match(getline("."),'^\\subparagraph')  >= 0 ? repeat(' ',20) .. l:temp
-				\            : match(getline("."),'^\\paragraph')     >= 0 ? repeat(' ',16) .. l:temp
-				\            : match(getline("."),'^\\subsubsection') >= 0 ? repeat(' ',12) .. l:temp
-				\            : match(getline("."),'^\\subsection')    >= 0 ? repeat(' ', 8) .. l:temp
-				\            : match(getline("."),'^\\section')       >= 0 ? repeat(' ', 4) .. l:temp
-				\            : match(getline("."),'^\\chapter')       >= 0 ? repeat(' ', 0) .. l:temp : l:temp |
-				\ echo printf(l:header_format, line("."), l:index, l:temp) |
-				\ call add(l:section_lines,line(".")) |
+	global/^\\\(\(sub\)\{0,2}section\|\(sub\)\?paragraph\|chapter\|appendix\)/
+				\ if match(getline("."), '^\\appendix') >= 0 |
+				\ let l:display_name = "[Appendix]" |
+				\ else | execute 'norm! "9yi{' | let l:section_name = @9 |
+				\ let l:display_name = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 20) .. l:section_name
+				\                    : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 16) .. l:section_name
+				\                    : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 12) .. l:section_name
+				\                    : match(getline("."), '^\\subsection')    >= 0 ? repeat(' ',  8) .. l:section_name
+				\                    : match(getline("."), '^\\section')       >= 0 ? repeat(' ',  4) .. l:section_name
+				\                    : match(getline("."), '^\\chapter')       >= 0 ? repeat(' ',  0) .. l:section_name : "ERROR" |
+				\ endif |
+				\ echo printf(l:header_format, line("."), l:index, l:display_name) |
+				\ call add(l:section_lines, line(".")) |
 				\ let l:index += 1
 	let l:index = input("--> Go to: ")
 	exe l:index =~ '\d\+' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
@@ -44,20 +47,17 @@ function! tex#DelLeftRight()
 	endif
 endfunction
 
+" Open Tmux pane
 function! tex#OpenTmux(command="") abort
 	packadd! vim-slime
 	if vimslime#Target()!="" || a:command=="" | call system("tmux resize-pane -Z") | return | endif
-	" create new Tmux pane and set as target.
 	let l:command =  'tmux split -c "$PWD";'
 				\ .. 'tmux resize-pane -U 12;'
 				\ .. "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
 				\ .. 'tmux last-pane;'
-	let l:targets = system(l:command)->split('\n')->map('split(v:val," ")')
-	for l:pane in l:targets | if l:pane[1]==1 | break | endif | endfor
-	call vimslime#SetTarget(l:pane[0])
-	" send LaTeX compilation command to Tmux pane.
-	call vimslime#Send(a:command,1)
-	" automatically close Tmux target when vim is closed
+	let l:target_pane = system(l:command)->split('\n')->map('split(v:val," ")')->filter('v:val[1]==1')
+	call vimslime#SetTarget(l:target_pane[0][0])
+	call vimslime#Send(a:command, 1)
 	augroup TexOpenTmux
 		autocmd!
 		autocmd VimLeave * exe vimslime#Target()=="" ? "" : 'call vimslime#Send("\<C-C>exit",1)'

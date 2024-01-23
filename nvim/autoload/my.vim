@@ -5,16 +5,16 @@
 " read from snippets.
 function! my#GetSnippets(type, name, indent=1, delete_begin=1, cursor_begin=1)
 	let [ l:begin, l:lines ] = [ line("."), line("$") ]
-	execute "read ".$HOME."/.config/nvim/snippets/".a:type."/".a:name
+	execute "read " .. $HOME .. "/.config/nvim/snippets/" .. a:type .. "/" .. a:name
 	let l:end = l:begin + ( line("$") - l:lines ) - 1
 	call cursor(l:begin,0)
-	if a:delete_begin | call execute('norm dd')                   | endif
-	if a:indent       | call execute(l:begin.','.l:end.'norm v=') | endif
+	if a:delete_begin | exec "norm! dd"                           | endif
+	if a:indent       | exec l:begin .. "," .. l:end .. "norm v=" | endif
 	if a:cursor_begin | call cursor(l:begin,0)                    | endif
 endfunction
 
-function! my#GetSnippetsAuthor()
-	let l:path = $HOME . "/.dotfiles/nvim/snippets/email"
+function! my#GetAuthor()
+ 	let l:path = $HOME .. "/.dotfiles/nvim/snippets/email"
 	return readfile(l:path)[0]
 endfunction
 
@@ -43,8 +43,8 @@ function! my#MakeRoom(direction,number=1)
 				\ ( a:direction=='above' ? 'O' : 'o' ) .
 				\ repeat( "\<CR>", a:number-1 ) .
 				\ "\<Esc>"
-	let l:line = line('.') + ( a:direction=='above' ? a:number : 0 )
-	let l:col  = col('.')
+	let l:line = line(".") + ( a:direction=="above" ? a:number : 0 )
+	let l:col  = col(".")
 	silent exec l:command
 	call cursor(l:line, l:col)
 endfunction
@@ -66,10 +66,10 @@ endfunction
 function! my#Resize2Panes(key, size=5) abort
 	let l:up   = win_screenpos(winnr())[0] <= 2
 	let l:left = win_screenpos(winnr())[1] <= 1
-	if     a:key=="Up"    | exe      "resize" . ( l:up   ? "-" : "+" ) . a:size
-	elseif a:key=="Down"  | exe      "resize" . ( l:up   ? "+" : "-" ) . a:size
-	elseif a:key=="Left"  | exe "vert resize" . ( l:left ? "-" : "+" ) . a:size
-	elseif a:key=="Right" | exe "vert resize" . ( l:left ? "+" : "-" ) . a:size
+	if     a:key=="Up"    | exe      "resize" .. ( l:up   ? "-" : "+" ) .. a:size
+	elseif a:key=="Down"  | exe      "resize" .. ( l:up   ? "+" : "-" ) .. a:size
+	elseif a:key=="Left"  | exe "vert resize" .. ( l:left ? "-" : "+" ) .. a:size
+	elseif a:key=="Right" | exe "vert resize" .. ( l:left ? "+" : "-" ) .. a:size
 	endif
 endfunction
 
@@ -93,11 +93,15 @@ endfunction
 """ Toggle Settings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " toggles spelling, ignoring Chinese characters.
-function! my#ChineseSpelling(de=0)
-	set spell!
-	exe "set spelllang=en" . ( a:de ? ",de" : "" )
-	set spelllang+=cjk
-	set spell?
+function! my#Spell(set="", de=0)
+	if a:set==""
+		setlocal spell!
+	else
+		execute "setlocal " .. ( a:set ? "" : "no" ) .. "spell"
+	endif
+	execute "setlocal spelllang=en" .. ( a:de ? ",de" : "" )
+	setlocal spelllang+=cjk
+	setlocal spell?
 endfunction
 
 " change the display width of a tab.
@@ -121,8 +125,8 @@ endfunction
 
 " toggle virtual edit
 function! my#ToggleVirtualEdit()
-	if &virtualedit==#'all' | set virtualedit=NONE | echo "virtualedit=NONE"
-	else                    | set virtualedit=all  | echo "virtualedit=all"
+	if &virtualedit==#'all' | set virtualedit=NONE | echo " Virtual: Off"
+	else                    | set virtualedit=all  | echo " Virtual: On"
 	endif
 endfunction
 

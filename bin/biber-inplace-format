@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+biber_format="$HOME/.local/bin/biber-format"
+delete="$HOME/.local/bin/del"
+
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue; blue=$(tput bold && tput setaf 12)
+	local norm; norm=$(tput sgr0)
+	local command; command="${blue}$(basename "$0")${norm}"
+	local usage; usage="${green}usage${norm}"
+	local description; description="${green}description${norm}"
+	local biber_formatter; biber_formatter="${blue}$(basename ${biber_format})${norm}"
+	cat << EOF
+${usage}: ${command} [input.bib]
+${description}:
+	Formats [input.bib] in-place.
+	This command simply calls ${biber_formatter}.
+EOF
+}
+
+[[ $# -ne 1 ]] && {
+	message >&2
+	exit 1
+}
+
+tempfile=$(mktemp)
+trap 'rm -rf "$tempfile"' EXIT SIGINT
+
+${biber_format} "$1" "$tempfile"
+${delete} "$1"
+mv "$tempfile" "$1"
+
+exit 0

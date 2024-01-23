@@ -2,8 +2,8 @@
 " ~/.config/nvim/snippets/sh/
 " ~/.config/nvim/autoload/sh.vim
 
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',min([10,line('$')]))
 setlocal shiftwidth=8 softtabstop=8 tabstop=8 smarttab
+command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',min([10,line('$')]))
 
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/sh.vim<CR>
 

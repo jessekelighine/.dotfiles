@@ -15,5 +15,6 @@ call textoggle#Set('beamer', 1)
 call textoggle#Set('acr',    1)
 call textoggle#Reload()
 
+ConcealToggle 2
 nnoremap <buffer> <F5> :call tex#Compile("make",'jobstart')<CR>
 nnoremap <buffer> <F6> :call tex#Compile("make",'termopen')<CR>

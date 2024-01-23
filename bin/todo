@@ -9,7 +9,7 @@
 # Last Modified: 2023-12-21                                                   #
 ###############################################################################
 
-[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Documents/zettelkasten/TODO.md"
+[[   -z "$TODO_TARGET" ]] && TODO_TARGET="$HOME/Desktop/.TODO.md"
 [[ ! -f "$TODO_TARGET" ]] && touch "$TODO_TARGET"
 
 ### Main ######################################################################
@@ -25,15 +25,20 @@ ${green}options:${norm}
 	directory    return the directory of "$(basename "$TODO_TARGET")"
 	edit         edit "$(basename "$TODO_TARGET")"
 	help         show this help
+	google       open Google keeps
 	show         cat out what is in "$(basename "$TODO_TARGET")"
 EOF
 }
 
 pattern="^$1"
-[[  $# -lt 1 ]] && { message; exit 0; }
+browser="firefox"
+keeps_url="https://keep.google.com/u/0/"
+
+[[ $# -lt 1 ]] && { message; exit 0; }
 [[ "show"      =~ $pattern ]] && { cat "$TODO_TARGET"; exit 0; }
 [[ "edit"      =~ $pattern ]] && { $EDITOR "$TODO_TARGET"; exit 0; }
 [[ "help"      =~ $pattern ]] && { message; exit 0; }
+[[ "google"    =~ $pattern ]] && { open -a "$browser" "$keeps_url"; exit 0; }
 [[ "directory" =~ $pattern ]] && { echo "$(dirname "$TODO_TARGET")"; exit 0; }
 [[ "add"       =~ $pattern ]] && {
 	echo "($(date '+%F %X')) [ ] ${@:2}" >> "$TODO_TARGET"

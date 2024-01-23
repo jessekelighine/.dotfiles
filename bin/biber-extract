@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+bibfile_formatter="biber-format"
+
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue; blue=$(tput bold && tput setaf 12)
+	local norm; norm=$(tput sgr0)
+	local command; command="${blue}$(basename "$0")${norm}"
+	local usage; usage="${green}usage${norm}"
+	local description; description="${green}description${norm}"
+	local formatter; formatter="${blue}${bibfile_formatter}${norm}"
+	local biber; biber="${blue}biber${norm}"
+	cat << EOF
+${usage}: ${command} [input.bcf] [output.bib]
+${description}:
+	This is a wrapper of ${biber} that creates a bib-file that contains
+	only the cited references.
+	- Before using ${command}, compile the LaTeX file first,
+	  then pass the '.bcf' file as the first argument to ${command}. 
+	- When using this command, make sure the original bib-file is
+	  readable in the same directory.
+	- ${command} depends on ${formatter} to format [output.bib].
+EOF
+}
+
+[[ $# -ne 2 ]] && {
+	message >&2
+	exit 1
+}
+
+tempfile=$(mktemp)
+trap 'rm -rf "$tempfile"' EXIT SIGINT
+
+biber \
+	--nolog \
+	--output-format=bibtex \
+	--output-resolve \
+	--output-file="$tempfile" \
+	"$1"
+${bibfile_formatter} "$tempfile" "$2"
+rm "$tempfile"
+
+exit 0

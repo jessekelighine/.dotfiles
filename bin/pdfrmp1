@@ -8,8 +8,8 @@ EOF
 	exit 1
 }
 
-temp=".temp-$(date '+%Y%m%d%H%M%S').pdf"
-pages=$( pdfinfo "$1" | awk -F : '/Pages/ { print $2 ; exit }' | xargs )
+temp="$(mktemp)"
+pages=$(pdfinfo "$1" | awk -F : '/Pages/ { print $2 ; exit }' | xargs)
 
 pdfsplit "$1" 2 "$pages" "$temp"
 

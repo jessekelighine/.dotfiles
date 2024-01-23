@@ -93,7 +93,7 @@ xnoremap <silent> <leader>p p
 nnoremap <silent> <leader>l :set list!<CR>
 nnoremap <silent> <CR>      :noh<Bar>redraw!<Bar>echo''<CR>
 nnoremap <silent> <F12>     :tabnew ~/.config/nvim/init.vim<CR>
-nnoremap <C-N> :tabnew<CR>
+nnoremap <C-N> :Texplore<CR>
 nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 nnoremap [T :tabfirst<CR>

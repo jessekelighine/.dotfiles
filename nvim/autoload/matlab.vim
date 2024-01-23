@@ -4,9 +4,9 @@
 function! matlab#REPL(start)
 	packadd! vim-slime
 	if a:start && vimslime#Target()==""
-		let l:command = 'tmux split -c "$PWD";'
-					\ . "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
-					\ . 'tmux last-pane;'
+		let l:command =  'tmux split -c "$PWD";'
+					\ .. "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
+					\ .. 'tmux last-pane;'
 		let l:targets = system(l:command)->split('\n')->map('split(v:val," ")')
 		for l:pane in l:targets | if l:pane[1]==1 | break | endif | endfor
 		call vimslime#SetTarget(l:pane[0])

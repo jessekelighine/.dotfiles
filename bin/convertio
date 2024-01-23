@@ -11,7 +11,9 @@ check_status  () {
 }
 
 check_verbose () {
-	[[ $verbose == true ]] && echo "$1" && jq <<< "$2"
+	[[ $verbose == true ]] && {
+		echo "$(tput bold)$1$(tput sgr0)"; jq <<< "$2"
+	}
 }
 
 message () {
@@ -19,19 +21,19 @@ message () {
 usage: $(basename $0) [options] [file]
 options:
 	-t    filetype
-	-v    verbose
+	-V    NOT verbose
 	-h    print help
 EOF
 }
 
 ### Options ###################################################################
 
-verbose=false
+verbose=true
 filetype='mobi'
 while getopts 'vht:' options; do
 	case "$options" in
 		t) filetype="$OPTARG" ;;
-		v) verbose=true ;;
+		V) verbose=false ;;
 		h) message >&2 ; exit 1 ;;
 		?) message >&2 ; exit 1 ;;
 	esac
@@ -44,33 +46,34 @@ shift $((OPTIND-1))
 post_json='{"apikey":"'"$apikey"'","input":"upload","file":"'"$1"'","outputformat":"'"$filetype"'"}'
 resp_json=$(curl -s -X POST -d "$post_json" "$apiurl")
 resp_id=$(jq -r '.data.id' <<< "$resp_json")
-check_verbose "Initialized:" "$resp_json"
+check_verbose ">>> Initialized:" "$resp_json"
 check_status "$resp_json"
 
 ### Upload ####################################################################
 
 resp_json=$(curl -s -X PUT --upload-file "$1" "$apiurl/$resp_id/$1")
-check_verbose "Uploaded:" "$resp_json"
+check_verbose ">>> Uploaded:" "$resp_json"
 check_status "$resp_json"
 
 ### Convert ###################################################################
 
 count=0
-echo "$apiurl/$resp_id/status"
+echo "$(tput bold)>>> URL:$(tput sgr0)" "$apiurl/$resp_id/status"
+printf ">>> $(tput bold)Processing:$(tput sgr0) [ "
 while true ; do sleep 1
-	printf "."
+	printf "*"
 	[[ $((++count % 60)) == 0 ]] && printf " (%dmin)\n" "$((count/60))"
 	resp_json=$(curl -s -X GET "$apiurl/$resp_id/status")
 	resp_step=$(jq -r '.data.step' <<< "$resp_json")
-	[ "$resp_step" = 'finish' ] && break
+	[ "$resp_step" = 'finish' ] && { printf " ]\n"; break; }
 done
-check_verbose "Converted:" "$resp_json"
+check_verbose ">>> Converted:" "$resp_json"
 
 ### Download and Delete #######################################################
 
 resp_link=$(jq -r '.data.output.url' <<< "$resp_json")
 curl -s -O "$resp_link"
 resp_json=$(curl -s -X DELETE "$apiurl/$resp_id")
-check_verbose "Deleted:" "$resp_json"
+check_verbose ">>> Deleted:" "$resp_json"
 
 exit 0

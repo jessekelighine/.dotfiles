@@ -49,7 +49,7 @@ command! -buffer -nargs=0 ShowToggles   :call textoggle#Show()
 command! -buffer -nargs=0 ClearToggles  :call textoggle#Clear()
 command! -buffer -nargs=0 FindSection   :call tex#FindSection()
 command! -buffer -nargs=0 JunkRemove    :! latexmk -C %:r
-command! -buffer -nargs=0 ConcealToggle :call tex#ConcealToggle()
+command! -buffer -nargs=? ConcealToggle :call tex#ConcealToggle(<args>)
 nnoremap <buffer><silent> <leader>c     :call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d     :call tex#EnvironmentDelete()<CR>
 nnoremap <buffer><silent> <leader>,     :call tex#DelLeftRight()<CR>

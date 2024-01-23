@@ -3,7 +3,7 @@
 inoremap <silent> :date<Tab> <C-R>=strftime("%F")<CR>
 nnoremap <silent> [<Space>   :<C-U>exe "call my#MakeRoom('above',".v:count1.")"<CR>
 nnoremap <silent> ]<Space>   :<C-U>exe "call my#MakeRoom('below',".v:count1.")"<CR>
-nnoremap <silent> <leader>s  :call my#ChineseSpelling()<CR>
+nnoremap <silent> <leader>s  :call my#Spell()<CR>
 nnoremap <silent> <leader>n  :call my#ToggleLineNumber()<CR>
 xnoremap <silent> ia    <Esc>:call my#SelectArgument("i")<CR>
 xnoremap <silent> aa    <Esc>:call my#SelectArgument("a")<CR>
@@ -27,3 +27,4 @@ command! -range   -bang SplitChineseSentence :exec <line1>.','.<line2>.'s/\([，
 command! -range         ChineseWordCount     :<line1>,<line2>s/[^\x00-\xff]//gn
 command! -nargs=?       Scratch              :call my#Scratch(<args>)
 command! -nargs=?       TallyOpacity         :! tally-opacity <args>
+command! -nargs=?       Spell                :call my#Spell(<args>)

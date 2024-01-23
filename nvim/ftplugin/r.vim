@@ -5,12 +5,13 @@
 
 " Nvim-R
 let R_assign = 0
-let R_disable_cmds = [ "RSendLine" ]
+" let R_disable_cmds = [ "RSendLine" ]
 
 " Settings:
 packadd matchit
 setlocal winminwidth=1
 setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
+setlocal foldmethod=marker
 let b:match_words  = '\<tic\>:\<toc\>'
 let b:surround_116 = "tic()\rtoc()"
 let b:surround_84  = "timer$tic()\rtimer$toc()"
@@ -19,6 +20,7 @@ let b:r_pipe_type  = "|>"
 command! -buffer -nargs=0 LastMod    :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)
 command! -buffer -nargs=0 PipeSwitch :let b:r_pipe_type = b:r_pipe_type=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' . b:r_pipe_type
 command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
+command! -buffer -nargs=0 FindSection   :call r#FindSection()
 
 " Snippets:
 inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("r","sign.R",1,1,0)<CR>
@@ -40,7 +42,7 @@ nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/ftplugin/r.vim<CR>
 nnoremap <buffer><silent> <F2>       :tabnew ~/.config/nvim/after/syntax/r.vim<CR>
 inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
 inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>
-inoremap <buffer><silent> {<CR>      <Esc>:call r#CurlyExpand()<CR>
+inoremap <buffer><silent> {<CR>      <C-R>=getline(".")[col(".")-1]=="" ? "{\r}\e\<S-O>" : "{\r"<CR>
 nnoremap <buffer><silent> <leader>;  :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
 inoremap <buffer><silent> %<Tab>     %%<Left>
 inoremap <buffer><silent> ^<Tab>     ^()<Left>

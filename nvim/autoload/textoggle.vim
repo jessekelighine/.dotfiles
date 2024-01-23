@@ -11,6 +11,8 @@ let g:textoggle_dict = {
 			\ 'tex':    { 'display':'Plain Tex',      'status':0, 'syntax':'plaintex.vim',  'plugin':''              },
 			\ 'tikz':   { 'display':'TikZ',           'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
 			\ 'acr':    { 'display':'Acronym',        'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
+			\ 'verb':   { 'display':'Verbatim',       'status':0, 'syntax':'verbatim.vim',  'plugin':''              },
+			\ 'alg':    { 'display':'Algorithm',      'status':0, 'syntax':'algorithm.vim', 'plugin':''              },
 			\ }
 
 " Reload the toggle dictionary. Helper function for textoggle#Reload().

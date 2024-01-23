@@ -3,8 +3,8 @@
 " Send "a:text" to a tmux pane.
 function! vimslime#Send(text, return=0) abort
 	if vimslime#Target()=="" | call vimslime#SetTarget() | end
-	let l:cmd = "'" . substitute(a:text, "'", "'\\\\''", 'g') . ( a:return ? "\n" : "" ) . "'"
-	echo system("tmux send-keys -t ".g:vimslime_target." ".l:cmd)
+	let l:command = "'" .. substitute(a:text, "'", "'\\\\''", 'g') .. ( a:return ? "\n" : "" ) .. "'"
+	echo system("tmux send-keys -t " .. g:vimslime_target .. " " .. l:command)
 endfunction
 
 " Get the vimslime target if it exists.
@@ -14,7 +14,7 @@ endfunction
 
 " Figure out which tmux pane to send the text to.
 function! vimslime#SetTarget(target='') abort
-	let g:vimslime_target = a:target!='' ? a:target : input("session:window.pane> ","","custom,vimslime#PaneNames")
+	let g:vimslime_target = a:target != "" ? a:target : input("session:window.pane> ","","custom,vimslime#PaneNames")
 endfunction
 
 " Remove variabel g:vimslime_target

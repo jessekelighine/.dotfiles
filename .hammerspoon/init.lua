@@ -13,6 +13,10 @@ hs.hotkey.bindSpec({ HYPER, "p" }, function () hs.application.open("Preview")   
 hs.hotkey.bindSpec({ HYPER, "s" }, function () hs.application.open("Skim")       end)
 hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")    end)
 
+-- Eject ----------------------------------------------------------------------
+
+hs.hotkey.bindSpec({ HYPER, "e" }, function () resp = hs.execute("eject-auto", true); print(resp) end)
+
 -- Bluetooth ------------------------------------------------------------------
 
 blueutil         = "/usr/local/bin/blueutil"
@@ -29,9 +33,10 @@ known_networks = {
 	["cos"]             = "0906802822", -- Room 645
 	["RickyWramLin_5G"] = "room656656", -- Room 656
 }
+
 hs.hotkey.bindSpec({ HYPER_S, "w" }, function () hs.wifi.setPower(false, wifi_interface) end)
 hs.hotkey.bindSpec({ HYPER,   "w" }, function ()
-	hs.wifi.setPower(true, wifi_interface)
+	hs.wifi.setPower(true,  wifi_interface)
 	local available_networks = hs.wifi.availableNetworks(wifi_interface)
 	for network, password in pairs(known_networks) do
 		print("Checking if", network, "is available...")

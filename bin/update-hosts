@@ -3,15 +3,15 @@
 set -e
 
 message () {
-	local head;     head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
-	local pid;      pid=$!
-	local delay;    delay=0.12
+	local head; head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
+	local pid; pid=$!
+	local delay; delay=0.12
 	local symb_succ; symb_succ="$(tput setaf 10)OK$(tput sgr0)"
 	local symb_fail; symb_fail="$(tput setaf 9 )NO$(tput sgr0)"
 	local symbols1; symbols1='.o08o.  '
 	local symbols2; symbols2='   o08o.'
-	local symb_len; symb_len="8"
-	local i;        i=0
+	local symb_len; symb_len=${#symbols2}
+	local i; i=0
 	while kill -0 $pid 2> /dev/null
 	do
 		i=$(( ( i + 1 ) % symb_len ))
@@ -29,14 +29,24 @@ message () {
 	printf "\r[ $symb_fin ] $head\n"
 }
 
-### MAIN ######################################################################
+### Variables #################################################################
 
 hosts_site='https://someonewhocares.org/hosts/zero/hosts'
-temp_prefix="$HOME/Desktop/.temp-$(date +'%Y%m%d%H%M%S')-update-hosts"
 hosts_original="/etc/hosts"
-hosts_temp="$temp_prefix-hosts"
-hosts_zero="$temp_prefix-hosts-zero"
-hosts_final="$temp_prefix-hosts-final"
+ad_block='### AD-BLOCK'
+hosts_temp="$(mktemp -t "update-hosts")"
+hosts_zero="$(mktemp -t "update-hosts")"
+hosts_final="$(mktemp -t "update-hosts")"
+
+clean_up () {
+	rm -rf "${hosts_temp}"
+	rm -rf "${hosts_zero}"
+	message "clean-up finished"
+}
+
+trap clean_up EXIT SIGINT
+
+### Main ######################################################################
 
 ## Run as root
 [[ $(id -u) != 0 ]] && {
@@ -44,11 +54,11 @@ hosts_final="$temp_prefix-hosts-final"
 	exit 1
 }
 
-## Check if "### AD-BLOCK" line is present in "/etc/hosts".
-grep -q "### AD-BLOCK" "$hosts_original"
+## Check if "Ad-block" line is present in "/etc/hosts".
+grep -q "${ad_block}" "$hosts_original"
 [[ $? -ne 0 ]] && {
-	message "puting '### AD-BLOCK' line in '$hosts_original'..."
-	printf "\n\n### AD-BLOCK" | sudo tee -a "$hosts_original"
+	message "puting '${ad_block}' line in '$hosts_original'..."
+	printf "\n\n${ad_block}" | sudo tee -a "$hosts_original"
 }
 
 ## Get ad-block file
@@ -56,21 +66,18 @@ curl -s "$hosts_site" > "$hosts_zero" & message "downloading hosts file"
 
 ## Split original hosts file
 cp "$hosts_original" "$hosts_temp"
-csplit -s -n 1 -f "$temp_prefix-split-" -k "$hosts_temp" "/^### AD-BLOCK/"
+printf "/^${ad_block}\n.,\$d\nwq\n" | ed -s "$hosts_temp" 1> /dev/null
 
 ## Construct new hosts file
 {
-	cat "$temp_prefix-split-0"
-	printf "### AD-BLOCK ( $(date +'%F %X') )\n\n"
+	cat "$hosts_temp"
+	printf "${ad_block} ( $(date +'%F %X') )\n\n"
 	cat "$hosts_zero"
 } > "$hosts_final"
 
 ## Move new hosts file to location
 mv "$hosts_final" "$hosts_original"
 chmod 644 "$hosts_original"
-
-## Remove all side products
-rm -rf "$temp_prefix"*
 
 message "hosts updated"
 exit 0

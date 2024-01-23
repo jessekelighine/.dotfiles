@@ -52,3 +52,6 @@
 [submodule "nvim/pack/lang/start/vim-bunttex"]
 	path = nvim/pack/lang/start/vim-bunttex
 	url = https://github.com/jessekelighine/vim-bunttex
+[submodule "nvim/pack/main/start/indent-blankline.nvim"]
+	path = nvim/pack/main/start/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim
