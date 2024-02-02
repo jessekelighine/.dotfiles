@@ -1,0 +1,38 @@
+# Comments and blank lines are allowed.
+
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+\.gitmodules
+\.github-recovery-codes.txt.enc
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+\.dotfiles-install.sh
+\.dotfiles-update.sh
+
+\.music.sh
+
+Brewfile
+Makefile
+
+archive
+del
+ffmpeg
+whenever
+youtube-dl

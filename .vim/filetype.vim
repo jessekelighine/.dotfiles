@@ -1,1 +1,1 @@
-../nvim/filetype.vim
+../.config/nvim/filetype.vim
