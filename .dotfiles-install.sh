@@ -20,6 +20,10 @@
 
 ### Create Symlinks ###########################################################
 
+shell=$(echo $SHELL | xargs basename)
+[[ $shell -eq "zsh"  ]] && ln -s .config/zsh/.zshrc   .
+[[ $shell -eq "bash" ]] && ln -s .config/bash/.bashrc .
+
 stow .
 
 exit 0

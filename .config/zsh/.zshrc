@@ -68,6 +68,7 @@ alias ':wq'='cowsay "You are not in Vim!"'
 [[ -d "$HOME/.config/zsh"      ]] && source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [[ -d "$HOME/.config/zsh"      ]] && source "$HOME/.config/zsh/up.sh"
 [[ -f "$HOME/.config/.fzf.zsh" ]] && source "$HOME/.config/.fzf.zsh"
+
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --extended'
 export BC_ENV_ARGS="$HOME/.config/.bc"
@@ -82,17 +83,15 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # encrypt-old () { openssl enc -aes-256-cbc -a -md md5 -salt -e -in "$1" } # -out "$2"
 # decrypt-old () { openssl enc -aes-256-cbc -a -md md5 -salt -d -in "$1" } # -out "$2"
 
-timeout () { perl -e 'alarm shift; exec @ARGV' "$@" }
+encrypt () { openssl aes-256-cbc -a -salt -pbkdf2 -in "$1" ; } # -out "$2"
+decrypt () { openssl aes-256-cbc -d -a    -pbkdf2 -in "$1" ; } # -out "$2"
 
-encrypt () { openssl aes-256-cbc -a -salt -pbkdf2 -in "$1" } # -out "$2"
-decrypt () { openssl aes-256-cbc -d -a    -pbkdf2 -in "$1" } # -out "$2"
-
-R-mean  () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); mean(x)' }
-R-sd    () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);   sd(x)' }
+R-mean  () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); mean(x)' ; }
+R-sd    () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);   sd(x)' ; }
 
 MY_RECOGNIZED_DISKS=("SCHWARZ" "LANG" "Kindle" "KURZ" "FOTO")
 eject-auto () {
-	[[ $# -ne 0 ]] && { diskutil eject "$1" && return 0 || return 1 }
+	[[ $# -ne 0 ]] && { diskutil eject "$1" && return 0 || return 1 ; }
 	for disk in "${MY_RECOGNIZED_DISKS[@]}"
 	do
 		[[ ! -d "/Volumes/${disk}" ]] && continue
@@ -104,7 +103,7 @@ eject-auto () {
 	return 1
 }
 volume-auto () {
-	[[ $# -ne 0 ]] && { cd "/Volumes/$1" && return 0 || return 1 }
+	[[ $# -ne 0 ]] && { cd "/Volumes/$1" && return 0 || return 1 ; }
 	for disk in "${MY_RECOGNIZED_DISKS[@]}"
 	do cd "/Volumes/${disk}" 2>/dev/null && return 0
 	done
@@ -113,10 +112,10 @@ volume-auto () {
 }
 
 SPIEL_LOCATION="$HOME/.dotfiles/.music.sh"
-spiel           () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop "$1" }
-spiel-mono      () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" }
-spielliste      () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video "$1" }
-spielliste-mono () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --audio-channels=mono "$1" }
+spiel           () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop "$1" ; }
+spiel-mono      () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop --audio-channels=mono "$1" ; }
+spielliste      () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video "$1" ; }
+spielliste-mono () { echo "$0 $@" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --audio-channels=mono "$1" ; }
 
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
