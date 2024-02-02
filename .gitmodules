@@ -1,57 +1,57 @@
-[submodule "zsh/zsh-syntax-highlighting"]
-	path = zsh/zsh-syntax-highlighting
+[submodule ".config/zsh/zsh-syntax-highlighting"]
+	path = .config/zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "zsh/zsh-autosuggestions"]
-	path = zsh/zsh-autosuggestions
+[submodule ".config/zsh/zsh-autosuggestions"]
+	path = .config/zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "nvim/pack/main/start/vindent.vim"]
-	path = nvim/pack/main/start/vindent.vim
+[submodule ".config/nvim/pack/main/start/vindent.vim"]
+	path = .config/nvim/pack/main/start/vindent.vim
 	url = https://github.com/jessekelighine/vindent.vim
-[submodule "nvim/pack/main/start/vim-surround"]
-	path = nvim/pack/main/start/vim-surround
+[submodule ".config/nvim/pack/main/start/vim-surround"]
+	path = .config/nvim/pack/main/start/vim-surround
 	url = https://github.com/tpope/vim-surround
-[submodule "nvim/pack/main/start/vim-commentary"]
-	path = nvim/pack/main/start/vim-commentary
+[submodule ".config/nvim/pack/main/start/vim-commentary"]
+	path = .config/nvim/pack/main/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule "nvim/pack/main/start/vim-repeat"]
-	path = nvim/pack/main/start/vim-repeat
+[submodule ".config/nvim/pack/main/start/vim-repeat"]
+	path = .config/nvim/pack/main/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "nvim/pack/main/start/vim-easy-align"]
-	path = nvim/pack/main/start/vim-easy-align
+[submodule ".config/nvim/pack/main/start/vim-easy-align"]
+	path = .config/nvim/pack/main/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
-[submodule "nvim/pack/main/start/undotree"]
-	path = nvim/pack/main/start/undotree
+[submodule ".config/nvim/pack/main/start/undotree"]
+	path = .config/nvim/pack/main/start/undotree
 	url = https://github.com/mbbill/undotree
-[submodule "nvim/pack/main/start/Nvim-R"]
-	path = nvim/pack/main/start/Nvim-R
+[submodule ".config/nvim/pack/main/start/Nvim-R"]
+	path = .config/nvim/pack/main/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R
-[submodule "nvim/pack/main/opt/goyo.vim"]
-	path = nvim/pack/main/opt/goyo.vim
+[submodule ".config/nvim/pack/main/opt/goyo.vim"]
+	path = .config/nvim/pack/main/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim
-[submodule "nvim/pack/main/start/vim-vinegar"]
-	path = nvim/pack/main/start/vim-vinegar
+[submodule ".config/nvim/pack/main/start/vim-vinegar"]
+	path = .config/nvim/pack/main/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar
+[submodule ".config/nvim/pack/main/start/vim-peekaboo"]
+	path = .config/nvim/pack/main/start/vim-peekaboo
+	url = https://github.com/jessekelighine/vim-peekaboo
+[submodule ".config/nvim/pack/color/start/miramare"]
+	path = .config/nvim/pack/color/start/miramare
+	url = https://github.com/jessekelighine/miramare
+[submodule ".config/nvim/pack/main/start/fzf.vim"]
+	path = .config/nvim/pack/main/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule ".config/nvim/pack/main/start/nvim-treesitter"]
+	path = .config/nvim/pack/main/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule ".config/nvim/pack/lang/start/vim-bunttex"]
+	path = .config/nvim/pack/lang/start/vim-bunttex
+	url = https://github.com/jessekelighine/vim-bunttex
+[submodule ".config/nvim/pack/main/start/indent-blankline.nvim"]
+	path = .config/nvim/pack/main/start/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim
 [submodule "del"]
 	path = del
 	url = https://github.com/jessekelighine/del
-[submodule "nvim/pack/main/start/vim-peekaboo"]
-	path = nvim/pack/main/start/vim-peekaboo
-	url = https://github.com/jessekelighine/vim-peekaboo
-[submodule "nvim/pack/color/start/miramare"]
-	path = nvim/pack/color/start/miramare
-	url = https://github.com/jessekelighine/miramare
-[submodule "nvim/pack/main/start/fzf.vim"]
-	path = nvim/pack/main/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
-[submodule "nvim/pack/main/start/nvim-treesitter"]
-	path = nvim/pack/main/start/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter
 [submodule "whenever"]
 	path = whenever
 	url = https://github.com/jessekelighine/whenever
-[submodule "nvim/pack/lang/start/vim-bunttex"]
-	path = nvim/pack/lang/start/vim-bunttex
-	url = https://github.com/jessekelighine/vim-bunttex
-[submodule "nvim/pack/main/start/indent-blankline.nvim"]
-	path = nvim/pack/main/start/indent-blankline.nvim
-	url = https://github.com/lukas-reineke/indent-blankline.nvim

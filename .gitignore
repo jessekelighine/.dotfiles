@@ -1,30 +1,29 @@
 .DS_Store
 
-zsh/.zsh_history
-zsh/zsh_history
-zsh/.zsh_sessions/*
-zsh/zsh_sessions/*
-zsh/.zcompdump
-zsh/.zcompcache
+.config/zsh/.zsh_history
+.config/zsh/zsh_history
+.config/zsh/.zsh_sessions/*
+.config/zsh/zsh_sessions/*
+.config/zsh/.zcompdump
+.config/zsh/.zcompcache
 
-bash/.bash_history
+.config/bash/.bash_history
 
 .vim/swap/*
 .vim/undodir/*
+.config/nvim/undodir/*
+.config/nvim/spell/*.spl
 
-b2/file-with-key-id.txt
-b2/file-with-key.txt
-b2/.b2_account_info
+.config/b2/file-with-key-id.txt
+.config/b2/file-with-key.txt
+.config/b2/.b2_account_info
 
 .gnupg/*
 .password-store/*
 .github-recovery-codes.txt.enc
 
-nvim/undodir/*
-nvim/spell/*.spl
-
-.fzf.bash
-.fzf.zsh
+.config/.fzf.bash
+.config/.fzf.zsh
 .ssh/*
 
 */.netrwhist
