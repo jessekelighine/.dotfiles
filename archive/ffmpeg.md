@@ -1,7 +1,7 @@
 ---
 title:  "ffmeg notes"
 author: "jessekelighine@gmail.com"
-date:   "2023-05-26"
+date:   "2024-02-02"
 ---
 
 # trim mp3

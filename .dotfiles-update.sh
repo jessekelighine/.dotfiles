@@ -25,5 +25,5 @@ brew bundle dump --force
 
 ### Date and Git Add ##########################################################
 
-printf "/date:\ns/\".*\"/\"%s\"/\np\nwq\n" "$(date +%F)" | ed -s README.md
+# printf "/date:\ns/\".*\"/\"%s\"/\np\nwq\n" "$(date +%F)" | ed -s README.md
 git add .

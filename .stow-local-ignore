@@ -33,6 +33,4 @@ Makefile
 
 archive
 del
-ffmpeg
 whenever
-youtube-dl

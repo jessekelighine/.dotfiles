@@ -13,6 +13,7 @@ export MAILCHECK=0
 # export LANG=C
 # export LC_ALL=C
 export PATH="$HOME/.local/bin:$PATH"
+export SHELL_SESSIONS_DISABLE=1
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export LSCOLORS='exfxcxdxbxegedabagacad'

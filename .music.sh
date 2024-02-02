@@ -43,5 +43,3 @@ spielliste 'https://youtu.be/wsDOo9gQcQU?si=mBV5dvzt0mJLKLz9' # German Playlist 
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ&si=p5LfJmQKS9egd6gL' # Paramore
 
 ### Logs ######################################################################
-
-spiel https://www.youtube.com/watch?v=VEe_yIbW64w # 松原みき - 真夜中のドア - Stay with Me

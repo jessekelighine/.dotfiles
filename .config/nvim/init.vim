@@ -59,9 +59,9 @@ packloadall
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
-nnoremap <Space> <Nop>
 nnoremap <expr> n 'Nn'[v:searchforward]
 nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <Space> <Nop>
 xnoremap ''     "*y
 nnoremap ''     "*y
 onoremap ''     "*y

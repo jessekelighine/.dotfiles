@@ -14,7 +14,7 @@ function! my#GetSnippets(type, name, indent=1, delete_begin=1, cursor_begin=1)
 endfunction
 
 function! my#GetAuthor()
- 	let l:path = $HOME .. "/.dotfiles/nvim/snippets/email"
+ 	let l:path = $HOME .. "/.config/nvim/snippets/email"
 	return readfile(l:path)[0]
 endfunction
 

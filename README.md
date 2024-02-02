@@ -1,12 +1,10 @@
 ---
 title:  ".dotfiles"
-author: "jessekelighine@gmail.com"
-date:   "2024-01-01"
+author: "jcc@jessekelighine.com"
 ---
-
-Dependencies:
-	- `git`
-	- `stow`
 
 - update:  `make update`
 - install: `make install`
+- dependencies:
+	- `git`
+	- `stow`
