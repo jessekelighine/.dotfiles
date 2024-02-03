@@ -17,9 +17,15 @@ make install
 cd ~/.dotfiles
 make update
 ```
+## Uninstall
+
+```sh
+cd ~/.dotfiles
+make uninstall
+```
 
 ## Dependencies
 
 - `git`
-- `stow`
+- `stow`: If `stow` is not available, symlinking directly will be performed.
 - `make`

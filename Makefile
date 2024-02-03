@@ -8,7 +8,7 @@
 
 .PHONY: all
 all:
-	# Use `make update` or `make install`
+	# Use `make update`, `make install`, or `make uninstall`
 
 .PHONY: update
 update:
@@ -17,3 +17,7 @@ update:
 .PHONY: install
 install:
 	./.dotfiles-install.sh
+
+.PHONY: uninstall
+uninstall:
+	./.dotfiles-uninstall.sh

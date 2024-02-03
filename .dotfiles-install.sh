@@ -14,7 +14,7 @@
 # - [Okular](https://invent.kde.org/packaging/homebrew-kde/)
 # - [Backblaze](https://www.backblaze.com/cloud-backup.html)
 # - Firefox Add-ons:
-#     - Adblock Plus - free ad blocker
+#     - Adblock Plus
 #     - Behind The Overlay
 #     - Bypass Paywalls
 #     - Markdown Viewer
@@ -26,39 +26,24 @@ current_shell=$(echo $SHELL | xargs basename)
 [[ $current_shell == "zsh"  && ! -f .zshrc  ]] && ln -s .config/zsh/.zshrc   .
 [[ $current_shell == "bash" && ! -f .bashrc ]] && ln -s .config/bash/.bashrc .
 
-stow . && printf "$0: installed with 'stow'\n" && exit 0
-read -p "$0: symlink directly?  [Yn] " -n 1
-[[ ! $REPLY =~ ^[yY]$ ]] && printf "\n$0: aborted\n" && exit 0
+stow . && {
+	printf "$0: installed with 'stow'\n"
+	exit 0
+}
 
-dot_locale=$(pwd)
-[ -f .zshrc  ] && ln -s "${dot_locale}/.zshrc"  "$HOME/.zshrc"
-[ -f .bashrc ] && ln -s "${dot_locale}/.bashrc" "$HOME/.bashrc"
-ln -s "${dot_locale}/.R"                "$HOME/.R"
-ln -s "${dot_locale}/.latexmkrc"        "$HOME/.latexmkrc"
-ln -s "${dot_locale}/.gitconfig"        "$HOME/.gitconfig"
-ln -s "${dot_locale}/.gnupg"            "$HOME/.gnupg"
-ln -s "${dot_locale}/.password-store"   "$HOME/.password-store"
-ln -s "${dot_locale}/.vim"              "$HOME/.vim"
-ln -s "${dot_locale}/.ssh"              "$HOME/.ssh"
-ln -s "${dot_locale}/.screenrc"         "$HOME/.screenrc"
-ln -s "${dot_locale}/.hammerspoon"      "$HOME/.hammerspoon"
-ln -s "${dot_locale}/.local/bin"        "$HOME/.local/bin"
-ln -s "${dot_locale}/.config/alacritty" "$HOME/.config/alacritty"
-ln -s "${dot_locale}/.config/b2"        "$HOME/.config/b2"
-ln -s "${dot_locale}/.config/iterm2"    "$HOME/.config/iterm2"
-ln -s "${dot_locale}/.config/mpv"       "$HOME/.config/mpv"
-ln -s "${dot_locale}/.config/nvim"      "$HOME/.config/nvim"
-ln -s "${dot_locale}/.config/octave"    "$HOME/.config/octave"
-ln -s "${dot_locale}/.config/sc-im"     "$HOME/.config/sc-im"
-ln -s "${dot_locale}/.config/skim"      "$HOME/.config/skim"
-ln -s "${dot_locale}/.config/tmux"      "$HOME/.config/tmux"
-ln -s "${dot_locale}/.config/zathura"   "$HOME/.config/zathura"
-ln -s "${dot_locale}/.config/zsh"       "$HOME/.config/zsh"
-ln -s "${dot_locale}/.config/.fzf.zsh"  "$HOME/.config/.fzf.zsh"
-ln -s "${dot_locale}/.config/.fzf.bash" "$HOME/.config/.fzf.bash"
-ln -s "${dot_locale}/.config/.bc"       "$HOME/.config/.bc"
+read -p "$0: symlink directly?  [Yn] " -n 1 && printf "\n"
+[[ ! $REPLY =~ ^[yY]$ ]] && printf "$0: aborted\n" && exit 0
 
-printf "\n$0: linked\n"
+dotlocale=$(pwd)
+readarray -t files_to_link < "$dotlocale/.dotfiles-files"
+for item in "${files_to_link[@]}"
+do [ -e "$dotlocale/$item" ] && {
+	printf "$0: linking $dotlocale/$item\n"
+	ln -s "$dotlocale/$item" "$HOME/$item"
+}
+done
+
+printf "$0: linked\n"
 exit 0
 
 ### fzf key-bindings ##########################################################

@@ -4,8 +4,7 @@
 \.gitignore
 \.gitmodules
 \.github-recovery-codes.txt.enc
-\.dotfiles-install.sh
-\.dotfiles-update.sh
+\.dotfiles-.*
 \.music.sh
 README.md
 Brewfile
