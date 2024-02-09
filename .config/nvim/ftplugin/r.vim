@@ -42,8 +42,6 @@ nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/ftplugin/r.vim<CR>
 nnoremap <buffer><silent> <F2>       :tabnew ~/.config/nvim/after/syntax/r.vim<CR>
 inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
 inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>
-inoremap <buffer><silent> {<CR>      <C-R>=getline(".")[col(".")-1]=="" ? "{\r}\e\<S-O>" : "{\r"<CR>
-inoremap <buffer><silent> (<CR>      <C-R>=getline(".")[col(".")-1]=="" ? "(\r)\e\<S-O>" : "(\r"<CR>
 nnoremap <buffer><silent> <leader>;  :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
 inoremap <buffer><silent> %<Tab>     %%<Left>
 inoremap <buffer><silent> ^<Tab>     ^()<Left>

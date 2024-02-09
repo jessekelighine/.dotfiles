@@ -22,7 +22,9 @@ endfunction
 
 " source a local vimrc file if exists.
 function! my#LocalVimrc(filename=".vimrc")
-	if filereadable(a:filename) | call execute("source .vimrc") | endif
+	if filereadable(a:filename)
+		call execute("source " .. a:filename)
+	endif
 endfunction
 
 " remove trailing white spaces.

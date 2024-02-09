@@ -13,10 +13,10 @@ message () {
 	cat << EOF
 ${usage} ${command} [options]
 ${options}
-	set      <VALUE>   set opacity value
+	set      [VALUE]   set opacity value 
 	increase [VALUE]   increase opacity value
 	decrease [VALUE]   decrease opacity value
-	value              print opacity value
+	value              print opacity value (current: $original)
 EOF
 }
 
@@ -36,13 +36,13 @@ pattern="^$1"
 	exit 0
 }
 
-[[ "increase" =~ $pattern ]] && {
+[[ "decrease" =~ $pattern ]] && {
 	[[ -n "$2" ]] && increment="$2"
 	modify $(bc <<< "x=$original+${increment:-0.1};if(x>1)x=1;x" | xargs printf "%1.2f")
 	exit 0
 }
 
-[[ "decrease" =~ $pattern ]] && {
+[[ "increase" =~ $pattern ]] && {
 	[[ -n "$2" ]] && increment="$2"
 	modify $(bc <<< "x=$original-${increment:-0.1};if(x<0)x=0;x" | xargs printf "%1.2f")
 	exit 0

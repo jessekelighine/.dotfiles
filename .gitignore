@@ -13,7 +13,8 @@
 .config/bash/.bash_history
 .config/nvim/undodir/*
 .config/nvim/spell/*.spl
-.config/.fzf.*
+.fzf.bash
+.fzf.zsh
 .vim/swap/*
 .vim/undodir/*
 .ssh/*

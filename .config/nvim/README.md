@@ -126,3 +126,8 @@ nnoremap <leader>gt :Git checkout<space>
 
 Netrw for some reason fails to follow symlinks in tree mode.
 To follow symlinks, change listing style with `i` and then open symlink.
+
+# Spell
+
+Use `:mkspell! %` in each `.add` file in directory `spell` after a fresh install.
+This will generate the vim-binaries according to `.add` that `:spell` will respect.

@@ -12,7 +12,7 @@ library(readr)
 library(stringr)
 ############################################################################### 
 
-help <- function( message=NULL ) {
+help <- function ( message=NULL ) {
   if ( !is.null(message) ) cat("ERROR:", message, fill=TRUE)
   cat("usage: xlsx2csv [filename]", fill=TRUE)
   quit()

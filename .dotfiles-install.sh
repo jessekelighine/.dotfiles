@@ -23,8 +23,8 @@
 ### Create Symlinks ###########################################################
 
 current_shell=$(echo $SHELL | xargs basename)
-[[ $current_shell == "zsh"  && ! -f .zshrc  ]] && ln -s .config/zsh/.zshrc   .
-[[ $current_shell == "bash" && ! -f .bashrc ]] && ln -s .config/bash/.bashrc .
+[[ $current_shell == zsh  && ! -f .zshrc  ]] && ln -s .config/zsh/.zshrc   .
+[[ $current_shell == bash && ! -f .bashrc ]] && ln -s .config/bash/.bashrc .
 
 stow . && {
 	printf "$0: installed with 'stow'\n"
@@ -49,8 +49,8 @@ exit 0
 ### fzf key-bindings ##########################################################
 
 $(brew --prefix)/opt/fzf/install
-mv "$HOME/.fzf.bash" "$HOME/.config/.fzf.bash"
-mv "$HOME/.fzf.zsh"  "$HOME/.config/.fzf.zsh"
+mv "$HOME/.fzf.bash" "$HOME/.config/bash/.fzf.bash"
+mv "$HOME/.fzf.zsh"  "$HOME/.config/zsh/.fzf.zsh"
 
 ### Homebrew ##################################################################
 
