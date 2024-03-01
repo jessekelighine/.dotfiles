@@ -46,7 +46,7 @@ eject-auto () {
 
 ### Spiel #####################################################################
 
-SPIEL_LOCATION="$HOME/.dotfiles/music.sh"
+SPIEL_LOCATION="$HOME/.dotfiles/others/music.sh"
 spiel           () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop "$1"; }
 spiel-mono      () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop --audio-channels=mono "$1"; }
 spielliste      () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video "$1"; }

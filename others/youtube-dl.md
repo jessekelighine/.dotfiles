@@ -1,6 +1,6 @@
 ---
 title:  "youtube-dl: notes"
-author: "jessekelighine@gmail.com"
+author: "jessekelighine.com"
 date:   "2021-Aug-04"
 ---
 

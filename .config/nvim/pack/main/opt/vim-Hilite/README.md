@@ -1,7 +1,7 @@
 ---
 title:  "vim-Hilite"
-author: "jessekelighine@gmail.com"
-date:   "2022-Apr-18"
+author: "jessekelighine.com"
+date:   "2022-04-18"
 ---
 
 # vim-Hilite

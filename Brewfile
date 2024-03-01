@@ -101,4 +101,3 @@ cask "tor-browser"
 cask "vnc-viewer"
 mas "Adblock Plus", id: 1432731683
 mas "LINE", id: 539883307
-mas "The Unarchiver", id: 425424353

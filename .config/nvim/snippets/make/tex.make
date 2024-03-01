@@ -22,7 +22,7 @@ $(NAME).pdf: $(MAIN).pdf
 
 $(MAIN).pdf: $(MAIN).tex .runcode
 	# grep -o '.' $(MAIN).tex | rg '[^\x00-\x7F]' | wc -l | xargs echo "Chinese Word Count:"
-	latexmk -xelatex $(MAIN).tex
+	latexmk -xelatex -synctex=1 $(MAIN).tex
 
 .runcode: code
 	cd bin ; Rscript $(<F) ; cd ..

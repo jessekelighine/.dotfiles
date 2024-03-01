@@ -15,6 +15,7 @@ call textoggle#Set('beamer', 1)
 call textoggle#Set('acr',    1)
 call textoggle#Reload()
 
+Spell 1
 ConcealToggle 2
 nnoremap <buffer> <leader>p :! open %:r.pdf<CR><CR>
 nnoremap <buffer> <F5> :call tex#Compile("make",'jobstart')<CR>

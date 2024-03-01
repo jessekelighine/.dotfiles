@@ -1,7 +1,7 @@
 ---
 title:  "CSV Plug-in: Documentation"
-author: "jessekelighine@gmail.com"
-date:   "2021-Aug-17"
+author: "jessekelighine.com"
+date:   "2021-08-17"
 ---
 
 # Introduction

@@ -1,6 +1,6 @@
 ---
 title: "Tmux Notes"
-author: "jcc@jessekelighine.com"
+author: "jessekelighine.com"
 date: "2024-01-01"
 ---
 

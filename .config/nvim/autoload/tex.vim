@@ -1,5 +1,21 @@
 " ~/.config/nvim/autoload/tex.vim
 
+" SyncTeX: Backwards setup
+function! tex#ServerSetup()
+	let g:tex_server_file = "~/.config/nvim/snippets/tex/.tex-server"
+	call system("echo " .. v:servername .. " > " .. g:tex_server_file)
+	echom " Server Saved: " .. v:servername
+endfunction
+
+" SyncTeX: Forwards function
+function! tex#SkimForward()
+	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+	let l:pdf_file = expand("%<") .. ".pdf"
+	let l:command = join([l:utility, line('.'), l:pdf_file], ' ')
+	silent call tex#ServerSetup()
+	silent call system(l:command)
+endfunction
+
 " Toggle Conceal Level
 if !exists("g:tex_conceal_level") | let g:tex_conceal_level=0 | endif
 function! tex#ConcealToggle(level=-1) abort
@@ -22,7 +38,7 @@ function! tex#FindSection() abort
 	global/^\\\(\(sub\)\{0,2}section\|\(sub\)\?paragraph\|chapter\|appendix\)/
 				\ if match(getline("."), '^\\appendix') >= 0 |
 				\ let l:display_name = "[Appendix]" |
-				\ else | execute 'norm! "9yi{' | let l:section_name = @9 |
+				\ else | let @9 = @" | execute 'norm! yi{' | let l:section_name = @" | let @" = @9 |
 				\ let l:display_name = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 20) .. l:section_name
 				\                    : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 16) .. l:section_name
 				\                    : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 12) .. l:section_name
@@ -60,8 +76,15 @@ function! tex#OpenTmux(command="") abort
 	call vimslime#Send(a:command, 1)
 	augroup TexOpenTmux
 		autocmd!
-		autocmd VimLeave * exe vimslime#Target()=="" ? "" : 'call vimslime#Send("\<C-C>exit",1)'
+		autocmd VimLeave * exe vimslime#Target()=="" ? "" : 'call tex#CloseTmux()'
 	augroup END
+endfunction
+
+" Close Tmux pane
+function! tex#CloseTmux()
+	packadd! vim-slime
+	call vimslime#Send(repeat("\<C-C>", 10) .. "exit", 1)
+	call vimslime#UnsetTarget()
 endfunction
 
 " insert empty environment.
@@ -76,23 +99,23 @@ endfunction
 
 " creates quote object in latex.
 function! tex#Quotes(code, double) abort
-	let [ l:begin , l:end ] = [ repeat("`",(a:double?2:1)) , repeat("'",(a:double?2:1)) ]
-	call search(l:begin,"bcW") | exec "norm " .. repeat('l',(a:double?2:1))
-	if a:code=="i"                                 | call search(l:end, "sW") | exec "norm hv`'" | endif
-	if a:code=="a" &&  a:double | exec "norm 2h"   | call search(l:end,"seW") | exec "norm v`'"  | endif
-	if a:code=="q" &&  a:double | exec "norm hvhx" | call search(l:end,"seW") | exec "norm vh"   | endif
-	if a:code=="a" && !a:double | exec "norm 1h"   | call search(l:end,"seW") | exec "norm v`'"  | endif
-	if a:code=="q" && !a:double | exec "norm hvx"  | call search(l:end,"seW") | exec "norm v"    | endif
+	let [ l:begin, l:end ] = [ repeat("`", ( a:double ? 2 : 1 )), repeat("'", ( a:double ? 2 : 1 )) ]
+	call search(l:begin, "bcW") | exec "norm " .. repeat('l', ( a:double ? 2 : 1 ))
+	if a:code=="i"                                 | call search(l:end,  "sW") | exec "norm hv`'" | endif
+	if a:code=="a" &&  a:double | exec "norm 2h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
+	if a:code=="q" &&  a:double | exec "norm hvhx" | call search(l:end, "seW") | exec "norm vh"   | endif
+	if a:code=="a" && !a:double | exec "norm 1h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
+	if a:code=="q" && !a:double | exec "norm hvx"  | call search(l:end, "seW") | exec "norm v"    | endif
 endfunction
 
 " replace the environment name on that line.
 function! <SID>EnvironmentReplace(change)
-	call execute( 's/\V\\\(begin\|end\){\.\{-}}/\\\1{' . a:change . '}/' )
+	call execute( 's/\V\\\(begin\|end\){\.\{-}}/\\\1{' .. a:change .. '}/' )
 endfunction
 
 " get the environment name. Helper function for tex#EnvironmentStar().
 function! <SID>EnvironmentGet()
-	return matchstr(getline('.'),'^\s*\\\(begin\|end\){\zs.\{-}\ze}')
+	return matchstr(getline('.'), '^\s*\\\(begin\|end\){\zs.\{-}\ze}')
 endfunction
 
 " change a tex environment.
@@ -117,9 +140,9 @@ function! tex#EnvironmentDelete()
 	let l:pos2 = getpos('.')
 	let l:pos  = l:pos1
 	if l:pos1[1] > l:pos2[1] | let [l:pos1,l:pos2] = [l:pos2,l:pos1] | endif
-	call setpos('.',l:pos2) | delete
-	call setpos('.',l:pos1) | delete
+	call setpos('.', l:pos2) | delete
+	call setpos('.', l:pos1) | delete
 	let l:pos2[1] = l:pos2[1] - 2
-	exec "norm \<S-V>".( l:pos2[1] - l:pos1[1] ).'j='
-	call setpos('.',l:pos)
+	exec "norm \<S-V>" .. ( l:pos2[1] - l:pos1[1] ) .. 'j='
+	call setpos('.', l:pos)
 endfunction

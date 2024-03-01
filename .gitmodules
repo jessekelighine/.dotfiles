@@ -25,9 +25,6 @@
 [submodule ".config/nvim/pack/main/start/Nvim-R"]
 	path = .config/nvim/pack/main/start/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R
-[submodule ".config/nvim/pack/main/opt/goyo.vim"]
-	path = .config/nvim/pack/main/opt/goyo.vim
-	url = https://github.com/junegunn/goyo.vim
 [submodule ".config/nvim/pack/main/start/vim-vinegar"]
 	path = .config/nvim/pack/main/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar
@@ -46,9 +43,6 @@
 [submodule ".config/nvim/pack/lang/start/vim-bunttex"]
 	path = .config/nvim/pack/lang/start/vim-bunttex
 	url = https://github.com/jessekelighine/vim-bunttex
-[submodule ".config/nvim/pack/main/start/indent-blankline.nvim"]
-	path = .config/nvim/pack/main/start/indent-blankline.nvim
-	url = https://github.com/lukas-reineke/indent-blankline.nvim
 [submodule "del"]
 	path = del
 	url = https://github.com/jessekelighine/del

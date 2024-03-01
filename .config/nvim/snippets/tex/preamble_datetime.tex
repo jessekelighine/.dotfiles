@@ -1,7 +1,7 @@
 %%% Date Time %%%
 \usepackage{datetime}
 \newtimeformat{zeit}%
-{\twodigit{\THEHOUR}:\twodigit{\THEMINUTE}:\twodigit{\THESECOND}}
+{\twodigit{\THEHOUR}:\twodigit{\THEMINUTE}} % \THESECOND
 \settimeformat{zeit}%
 \newdateformat{meinesdatum}
 {\THEYEAR-\twodigit{\THEMONTH}-\twodigit{\THEDAY}}

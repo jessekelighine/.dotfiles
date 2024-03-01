@@ -1,6 +1,6 @@
 ---
 title:  "SAFARI BOOKMARKS"
-author: "jessekelighine@gmail.com"
+author: "jessekelighine.com"
 date:   "2023-05-21"
 ---
 

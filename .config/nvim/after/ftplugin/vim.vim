@@ -13,3 +13,4 @@ inoremap <buffer><expr> :pwd<Tab> expand('%:p')
 inoremap <buffer><expr> :fn<Tab>  expand('%:t')
 
 inoremap <buffer> :tex<Tab> <Esc>:call my#GetSnippets("vim","tex.vim")<CR>
+inoremap <buffer> :markdown<Tab> <Esc>:call my#GetSnippets("vim","markdown.vim")<CR>

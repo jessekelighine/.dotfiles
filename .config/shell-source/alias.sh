@@ -22,8 +22,9 @@ alias dirs='dirs -v'
 alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
-alias tmk='tmux kill-session'
-alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
+# alias tmk='tmux kill-session'
+# alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
+tmn () { tmux new -s "$1" -n "$1"; }
 
 alias 'cmatrix'='cmatrix -ab -u 2'
 alias 'pipes.sh'='pipes.sh -r 5000 -R -f 100 -s 10'

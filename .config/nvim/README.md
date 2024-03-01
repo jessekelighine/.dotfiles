@@ -1,6 +1,6 @@
 ---
 title:  "Nvim"
-author: "jessekelighine@gmail.com"
+author: "jessekelighine.com"
 date:   "2023-03-29"
 ---
 

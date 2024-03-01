@@ -2,34 +2,20 @@
 
 function! markdown#FillAuthor(author=my#GetAuthor())
 	let l:position = getpos(".")
-	execute "1," .. min([line('$'),5]) .. 'g/^author/' .. 's/:\(\s\+\)\S\+/:\1"' .. a:author .. '"/'
+	execute "1," .. min([line('$'),5])
+				\ .. 'g/^author/'
+				\ .. 's/:\(\s\+\)\S\+/:\1"' .. a:author .. '"/'
 	nohlsearch | redraw | echo ""
 	call setpos(".", l:position)
 endfunction
 
 " open markdown in firefox
 let g:markdown_view = 0
+if !exists("b:markdown_view_file") | let b:markdown_view_file = expand("%:p") | endif
 function! markdown#View(start=!g:markdown_view)
 	if !a:start | call system('open -a firefox') | return | endif
+	call system("firefox --new-window " .. "file://" .. b:markdown_view_file)
 	let g:markdown_view = 1
-	call system("firefox --new-window " .. "file://" .. expand("%:p"))
-endfunction
-
-" compile markdown to HTML on save
-function! markdown#PandocPVC(type="")
-	if !exists("b:markdown_pandoc_pvc_type") || a:type != ""
-		let b:markdown_pandoc_pvc_type = a:type=="" ? "plain" : a:type
-		call markdown#ToHtml(b:markdown_pandoc_pvc_type)
-		augroup PandocPVC
-			autocmd!
-			autocmd! BufWritePost *.md :call markdown#ToHtml(b:markdown_pandoc_pvc_type)
-		augroup END
-		echo "--> PandocPVC: ON (".b:markdown_pandoc_pvc_type.")"
-	else
-		unlet b:markdown_pandoc_pvc_type
-		autocmd! PandocPVC
-		echo "--> PandocPVC: OFF"
-	endif
 endfunction
 
 " convert from markdown to html.
@@ -67,9 +53,11 @@ endfunction
 
 " Index sections
 function! markdown#FindSection() abort
-	let  [ l:index, l:section_lines, l:pos ] = [ 0, [], getpos('.') ]
-	let  l:header_format = "%6s %6s  %s"
-	let  l:header = printf(l:header_format, "Line", "Index", "Title")
+	let l:pos = getpos('.')
+	let l:index = 0
+	let l:section_lines = []
+	let l:header_format = "%6s %6s  %s"
+	let l:header = printf(l:header_format, "Line", "Index", "Title")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
 	global/^#\+/
 				\ let l:temp = getline(".") |
@@ -84,3 +72,21 @@ function! markdown#FindSection() abort
 	let l:index = input("--> Go to: ")
 	exe l:index =~ '^\d\+$' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
 endfunction
+
+" " compile markdown to HTML on save
+" function! markdown#PandocPVC(type="")
+" 	if !exists("b:markdown_pandoc_pvc_type") || a:type != ""
+" 		let b:markdown_pandoc_pvc_type = a:type=="" ? "plain" : a:type
+" 		call markdown#ToHtml(b:markdown_pandoc_pvc_type)
+" 		augroup PandocPVC
+" 			autocmd!
+" 			autocmd! BufWritePost *.md :call markdown#ToHtml(b:markdown_pandoc_pvc_type)
+" 		augroup END
+" 		echo "--> PandocPVC: ON (".b:markdown_pandoc_pvc_type.")"
+" 	else
+" 		unlet b:markdown_pandoc_pvc_type
+" 		autocmd! PandocPVC
+" 		echo "--> PandocPVC: OFF"
+" 	endif
+" endfunction
+

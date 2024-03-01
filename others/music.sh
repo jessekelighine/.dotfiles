@@ -42,3 +42,6 @@ spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
 
 ### Logs ######################################################################
 
+spiel 'https://www.youtube.com/watch?v=Nj2U6rhnucI' # Dua Lipa - Break My Heart
+spiel 'https://www.youtube.com/watch?v=Nj2U6rhnucI' # Dua Lipa - Break My Heart
+spiel 'https://www.youtube.com/watch?v=uJ_1HMAGb4k' # Vance Joy - Riptide

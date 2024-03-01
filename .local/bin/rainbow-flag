@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+while [[ $# -gt 0 ]] ; do
+	case "$1" in
+		-l | --length)
+			length="$2"
+			shift; shift
+			;;
+		*)
+			printf "$(basename $0): [-l|--length] integer\n"
+			exit 1
+			;;
+	esac
+done
+
+length=${length:=$(tput cols)}
+colors=(160 166 214 28 21 126)
+for color in ${colors[@]}; do
+	echo -n $(tput setab $color)
+	count=0
+	while : ; do
+		count=$(( $count + 1 ))
+		printf ' '
+		[[ $count -ge $length ]] && break
+	done
+	echo $(tput sgr0)
+done

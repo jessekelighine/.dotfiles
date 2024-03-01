@@ -20,11 +20,11 @@ message () {
 ${usage}: ${command} [input.bib] [output.bib]
 ${description}:
 	This is wrapper of ${biber} that formats a bib-file.
-	- Align field values in neat columns for each entry.
-	- Make indentations consistently one tab.
-	- Make field names all lower case.
-	- Order fields in the following order: ${field_order}.
-	- Output to UTF-8 encoding.
+	  - Align field values in neat columns for each entry.
+	  - Make indentations consistently one tab.
+	  - Make field names all lower case.
+	  - Order fields in the following order: ${field_order}.
+	  - Output to UTF-8 encoding.
 EOF
 }
 

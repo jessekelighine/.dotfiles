@@ -1,6 +1,6 @@
 ---
 title:  "Zathura Installation"
-author: "jessekelighine@gmail.com"
+author: "jessekelighine.com"
 date:   "2021-08-02"
 ---
 

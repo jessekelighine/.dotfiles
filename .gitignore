@@ -1,5 +1,5 @@
 .DS_Store
-*/.netrwhist
+.netrwhist
 
 .zshrc
 .bashrc
@@ -10,9 +10,11 @@
 .config/zsh/zsh_sessions/*
 .config/zsh/.zcompdump
 .config/zsh/.zcompcache
+
 .config/bash/.bash_history
 .config/nvim/undodir/*
 .config/nvim/spell/*.spl
+
 .fzf.bash
 .fzf.zsh
 .vim/swap/*
@@ -22,9 +24,10 @@
 .config/b2/file-with-key-id.txt
 .config/b2/file-with-key.txt
 .config/b2/.b2_account_info
+
 .gnupg/*
 .password-store/*
 .github-recovery-codes.txt.enc
+.github-token
 others/lasciate.txt.enc
 others/oignon.txt.enc
-.github-token

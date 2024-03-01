@@ -14,7 +14,7 @@ function! my#GetSnippets(type, name, indent=1, delete_begin=1, cursor_begin=1)
 endfunction
 
 function! my#GetAuthor()
- 	let l:path = $HOME .. "/.config/nvim/snippets/email"
+ 	let l:path = $HOME .. "/.config/nvim/snippets/website"
 	return readfile(l:path)[0]
 endfunction
 
@@ -87,7 +87,7 @@ function! my#Scratch(height=5)
 endfunction
 
 " quote a string
-function! my#quote(string,type=1)
+function! my#quote(string, type=1)
 	let l:quote = a:type==1 ? "'" : '"'
 	return l:quote .. a:string .. l:quote
 endfunction

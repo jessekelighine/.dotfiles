@@ -29,20 +29,23 @@ let b:surround_108 = "\\left\r\\right"
 let b:surround_103 = "($\r$)"
 
 " COMPILATION:
-let b:tex_compile_command = "xelatex " .. my#quote(expand("%")) .. "; "
+let b:tex_compile_png = "xelatex " .. my#quote(expand("%")) .. "; "
 			\ .. "convert "
 			\ .. "-background '#FFFFFF' -flatten "
 			\ .. "-density 600 "
 			\ .. my#quote(expand("%:r") .. ".pdf") .. " "
 			\ .. my#quote(expand("%:r") .. ".png")
-let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -view=none -halt-on-error " .. my#quote(expand("%"))
+let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-error " .. my#quote(expand("%"))
 let b:tex_compile_make    = "make ; whenever . make"
 let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
+nnoremap <silent><buffer> <leader>rq      :call tex#CloseTmux()<CR>
+nnoremap <silent><buffer> <leader>rf      :call tex#OpenTmux(b:tex_compile_command)<CR>
 nnoremap <silent><buffer> <leader><Space> :call tex#OpenTmux(b:tex_compile_command)<CR>
 command! -buffer -nargs=0 OpenTmuxLatexmk :call tex#OpenTmux(b:tex_compile_xelatex)
 command! -buffer -nargs=0 OpenTmuxMake    :call tex#OpenTmux(b:tex_compile_make)
 
 " UTILITIES: utilities.
+command! -buffer -nargs=0 ServerSetup   :call tex#ServerSetup()
 command! -buffer -nargs=0 LastMod       :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
 command! -buffer -nargs=0 ReloadTeX     :call textoggle#Reload(1)
 command! -buffer -nargs=0 ShowToggles   :call textoggle#Show()
@@ -50,10 +53,12 @@ command! -buffer -nargs=0 ClearToggles  :call textoggle#Clear()
 command! -buffer -nargs=0 FindSection   :call tex#FindSection()
 command! -buffer -nargs=0 JunkRemove    :! latexmk -C %:r
 command! -buffer -nargs=? ConcealToggle :call tex#ConcealToggle(<args>)
+nnoremap <buffer><silent> <leader>S     :call tex#ServerSetup()<CR>
 nnoremap <buffer><silent> <leader>c     :call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d     :call tex#EnvironmentDelete()<CR>
 nnoremap <buffer><silent> <leader>,     :call tex#DelLeftRight()<CR>
 nnoremap <buffer><silent> <leader>8     :call tex#EnvironmentStar()<CR>
+nnoremap <buffer><silent> <leader>g     :call tex#SkimForward()<CR>
 nnoremap <buffer><silent> <leader>t     :call textoggle#Master()<CR>
 nnoremap <buffer><silent> <leader>;     :call my#DelFuncCall('\\','[a-zA-Z]','{}')<CR>
 nnoremap <buffer><silent> <leader>p     :! open %:r.pdf<CR><CR>
@@ -66,8 +71,8 @@ command! -buffer -nargs=0 ShowLabs     :call texcomplete#Show('labs')
 command! -buffer -nargs=0 ShowBibs     :call texcomplete#Show('bibs')
 command! -buffer -nargs=0 GenerateLabs :call texcomplete#GenerateLabs()
 command! -buffer -nargs=0 GenerateBibs :call texcomplete#GenerateBibs()
-command! -buffer -nargs=1 SetLabsFiles :call texcomplete#SetFiles('labs',<args>)
-command! -buffer -nargs=1 SetBibsFiles :call texcomplete#SetFiles('bibs',<args>)
+" command! -buffer -nargs=1 SetLabsFiles :call texcomplete#SetFiles('labs',<args>)
+" command! -buffer -nargs=1 SetBibsFiles :call texcomplete#SetFiles('bibs',<args>)
 
 " PREAMBLES: stored in "snippets/tex".
 inoremap <buffer> :qui<tab>     <Esc>:call my#GetSnippets('tex','skeleton.tex')<CR>

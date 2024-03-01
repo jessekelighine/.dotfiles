@@ -1,6 +1,6 @@
 ---
 title:  "ffmeg notes"
-author: "jessekelighine@gmail.com"
+author: "jessekelighine.com"
 date:   "2024-02-02"
 ---
 

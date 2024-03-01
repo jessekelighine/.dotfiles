@@ -1,9 +1,9 @@
 ---
 title:  ".dotfiles"
-author: "jcc@jessekelighine.com"
+author: "jessekelighine.com"
 ---
 
-## Installation
+## Install
 
 ```sh
 git clone --recurse-submodules "https://github.com/jessekelighine/.dotfiles"
@@ -23,6 +23,8 @@ make update
 cd ~/.dotfiles
 make uninstall
 ```
+
+-----
 
 ## Dependencies
 

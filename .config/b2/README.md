@@ -1,6 +1,6 @@
 ---
 title:  "B2 Tips"
-author: "jessekelighine@gmail.com"
+author: "jessekelighine.com"
 date:   "2023-03-09"
 ---
 

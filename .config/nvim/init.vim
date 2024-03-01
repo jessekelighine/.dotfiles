@@ -114,8 +114,9 @@ onoremap a" 2i"
 onoremap a` 2i`
 onoremap F  vF
 onoremap T  vT
-inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e\<S-O>":"{\r"<CR>
 inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e\<S-O>":"(\r"<CR>
+inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e\<S-O>":"[\r"<CR>
+inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e\<S-O>":"{\r"<CR>
 
 set encoding=utf-8
 set fileencoding=utf-8

@@ -2,7 +2,7 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: jessekelighine@gmail.com                                            #
+# Author: jessekelighine.com                                                  #
 # Download packages as a repository, then use the created repository to       #
 # install packages.                                                           #
 #                                                                             #

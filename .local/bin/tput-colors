@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for fg_color in {0..16}; do
+	set_foreground=$(tput setaf $fg_color)
+	for bg_color in {0..16}; do
+		set_background=$(tput setab $bg_color)
+		echo -n $set_background$set_foreground
+		printf ' %2d %2d ' $fg_color $bg_color
+	done
+	echo $(tput sgr0)
+done
+
+cat << EOF
+- $(tput bold   )bold$(tput sgr0):      use \$(tput bold)    and \$(tput sgr0)
+- $(tput smul   )underline$(tput sgr0): use \$(tput smul)    and \$(tput rmul)
+- $(tput smso   )stand out$(tput sgr0): use \$(tput smso)    and \$(tput rmso)
+- $(tput setaf 9)color$(tput sgr0):     use \$(tput setaf 9) and \$(tput sgr0)
+- $(tput setab 9)color$(tput sgr0):     use \$(tput setab 9) and \$(tput sgr0)
+EOF

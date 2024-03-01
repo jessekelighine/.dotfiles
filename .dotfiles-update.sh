@@ -7,9 +7,9 @@ sudo update-hosts
 ### Homebrew ##################################################################
 
 # update packages
-brew update
-brew upgrade --verbose
-brew upgrade --cask --greedy --verbose
+# brew update
+# brew upgrade --verbose
+# brew upgrade --cask --greedy --verbose
 
 # update mas
 echo "==> $(tput bold)Running MAS$(tput sgr0)"
@@ -23,7 +23,13 @@ brew cleanup -v
 # list packages
 brew bundle dump --force
 
-### Date and Git Add ##########################################################
+### Finish ####################################################################
 
-# printf "/date:\ns/\".*\"/\"%s\"/\np\nwq\n" "$(date +%F)" | ed -s README.md
 git add .
+
+cat << EOF
+$(tput bold)$0$(tput sgr0): Update finished. Check following files manually:
+	- .stow-local-ignore 
+	- .dotfiles-files
+	- .gitignore
+EOF

@@ -1,12 +1,14 @@
 \.DS_Store
 \.netrwhist
+
 \.git
 \.gitignore
 \.gitmodules
 \.github-recovery-codes.txt.enc
 \.github-token
+
 \.dotfiles-.*
-\.music.sh
+
 README.md
 Brewfile
 Makefile
