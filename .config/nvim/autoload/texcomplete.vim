@@ -33,6 +33,8 @@ function! texcomplete#Show(type)
 	endfor
 endfunction
 
+""" Labs """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Makes the list `g:texcomplete_labs` for auto-complete.
 function! <SID>generate_labs(files=g:texcomplete_labsfiles) abort
 	let l:lab_pattern_detect  = '\\label{.\{-}}'
@@ -47,11 +49,11 @@ function! <SID>generate_labs(files=g:texcomplete_labsfiles) abort
 						\ }]
 		endfor
 	endfor
-	let g:texcomplete_labs = sort( l:labs, s:sort.word )
+	let g:texcomplete_labs = sort(l:labs, s:sort.word)
 endfunction
 
 " Auto-complete for LaTeX labels.
-function! texcomplete#Labs(findstart,base) abort
+function! texcomplete#Labs(findstart, base) abort
 	if a:findstart
 		let l:trigger_pattern = '\\[a-zA-Z]*ref{'
 		let l:look_ahead_length = 20
@@ -70,6 +72,8 @@ function! texcomplete#Labs(findstart,base) abort
 	endif
 endfunction
 
+""" Bibs """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Makes a completion list `g:texcomplete_bibs` for auto-complete.
 function! <SID>generate_bibs(files=g:texcomplete_bibsfiles)
 	let l:bib_pattern_detect  = '^@[a-zA-Z]\{-}{'
@@ -85,11 +89,11 @@ function! <SID>generate_bibs(files=g:texcomplete_bibsfiles)
 						\ }]
 		endfor
 	endfor
-	let g:texcomplete_bibs = sort( l:bibs, s:sort.menu )
+	let g:texcomplete_bibs = sort(l:bibs, s:sort.menu)
 endfunction
 
 " Auto-complete for items in `bib` files.
-function! texcomplete#Bibs(findstart,base)
+function! texcomplete#Bibs(findstart, base)
 	if a:findstart
 		let l:trigger_pattern = '\\[a-zA-Z]*cite{'
 		let l:look_ahead_length = 20

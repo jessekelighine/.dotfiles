@@ -23,7 +23,7 @@ let b:surround_99="<!-- \r -->"
 let b:markdown_code_syntax_toggle=0
 
 " VIEW:
-let b:markdown_view_file = expand("%<") .. ".html"
+let b:markdown_view_file = expand("%:p:r") .. ".html"
 if !file_readable(b:markdown_view_file) | let b:markdown_view_file = expand("%:p") | endif
 nnoremap <buffer> <leader>p :call markdown#View()<CR>
 

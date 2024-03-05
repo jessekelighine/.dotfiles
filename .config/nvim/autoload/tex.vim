@@ -1,34 +1,5 @@
 " ~/.config/nvim/autoload/tex.vim
 
-" SyncTeX: Backwards setup
-function! tex#ServerSetup()
-	let g:tex_server_file = "~/.config/nvim/snippets/tex/.tex-server"
-	call system("echo " .. v:servername .. " > " .. g:tex_server_file)
-	echom " Server Saved: " .. v:servername
-endfunction
-
-" SyncTeX: Forwards function
-function! tex#SkimForward()
-	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
-	let l:pdf_file = expand("%<") .. ".pdf"
-	let l:command = join([l:utility, line('.'), l:pdf_file], ' ')
-	silent call tex#ServerSetup()
-	silent call system(l:command)
-endfunction
-
-" Toggle Conceal Level
-if !exists("g:tex_conceal_level") | let g:tex_conceal_level=0 | endif
-function! tex#ConcealToggle(level=-1) abort
-	let g:tex_conceal_level = a:level >= 0 ? a:level : ( g:tex_conceal_level + 1 ) % 4
-	execute "setlocal conceallevel=" .. g:tex_conceal_level
-	echom " Conceal Level: " ..
-				\ ( g:tex_conceal_level==0 ? "Original Text"
-				\ : g:tex_conceal_level==1 ? "One Character"
-				\ : g:tex_conceal_level==2 ? "Replacement Character"
-				\ : g:tex_conceal_level==3 ? "Hide Completely"
-				\ : "ERROR" )
-endfunction
-
 " Print the line number (sub)sections.
 function! tex#FindSection() abort
 	let  [ l:index, l:section_lines, l:pos ] = [ 0, [], getpos('.') ]
@@ -53,6 +24,30 @@ function! tex#FindSection() abort
 	exe l:index =~ '\d\+' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
 endfunction
 
+" creates quote object in latex.
+function! tex#Quotes(code, double) abort
+	let [ l:begin, l:end ] = [ repeat("`", ( a:double ? 2 : 1 )), repeat("'", ( a:double ? 2 : 1 )) ]
+	call search(l:begin, "bcW") | exec "norm " .. repeat('l', ( a:double ? 2 : 1 ))
+	if a:code=="i"                                 | call search(l:end,  "sW") | exec "norm hv`'" | endif
+	if a:code=="a" &&  a:double | exec "norm 2h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
+	if a:code=="q" &&  a:double | exec "norm hvhx" | call search(l:end, "seW") | exec "norm vh"   | endif
+	if a:code=="a" && !a:double | exec "norm 1h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
+	if a:code=="q" && !a:double | exec "norm hvx"  | call search(l:end, "seW") | exec "norm v"    | endif
+endfunction
+
+" Toggle Conceal Level
+if !exists("g:tex_conceal_level") | let g:tex_conceal_level=0 | endif
+function! tex#ConcealToggle(level=-1) abort
+	let g:tex_conceal_level = a:level >= 0 ? a:level : ( g:tex_conceal_level + 1 ) % 4
+	execute "setlocal conceallevel=" .. g:tex_conceal_level
+	echom " Conceal Level: " ..
+				\ ( g:tex_conceal_level==0 ? "Original Text"
+				\ : g:tex_conceal_level==1 ? "One Character"
+				\ : g:tex_conceal_level==2 ? "Replacement Character"
+				\ : g:tex_conceal_level==3 ? "Hide Completely"
+				\ : "ERROR" )
+endfunction
+
 " Delete parenthesis modifiers (left/right, big, large, ...).
 function! tex#DelLeftRight()
 	if getline(".")[col(".")-1] =~ '['..'()'..'\[\]'..'{}'..']'
@@ -63,7 +58,27 @@ function! tex#DelLeftRight()
 	endif
 endfunction
 
-" Open Tmux pane
+""" SyncTeX """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" SyncTeX: Backwards setup
+function! tex#ServerSetup() abort
+	let l:tex_server_file = "~/.config/nvim/pack/lang/opt/tex/.tex-server"
+	call system("echo " .. v:servername .. " > " .. l:tex_server_file)
+	echom " Server Saved: " .. v:servername
+endfunction
+
+" SyncTeX: Forwards function
+function! tex#SkimForward() abort
+	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+	let l:pdf_file = expand("%:p:r") .. ".pdf"
+	let l:command = join([l:utility, line('.'), l:pdf_file], ' ')
+	" silent call tex#ServerSetup()
+	silent call system(l:command)
+endfunction
+
+""" Tmux """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Tmux: Open pane
 function! tex#OpenTmux(command="") abort
 	packadd! vim-slime
 	if vimslime#Target()!="" || a:command=="" | call system("tmux resize-pane -Z") | return | endif
@@ -80,33 +95,14 @@ function! tex#OpenTmux(command="") abort
 	augroup END
 endfunction
 
-" Close Tmux pane
+" Tmux: Close pane
 function! tex#CloseTmux()
 	packadd! vim-slime
 	call vimslime#Send(repeat("\<C-C>", 10) .. "exit", 1)
 	call vimslime#UnsetTarget()
 endfunction
 
-" insert empty environment.
-function! tex#EmptyEnvironment(name="", append="")
-	let l:environment = a:name!="" ? a:name : input('Environment name: ')
-	if  l:environment == '' | return | endif
-	exec 'norm! A'..
-				\ '\begin{' .. l:environment .. '}' .. a:append .. "\<CR>" ..
-				\   '\end{' .. l:environment .. '}' ..
-				\ "\<Esc>vk="
-endfunction
-
-" creates quote object in latex.
-function! tex#Quotes(code, double) abort
-	let [ l:begin, l:end ] = [ repeat("`", ( a:double ? 2 : 1 )), repeat("'", ( a:double ? 2 : 1 )) ]
-	call search(l:begin, "bcW") | exec "norm " .. repeat('l', ( a:double ? 2 : 1 ))
-	if a:code=="i"                                 | call search(l:end,  "sW") | exec "norm hv`'" | endif
-	if a:code=="a" &&  a:double | exec "norm 2h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
-	if a:code=="q" &&  a:double | exec "norm hvhx" | call search(l:end, "seW") | exec "norm vh"   | endif
-	if a:code=="a" && !a:double | exec "norm 1h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
-	if a:code=="q" && !a:double | exec "norm hvx"  | call search(l:end, "seW") | exec "norm v"    | endif
-endfunction
+""" Environments """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " replace the environment name on that line.
 function! <SID>EnvironmentReplace(change)
@@ -116,6 +112,16 @@ endfunction
 " get the environment name. Helper function for tex#EnvironmentStar().
 function! <SID>EnvironmentGet()
 	return matchstr(getline('.'), '^\s*\\\(begin\|end\){\zs.\{-}\ze}')
+endfunction
+
+" insert empty environment.
+function! tex#EmptyEnvironment(name="", append="")
+	let l:environment = a:name!="" ? a:name : input('Environment name: ')
+	if  l:environment == '' | return | endif
+	execute 'norm! A'..
+				\ '\begin{' .. l:environment .. '}' .. a:append .. "\<CR>" ..
+				\   '\end{' .. l:environment .. '}' ..
+				\ "\<Esc>vk="
 endfunction
 
 " change a tex environment.
@@ -130,7 +136,7 @@ endfunction
 " toggle star of a tex environment.
 function! tex#EnvironmentStar()
 	let l:en = <SID>EnvironmentGet()
-	let l:to = strpart(l:en,strlen(l:en)-1)=='*' ? strpart(l:en,0,strlen(l:en)-1) : l:en.'*'
+	let l:to = strpart(l:en, strlen(l:en)-1)=='*' ? strpart(l:en, 0, strlen(l:en)-1) : l:en .. '*'
 	call tex#EnvironmentChange(l:to)
 endfunction
 

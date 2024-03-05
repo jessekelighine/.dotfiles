@@ -24,7 +24,7 @@ volume-auto () {
 	for disk in "${MY_RECOGNIZED_DISKS[@]}"
 	do cd "/Volumes/${disk}" 2>/dev/null && return 0
 	done
-	echo "$0: no disks found" >&2
+	echo "$(tput bold)$0$(tput sgr0): no disks found" >&2
 	return 1
 }
 
@@ -40,7 +40,7 @@ eject-auto () {
 		echo "$0: cannot eject ${disk}" >&2
 		return 1
 	done
-	echo "$0: no disks found" >&2
+	echo "$(tput bold)$0$(tput sgr0): no disks found" >&2
 	return 1
 }
 

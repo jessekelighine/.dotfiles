@@ -8,7 +8,7 @@ let s:SID = "\<SNR>".<SID>SID().'_'
 function! <SID>setup(bool)
 	if a:bool
 		let s:showcmd    = &showcmd    | set noshowcmd
-		let s:timeoutlen = &timeoutlen | set timeoutlen=30
+		let s:timeoutlen = &timeoutlen | set timeoutlen=80
 	else
 		let &showcmd    = s:showcmd
 		let &timeoutlen = s:timeoutlen

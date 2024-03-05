@@ -76,54 +76,54 @@ command! -buffer -nargs=0 GenerateBibs :call texcomplete#GenerateBibs()
 
 " PREAMBLES: stored in "snippets/tex".
 inoremap <buffer> :qui<tab>     <Esc>:call my#GetSnippets('tex','skeleton.tex')<CR>
-inoremap <buffer> :letter<tab>  <Esc>:call my#GetSnippets('tex','skeleton_letter.tex')<CR>
-inoremap <buffer> :beamer<tab>  <Esc>:call my#GetSnippets('tex','preamble_beamer.tex')<CR>
-inoremap <buffer> :std<tab>     <Esc>:call my#GetSnippets('tex','preamble_standalone.tex')<CR>
-inoremap <buffer> :alg<tab>     <Esc>:call my#GetSnippets('tex','preamble_algorithm.tex')<CR>
-inoremap <buffer> :cjk<tab>     <Esc>:call my#GetSnippets('tex','preamble_xeCJK.tex')<CR>
-inoremap <buffer> :cw<tab>      <Esc>:call my#GetSnippets('tex','preamble_cwtex.tex')<CR>
-inoremap <buffer> :punct<tab>   <Esc>:call my#GetSnippets('tex','preamble_punct.tex')<CR>
-inoremap <buffer> :bib<tab>     <Esc>:call my#GetSnippets('tex','preamble_biblatex.tex')<CR>
-inoremap <buffer> :tit<tab>     <Esc>:call my#GetSnippets('tex','preamble_title.tex')<CR>
-inoremap <buffer> :chenum<tab>  <Esc>:call my#GetSnippets('tex','preamble_chineseenumerate.tex')<CR>
-inoremap <buffer> :chnum<tab>   <Esc>:call my#GetSnippets('tex','preamble_chinesenumber.tex')<CR>
-inoremap <buffer> :color<tab>   <Esc>:call my#GetSnippets('tex','preamble_color.tex')<CR>
-inoremap <buffer> :csv<tab>     <Esc>:call my#GetSnippets('tex','preamble_csv.tex')<CR>
-inoremap <buffer> :cols<tab>    <Esc>:call my#GetSnippets('tex','preamble_column.tex')<CR>
-inoremap <buffer> :ct<tab>      <Esc>:call my#GetSnippets('tex','preamble_customtitle.tex')<CR>
-inoremap <buffer> :enum<tab>    <Esc>:call my#GetSnippets('tex','preamble_enumerate.tex')<CR>
-inoremap <buffer> :faux<tab>    <Esc>:call my#GetSnippets('tex','preamble_fauxsc.tex')<CR>
-inoremap <buffer> :fig<tab>     <Esc>:call my#GetSnippets('tex','preamble_graphics.tex')<CR>
-inoremap <buffer> :foot<tab>    <Esc>:call my#GetSnippets('tex','preamble_footnote.tex')<CR>
-inoremap <buffer> :font<tab>    <Esc>:call my#GetSnippets('tex','preamble_font.tex')<CR>
-inoremap <buffer> :german<tab>  <Esc>:call my#GetSnippets('tex','preamble_german.tex')<CR>
-inoremap <buffer> :hyper<tab>   <Esc>:call my#GetSnippets('tex','preamble_hyperreference.tex')<CR>
-inoremap <buffer> :lof<tab>     <Esc>:call my#GetSnippets('tex','preamble_listoffigures.tex')<CR>
-inoremap <buffer> :math<tab>    <Esc>:call my#GetSnippets('tex','preamble_math.tex')<CR>
-inoremap <buffer> :mn<tab>      <Esc>:call my#GetSnippets('tex','preamble_mathnotes.tex')<CR>
-inoremap <buffer> :ow<tab>      <Esc>:call my#GetSnippets('tex','preamble_noorphanwidow.tex')<CR>
-inoremap <buffer> :problem<tab> <Esc>:call my#GetSnippets('tex','preamble_problem.tex')<CR>
-inoremap <buffer> :prob<tab>    <Esc>:call my#GetSnippets('tex','preamble_mathprob.tex')<CR>
-inoremap <buffer> :pagec<tab>   <Esc>:call my#GetSnippets('tex','preamble_pagechinese.tex')<CR>
-inoremap <buffer> :pagee<tab>   <Esc>:call my#GetSnippets('tex','preamble_pageenglish.tex')<CR>
-inoremap <buffer> :pageg<tab>   <Esc>:call my#GetSnippets('tex','preamble_pagegerman.tex')<CR>
-inoremap <buffer> :pageb<tab>   <Esc>:call my#GetSnippets('tex','preamble_pagebeamer.tex')<CR>
-inoremap <buffer> :pagep<tab>   <Esc>:call my#GetSnippets('tex','preamble_pageplain.tex')<CR>
-inoremap <buffer> :ruby<tab>    <Esc>:call my#GetSnippets('tex','preamble_ruby.tex')<CR>
-inoremap <buffer> :tab<tab>     <Esc>:call my#GetSnippets('tex','preamble_table.tex')<CR>
-inoremap <buffer> :secf<tab>    <Esc>:call my#GetSnippets('tex','preamble_sectionfont.tex')<CR>
-inoremap <buffer> :set<tab>     <Esc>:call my#GetSnippets('tex','preamble_package.tex')<CR>
-inoremap <buffer> :shrug<tab>   <Esc>:call my#GetSnippets('tex','preamble_shruggie.tex')<CR>
-inoremap <buffer> :sign<tab>    <Esc>:call my#GetSnippets('tex','preamble_sign.tex')<CR>
-inoremap <buffer> :tikz<tab>    <Esc>:call my#GetSnippets('tex','preamble_tikz.tex')<CR>
-inoremap <buffer> :toc<tab>     <Esc>:call my#GetSnippets('tex','preamble_tableofcontents.tex')<CR>
-inoremap <buffer> :udxe<tab>    <Esc>:call my#GetSnippets('tex','preamble_underdotxe.tex')<CR>
-inoremap <buffer> :udcw<tab>    <Esc>:call my#GetSnippets('tex','preamble_underdotcwtex.tex')<CR>
-inoremap <buffer> :verb<tab>    <Esc>:call my#GetSnippets('tex','preamble_fancyvrb.tex')<CR>
-inoremap <buffer> :blind<tab>   <Esc>:call my#GetSnippets('tex','preamble_blindtext.tex')<CR>
-inoremap <buffer> :date<Tab>    <Esc>:call my#GetSnippets('tex','preamble_datetime.tex')<CR>
-inoremap <buffer> :dinkus<Tab>  <Esc>:call my#GetSnippets('tex','preamble_dinkus.tex')<CR>
-inoremap <buffer> :gloss<Tab>   <Esc>:call my#GetSnippets('tex','preamble_glossaries.tex')<CR>
+inoremap <buffer> :letter<tab>  <Esc>:call my#GetSnippets('tex','skeleton-letter.tex')<CR>
+inoremap <buffer> :beamer<tab>  <Esc>:call my#GetSnippets('tex','preamble-beamer.tex')<CR>
+inoremap <buffer> :std<tab>     <Esc>:call my#GetSnippets('tex','preamble-standalone.tex')<CR>
+inoremap <buffer> :alg<tab>     <Esc>:call my#GetSnippets('tex','preamble-algorithm.tex')<CR>
+inoremap <buffer> :cjk<tab>     <Esc>:call my#GetSnippets('tex','preamble-xeCJK.tex')<CR>
+inoremap <buffer> :cw<tab>      <Esc>:call my#GetSnippets('tex','preamble-cwtex.tex')<CR>
+inoremap <buffer> :punct<tab>   <Esc>:call my#GetSnippets('tex','preamble-punct.tex')<CR>
+inoremap <buffer> :bib<tab>     <Esc>:call my#GetSnippets('tex','preamble-biblatex.tex')<CR>
+inoremap <buffer> :tit<tab>     <Esc>:call my#GetSnippets('tex','preamble-title.tex')<CR>
+inoremap <buffer> :chenum<tab>  <Esc>:call my#GetSnippets('tex','preamble-chineseenumerate.tex')<CR>
+inoremap <buffer> :chnum<tab>   <Esc>:call my#GetSnippets('tex','preamble-chinesenumber.tex')<CR>
+inoremap <buffer> :color<tab>   <Esc>:call my#GetSnippets('tex','preamble-color.tex')<CR>
+inoremap <buffer> :csv<tab>     <Esc>:call my#GetSnippets('tex','preamble-csv.tex')<CR>
+inoremap <buffer> :cols<tab>    <Esc>:call my#GetSnippets('tex','preamble-column.tex')<CR>
+inoremap <buffer> :ct<tab>      <Esc>:call my#GetSnippets('tex','preamble-customtitle.tex')<CR>
+inoremap <buffer> :enum<tab>    <Esc>:call my#GetSnippets('tex','preamble-enumerate.tex')<CR>
+inoremap <buffer> :faux<tab>    <Esc>:call my#GetSnippets('tex','preamble-fauxsc.tex')<CR>
+inoremap <buffer> :fig<tab>     <Esc>:call my#GetSnippets('tex','preamble-graphics.tex')<CR>
+inoremap <buffer> :foot<tab>    <Esc>:call my#GetSnippets('tex','preamble-footnote.tex')<CR>
+inoremap <buffer> :font<tab>    <Esc>:call my#GetSnippets('tex','preamble-font.tex')<CR>
+inoremap <buffer> :german<tab>  <Esc>:call my#GetSnippets('tex','preamble-german.tex')<CR>
+inoremap <buffer> :hyper<tab>   <Esc>:call my#GetSnippets('tex','preamble-hyperreference.tex')<CR>
+inoremap <buffer> :lof<tab>     <Esc>:call my#GetSnippets('tex','preamble-listoffigures.tex')<CR>
+inoremap <buffer> :math<tab>    <Esc>:call my#GetSnippets('tex','preamble-math.tex')<CR>
+inoremap <buffer> :mn<tab>      <Esc>:call my#GetSnippets('tex','preamble-mathnotes.tex')<CR>
+inoremap <buffer> :ow<tab>      <Esc>:call my#GetSnippets('tex','preamble-noorphanwidow.tex')<CR>
+inoremap <buffer> :problem<tab> <Esc>:call my#GetSnippets('tex','preamble-problem.tex')<CR>
+inoremap <buffer> :prob<tab>    <Esc>:call my#GetSnippets('tex','preamble-mathprob.tex')<CR>
+inoremap <buffer> :pagec<tab>   <Esc>:call my#GetSnippets('tex','preamble-pagechinese.tex')<CR>
+inoremap <buffer> :pagee<tab>   <Esc>:call my#GetSnippets('tex','preamble-pageenglish.tex')<CR>
+inoremap <buffer> :pageg<tab>   <Esc>:call my#GetSnippets('tex','preamble-pagegerman.tex')<CR>
+inoremap <buffer> :pageb<tab>   <Esc>:call my#GetSnippets('tex','preamble-pagebeamer.tex')<CR>
+inoremap <buffer> :pagep<tab>   <Esc>:call my#GetSnippets('tex','preamble-pageplain.tex')<CR>
+inoremap <buffer> :ruby<tab>    <Esc>:call my#GetSnippets('tex','preamble-ruby.tex')<CR>
+inoremap <buffer> :tab<tab>     <Esc>:call my#GetSnippets('tex','preamble-table.tex')<CR>
+inoremap <buffer> :secf<tab>    <Esc>:call my#GetSnippets('tex','preamble-sectionfont.tex')<CR>
+inoremap <buffer> :set<tab>     <Esc>:call my#GetSnippets('tex','preamble-package.tex')<CR>
+inoremap <buffer> :shrug<tab>   <Esc>:call my#GetSnippets('tex','preamble-shruggie.tex')<CR>
+inoremap <buffer> :sign<tab>    <Esc>:call my#GetSnippets('tex','preamble-sign.tex')<CR>
+inoremap <buffer> :tikz<tab>    <Esc>:call my#GetSnippets('tex','preamble-tikz.tex')<CR>
+inoremap <buffer> :toc<tab>     <Esc>:call my#GetSnippets('tex','preamble-tableofcontents.tex')<CR>
+inoremap <buffer> :udxe<tab>    <Esc>:call my#GetSnippets('tex','preamble-underdotxe.tex')<CR>
+inoremap <buffer> :udcw<tab>    <Esc>:call my#GetSnippets('tex','preamble-underdotcwtex.tex')<CR>
+inoremap <buffer> :verb<tab>    <Esc>:call my#GetSnippets('tex','preamble-fancyvrb.tex')<CR>
+inoremap <buffer> :blind<tab>   <Esc>:call my#GetSnippets('tex','preamble-blindtext.tex')<CR>
+inoremap <buffer> :date<Tab>    <Esc>:call my#GetSnippets('tex','preamble-datetime.tex')<CR>
+inoremap <buffer> :dinkus<Tab>  <Esc>:call my#GetSnippets('tex','preamble-dinkus.tex')<CR>
+inoremap <buffer> :gloss<Tab>   <Esc>:call my#GetSnippets('tex','preamble-glossaries.tex')<CR>
 
 " TEXT OBJECT: TeX specific objects.
 xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
@@ -151,10 +151,10 @@ onoremap <silent><buffer> qq     :<C-U>call tex#Quotes("q",0)<CR>
 
 " MISC: page environments.
 inoremap <buffer> \cbreak<Tab>  <C-G>u\vfill\null\columnbreak
-inoremap <buffer> \blind<Tab>   <Esc>:call my#GetSnippets('tex','indoc_blindtext.tex')<CR>
-inoremap <buffer> \blindzh<Tab> <Esc>:call my#GetSnippets('tex','indoc_blindtext_zh.tex')<CR>
-inoremap <buffer> \vi<Tab>      <Esc>:call my#GetSnippets('tex','indoc_verbatiminput.tex')<CR>$i
-inoremap <buffer> \mini<Tab>    <Esc>:call my#GetSnippets('tex','indoc_minipage.tex')<CR>
+inoremap <buffer> \blind<Tab>   <Esc>:call my#GetSnippets('tex','indoc-blindtext.tex')<CR>
+inoremap <buffer> \blindzh<Tab> <Esc>:call my#GetSnippets('tex','indoc-blindtext-zh.tex')<CR>
+inoremap <buffer> \vi<Tab>      <Esc>:call my#GetSnippets('tex','indoc-verbatiminput.tex')<CR>$i
+inoremap <buffer> \mini<Tab>    <Esc>:call my#GetSnippets('tex','indoc-minipage.tex')<CR>
 inoremap <buffer> `<Tab>        `'<Left>
 inoremap <buffer> ``<Tab>       ``''<Left><Left>
 
@@ -170,7 +170,7 @@ inoremap <buffer> <bar><Tab>       <C-G>u<bar><bar><Left>
 inoremap <buffer> <bar><bar><Tab>  <C-G>u\left<bar>\right<bar><Esc>6hi
 inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
 inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
-inoremap <buffer> \ma<Tab>         <Esc>:call my#GetSnippets('tex','indoc_matrix.tex')<CR>
+inoremap <buffer> \ma<Tab>         <Esc>:call my#GetSnippets('tex','indoc-matrix.tex')<CR>
 
 " TEXT: text/font modifiers.
 inoremap <buffer> \bf<Tab> <C-G>u\textbf{}<Left>
@@ -202,16 +202,16 @@ inoremap <buffer> \eqs<Tab>    <Esc>:call tex#EmptyEnvironment('equations*')<CR>
 inoremap <buffer> \cases<Tab>  <Esc>:call tex#EmptyEnvironment('cases')<CR>
 inoremap <buffer> \mat<Tab>    <Esc>:call tex#EmptyEnvironment('bmatrix')<CR>
 inoremap <buffer> \vmat<Tab>   <Esc>:call tex#EmptyEnvironment('vmatrix')<CR>
-inoremap <buffer> \btab<Tab>   <Esc>:call my#GetSnippets('tex','indoc_envtable.tex')<CR>
-inoremap <buffer> \csv<Tab>    <Esc>:call my#GetSnippets('tex','indoc_envtable_csv.tex',0)<CR>
-inoremap <buffer> \bfig<Tab>   <Esc>:call my#GetSnippets('tex','indoc_envfigure.tex')<CR>
-inoremap <buffer> \subfig<Tab> <Esc>:call my#GetSnippets('tex','indoc_subfigure.tex')<CR>
-inoremap <buffer> \tab<Tab>    <Esc>:call my#GetSnippets('tex','indoc_table.tex')<CR>
-inoremap <buffer> \fig<Tab>    <Esc>:call my#GetSnippets('tex','indoc_figure.tex')<CR>
-inoremap <buffer> \enum<Tab>   <Esc>:call my#GetSnippets('tex','indoc_enum_pure.tex')<CR>
-inoremap <buffer> \enumr<Tab>  <Esc>:call my#GetSnippets('tex','indoc_enum_roman.tex')<CR>
-inoremap <buffer> \enuma<Tab>  <Esc>:call my#GetSnippets('tex','indoc_enum_alph.tex')<CR>
-inoremap <buffer> \item<Tab>   <Esc>:call my#GetSnippets('tex','indoc_item.tex')<CR>
-inoremap <buffer> \iff<Tab>    <Esc>:call my#GetSnippets('tex','indoc_iff_arrow.tex')<CR>
-inoremap <buffer> \iffc<Tab>   <Esc>:call my#GetSnippets('tex','indoc_iff_cup.tex')<CR>
-inoremap <buffer> \alg<Tab>    <Esc>:call my#GetSnippets('tex','indoc_algorithm.tex')<CR>
+inoremap <buffer> \btab<Tab>   <Esc>:call my#GetSnippets('tex','indoc-envtable.tex')<CR>
+inoremap <buffer> \csv<Tab>    <Esc>:call my#GetSnippets('tex','indoc-envtable-csv.tex',0)<CR>
+inoremap <buffer> \bfig<Tab>   <Esc>:call my#GetSnippets('tex','indoc-envfigure.tex')<CR>
+inoremap <buffer> \subfig<Tab> <Esc>:call my#GetSnippets('tex','indoc-subfigure.tex')<CR>
+inoremap <buffer> \tab<Tab>    <Esc>:call my#GetSnippets('tex','indoc-table.tex')<CR>
+inoremap <buffer> \fig<Tab>    <Esc>:call my#GetSnippets('tex','indoc-figure.tex')<CR>
+inoremap <buffer> \enum<Tab>   <Esc>:call my#GetSnippets('tex','indoc-enum-pure.tex')<CR>
+inoremap <buffer> \enumr<Tab>  <Esc>:call my#GetSnippets('tex','indoc-enum-roman.tex')<CR>
+inoremap <buffer> \enuma<Tab>  <Esc>:call my#GetSnippets('tex','indoc-enum-alph.tex')<CR>
+inoremap <buffer> \item<Tab>   <Esc>:call my#GetSnippets('tex','indoc-item.tex')<CR>
+inoremap <buffer> \iff<Tab>    <Esc>:call my#GetSnippets('tex','indoc-iff-arrow.tex')<CR>
+inoremap <buffer> \iffc<Tab>   <Esc>:call my#GetSnippets('tex','indoc-iff-cup.tex')<CR>
+inoremap <buffer> \alg<Tab>    <Esc>:call my#GetSnippets('tex','indoc-algorithm.tex')<CR>
