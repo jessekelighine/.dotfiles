@@ -3,8 +3,6 @@ title:  ".dotfiles"
 author: "jessekelighine.com"
 ---
 
-## Install
-
 ```sh
 git clone --recurse-submodules "https://github.com/jessekelighine/.dotfiles"
 cd ~/.dotfiles
@@ -17,6 +15,7 @@ make install
 cd ~/.dotfiles
 make update
 ```
+
 ## Uninstall
 
 ```sh

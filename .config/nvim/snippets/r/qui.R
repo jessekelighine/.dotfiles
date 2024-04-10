@@ -8,10 +8,8 @@
 # Last Modified: OOOO-OO-OO                                                   #
 ###############################################################################
 options(scipen=999999)
-options(datatable.verbose=FALSE,datatable.quiet=TRUE)
 options(tidyverse.quiet=TRUE)
 ###############################################################################
 library(conflicted)
-library(data.table)
 library(tidyverse)
 ###############################################################################

@@ -1,0 +1,59 @@
+#!/usr/bin/env Rscript
+
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Author: Jesse C. Chen (jessekelighine.com)                                  #
+# Description: Find Duplicated Files in a Directory.                          #
+#                                                                             #
+# Last Modified: 2024-04-03                                                   #
+###############################################################################
+library(conflicted)
+library(dplyr)
+library(stringr)
+###############################################################################
+
+dirname <- commandArgs(trailingOnly=TRUE)
+
+### Checks ####################################################################
+
+help <- function ( message=NULL ) {
+  if ( !is.null(message) ) paste("ERROR:", message) |> message()
+  c(
+    "usage: duplicatr [dirname]",
+    "description: find duplicated files in [dirname]"
+  ) |> paste0(collapse="\n") |> message()
+  quit()
+}
+
+if ( length(dirname) == 0 ) help()
+if ( !dir.exists(dirname) ) paste(dirname, "not readable") |> help()
+
+### Main ######################################################################
+
+paste(
+  "find",
+  dirname,
+  "-not -empty",
+  "-not -iwholename '*/.git/*'",
+  "-not -iwholename '*/.DS_Store'",
+  "-type f",
+  "-exec md5sum {} +"
+) |>
+  system(intern = TRUE) |>
+  dplyr::as_tibble() |>
+  dplyr::mutate(
+    md5sum   = str_extract(value, pattern="^[0-9a-zA-Z]+"),
+    filename = str_replace(value, pattern="^[0-9a-zA-Z]+ +", replacement="")
+  ) |>
+  dplyr::group_by(md5sum) |>
+  dplyr::filter(n() != 1) |>
+  dplyr::ungroup() |>
+  dplyr::arrange(md5sum, filename) |> 
+  dplyr::rowwise() |> 
+  dplyr::group_walk(
+    \ ( row, key )
+    cat(
+      paste(row$md5sum, row$filename, sep="\t"),
+      fill = TRUE
+    )
+  )

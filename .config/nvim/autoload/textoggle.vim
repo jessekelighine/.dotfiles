@@ -13,6 +13,7 @@ let g:textoggle_dict = {
 			\ 'acr':    { 'display':'Acronym',        'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
 			\ 'verb':   { 'display':'Verbatim',       'status':0, 'syntax':'verbatim.vim',  'plugin':''              },
 			\ 'alg':    { 'display':'Algorithm',      'status':0, 'syntax':'algorithm.vim', 'plugin':''              },
+			\ 'foot':   { 'display':'Footnote',       'status':0, 'syntax':'footnote.vim',  'plugin':''              },
 			\ }
 
 " Reload the toggle dictionary. Helper function for textoggle#Reload().
@@ -60,17 +61,6 @@ function! textoggle#Show() abort
 	endfor
 endfunction
 
-" toggle syntax/ftplygins.
-function! textoggle#Master() abort
-	call textoggle#Show()
-	let l:key  = input('--> Toggle LaTeX Syntax: ') | if l:key==''             | return | endif
-	let l:keys = keys(g:textoggle_dict)             | if index(l:keys,l:key)<0 | return | endif
-	call textoggle#Toggle(l:key)
-	call textoggle#Reload()
-	redraw | echom '--> ' .. g:textoggle_dict[l:key]['display'].' syntax: '
-				\ .. ( g:textoggle_dict[l:key]['status'] ? 'ON' : 'OFF' )
-endfunction
-
 " reload <buffer> key-mappings and toggles.
 function! textoggle#Reload(local_vimrc=0) abort
 	imapclear <buffer>
@@ -81,4 +71,15 @@ function! textoggle#Reload(local_vimrc=0) abort
 	silent setlocal filetype=tex
 	call <SID>ReloadToggleDict()
 	if a:local_vimrc | call my#LocalVimrc() | endif
+endfunction
+
+" toggle syntax/ftplygins.
+function! textoggle#Master() abort
+	call textoggle#Show()
+	let l:key  = input('--> Toggle LaTeX Syntax: ') | if l:key==''             | return | endif
+	let l:keys = keys(g:textoggle_dict)             | if index(l:keys,l:key)<0 | return | endif
+	call textoggle#Toggle(l:key)
+	call textoggle#Reload()
+	redraw | echom '--> ' .. g:textoggle_dict[l:key]['display'].' syntax: '
+				\ .. ( g:textoggle_dict[l:key]['status'] ? 'ON' : 'OFF' )
 endfunction

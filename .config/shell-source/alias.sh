@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 alias mv='mv -i'
+alias ls='ls -1G'
 alias la='ls -lAhG'
 alias lad='ls -lAhGd */'
 alias mkdir='mkdir -pv'
@@ -10,7 +11,6 @@ alias rg='rg --smart-case'
 
 alias 'd'='del'
 alias 'd-restore'="del -l | fzf | sed \"s/\(.*\)/'\\1'/\" | xargs -J % mv % $HOME/Desktop"
-alias 't'='todo'
 alias 'vim'='nvim'
 alias 'scim'='sc-im'
 alias 'youtube-audio'='yt-dlp -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'

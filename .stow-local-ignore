@@ -8,6 +8,7 @@
 \.github-token
 
 \.dotfiles-.*
+\.screenrc
 
 README.md
 Brewfile
@@ -15,3 +16,4 @@ Makefile
 others
 del
 whenever
+confucius-analects

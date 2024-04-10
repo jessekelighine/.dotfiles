@@ -28,3 +28,4 @@ command! -range         ChineseWordCount     :<line1>,<line2>s/[^\x00-\xff]//gn
 command! -nargs=?       Scratch              :call my#Scratch(<args>)
 command! -nargs=?       TallyOpacity         :! tally-opacity <args>
 command! -nargs=?       Spell                :call my#Spell(<args>)
+command! -nargs=0       FlushRegisters       :call my#FlushRegisters()

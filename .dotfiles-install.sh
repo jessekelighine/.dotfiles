@@ -2,7 +2,7 @@
 
 ### Notes #####################################################################
 
-# 2024-02-02
+# 2024-03-09
 #
 # - Fonts:
 #     - [IBM Plex Mono](https://github.com/IBM/plex)
@@ -19,8 +19,21 @@
 #     - Bypass Paywalls
 #     - Markdown Viewer
 #     - uBlock Origin
+#     - Vimium: put `map s passNextKey` so original youtube keybindings
+#       can be used.
 
-### Create Symlinks ###########################################################
+### Homebrew ##################################################################
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle install
+
+### MacOS Settings ############################################################
+
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && killall Finder
+
+### Symlinking ################################################################
 
 current_shell=$(echo $SHELL | xargs basename)
 [[ $current_shell == zsh  && ! -f .zshrc  ]] && ln -s .config/zsh/.zshrc   .
@@ -51,9 +64,3 @@ exit 0
 $(brew --prefix)/opt/fzf/install
 mv "$HOME/.fzf.bash" "$HOME/.config/bash/.fzf.bash"
 mv "$HOME/.fzf.zsh"  "$HOME/.config/zsh/.fzf.zsh"
-
-### Homebrew ##################################################################
-
-# install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle install

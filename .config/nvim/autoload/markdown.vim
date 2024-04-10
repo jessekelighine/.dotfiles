@@ -14,28 +14,8 @@ let g:markdown_view = 0
 if !exists("b:markdown_view_file") | let b:markdown_view_file = expand("%:p") | endif
 function! markdown#View(start=!g:markdown_view)
 	if !a:start | call system('open -a firefox') | return | endif
-	call system("firefox --new-window " .. "file://" .. b:markdown_view_file)
+	call system("open -a firefox file://" .. b:markdown_view_file)
 	let g:markdown_view = 1
-endfunction
-
-" convert from markdown to html.
-function! markdown#ToHtml(type)
-	let l:css = "~/.config/nvim/snippets/markdown/style.css"
-	let l:cjk = "markdown+east_asian_line_breaks"
-	let l:to  = "-o ".expand("%:r").".html"
-	let l:toc = a:type=="plain" ? ""
-				\ : a:type=="nonumber" ? "--toc"
-				\ : a:type=="number" ? "--toc -number-sections"
-				\ : "ERROR"
-	let l:command = join(["pandoc",
-				\ "-f", l:cjk,
-				\ "-s", l:toc,
-				\ "-c", l:css,
-				\ "--mathjax", 
-				\ expand("%"), l:to
-				\ ])
-	silent write
-	call system(l:command)
 endfunction
 
 " toggle codeblock syntax.
@@ -72,21 +52,3 @@ function! markdown#FindSection() abort
 	let l:index = input("--> Go to: ")
 	exe l:index =~ '^\d\+$' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
 endfunction
-
-" " compile markdown to HTML on save
-" function! markdown#PandocPVC(type="")
-" 	if !exists("b:markdown_pandoc_pvc_type") || a:type != ""
-" 		let b:markdown_pandoc_pvc_type = a:type=="" ? "plain" : a:type
-" 		call markdown#ToHtml(b:markdown_pandoc_pvc_type)
-" 		augroup PandocPVC
-" 			autocmd!
-" 			autocmd! BufWritePost *.md :call markdown#ToHtml(b:markdown_pandoc_pvc_type)
-" 		augroup END
-" 		echo "--> PandocPVC: ON (".b:markdown_pandoc_pvc_type.")"
-" 	else
-" 		unlet b:markdown_pandoc_pvc_type
-" 		autocmd! PandocPVC
-" 		echo "--> PandocPVC: OFF"
-" 	endif
-" endfunction
-

@@ -1,8 +1,8 @@
 " ~/.vim/after/ftplugin/tex/tikz.vim
 
 " " TIKZ: tikz package.
-imap <buffer> \tikz<Tab> <Esc>:call my#GetSnippets("tex","indoc_tikz.tex")<CR>
-imap <buffer> :ang<Tab>  <Esc>:call my#GetSnippets("tex","preamble_tikz_angles.tex")<CR>
+imap <buffer> \tikz<Tab> <Esc>:call my#GetSnippets("tex","indoc-tikz.tex")<CR>
+imap <buffer> :ang<Tab>  <Esc>:call my#GetSnippets("tex","preamble-tikz_angles.tex")<CR>
 imap <buffer> :blob<Tab> <C-G>u\newcommand{\blob}[2]{\draw[fill,rounded corners=#1*1mm] (#2) +($(0:#1*2+#1*rnd)$) \foreach \a in {20,40,...,350} { -- +($(\a: #1*2+#1*rnd)$) } -- cycle;}
 imap <buffer> :bg<Tab>   <C-G>u\pgfdeclarelayer{background}<CR>\pgfsetlayers{background,main}
 

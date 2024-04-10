@@ -26,7 +26,8 @@ endfunction
 
 " creates quote object in latex.
 function! tex#Quotes(code, double) abort
-	let [ l:begin, l:end ] = [ repeat("`", ( a:double ? 2 : 1 )), repeat("'", ( a:double ? 2 : 1 )) ]
+	let l:begin = repeat("`", ( a:double ? 2 : 1 ))
+	let l:end   = repeat("'", ( a:double ? 2 : 1 ))
 	call search(l:begin, "bcW") | exec "norm " .. repeat('l', ( a:double ? 2 : 1 ))
 	if a:code=="i"                                 | call search(l:end,  "sW") | exec "norm hv`'" | endif
 	if a:code=="a" &&  a:double | exec "norm 2h"   | call search(l:end, "seW") | exec "norm v`'"  | endif
@@ -50,7 +51,7 @@ endfunction
 
 " Delete parenthesis modifiers (left/right, big, large, ...).
 function! tex#DelLeftRight()
-	if getline(".")[col(".")-1] =~ '['..'()'..'\[\]'..'{}'..']'
+	if getline(".")[col(".")-1] =~ '[' .. '()' .. '\[\]' .. '{}' .. ']'
 		silent execute 'norm hhvawohx%hhviwohx%'
 	else
 		call search('\\\(left\|Big\|big\)',  'cb', line(".")) | exec 'norm de'
@@ -74,32 +75,6 @@ function! tex#SkimForward() abort
 	let l:command = join([l:utility, line('.'), l:pdf_file], ' ')
 	" silent call tex#ServerSetup()
 	silent call system(l:command)
-endfunction
-
-""" Tmux """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Tmux: Open pane
-function! tex#OpenTmux(command="") abort
-	packadd! vim-slime
-	if vimslime#Target()!="" || a:command=="" | call system("tmux resize-pane -Z") | return | endif
-	let l:command =  'tmux split -c "$PWD";'
-				\ .. 'tmux resize-pane -U 12;'
-				\ .. "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
-				\ .. 'tmux last-pane;'
-	let l:target_pane = system(l:command)->split('\n')->map('split(v:val," ")')->filter('v:val[1]==1')
-	call vimslime#SetTarget(l:target_pane[0][0])
-	call vimslime#Send(a:command, 1)
-	augroup TexOpenTmux
-		autocmd!
-		autocmd VimLeave * exe vimslime#Target()=="" ? "" : 'call tex#CloseTmux()'
-	augroup END
-endfunction
-
-" Tmux: Close pane
-function! tex#CloseTmux()
-	packadd! vim-slime
-	call vimslime#Send(repeat("\<C-C>", 10) .. "exit", 1)
-	call vimslime#UnsetTarget()
 endfunction
 
 """ Environments """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

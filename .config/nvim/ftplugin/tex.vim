@@ -29,20 +29,21 @@ let b:surround_108 = "\\left\r\\right"
 let b:surround_103 = "($\r$)"
 
 " COMPILATION:
-let b:tex_compile_png = "xelatex " .. my#quote(expand("%")) .. "; "
+packadd! vim-slime
+let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 			\ .. "convert "
 			\ .. "-background '#FFFFFF' -flatten "
 			\ .. "-density 600 "
-			\ .. my#quote(expand("%:r") .. ".pdf") .. " "
-			\ .. my#quote(expand("%:r") .. ".png")
-let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-error " .. my#quote(expand("%"))
+			\ .. "'" .. expand("%:r") .. ".pdf" .. "'" .. " "
+			\ .. "'" .. expand("%:r") .. ".png" .. "'"
+let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-error " .. "'" .. expand("%") .. "'"
 let b:tex_compile_make    = "make ; whenever . make"
 let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
-nnoremap <silent><buffer> <leader>rq      :call tex#CloseTmux()<CR>
-nnoremap <silent><buffer> <leader>rf      :call tex#OpenTmux(b:tex_compile_command)<CR>
-nnoremap <silent><buffer> <leader><Space> :call tex#OpenTmux(b:tex_compile_command)<CR>
-command! -buffer -nargs=0 OpenTmuxLatexmk :call tex#OpenTmux(b:tex_compile_xelatex)
-command! -buffer -nargs=0 OpenTmuxMake    :call tex#OpenTmux(b:tex_compile_make)
+nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
+nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:tex_compile_command)<CR>
+nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:tex_compile_command)<CR>
+command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
+command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 ServerSetup   :call tex#ServerSetup()
@@ -124,6 +125,7 @@ inoremap <buffer> :blind<tab>   <Esc>:call my#GetSnippets('tex','preamble-blindt
 inoremap <buffer> :date<Tab>    <Esc>:call my#GetSnippets('tex','preamble-datetime.tex')<CR>
 inoremap <buffer> :dinkus<Tab>  <Esc>:call my#GetSnippets('tex','preamble-dinkus.tex')<CR>
 inoremap <buffer> :gloss<Tab>   <Esc>:call my#GetSnippets('tex','preamble-glossaries.tex')<CR>
+inoremap <buffer> :btheme<Tab>  <Esc>:call my#GetSnippets('tex','preamble-beamer_theme.tex')<CR>
 
 " TEXT OBJECT: TeX specific objects.
 xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
@@ -158,7 +160,7 @@ inoremap <buffer> \mini<Tab>    <Esc>:call my#GetSnippets('tex','indoc-minipage.
 inoremap <buffer> `<Tab>        `'<Left>
 inoremap <buffer> ``<Tab>       ``''<Left><Left>
 
-" MATH: math shortcuts.
+" MATH: math stuff.
 inoremap <buffer> _<Tab>           <C-G>u_{}<Left>
 inoremap <buffer> ^<Tab>           <C-G>u^{}<Left>
 inoremap <buffer> $<Tab>           <C-G>u$$<Left>
@@ -171,6 +173,12 @@ inoremap <buffer> <bar><bar><Tab>  <C-G>u\left<bar>\right<bar><Esc>6hi
 inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
 inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
 inoremap <buffer> \ma<Tab>         <Esc>:call my#GetSnippets('tex','indoc-matrix.tex')<CR>
+inoremap <buffer> \mb<Tab> <C-G>u\mathbf{}<Left>
+inoremap <buffer> \mc<Tab> <C-G>u\mathcal{}<Left>
+inoremap <buffer> \ms<Tab> <C-G>u\mathscr{}<Left>
+inoremap <buffer> \mf<Tab> <C-G>u\mathsf{}<Left>
+inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
+inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
 
 " TEXT: text/font modifiers.
 inoremap <buffer> \bf<Tab> <C-G>u\textbf{}<Left>
@@ -183,12 +191,6 @@ inoremap <buffer> \bs<Tab> <C-G>u\boldsymbol{}<Left>
 inoremap <buffer> \t<Tab>  <C-G>u\text{}<Left>
 inoremap <buffer> \v<Tab>  <C-G>u\verb""<Left>
 inoremap <buffer> \V<Tab>  <C-G>u\Verb""<Left>
-inoremap <buffer> \mb<Tab> <C-G>u\mathbf{}<Left>
-inoremap <buffer> \mc<Tab> <C-G>u\mathcal{}<Left>
-inoremap <buffer> \ms<Tab> <C-G>u\mathscr{}<Left>
-inoremap <buffer> \mf<Tab> <C-G>u\mathsf{}<Left>
-inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
-inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
 
 " Environments: expandable environments.
 inoremap <buffer> \b<Tab>      <Esc>:call tex#EmptyEnvironment()<CR>

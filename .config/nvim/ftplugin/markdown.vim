@@ -5,36 +5,56 @@
 " ~/.config/nvim/after/indent/markdown.vim
 " ~/.config/nvim/after/syntax/markdown.vim
 
+nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/markdown.vim<CR>
+nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/markdown.vim<CR>
+
 command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}"\).\{-}\("\)',min([line("$"),5]))
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()
-command! -buffer -nargs=0 View        :call markdown#View(1)
-command! -buffer -nargs=? PandocPVC   :call markdown#PandocPVC(<q-args>)
-command! -buffer -range   FormatTable :'<,'>!pandoc -t commonmark_x
 command! -buffer -nargs=0 TexScratch  :silent exec "norm! :Scratch\r:setl ft=tex\ra\\[\r\r\\]\ek"
+command! -buffer -range   FormatTable :'<,'>!pandoc -t commonmark_x
 
 " SURROUND: surround settings.
 let b:surround_98="**\r**"
 let b:surround_99="<!-- \r -->"
+let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 
 " AUTOLOAD: toggles.
-" let g:markdown_fenced_languages = [ 'sh', 'bash', 'vim' ]
+let g:markdown_fenced_languages = [ 'r' ]
 " let g:markdown_minlines = 100
 let b:markdown_code_syntax_toggle=0
 
 " VIEW:
-let b:markdown_view_file = expand("%:p:r") .. ".html"
-if !file_readable(b:markdown_view_file) | let b:markdown_view_file = expand("%:p") | endif
+let b:markdown_view_file = file_readable(expand("%:p:r") .. ".html")
+			\ ? expand("%:p:r") .. ".html"
+			\ : expand("%:p")
 nnoremap <buffer> <leader>p :call markdown#View()<CR>
+command! -buffer -nargs=0 View :call markdown#View(1)
 
-" COMPILER: types = {number, nonumber, plain}.
-nnoremap <buffer> <F1>      :tabnew ~/.config/nvim/ftplugin/markdown.vim<CR>
-nnoremap <buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/markdown.vim<CR>
-nnoremap <buffer> <F5>      :call markdown#ToHtml("plain")<CR><CR>
-nnoremap <buffer> <F6>      :call markdown#ToHtml("nonumber")<CR><CR>
-nnoremap <buffer> <F7>      :call markdown#ToHtml("number")<CR><CR>
+" COMPILER:
+packadd! vim-slime
+let b:pandoc_command_css_file = "~/.config/nvim/snippets/markdown/style.css"
+let b:pandoc_command_plain = join([
+			\ "pandoc",
+			\ "--from markdown+east_asian_line_breaks",
+			\ "--css", b:pandoc_command_css_file,
+			\ "--mathjax",
+			\ "--standalone",
+			\ expand("%:p"),
+			\ "--output", expand("%:p:r") .. ".html"
+			\ ])
+let b:pandoc_command_nonumber = b:pandoc_command_plain .. " --toc"
+let b:pandoc_command_number   = b:pandoc_command_nonumber .. " --number-sections"
+let b:pandoc_tmux_command = file_readable("Makefile")
+			\ ? "make ; whenever . make"
+			\ : join(["whenever", expand("%:p"), b:pandoc_command_plain])
+nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
+nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>
+nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>
+nnoremap <buffer> <F5> :call system(b:pandoc_command_plain)<CR>
+nnoremap <buffer> <F6> :call system(b:pandoc_command_nonumber)<CR>
+nnoremap <buffer> <F7> :call system(b:pandoc_command_number)<CR>
 nnoremap <buffer> <leader>c :call markdown#ClearCodeSyntax()<CR>
-nnoremap <silent><buffer> <leader><Space> :call markdown#PandocPVC()<CR>
 
 " SETUP: snippets, markdown items.
 imap <silent><buffer> :qui<Tab> <esc>:call my#GetSnippets('markdown','skeleton.md')<CR>:LastMod<CR>:FillAuthor<CR>G

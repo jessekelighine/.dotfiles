@@ -7,7 +7,6 @@
 .password-store
 .vim
 .ssh
-.screenrc
 .hammerspoon
 .local/bin
 .config/alacritty

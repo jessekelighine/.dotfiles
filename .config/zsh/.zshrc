@@ -34,3 +34,5 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 	source "$HOME/.config/shell-source/up.sh"
 	source "$HOME/.config/shell-source/pyenv.sh"
 }
+
+confucius-said

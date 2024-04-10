@@ -1,0 +1,23 @@
+%%% Beamer Theme %%%
+\useoutertheme[subsection=false]{miniframes}
+\setbeamercolor{structure}{fg=myblue}
+\setbeamercolor{block title}{bg=myblue,fg=white}
+\setbeamercolor{block body}{bg=myblue!10,fg=black}
+\usefonttheme{professionalfonts}
+\useinnertheme{rectangles}
+% \linespread{1.2}
+%-----------------------------------------------------------------------------%
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[default]
+\makeatother
+\setbeamertemplate{footline}{\leavevmode\hbox{%
+\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{}%
+	\usebeamerfont{title in head/foot}%
+	\hfill\textbf{\insertframenumber:\inserttotalframenumber{\ \ }}%
+\end{beamercolorbox}%
+}\vskip0pt}
+\makeatletter
+%-----------------------------------------------------------------------------%
+%%% Appendix %%%
+\usepackage{appendixnumberbeamer}
+%-----------------------------------------------------------------------------%

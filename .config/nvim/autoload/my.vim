@@ -20,6 +20,19 @@ endfunction
 
 """ Miscellaneous """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" clear all registers
+function! my#FlushRegisters()
+	let l:registers = split(
+				\ '/-"'
+				\ .. '0123456789'
+				\ .. 'abcdefghijklmnopqrstuvwxyz'
+				\ .. 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+				\ '\zs')
+	for l:register in l:registers
+		call setreg(l:register, [])
+	endfor
+endfunction
+
 " source a local vimrc file if exists.
 function! my#LocalVimrc(filename=".vimrc")
 	if filereadable(a:filename)
@@ -84,12 +97,6 @@ function! my#Scratch(height=5)
     setlocal nobuflisted
 	resize -1000
 	execute "resize +" .. max([a:height-1,0])
-endfunction
-
-" quote a string
-function! my#quote(string, type=1)
-	let l:quote = a:type==1 ? "'" : '"'
-	return l:quote .. a:string .. l:quote
 endfunction
 
 """ Toggle Settings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

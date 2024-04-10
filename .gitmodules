@@ -49,3 +49,6 @@
 [submodule "whenever"]
 	path = whenever
 	url = https://github.com/jessekelighine/whenever
+[submodule ".config/nvim/pack/main/start/goyo.vim"]
+	path = .config/nvim/pack/main/start/goyo.vim
+	url = https://github.com/junegunn/goyo.vim
