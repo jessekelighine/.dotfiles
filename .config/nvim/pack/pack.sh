@@ -13,4 +13,3 @@ git submodule add 'https://github.com/tpope/vim-repeat'                main/star
 git submodule add 'https://github.com/tpope/vim-surround'              main/start/vim-surround
 git submodule add 'https://github.com/tpope/vim-vinegar'               main/start/vim-vinegar
 git submodule add 'https://github.com/jessekelighine/vindent.vim'      main/start/vindent.vim
-git submodule add 'https://github.com/junegunn/goyo.vim'               main/start/goyo.vim

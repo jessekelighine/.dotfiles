@@ -68,6 +68,7 @@ inoremap <buffer> `<Tab>   <C-G>u``<Left>
 inoremap <buffer> ``<Tab>  <C-G>u```<CR>```<Esc>O
 inoremap <buffer> *<Tab>   <C-G>u**<Left>
 inoremap <buffer> **<Tab>  <C-G>u****<Left><Left>
+inoremap <buffer> ::<Tab>  <C-G>u:::<CR>:::<Esc>O
 
 " TABLE: Commands
 xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>

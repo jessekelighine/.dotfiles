@@ -53,3 +53,8 @@ highlight def link MarkdownListExpand Red
 syntax region      markdownFootnotes matchgroup=markdownFootnotesBounds start="\^\[" skip="\\]" end="\]"
 highlight def link markdownFootnotes       String
 highlight def link markdownFootnotesBounds Grey
+
+""" Div ( 2024-04-15 ) """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+syntax match markdownDiv /^:::.*$/
+highlight def link markdownDiv Todo

@@ -103,4 +103,5 @@ cask "skim"
 cask "tor-browser"
 cask "vnc-viewer"
 mas "Adblock Plus", id: 1432731683
+mas "Disk Speed Test", id: 425264550
 mas "LINE", id: 539883307
