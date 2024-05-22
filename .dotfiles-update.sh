@@ -7,18 +7,18 @@ sudo update-hosts
 ### Homebrew ##################################################################
 
 # update packages
-# brew update
-# brew upgrade --verbose
-# brew upgrade --cask --greedy --verbose
+brew update
+brew upgrade
+brew upgrade --cask --greedy
 
 # update mas
-echo "==> $(tput bold)Running MAS$(tput sgr0)"
+echo "$(tput setaf 4)==>$(tput sgr0) $(tput bold)Running MAS...$(tput sgr0)"
 mas outdated
 mas upgrade
 
 # clean-up
-brew autoremove -v
-brew cleanup -v
+brew autoremove
+brew cleanup
 
 # list packages
 brew bundle dump --force
@@ -28,7 +28,7 @@ brew bundle dump --force
 git add .
 
 cat << EOF
-$(tput bold)$0$(tput sgr0): Update finished. Check following files manually:
+$(tput bold)$(basename $0)$(tput sgr0): Update finished. Check following files manually:
 	- .stow-local-ignore 
 	- .dotfiles-files
 	- .gitignore

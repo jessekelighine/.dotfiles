@@ -22,9 +22,9 @@ end)
 
 -- Bluetooth ------------------------------------------------------------------
 
-blueutil         = "/usr/local/bin/blueutil"
+blueutil         = "/opt/homebrew/bin/blueutil"
 blueutil_off     = blueutil .. " -p 0; "
-blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect Sicherung"
+blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect 2c-41-a1-88-27-9a"
 hs.hotkey.bindSpec({ HYPER_S, "b" }, function () hs.execute(blueutil_off)     end)
 hs.hotkey.bindSpec({ HYPER,   "b" }, function () hs.execute(blueutil_connect) end)
 
@@ -38,21 +38,21 @@ known_networks = {
 }
 
 hs.hotkey.bindSpec({ HYPER_S, "w" }, function () hs.wifi.setPower(false, wifi_interface) end)
-hs.hotkey.bindSpec({ HYPER,   "w" }, function ()
-	hs.wifi.setPower(true,  wifi_interface)
-	local available_networks = hs.wifi.availableNetworks(wifi_interface)
-	for network, password in pairs(known_networks) do
-		print("Checking if", network, "is available...")
-		for _, available_network in pairs(available_networks) do
-			if ( network == available_network ) then
-				print("Network", network, "is available, connecting...")
-				hs.wifi.associate(network, password, wifi_interface)
-				print("Network", network, "connected.")
-				return
-			end
-		end
-	end
-end)
+hs.hotkey.bindSpec({ HYPER,   "w" }, function () hs.wifi.setPower(true,  wifi_interface) end)
+
+-- local wifi_menubar = hs.menubar.new():setTitle(hs.wifi.currentNetwork())
+-- hs.hotkey.bindSpec({ HYPER,   "w" }, function ()
+-- 	hs.wifi.setPower(true, wifi_interface)
+-- 	for network, password in pairs(known_networks) do
+-- 		print("Trying to connect to network " .. network .. " ...")
+-- 		if hs.wifi.associate(network, password, wifi_interface) then
+-- 			print("Connected to network " .. network)
+-- 			-- hs.menubar.new():setTitle(network)
+-- 			return true
+-- 		end
+-- 	end
+-- 	return false
+-- end)
 
 -- Clipboard ------------------------------------------------------------------
 

@@ -25,8 +25,8 @@ function! r#FindSection() abort
 	let l:header_format = "%6s %6s  %s"
 	let l:header = printf(l:header_format, "Line", "Index", "Title")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
-	global/^### /
-				\ let l:display_name = substitute(getline("."), '\(^### \| #\+.*$\)', "", "g") |
+	global/^#\{2,} /
+				\ let l:display_name = substitute(getline("."), '\(^#\{2,} \| #\+$\)', "", "g") |
 				\ echo printf(l:header_format, line("."), l:index, l:display_name) |
 				\ call add(l:section_lines, line(".")) |
 				\ let l:index += 1

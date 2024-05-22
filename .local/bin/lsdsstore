@@ -3,11 +3,10 @@
 ds_list=()
 if [[ $1 == '' ]]; then
 	folders=(
-		"$HOME/Courses"
+		"$HOME/courses"
 		"$HOME/Desktop"
 		"$HOME/Documents"
 		"$HOME/Downloads"
-		"$HOME/Fonts"
 		"$HOME/Pictures"
 		"$HOME/.config"
 		)

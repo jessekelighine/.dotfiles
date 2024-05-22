@@ -1,0 +1,11 @@
+%%% Fancy Header & Footer %%%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+% \fancyhf[HL]{Left}
+% \fancyhf[HR]{Right}
+\fancyhf[FC]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+% \maketitle\thispagestyle{fancy}
+%-----------------------------------------------------------------------------%

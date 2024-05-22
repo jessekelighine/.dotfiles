@@ -2,6 +2,8 @@
 " ~/.config/nvim/snippets/python/
 " ~/.config/nvim/autoload/python.vim
 
+command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: *\)[^ ]*',10)
+
 " GENERAL SETTINGS: disables 8-wide tab, sensible listchars.
 " let g:python_recommended_style = 0
 setlocal winminwidth=1

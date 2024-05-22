@@ -2,8 +2,8 @@
 
 message () {
 	local g; g=$(tput bold && tput setaf 10)
-	local b;  b=$(tput bold && tput setaf 12)
-	local n;  n=$(tput sgr0)
+	local b; b=$(tput bold && tput setaf 12)
+	local n; n=$(tput sgr0)
 	cat << EOF
 ${g}usage:${n} ${b}$(basename "$0")${n} [input.pdf] [output.pdf] [pdfmarks]
 ${g}description:${n}

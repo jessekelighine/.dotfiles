@@ -72,8 +72,11 @@ endfunction
 function! tex#SkimForward() abort
 	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
 	let l:pdf_file = expand("%:p:r") .. ".pdf"
-	let l:command = join([l:utility, line('.'), l:pdf_file], ' ')
-	" silent call tex#ServerSetup()
+	let l:command = join([
+				\ l:utility,
+				\ line('.'),
+				\ l:pdf_file
+				\ ], ' ')
 	silent call system(l:command)
 endfunction
 

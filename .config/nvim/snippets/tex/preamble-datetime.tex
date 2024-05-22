@@ -1,9 +1,9 @@
 %%% Date Time %%%
 \usepackage{datetime}
-\newtimeformat{zeit}%
+\newtimeformat{mytime}%
 {\twodigit{\THEHOUR}:\twodigit{\THEMINUTE}} % \THESECOND
-\settimeformat{zeit}%
-\newdateformat{meinesdatum}
+\settimeformat{mytime}%
+\newdateformat{mydate}
 {\THEYEAR-\twodigit{\THEMONTH}-\twodigit{\THEDAY}}
-\setdefaultdate{\meinesdatum}
+\setdefaultdate{\mydate}
 %-----------------------------------------------------------------------------%

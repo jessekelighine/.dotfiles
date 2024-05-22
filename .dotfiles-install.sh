@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
-### Notes #####################################################################
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Author: jessekelighine.com                                                  #
+#                                                                             #
+# Last Modified: 2024-05-04                                                   #
+###############################################################################
 
-# 2024-03-09
-#
 # - Fonts:
 #     - [IBM Plex Mono](https://github.com/IBM/plex)
 #     - [Noto CJK](https://github.com/notofonts/noto-cjk)
 #     - [cwTeX](https://github.com/l10n-tw/cwtex-q-fonts)
 #     - [jf-openhuninn-2.0](https://github.com/justfont/open-huninn-font)
 #     - [LXGW WenKai / 霞鹜文楷](https://github.com/lxgw/LxgwWenKai)
+#     - [Garamond Math](https://github.com/YuanshengZhao/Garamond-Math)
 #     - GenWanMinTJ: b2
 # - [Okular](https://invent.kde.org/packaging/homebrew-kde/)
 # - [Backblaze](https://www.backblaze.com/cloud-backup.html)
@@ -32,6 +36,7 @@ brew bundle install
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && killall Finder
+# defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.dock autohide-time-modifier -int 0; killall Dock
 
 ### Symlinking ################################################################
 
@@ -44,20 +49,8 @@ stow . && {
 	exit 0
 }
 
-read -p "$0: symlink directly?  [Yn] " -n 1 && printf "\n"
-[[ ! $REPLY =~ ^[yY]$ ]] && printf "$0: aborted\n" && exit 0
-
-dotlocale=$(pwd)
-readarray -t files_to_link < "$dotlocale/.dotfiles-files"
-for item in "${files_to_link[@]}"
-do [ -e "$dotlocale/$item" ] && {
-	printf "$0: linking $dotlocale/$item\n"
-	ln -s "$dotlocale/$item" "$HOME/$item"
-}
-done
-
-printf "$0: linked\n"
-exit 0
+printf "$0: installation with 'stow' FAILED\n"
+exit 1
 
 ### fzf key-bindings ##########################################################
 

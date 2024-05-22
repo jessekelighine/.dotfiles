@@ -8,8 +8,7 @@ STYLE := style.css
 all: $(MAIN).html
 
 $(MAIN).html: $(MAIN).md $(STYLE)
-	pandoc \
-		 $(MAIN).md \
+	pandoc $(MAIN).md \
 		--from markdown+east_asian_line_breaks \
 		--toc --number-sections \
 		--standalone --mathjax \

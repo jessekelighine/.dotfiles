@@ -12,7 +12,7 @@ command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}"\).\{-}\(
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()
 command! -buffer -nargs=0 TexScratch  :silent exec "norm! :Scratch\r:setl ft=tex\ra\\[\r\r\\]\ek"
-command! -buffer -range   FormatTable :'<,'>!pandoc -t commonmark_x
+command! -buffer -range   FormatTable :'<,'>EasyAlign * /|/
 
 " SURROUND: surround settings.
 let b:surround_98="**\r**"

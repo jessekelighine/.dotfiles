@@ -1,0 +1,14 @@
+%%% TikZ Color Box %%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins}
+\makeatletter
+\tcbset{mycolorbox/.style={
+enhanced,sharp corners,frame hidden,boxrule=0sp,
+left=8pt,right=4pt,top=4pt,bottom=4pt,
+colback=#1!5,borderline west={3pt}{0pt}{#1}}}
+\tcolorboxenvironment{definition}{mycolorbox={myred}}
+\tcolorboxenvironment{theorem}{mycolorbox={myblue}}
+\tcolorboxenvironment{corollary}{mycolorbox={myred}}
+\tcolorboxenvironment{lemma}{mycolorbox={myred}}
+\makeatother
+%-----------------------------------------------------------------------------%

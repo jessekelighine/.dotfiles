@@ -21,7 +21,14 @@ if expand("~/.config/nvim/pack/pack.sh")->filereadable()
 	xmap ga <Plug>(EasyAlign)
 	nmap ga <Plug>(EasyAlign)
 	" fzf.vim
-	set rtp+=/usr/local/opt/fzf " where fzf is installed
+	let g:fzf_path = system(
+				\ "which fzf"
+				\ .. "| xargs realpath"
+				\ .. "| xargs dirname"
+				\ .. "| xargs dirname"
+				\ .. "| xargs printf"
+				\ )
+	let &rtp ..= "," .. g:fzf_path
 	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 	let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
 	let g:fzf_preview_window = [ 'right:40%' ]
@@ -49,6 +56,8 @@ if expand("~/.config/nvim/pack/pack.sh")->filereadable()
 	let g:vindent_jumps = 1
 	let g:vindent_begin = 1
 	let g:vindent_count = 0
+	let g:vindent_infer = 1
+	"let g:vindent_block_ending = [')', ']', '}', 'end', 'else', 'elif']
 endif
 
 filetype plugin on
@@ -59,8 +68,8 @@ packloadall
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
+"nnoremap <expr> n 'Nn'[v:searchforward]
+"nnoremap <expr> N 'nN'[v:searchforward]
 nnoremap <Space> <Nop>
 xnoremap ''     "*y
 nnoremap ''     "*y
@@ -152,6 +161,7 @@ set lazyredraw ttyfast re=1
 set timeoutlen=500 ttimeoutlen=50
 set updatetime=300
 set shortmess-=S " Show number of matches
+set notermguicolors
 let g:html_number_lines=1
 let g:netrw_banner=0
 let g:netrw_fastbrowse=0

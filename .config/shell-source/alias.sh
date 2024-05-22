@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 alias mv='mv -i'
-alias ls='ls -1G'
 alias la='ls -lAhG'
 alias lad='ls -lAhGd */'
 alias mkdir='mkdir -pv'

@@ -1,3 +1,4 @@
+accents
 adjustbox
 algorithms
 appendix
@@ -15,8 +16,10 @@ datetime
 ebgaramond
 enumitem
 fancyhdr
+floatrow
 fmtcount
 fontaxes
+footmisc
 garamond-math
 gensymb
 geometry
@@ -36,11 +39,13 @@ natbib
 newtx
 paralist
 pdfbook2
+pdfcol
 pdfjam
 placeins
 ragged2e
 rsfs
 setspace
+sidenotes
 siunitx
 standalone
 stickstoo
@@ -49,8 +54,10 @@ stix2
 stix2-otf
 stix2-type1
 subcaption
+tcolorbox
 textcase
 thmtools
+tikzfill
 titlesec
 tocloft
 xcolor

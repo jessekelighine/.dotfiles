@@ -73,7 +73,9 @@ endfunction
 "     - pattern:                 ^\(date:\s\{-}"\).\{-}\(".*\)$
 function! my#LastMod(pattern, line=6)
 	let l:pos = getpos(".")
-	exec "1,".a:line.'g/'.a:pattern.'/s/'.a:pattern.'/\1'.strftime("%F").'\2'
+	exec "1," .. a:line
+				\ .. 'g/' .. a:pattern .. '/'
+				\ .. 's/' .. a:pattern .. '/\1' .. strftime("%F") .. '\2'
 	call setpos(".", l:pos)
 endfunction
 

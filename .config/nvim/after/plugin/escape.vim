@@ -3,7 +3,7 @@
 function! <SID>SID()
 	return matchstr(expand('<sfile>'),'<SNR>\zs\d\+\ze_SID$')
 endfunction
-let s:SID = "\<SNR>".<SID>SID().'_'
+let s:SID = "\<SNR>" .. <SID>SID() .. '_'
 
 function! <SID>setup(bool)
 	if a:bool
@@ -17,17 +17,17 @@ endfunction
 
 function! <SID>trigger_key(key)
 	call <SID>setup(1)
-	return s:SID.'work:'.a:key
+	return s:SID .. 'work:' .. a:key
 endfunction
 
 function! <SID>trigger_cancel(key)
 	call <SID>setup(0)
-	return s:SID.'cancel:'.a:key
+	return s:SID .. 'cancel:' .. a:key
 endfunction
 
 function! <SID>trigger_success(key)
 	call <SID>setup(0)
-	return s:SID.'success:'.a:key
+	return s:SID .. 'success:' .. a:key
 endfunction
 
 imap     <expr> j            <SID>trigger_key('j')

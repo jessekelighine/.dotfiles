@@ -13,6 +13,7 @@ require'nvim-treesitter.configs'.setup {
 		disable = {
 			"c",
 			"latex",
+			"markdown",
 		},
 	},
 
@@ -21,3 +22,5 @@ require'nvim-treesitter.configs'.setup {
 		disable = { "cpp" },
 	},
 }
+
+vim.api.nvim_set_hl(0, "@variable",   { link = "Identifier" })

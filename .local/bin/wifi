@@ -15,23 +15,25 @@ ${green}options:${norm}
 EOF
 }
 
+interface="en0"
+
 case "$1" in
 	on)
-		networksetup -setairportpower en0 on && exit 0
+		networksetup -setairportpower $interface on && exit 0
 		;;
 	off)
-		networksetup -setairportpower en0 off && exit 0
+		networksetup -setairportpower $interface off && exit 0
 		;;
 	status)
-		networksetup -getairportpower en0 && exit 0
+		networksetup -getairportpower $interface && exit 0
 		;;
 	list)
 		/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan
 		;;
 	connect)
 		[[ $# -gt 3 || $# -lt 2 ]] && message >&2 && exit 1
-		networksetup -setairportpower en0 on
-		networksetup -setairportnetwork en0 "$2" "$3" 
+		networksetup -setairportpower $interface on
+		networksetup -setairportnetwork $interface "$2" "$3" 
 		exit 0
 		;;
 	*)

@@ -105,11 +105,8 @@ inoremap <buffer> :mn<tab>      <Esc>:call my#GetSnippets('tex','preamble-mathno
 inoremap <buffer> :ow<tab>      <Esc>:call my#GetSnippets('tex','preamble-noorphanwidow.tex')<CR>
 inoremap <buffer> :problem<tab> <Esc>:call my#GetSnippets('tex','preamble-problem.tex')<CR>
 inoremap <buffer> :prob<tab>    <Esc>:call my#GetSnippets('tex','preamble-mathprob.tex')<CR>
-inoremap <buffer> :pagec<tab>   <Esc>:call my#GetSnippets('tex','preamble-pagechinese.tex')<CR>
-inoremap <buffer> :pagee<tab>   <Esc>:call my#GetSnippets('tex','preamble-pageenglish.tex')<CR>
-inoremap <buffer> :pageg<tab>   <Esc>:call my#GetSnippets('tex','preamble-pagegerman.tex')<CR>
 inoremap <buffer> :pageb<tab>   <Esc>:call my#GetSnippets('tex','preamble-pagebeamer.tex')<CR>
-inoremap <buffer> :pagep<tab>   <Esc>:call my#GetSnippets('tex','preamble-pageplain.tex')<CR>
+inoremap <buffer> :page<tab>    <Esc>:call my#GetSnippets('tex','preamble-fancyhdr.tex')<CR>
 inoremap <buffer> :ruby<tab>    <Esc>:call my#GetSnippets('tex','preamble-ruby.tex')<CR>
 inoremap <buffer> :tab<tab>     <Esc>:call my#GetSnippets('tex','preamble-table.tex')<CR>
 inoremap <buffer> :secf<tab>    <Esc>:call my#GetSnippets('tex','preamble-sectionfont.tex')<CR>
@@ -126,6 +123,7 @@ inoremap <buffer> :date<Tab>    <Esc>:call my#GetSnippets('tex','preamble-dateti
 inoremap <buffer> :dinkus<Tab>  <Esc>:call my#GetSnippets('tex','preamble-dinkus.tex')<CR>
 inoremap <buffer> :gloss<Tab>   <Esc>:call my#GetSnippets('tex','preamble-glossaries.tex')<CR>
 inoremap <buffer> :btheme<Tab>  <Esc>:call my#GetSnippets('tex','preamble-beamer_theme.tex')<CR>
+inoremap <buffer> :tcolor<Tab>  <Esc>:call my#GetSnippets('tex','preamble-tcolorbox.tex')<CR>
 
 " TEXT OBJECT: TeX specific objects.
 xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
@@ -207,6 +205,7 @@ inoremap <buffer> \vmat<Tab>   <Esc>:call tex#EmptyEnvironment('vmatrix')<CR>
 inoremap <buffer> \btab<Tab>   <Esc>:call my#GetSnippets('tex','indoc-envtable.tex')<CR>
 inoremap <buffer> \csv<Tab>    <Esc>:call my#GetSnippets('tex','indoc-envtable-csv.tex',0)<CR>
 inoremap <buffer> \bfig<Tab>   <Esc>:call my#GetSnippets('tex','indoc-envfigure.tex')<CR>
+inoremap <buffer> \mfig<Tab>   <Esc>:call my#GetSnippets('tex','indoc-marginfigure.tex')<CR>
 inoremap <buffer> \subfig<Tab> <Esc>:call my#GetSnippets('tex','indoc-subfigure.tex')<CR>
 inoremap <buffer> \tab<Tab>    <Esc>:call my#GetSnippets('tex','indoc-table.tex')<CR>
 inoremap <buffer> \fig<Tab>    <Esc>:call my#GetSnippets('tex','indoc-figure.tex')<CR>

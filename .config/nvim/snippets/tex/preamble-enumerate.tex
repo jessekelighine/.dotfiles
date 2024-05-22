@@ -1,4 +1,9 @@
 %%% Enumerate %%%
 \usepackage{enumitem}
 \setlist{listparindent=\parindent,parsep=0pt,nosep} % paragraph indent 
+\makeatletter % \item[\itemlabel{label}{item name}]
+\def\itemlabel#1#2%
+{\begingroup#2\def\@currentlabel{#2}%
+\phantomsection\label{#1}\endgroup}%
+\makeatother
 %-----------------------------------------------------------------------------%

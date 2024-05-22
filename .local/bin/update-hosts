@@ -3,30 +3,28 @@
 set -e
 
 message () {
-	local head; head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
 	local pid; pid=$!
-	local delay; delay=0.12
+	local head; head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
 	local symb_succ; symb_succ="$(tput setaf 10)OK$(tput sgr0)"
-	local symb_fail; symb_fail="$(tput setaf 9 )NO$(tput sgr0)"
+	local symb_fail; symb_fail="$(tput setaf  9)NO$(tput sgr0)"
+	[[ "$2" == "0" ]] && { printf "\r[ $symb_succ ] $head\n"; return 0; }
+	[[ -n "$2"     ]] && { printf "\r[ $symb_fail ] $head\n"; return $2; }
 	local symbols1; symbols1='.o08o.  '
 	local symbols2; symbols2='   o08o.'
 	local symb_len; symb_len=${#symbols2}
-	local i; i=0
+	local delay; delay=0.1
+	local iter; iter=0
 	while kill -0 $pid 2> /dev/null
 	do
-		i=$(( ( i + 1 ) % symb_len ))
-		printf "\r[ ${symbols1:$i:1}${symbols2:$i:1} ] $head"
+		iter=$(( ( iter + 1 ) % symb_len ))
+		printf "\r[ ${symbols1:$iter:1}${symbols2:$iter:1} ] $head"
 		sleep $delay
 	done
-	local symb_fin; symb_fin=$symb_fail
-	if [ -n $2 ]
-	then
-		[[ $2 -eq 0 ]] && symb_fin=$symb_succ
-	else
-		wait $pid
-		[[ $? -eq 0 ]] && symb_fin=$symb_succ
+	if wait $pid
+	then printf "\r[ $symb_succ ] $head\n"; return 0
+	else printf "\r[ $symb_fail ] $head\n"; return $(wait $pid)
 	fi
-	printf "\r[ $symb_fin ] $head\n"
+	return 0
 }
 
 ### Variables #################################################################
@@ -39,9 +37,10 @@ hosts_zero="$(mktemp -t "update-hosts")"
 hosts_final="$(mktemp -t "update-hosts")"
 
 clean_up () {
-	rm -rf "${hosts_temp}"
-	rm -rf "${hosts_zero}"
-	message "clean-up finished"
+	rm -rf \
+		"${hosts_temp}" \
+		"${hosts_zero}" \
+		"${hosts_final}" & message "cleaned-up"
 }
 
 trap clean_up EXIT SIGINT
@@ -57,7 +56,7 @@ trap clean_up EXIT SIGINT
 ## Check if "Ad-block" line is present in "/etc/hosts".
 grep -q "${ad_block}" "$hosts_original"
 [[ $? -ne 0 ]] && {
-	message "puting '${ad_block}' line in '$hosts_original'..."
+	message "puting '${ad_block}' line in '$hosts_original'..." 0
 	printf "\n\n${ad_block}" | sudo tee -a "$hosts_original"
 }
 
@@ -79,5 +78,5 @@ printf "/^${ad_block}\n.,\$d\nwq\n" | ed -s "$hosts_temp" 1> /dev/null
 mv "$hosts_final" "$hosts_original"
 chmod 644 "$hosts_original"
 
-message "hosts updated"
+message "hosts updated" 0
 exit 0

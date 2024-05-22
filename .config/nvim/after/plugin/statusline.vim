@@ -22,15 +22,15 @@ let g:statusline_change = {
 			\ 'c'      : '%1*',
 			\ }
 
-exe 'hi User1 ctermbg=' . s:c.red.a    . ' guibg=' . s:c.red.b    . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User2 ctermbg=' . s:c.orange.a . ' guibg=' . s:c.orange.b . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User3 ctermbg=' . s:c.gold.a   . ' guibg=' . s:c.gold.b   . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User4 ctermbg=' . s:c.green.a  . ' guibg=' . s:c.green.b  . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User5 ctermbg=' . s:c.blue.a   . ' guibg=' . s:c.blue.b   . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User6 ctermbg=' . s:c.purple.a . ' guibg=' . s:c.purple.b . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User7 ctermbg=' . s:c.white.a  . ' guibg=' . s:c.white.b  . ' ctermfg=' . s:c.black.a . ' guifg=' . s:c.black.b . ' cterm=bold gui=bold'
-exe 'hi User8 ctermbg=' . s:c.gray.a   . ' guibg=' . s:c.gray.b   . ' ctermfg=' . s:c.white.a . ' guifg=' . s:c.white.b
-exe 'hi User9 ctermbg=' . s:c.black.a  . ' guibg=' . s:c.black.b
+exe 'hi User1 ctermbg=' .. s:c.red.a    .. ' guibg=' .. s:c.red.b    .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User2 ctermbg=' .. s:c.orange.a .. ' guibg=' .. s:c.orange.b .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User3 ctermbg=' .. s:c.gold.a   .. ' guibg=' .. s:c.gold.b   .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User4 ctermbg=' .. s:c.green.a  .. ' guibg=' .. s:c.green.b  .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User5 ctermbg=' .. s:c.blue.a   .. ' guibg=' .. s:c.blue.b   .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User6 ctermbg=' .. s:c.purple.a .. ' guibg=' .. s:c.purple.b .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User7 ctermbg=' .. s:c.white.a  .. ' guibg=' .. s:c.white.b  .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
+exe 'hi User8 ctermbg=' .. s:c.gray.a   .. ' guibg=' .. s:c.gray.b   .. ' ctermfg=' .. s:c.white.a .. ' guifg=' .. s:c.white.b
+exe 'hi User9 ctermbg=' .. s:c.black.a  .. ' guibg=' .. s:c.black.b
 
 set noshowmode
 set statusline=

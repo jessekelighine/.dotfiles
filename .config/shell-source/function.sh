@@ -9,8 +9,9 @@ decrypt () { openssl aes-256-cbc -d -a       -pbkdf2 -in "$1" ; } # -out "$2"
 # encrypt-old () { openssl enc -aes-256-cbc -a -md md5 -salt -e -in "$1" } # -out "$2"
 # decrypt-old () { openssl enc -aes-256-cbc -a -md md5 -salt -d -in "$1" } # -out "$2"
 
-# R-mean  () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); mean(x)'; }
-# R-sd    () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);   sd(x)'; }
+R-mean () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); cat(mean(x),fill=TRUE)'; }
+R-sum  () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);  cat(sum(x),fill=TRUE)'; }
+R-sd   () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);   cat(sd(x),fill=TRUE)'; }
 
 ###############################################################################
 
