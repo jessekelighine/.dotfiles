@@ -8,7 +8,7 @@ current_shell=$(echo $SHELL | xargs basename)
 
 ###############################################################################
 
-stow -D . && {
+stow --delete . && {
 	printf "$0: uninstalled with 'stow'\n"
 	exit 0
 }

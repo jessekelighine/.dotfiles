@@ -28,8 +28,7 @@ brew bundle dump --force
 git add .
 
 cat << EOF
-$(tput bold)$(basename $0)$(tput sgr0): Update finished. Check following files manually:
+$(tput bold)$(basename $0)$(tput sgr0): Updated. Check following files manually:
 	- .stow-local-ignore 
-	- .dotfiles-files
 	- .gitignore
 EOF

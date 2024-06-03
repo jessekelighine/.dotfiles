@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# Notes:
+# - Command `biber --tool` will remove non-standard fields,
+#   see [here](https://tex.stackexchange.com/questions/415028/prevent-biber-tool-from-removing-non-standard-fields-in-bib-files).
+# - See [here](https://tex.stackexchange.com/questions/426341/using-bibtool-to-sort-a-bib-file-by-types-and-keys-alphabetically)
+#   to know how to sort the entries.
+
+field_order='title,author,date,publisher,journaltitle'
+
+stdin="/dev/stdin"
+temp_input="$(mktemp -t "temp-biber")"
+temp_output="$(mktemp -t "temp-biber")"
+clean_up () { rm -rf "${temp_input}" "${temp_output}"; }
+trap clean_up EXIT SIGINT
+
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue; blue=$(tput bold && tput setaf 12)
+	local norm; norm=$(tput sgr0)
+	local command; command="${blue}$(basename "$0")${norm}"
+	local usage; usage="${green}usage${norm}"
+	local description; description="${green}description${norm}"
+	local biber; biber="${blue}biber${norm}"
+	cat << EOF
+${usage}: ${command}
+${description}:
+	This is wrapper of ${biber} that formats bib-entries.
+	  - Align field values in neat columns for each entry.
+	  - Make indentations consistently one tab.
+	  - Make field names all lower case.
+	  - Order fields in the following order: ${field_order}.
+	  - Output to UTF-8 encoding.
+EOF
+}
+
+[[ $# -ne 0 ]] && {
+	message >&2
+	exit 1
+}
+
+cat "${stdin}" > "${temp_input}"
+
+biber \
+	--quiet \
+	--tool --nolog \
+	--output-align \
+	--output-indent=1t \
+	--output-fieldcase=lower \
+	--output-field-order="${field_order}" \
+	--output-file "${temp_output}" \
+	--output-encoding="UTF-8" \
+	"${temp_input}"
+
+cat "${temp_output}"
+
+exit 0

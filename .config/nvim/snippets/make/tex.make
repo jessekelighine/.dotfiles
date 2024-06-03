@@ -1,4 +1,4 @@
-# Latex Makefile
+# LaTeX Makefile
 
 MAIN :=
 NAME :=

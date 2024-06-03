@@ -6,6 +6,7 @@ appendixnumberbeamer
 biber
 biblatex
 biblatex-apa
+biblatex-bwl
 cancel
 caption
 catchfile
@@ -64,3 +65,8 @@ xcolor
 xecjk
 xifthen
 xstring
+draftwatermark
+background
+everypage
+background
+scalerel

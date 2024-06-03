@@ -56,8 +56,6 @@ if expand("~/.config/nvim/pack/pack.sh")->filereadable()
 	let g:vindent_jumps = 1
 	let g:vindent_begin = 1
 	let g:vindent_count = 0
-	let g:vindent_infer = 1
-	"let g:vindent_block_ending = [')', ']', '}', 'end', 'else', 'elif']
 endif
 
 filetype plugin on
@@ -68,8 +66,8 @@ packloadall
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
-"nnoremap <expr> n 'Nn'[v:searchforward]
-"nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
 nnoremap <Space> <Nop>
 xnoremap ''     "*y
 nnoremap ''     "*y

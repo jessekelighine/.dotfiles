@@ -1,4 +1,5 @@
 tap "homebrew/bundle"
+tap "oncletom/cpdf"
 tap "r-lib/rig"
 brew "bat"
 brew "blueutil"
@@ -23,6 +24,7 @@ brew "ripgrep"
 brew "stow"
 brew "tmux"
 brew "xpdf", link: false
+brew "oncletom/cpdf/cpdf"
 cask "alacritty"
 cask "appcleaner"
 cask "basictex"

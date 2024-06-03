@@ -23,4 +23,4 @@ require'nvim-treesitter.configs'.setup {
 	},
 }
 
-vim.api.nvim_set_hl(0, "@variable",   { link = "Identifier" })
+vim.api.nvim_set_hl(0, "@variable", { link = "Identifier" })

@@ -10,9 +10,6 @@
 [submodule ".config/nvim/pack/main/start/vim-surround"]
 	path = .config/nvim/pack/main/start/vim-surround
 	url = https://github.com/tpope/vim-surround
-[submodule ".config/nvim/pack/main/start/vim-commentary"]
-	path = .config/nvim/pack/main/start/vim-commentary
-	url = https://github.com/tpope/vim-commentary
 [submodule ".config/nvim/pack/main/start/vim-repeat"]
 	path = .config/nvim/pack/main/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat

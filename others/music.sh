@@ -3,7 +3,6 @@
 ### Singles ###################################################################
 
 spiel 'https://www.youtube.com/watch?v=kxnTcgZ5ZuE' # Alvvays - Alvvays
-spiel 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
 spiel 'https://www.youtube.com/watch?v=ZXu6q-6JKjA' # Alvvays - Dreams Tonite
 spiel 'https://www.youtube.com/watch?v=sXd2WxoOP5g' # Avril Lavigne - Heres to Never Growing Up
 spiel 'https://www.youtube.com/watch?v=ebXbLfLACGM' # Calvin Harris - Summer
@@ -22,7 +21,6 @@ spiel 'https://www.youtube.com/watch?v=MB3GQNnzgXM' # Flowstrong - 行囊
 spiel 'https://www.youtube.com/watch?v=bOTGKod9ZS8' # Gimme Gimme Gimme - Slowed + Reverb
 spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
 spiel 'https://www.youtube.com/watch?v=TQaySQQONXs' # Je crois entendre encore
-spiel 'https://www.youtube.com/watch?v=bZhTwoO0Fd8' # Keith Jarrett - The Köln Concert
 spiel 'https://www.youtube.com/watch?v=j9hXeBXAs9Y' # Kings Singers - The Rose
 spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me
 spiel 'https://www.youtube.com/watch?v=mer6X7nOY_o' # Lily Allen - Somwhere only we know
@@ -36,6 +34,7 @@ spiel 'https://www.youtube.com/watch?v=7B4CLQGxHmI' # Pomplamoose - Les Champs-E
 spiel 'https://www.youtube.com/watch?v=LQj--Kjn0z8' # Smash Mouth - Walking on the Sun
 spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
 spiel 'https://www.youtube.com/watch?v=QG_YH7jxVy0' # The Cat Returns - Theme
+spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
 spiel 'https://www.youtube.com/watch?v=uJ_1HMAGb4k' # Vance Joy - Riptide
 spiel 'https://www.youtube.com/watch?v=EYGGd2NKwtI' # 手嶌葵 - 森の小さなレストラン - Small Restaurant in the Forest
 spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # 松原みき - 真夜中のドア - Stay with Me
@@ -43,33 +42,12 @@ spiel 'https://www.youtube.com/watch?v=j2311FZWoFQ' # 草東沒有派對 - 山�
 
 ### Playlist ##################################################################
 
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
 spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
 spielliste 'https://youtu.be/wsDOo9gQcQU?si=mBV5dvzt0mJLKLz9' # German Playlist - Roadtrips
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
+spielliste 'https://www.youtube.com/watch?v=skkiVoI7sBk' # Keith Jarret - The Koeln Concert
 
 ### Logs ######################################################################
 
-spiel 'https://www.youtube.com/watch?v=5OxrrXYkKj4' # F.I.R. - 把愛傳出來
-spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me
-spiel 'https://www.youtube.com/watch?v=LQj--Kjn0z8' # Smash Mouth - Walking on the Sun
-spiel 'https://www.youtube.com/watch?v=ZXu6q-6JKjA' # Alvvays - Dreams Tonite
-spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
-spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me
-spiel 'https://www.youtube.com/watch?v=1xdA6IJW8hQ' # Pomplamoose - Blue + Around the World
-spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
-spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me
-spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
-spiel 'https://www.youtube.com/watch?v=EwqNIMlmkzs' # Patrick Watson - Lost With You
-spiel 'https://www.youtube.com/watch?v=k2qgadSvNyU' # Dua Lipa - New Rules
-spiel 'https://www.youtube.com/watch?v=ZXu6q-6JKjA' # Alvvays - Dreams Tonite
-spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
-spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast

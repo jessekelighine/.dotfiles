@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+message () {
+	local green; green=$(tput bold && tput setaf 10)
+	local blue; blue=$(tput bold && tput setaf 12)
+	local norm; norm=$(tput sgr0)
+	local command; command="${blue}$(basename "$0")${norm}"
+	local usage; usage="${green}usage${norm}"
+	local description; description="${green}description${norm}"
+	local biber; biber="${blue}biber-format-pipe${norm}"
+	cat << EOF
+${usage}: ${command} [input.bib] [output.bib]
+${description}:
+	This is wrapper of ${biber} that formats bib-files.
+EOF
+}
+
+[[ $# -ne 2 ]] && {
+	message >&2
+	exit 1
+}
+
+cat "${1}" | biber-format-pipe > "${2}"
+
+exit 0

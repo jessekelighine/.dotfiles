@@ -33,8 +33,9 @@ EOF
 	exit 1
 }
 
-biber --tool \
-	--nolog \
+biber \
+	--quiet \
+	--tool --nolog \
 	--output-align \
 	--output-indent=1t \
 	--output-fieldcase=lower \

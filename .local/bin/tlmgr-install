@@ -14,8 +14,8 @@ add_to_list () {
 	local package_temp="$HOME/.config/nvim/pack/lang/opt/tex/.temp-PACKAGES.txt"
 	# update package list
 	echo "$1" >> "$package_list"
-	cat "$package_list" | sort | uniq > "$package_temp"
-	mv "$package_temp" "$package_list"
+	# cat "$package_list" | sort | uniq > "$package_temp"
+	# mv "$package_temp" "$package_list"
 	chown "$me" "$package_list"
 }
 

@@ -8,11 +8,8 @@
 ###############################################################################
 
 # - Fonts:
-#     - [IBM Plex Mono](https://github.com/IBM/plex)
-#     - [Noto CJK](https://github.com/notofonts/noto-cjk)
 #     - [cwTeX](https://github.com/l10n-tw/cwtex-q-fonts)
 #     - [jf-openhuninn-2.0](https://github.com/justfont/open-huninn-font)
-#     - [LXGW WenKai / 霞鹜文楷](https://github.com/lxgw/LxgwWenKai)
 #     - [Garamond Math](https://github.com/YuanshengZhao/Garamond-Math)
 #     - GenWanMinTJ: b2
 # - [Okular](https://invent.kde.org/packaging/homebrew-kde/)
