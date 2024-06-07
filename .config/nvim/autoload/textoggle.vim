@@ -4,44 +4,60 @@
 
 " toggle dictionary for textoggle#Master().
 let g:textoggle_dict = {
-			\ 'beamer': { 'display':'Beamer',         'status':0, 'syntax':'beamer.vim',    'plugin':'beamer.vim'    },
-			\ 'doc':    { 'display':'Document',       'status':0, 'syntax':'document.vim',  'plugin':''              },
-			\ 'fig':    { 'display':'Figures/Tables', 'status':0, 'syntax':'figure.vim',    'plugin':''              },
-			\ 'notes':  { 'display':'Math Notes',     'status':0, 'syntax':'mathnotes.vim', 'plugin':'mathnotes.vim' },
-			\ 'tex':    { 'display':'Plain Tex',      'status':0, 'syntax':'plaintex.vim',  'plugin':''              },
-			\ 'tikz':   { 'display':'TikZ',           'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
-			\ 'acr':    { 'display':'Acronym',        'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
-			\ 'verb':   { 'display':'Verbatim',       'status':0, 'syntax':'verbatim.vim',  'plugin':''              },
-			\ 'alg':    { 'display':'Algorithm',      'status':0, 'syntax':'algorithm.vim', 'plugin':''              },
-			\ 'foot':   { 'display':'Footnote',       'status':0, 'syntax':'footnote.vim',  'plugin':''              },
+			\ 'acronym':   { 'display':'Acronym',    'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
+			\ 'algorithm': { 'display':'Algorithm',  'status':0, 'syntax':'algorithm.vim', 'plugin':''              },
+			\ 'beamer':    { 'display':'Beamer',     'status':0, 'syntax':'',              'plugin':'beamer.vim'    },
+			\ 'notes':     { 'display':'Math Notes', 'status':0, 'syntax':'',              'plugin':'mathnotes.vim' },
+			\ 'plaintex':  { 'display':'Plain Tex',  'status':0, 'syntax':'plaintex.vim',  'plugin':''              },
+			\ 'tikz':      { 'display':'TikZ',       'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
 			\ }
 
-" Reload the toggle dictionary. Helper function for textoggle#Reload().
+" Unprotected Set Status
+function! <SID>Set(key, status=1) abort
+	let g:textoggle_dict[a:key]['status'] = a:status
+endfunction
+
+" Unprotected Get
+function! <SID>Get(key, attribute) abort
+	return g:textoggle_dict[a:key][a:attribute]
+endfunction
+
+" Reload the toggle dictionary
 function! <SID>ReloadToggleDict() abort
 	let l:syntax = 'source ~/.config/nvim/pack/lang/start/vim-bunttex/syntax-additional/'
 	let l:plugin = 'source ~/.config/nvim/pack/lang/opt/tex/ftplugin/'
 	for l:key in keys(g:textoggle_dict)
-		if g:textoggle_dict[l:key]['status']
-			if g:textoggle_dict[l:key]['syntax']!='' | exec l:syntax.g:textoggle_dict[l:key]['syntax'] | endif
-			if g:textoggle_dict[l:key]['plugin']!='' | exec l:plugin.g:textoggle_dict[l:key]['plugin'] | endif
+		if <SID>Get(l:key, "status")
+			if <SID>Get(l:key, "syntax") != '' | exec l:syntax .. <SID>Get(l:key, "syntax") | endif
+			if <SID>Get(l:key, "plugin") != '' | exec l:plugin .. <SID>Get(l:key, "plugin") | endif
 		endif
 	endfor
 endfunction
 
-" Set key toggle status
-function! textoggle#Set(key,status=1) abort
-	let g:textoggle_dict[a:key]['status'] = a:status
+" Expand Key Abbreviations
+function! <SID>ExpandKey(key) abort
+	for l:key in keys(g:textoggle_dict)
+		if l:key =~# "^" .. a:key
+			return l:key
+		endif
+	endfor
+	return ''
 endfunction
 
-" Toggle key toggle status
-function! textoggle#Toggle(key) abort
-	call textoggle#Set(a:key,!g:textoggle_dict[a:key]['status'])
+" Set key toggle status
+function! textoggle#Set(key_pattern, status=1) abort
+	let l:key = <SID>ExpandKey(a:key_pattern)
+	if  l:key == '' | return | endif
+	call <SID>Set(l:key, a:status)
 endfunction
 
 " clear all toggles to default (no toggles, all zeros).
 function! textoggle#Clear() abort
-	for l:key in keys(g:textoggle_dict) | call textoggle#Set(l:key,0) | endfor
-	call textoggle#Reload() | redraw | echom '--> All toggles cleared.'
+	for l:key in keys(g:textoggle_dict)
+		call <SID>Set(l:key, 0)
+	endfor
+	call textoggle#Reload()
+	redraw | echom '--> All toggles cleared.'
 endfunction
 
 " print all the toggle status.
@@ -50,19 +66,19 @@ function! textoggle#Show() abort
 	let l:max_key = 1
 	let l:max_dis = 1
 	for l:key in keys(g:textoggle_dict)
-		let l:max_key = { l -> l > l:max_key ? l : l:max_key }( len(l:key)+3 )
-		let l:max_dis = { l -> l > l:max_dis ? l : l:max_dis }( len(g:textoggle_dict[l:key]['display'])+1 )
+		let l:max_key = { l -> l > l:max_key ? l : l:max_key }( len(l:key) + 3 )
+		let l:max_dis = { l -> l > l:max_dis ? l : l:max_dis }( len(<SID>Get(l:key,"display")) + 1 )
 	endfor
 	for l:key in keys(g:textoggle_dict)
-		let l:format  = " " .. ( g:textoggle_dict[l:key]['status'] ? '(+)' : '(-)' )
+		let l:format = " " .. ( <SID>Get(l:key, "status") ? '(+)' : '(-)' )
 					\ .. "%" .. l:max_key .. "s"
 					\ .. "%" .. l:max_dis .. "s"
-		echo printf(l:format, '[' .. l:key .. ']', g:textoggle_dict[l:key]['display'])
+		echo printf(l:format, '[' .. l:key .. ']', <SID>Get(l:key, "display"))
 	endfor
 endfunction
 
 " reload <buffer> key-mappings and toggles.
-function! textoggle#Reload(local_vimrc=0) abort
+function! textoggle#Reload() abort
 	imapclear <buffer>
 	nmapclear <buffer>
 	omapclear <buffer>
@@ -70,16 +86,18 @@ function! textoggle#Reload(local_vimrc=0) abort
 	xmapclear <buffer>
 	silent setlocal filetype=tex
 	call <SID>ReloadToggleDict()
-	if a:local_vimrc | call my#LocalVimrc() | endif
 endfunction
 
 " toggle syntax/ftplygins.
 function! textoggle#Master() abort
 	call textoggle#Show()
-	let l:key  = input('--> Toggle LaTeX Syntax: ') | if l:key==''             | return | endif
-	let l:keys = keys(g:textoggle_dict)             | if index(l:keys,l:key)<0 | return | endif
-	call textoggle#Toggle(l:key)
+	let l:key_pattern = input("--> Toggle LaTeX Syntax: ")
+	if  l:key_pattern == "" | return | endif
+	let l:key = <SID>ExpandKey(l:key_pattern)
+	if  l:key == '' | return | endif
+	call <SID>Set(l:key, !<SID>Get(l:key, "status"))
 	call textoggle#Reload()
-	redraw | echom '--> ' .. g:textoggle_dict[l:key]['display'].' syntax: '
-				\ .. ( g:textoggle_dict[l:key]['status'] ? 'ON' : 'OFF' )
+	redraw | echom "--> "
+				\ ..   <SID>Get(l:key, "display") .. " syntax: "
+				\ .. ( <SID>Get(l:key, "status") ? "ON" : "OFF" )
 endfunction

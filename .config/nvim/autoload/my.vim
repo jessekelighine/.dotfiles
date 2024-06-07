@@ -44,7 +44,7 @@ endfunction
 function! my#RemoveTrailingSpaces(line1=1,line2=line('$'))
 	let l:pos = getpos(".")
 	try
-		silent execute join([a:line1,a:line2],',') . 's/^\(.\{-}\)\s\+$/\1/g'
+		silent execute join([a:line1,a:line2],',') .. 's/^\(.\{-}\)\s\+$/\1/g'
 		redraw | echom " Remove Trailing Spaces: REMOVED!"
 	catch
 		redraw | echom " Remove Trailing Spaces: NONE FOUND."

@@ -51,3 +51,7 @@ spielliste 'https://www.youtube.com/watch?v=skkiVoI7sBk' # Keith Jarret - The Ko
 
 ### Logs ######################################################################
 
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites

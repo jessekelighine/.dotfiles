@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+biber_formatter="biber-format-pipe"
+
 message () {
 	local green; green=$(tput bold && tput setaf 10)
 	local blue; blue=$(tput bold && tput setaf 12)
@@ -7,7 +9,7 @@ message () {
 	local command; command="${blue}$(basename "$0")${norm}"
 	local usage; usage="${green}usage${norm}"
 	local description; description="${green}description${norm}"
-	local biber; biber="${blue}biber-format-pipe${norm}"
+	local biber; biber="${blue}${biber_formatter}${norm}"
 	cat << EOF
 ${usage}: ${command} [input.bib] [output.bib]
 ${description}:
@@ -15,11 +17,15 @@ ${description}:
 EOF
 }
 
+### Temp Files ################################################################
+
 [[ $# -ne 2 ]] && {
 	message >&2
 	exit 1
 }
 
-cat "${1}" | biber-format-pipe > "${2}"
+### Main ######################################################################
+
+cat "${1}" | ${biber_formatter} > "${2}"
 
 exit 0

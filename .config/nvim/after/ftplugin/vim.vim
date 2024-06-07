@@ -1,6 +1,7 @@
 " ~/.config/nvim/after/ftplugin/vim.vim
 " ~/.config/nvim/snippets/vim/
 
+setlocal commentstring=\"\ %s
 packadd! matchit
 let b:match_words='\<function\>:\<endfunction\>,'
 			\ .'\<if\>:\<elseif\>:\<else\>:\<endif\>,'

@@ -1,7 +1,7 @@
 " ~/.config/nvim/autoload/texcomplete.vim
 
-if !exists("g:texcomplete_labsfiles") | let g:texcomplete_labsfiles = expand("%") | endif
-if !exists("g:texcomplete_bibsfiles") | let g:texcomplete_bibsfiles = "references.bib" | endif
+if !exists("g:texcomplete_labsfiles") | let g:texcomplete_labsfiles = [expand("%")] | endif
+if !exists("g:texcomplete_bibsfiles") | let g:texcomplete_bibsfiles = ["references.bib"] | endif
 let s:sort = {
 			\ 'word': { x,y -> x.word >#  y.word ? 1 : -1 },
 			\ 'menu': { x,y -> x.menu ==# y.menu ? s:sort.word(x,y) : ( x.menu ># y.menu ? 1 : -1 ) },
@@ -40,7 +40,7 @@ function! <SID>generate_labs(files=g:texcomplete_labsfiles) abort
 	let l:lab_pattern_detect  = '\\label{.\{-}}'
 	let l:lab_pattern_extract = '\\label{\zs.\{-}\ze}'
 	let l:labs = []
-	for l:file in split(a:files)
+	for l:file in a:files
 		for l:line in readfile(l:file)
 			if matchstrpos(l:line, l:lab_pattern_detect)[1] < 0 | continue | endif
 			let l:labs = l:labs + [{
@@ -80,7 +80,7 @@ function! <SID>generate_bibs(files=g:texcomplete_bibsfiles)
 	let l:bib_pattern_extract = '^@[a-zA-Z]\{-}{\zs.\{-}\ze,'
 	let l:bib_pattern_extract_menu = '^@\zs[a-zA-Z]\{-}\ze{'
 	let l:bibs = []
-	for l:file in split(a:files)
+	for l:file in a:files
 		for l:line in readfile(l:file)
 			if matchstrpos(l:line, l:bib_pattern_detect)[1] < 0 | continue | endif
 			let l:bibs = l:bibs + [{

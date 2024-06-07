@@ -21,6 +21,7 @@ command! -buffer -nargs=0 LastMod    :call my#LastMod('^\(#* *Last Modified: *\)
 command! -buffer -nargs=0 PipeSwitch :let b:r_pipe_type = b:r_pipe_type=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' . b:r_pipe_type
 command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
 command! -buffer -nargs=0 FindSection   :call r#FindSection()
+command! -buffer -nargs=0 -range FormatR :'<,'>Rformat
 
 " Snippets:
 inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("r","sign.R",1,1,0)<CR>

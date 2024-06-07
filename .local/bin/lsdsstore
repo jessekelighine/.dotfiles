@@ -9,6 +9,8 @@ if [[ $1 == '' ]]; then
 		"$HOME/Downloads"
 		"$HOME/Pictures"
 		"$HOME/.config"
+		"$HOME/.dotfiles"
+		"$HOME/jessekelighine.github.io"
 		)
 else
 	folders=( "$1" )

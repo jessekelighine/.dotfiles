@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-bibfile_formatter="biber-format"
-
 message () {
 	local green; green=$(tput bold && tput setaf 10)
 	local blue; blue=$(tput bold && tput setaf 12)
@@ -9,7 +7,6 @@ message () {
 	local command; command="${blue}$(basename "$0")${norm}"
 	local usage; usage="${green}usage${norm}"
 	local description; description="${green}description${norm}"
-	local formatter; formatter="${blue}${bibfile_formatter}${norm}"
 	local biber; biber="${blue}biber${norm}"
 	cat << EOF
 ${usage}: ${command} [input.bcf] [output.bib]
@@ -24,21 +21,31 @@ ${description}:
 EOF
 }
 
+### Checks ####################################################################
+
 [[ $# -ne 2 ]] && {
 	message >&2
 	exit 1
 }
 
-tempfile=$(mktemp)
-trap 'rm -rf "$tempfile"' EXIT SIGINT
+### Temp Files ################################################################
+
+tempfile="$(mktemp -t "temp-biber")"
+
+clean_up () {
+	rm -rf "${tempfile}"
+}
+
+trap clean_up EXIT SIGINT
+
+### Main ######################################################################
 
 biber \
+	--quiet \
 	--nolog \
 	--output-format=bibtex \
 	--output-resolve \
-	--output-file="$tempfile" \
+	--output-file="$2" \
 	"$1"
-${bibfile_formatter} "$tempfile" "$2"
-rm "$tempfile"
 
 exit 0

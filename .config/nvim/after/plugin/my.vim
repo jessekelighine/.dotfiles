@@ -1,8 +1,8 @@
 " ~/.config/nvim/after/plugin/my.vim
 
 inoremap <silent> :date<Tab> <C-R>=strftime("%F")<CR>
-nnoremap <silent> [<Space>   :<C-U>exe "call my#MakeRoom('above',".v:count1.")"<CR>
-nnoremap <silent> ]<Space>   :<C-U>exe "call my#MakeRoom('below',".v:count1.")"<CR>
+nnoremap <silent> [<Space>   :<C-U>exe "call my#MakeRoom('above'," .. v:count1 .. ")"<CR>
+nnoremap <silent> ]<Space>   :<C-U>exe "call my#MakeRoom('below'," .. v:count1 .. ")"<CR>
 nnoremap <silent> <leader>s  :call my#Spell()<CR>
 nnoremap <silent> <leader>n  :call my#ToggleLineNumber()<CR>
 xnoremap <silent> ia    <Esc>:call my#SelectArgument("i")<CR>

@@ -19,9 +19,6 @@
 [submodule ".config/nvim/pack/main/start/undotree"]
 	path = .config/nvim/pack/main/start/undotree
 	url = https://github.com/mbbill/undotree
-[submodule ".config/nvim/pack/main/start/Nvim-R"]
-	path = .config/nvim/pack/main/start/Nvim-R
-	url = https://github.com/jalvesaq/Nvim-R
 [submodule ".config/nvim/pack/main/start/vim-vinegar"]
 	path = .config/nvim/pack/main/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar
@@ -46,3 +43,6 @@
 [submodule "whenever"]
 	path = whenever
 	url = https://github.com/jessekelighine/whenever
+[submodule ".config/nvim/pack/main/start/R.nvim"]
+	path = .config/nvim/pack/main/start/R.nvim
+	url = https://github.com/R-nvim/R.nvim

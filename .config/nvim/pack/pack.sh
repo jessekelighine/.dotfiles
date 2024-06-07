@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-git submodule add 'https://github.com/jalvesaq/Nvim-R'                 main/start/Nvim-R
 git submodule add 'https://github.com/jessekelighine/miramare'         color/start/miramare
 git submodule add 'https://github.com/jessekelighine/vim-bunttex'      lang/start/vim-bunttex
 git submodule add 'https://github.com/jessekelighine/vim-peekaboo'     main/start/vim-peekaboo
@@ -12,3 +11,7 @@ git submodule add 'https://github.com/nvim-treesitter/nvim-treesitter' main/star
 git submodule add 'https://github.com/tpope/vim-repeat'                main/start/vim-repeat
 git submodule add 'https://github.com/tpope/vim-surround'              main/start/vim-surround
 git submodule add 'https://github.com/tpope/vim-vinegar'               main/start/vim-vinegar
+
+git submodule add 'https://github.com/R-nvim/R.nvim'    main/start/R.nvim
+git submodule add 'https://github.com/R-nvim/cmp-r'     main/start/cmp-r
+git submodule add 'https://github.com/hrsh7th/nvim-cmp' main/start/nvim-cmp

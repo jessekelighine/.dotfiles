@@ -25,11 +25,10 @@ alias tma='tmux attach -t'
 # alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
 tmn () { tmux new -s "$1" -n "$1"; }
 
-alias 'cmatrix'='cmatrix -ab -u 2'
-alias 'pipes.sh'='pipes.sh -r 5000 -R -f 100 -s 10'
-
 alias 'opencc-2t'='opencc -c s2tw.json'
 alias 'opencc-2s'='opencc -c t2s.json'
+
+alias wordsegment='python -m wordsegment'
 
 alias ':q'='cowsay  -e xx -T U "You are not in Vim!"'
 alias ':w'='cowsay  -e xx -T U "You are not in Vim!"'

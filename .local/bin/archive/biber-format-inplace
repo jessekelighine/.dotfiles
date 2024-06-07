@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-biber_format="$HOME/.local/bin/biber-format"
-delete="$HOME/.local/bin/del"
+biber_formatter="biber-format-file"
 
 message () {
 	local green; green=$(tput bold && tput setaf 10)
@@ -19,13 +18,19 @@ ${description}:
 EOF
 }
 
+### Temp Files ################################################################
+
+tempfile=$(mktemp)
+trap 'rm -rf "$tempfile"' EXIT SIGINT
+
+### Checks ####################################################################
+
 [[ $# -ne 1 ]] && {
 	message >&2
 	exit 1
 }
 
-tempfile=$(mktemp)
-trap 'rm -rf "$tempfile"' EXIT SIGINT
+### Main ######################################################################
 
 ${biber_format} "$1" "$tempfile"
 ${delete} "$1"

@@ -51,9 +51,10 @@ paste(
   dplyr::arrange(md5sum, filename) |> 
   dplyr::rowwise() |> 
   dplyr::group_walk(
-    \ ( row, key )
-    cat(
-      paste(row$md5sum, row$filename, sep="\t"),
-      fill = TRUE
-    )
+    function ( row, key ) {
+      cat(
+        paste(row$md5sum, row$filename, sep="\t"),
+        fill = TRUE
+      )
+    }
   )

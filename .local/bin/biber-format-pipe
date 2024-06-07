@@ -8,12 +8,6 @@
 
 field_order='title,author,date,publisher,journaltitle'
 
-stdin="/dev/stdin"
-temp_input="$(mktemp -t "temp-biber")"
-temp_output="$(mktemp -t "temp-biber")"
-clean_up () { rm -rf "${temp_input}" "${temp_output}"; }
-trap clean_up EXIT SIGINT
-
 message () {
 	local green; green=$(tput bold && tput setaf 10)
 	local blue; blue=$(tput bold && tput setaf 12)
@@ -34,12 +28,27 @@ ${description}:
 EOF
 }
 
+### Temp Files ################################################################
+
+temp_input="$(mktemp -t "temp-biber")"
+temp_output="$(mktemp -t "temp-biber")"
+
+clean_up () {
+	rm -rf "${temp_input}" "${temp_output}"
+}
+
+trap clean_up EXIT SIGINT
+
+### Checks ####################################################################
+
 [[ $# -ne 0 ]] && {
 	message >&2
 	exit 1
 }
 
-cat "${stdin}" > "${temp_input}"
+### Main ######################################################################
+
+cat "/dev/stdin" > "${temp_input}"
 
 biber \
 	--quiet \
@@ -52,6 +61,6 @@ biber \
 	--output-encoding="UTF-8" \
 	"${temp_input}"
 
-cat "${temp_output}"
+cat "${temp_output}" | sed '${/^[[:space:]]*$/d;}'
 
 exit 0
