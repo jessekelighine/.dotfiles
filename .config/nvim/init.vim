@@ -1,68 +1,9 @@
 " init.vim
 
-if expand("~/.config/nvim/pack/pack.sh")->filereadable()
-	" miramare
-	let g:miramare_transparent_background = 1
-	let g:miramare_disable_italic_comment = has('nvim') ? 0 : 1
-	colorscheme miramare
-	" vim-surround
-	augroup VimSurround
-		autocmd!
-		autocmd VimEnter,BufNewFile,BufRead * let b:surround_49="（\r）"
-		autocmd VimEnter,BufNewFile,BufRead * let b:surround_50="「\r」"
-		autocmd VimEnter,BufNewFile,BufRead * let b:surround_51="《\r》"
-		autocmd VimEnter,BufNewFile,BufRead * let b:surround_92="\\\r\\"
-		autocmd VimEnter,BufNewFile,BufRead * let b:surround_97="\1anything: \1\r\1\1"
-		autocmd VimEnter,BufNewFile,BufRead * let b:surround_122="\1anything(1): \1\r\2anything(2): \2"
-	augroup END
-	" vim-peekaboo
-	let g:peekaboo_compact = 1
-	" vim-easy-align
-	xmap ga <Plug>(EasyAlign)
-	nmap ga <Plug>(EasyAlign)
-	" fzf.vim
-	let g:fzf_path = system(
-				\ "which fzf"
-				\ .. "| xargs realpath"
-				\ .. "| xargs dirname"
-				\ .. "| xargs dirname"
-				\ .. "| xargs printf"
-				\ )
-	let &rtp ..= "," .. g:fzf_path
-	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-	let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
-	let g:fzf_preview_window = [ 'right:40%' ]
-	let g:fzf_layout = { 'down': '~20%' }
-	nnoremap <C-B> :Buffers<CR>
-	nnoremap <C-T> :Files<CR>
-	nnoremap <C-F> :Lines<CR>
-	" undotree
-	nnoremap <leader>u :UndotreeToggle<CR>
-	" vindent.vim
-	let g:vindent_motion_OO_prev = '[l'
-	let g:vindent_motion_OO_next = ']l'
-	let g:vindent_motion_less_prev = '[-'
-	let g:vindent_motion_less_next = ']-'
-	let g:vindent_motion_more_prev = '[+'
-	let g:vindent_motion_more_next = ']+'
-	let g:vindent_motion_XX_ss = '[p'
-	let g:vindent_motion_XX_se = ']p'
-	let g:vindent_motion_OX_ss = '[P'
-	let g:vindent_motion_OX_se = ']P'
-	let g:vindent_object_OO_ii = 'iI'
-	let g:vindent_object_XX_ii = 'ii'
-	let g:vindent_object_XX_ai = 'ai'
-	let g:vindent_object_XX_aI = 'aI'
-	let g:vindent_jumps = 1
-	let g:vindent_begin = 1
-	let g:vindent_count = 0
-endif
-
 filetype plugin on
 filetype indent plugin on
 syntax on
 language en_US.UTF-8
-packloadall
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
@@ -182,7 +123,7 @@ if has('nvim')
 	set laststatus=3
 	set undofile undodir=~/.config/nvim/undodir/
 	set directory^=~/.config/nvim/swap/
-	" lua require("init")
+	lua require("init")
 else
 	tnoremap <silent> <Esc><Esc> <C-W><S-N>
 	let &t_SI="\e[5 q"

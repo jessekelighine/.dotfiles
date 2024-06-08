@@ -1,4 +1,4 @@
-" ~/.config/nvim/ftplugin/python.vim
+" ~/.config/nvim/after/ftplugin/python.vim
 " ~/.config/nvim/snippets/python/
 " ~/.config/nvim/autoload/python.vim
 
@@ -11,7 +11,7 @@ setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 setl listchars=tab:┊\ ,trail:·,extends:»,precedes:«,nbsp:+
 
 " FUNCTION KEYS: compile.
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/python.vim<CR>
+nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/python.vim<CR>
 nnoremap <buffer> <F5> :w<Enter>:! python3 %<CR>
 nnoremap <buffer> <leader>; :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9_]')<CR>
 
@@ -21,7 +21,6 @@ inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('python','skeleton.py')<C
 inoremap <buffer> :sign<Tab> <Esc>:call my#GetSnippets('python','sign.py')<CR>
 
 " Vim Slime: IDE-like key-bindings.
-packadd! vim-slime
 nnoremap <buffer><silent> <leader>rf :call py#REPL(1)<CR>
 nnoremap <buffer><silent> <leader>rq :call py#REPL(0)<CR>
 nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#Send(@9)<CR>`'

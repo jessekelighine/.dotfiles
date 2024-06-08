@@ -1,4 +1,4 @@
-" ~/.config/nvim/ftplugin/r.vim
+" ~/.config/nvim/after/ftplugin/r.vim
 " ~/.config/nvim/after/syntax/r.vim
 " ~/.config/nvim/autoload/r.vim
 " ~/.config/nvim/snippets/r
@@ -8,7 +8,6 @@ let R_assign = 0
 " let R_disable_cmds = [ "RSendLine" ]
 
 " Settings:
-packadd matchit
 setlocal winminwidth=1
 setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 setlocal foldmethod=marker
@@ -39,7 +38,7 @@ inoremap <buffer> :timer<Tab> <Esc>:call my#GetSnippets("r","timer.R")<CR>
 inoremap <buffer> :curry<Tab> <Esc>:call my#GetSnippets("r","curry.R")<CR>
 
 " Mappings:
-nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/ftplugin/r.vim<CR>
+nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/after/ftplugin/r.vim<CR>
 nnoremap <buffer><silent> <F2>       :tabnew ~/.config/nvim/after/syntax/r.vim<CR>
 inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
 inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>

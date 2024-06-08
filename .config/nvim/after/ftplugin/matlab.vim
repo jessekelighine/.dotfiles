@@ -1,4 +1,4 @@
-" ~/.config/nvim/ftplugin/matlab.vim
+" ~/.config/nvim/after/ftplugin/matlab.vim
 " ~/.config/nvim/autoload/matlab.vim
 " ~/.config/nvim/snippets/matlab/
 
@@ -6,7 +6,7 @@ set expandtab
 command! -buffer -nargs=0 LastMod :call my#LastMod('^\(%* Last Modified: *\)[^ ]*',min([10,line("$")]))
 
 " FUNCTION KEYS: compile.
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/matlab.vim<CR>
+nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/matlab.vim<CR>
 nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/matlab.vim<CR>
 
 " SNIPPETS: shebang, template.
@@ -24,7 +24,6 @@ xnoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 
 " Vim Slime: IDE-like key-bindings.
-packadd! vim-slime
 nnoremap <buffer><silent> <leader>rf :call matlab#REPL(1)<CR>
 nnoremap <buffer><silent> <leader>rq :call matlab#REPL(0)<CR>
 nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#Send(@9)<CR>`'

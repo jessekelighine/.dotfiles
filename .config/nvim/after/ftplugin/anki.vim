@@ -1,4 +1,4 @@
-" ~/.config/nvim/ftplugin/anki.vim
+" ~/.config/nvim/after/ftplugin/anki.vim
 
 syntax match  AnkiStichwort '^[^\t]\+'
 syntax match  AnkiDiv       '</*.\{-}>' contains=@NoSpell
@@ -37,7 +37,7 @@ call my#ChineseSpelling(0) " english
 " call my#ChineseSpelling(1) " german
 setl spellfile=~/.vim/spell/en.utf-8.add,~/.vim/spell/anki.utf-8.add
 
-nnoremap <buffer><silent> <F1>                    :tabnew ~/.config/nvim/ftplugin/anki.vim<CR>
+nnoremap <buffer><silent> <F1>                    :tabnew ~/.config/nvim/after/ftplugin/anki.vim<CR>
 inoremap <buffer><silent> .<Tab>                  .<br>:<Space>
 inoremap <buffer><silent> <<Tab>                  <br>:<Space>
 " nnoremap <buffer><silent> <Plug>(ChineseSpelling) :call my#ChineseSpelling(1)<CR>

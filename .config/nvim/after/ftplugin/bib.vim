@@ -1,11 +1,11 @@
-" ~/.config/nvim/ftplugin/bib.vim
+" ~/.config/nvim/after/ftplugin/bib.vim
 " ~/.config/nvim/snippets/bib/
 
 command! -buffer -range FormatEntries :'<,'>!biber-format-pipe
 
 setlocal shiftwidth=8 softtabstop=8 tabstop=8 smarttab
 
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/bib.vim<CR>
+nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/bib.vim<CR>
 
 inoremap <buffer> @a<Tab> <Esc>:call my#GetSnippets('bib','article.bib')<CR>$i
 inoremap <buffer> @b<Tab> <Esc>:call my#GetSnippets('bib','book.bib')<CR>$i

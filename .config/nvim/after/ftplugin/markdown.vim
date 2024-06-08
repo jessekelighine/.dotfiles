@@ -1,11 +1,11 @@
-" ~/.config/nvim/ftplugin/markdown.vim
+" ~/.config/nvim/after/ftplugin/markdown.vim
 " ~/.config/nvim/snippets/markdown/
 " ~/.config/nvim/pack/main/opt/markdown-preview.nvim/
 " ~/.config/nvim/autoload/markdown.vim
 " ~/.config/nvim/after/indent/markdown.vim
 " ~/.config/nvim/after/syntax/markdown.vim
 
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/ftplugin/markdown.vim<CR>
+nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/markdown.vim<CR>
 nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/markdown.vim<CR>
 
 command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}"\).\{-}\("\)',min([line("$"),5]))
@@ -32,7 +32,6 @@ nnoremap <buffer> <leader>p :call markdown#View()<CR>
 command! -buffer -nargs=0 View :call markdown#View(1)
 
 " COMPILER:
-packadd! vim-slime
 let b:pandoc_command_css_file = "~/.config/nvim/snippets/markdown/style.css"
 let b:pandoc_command_plain = join([
 			\ "pandoc",
