@@ -1,5 +1,7 @@
 -- init.lua
 
+-- Lazy.nvim ------------------------------------------------------------------
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({
@@ -18,19 +20,15 @@ require("lazy").setup({
 	"jessekelighine/vim-bunttex",
 	"tpope/vim-repeat",
 	"tpope/vim-vinegar",
-	"R-nvim/R.nvim",
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	},
+	"neovim/nvim-lspconfig",
+	"nvim-treesitter/nvim-treesitter",
 
 	{
 		"jessekelighine/miramare",
 		config = function ()
 			vim.g.miramare_transparent_background = 1
 			vim.g.miramare_disable_italic_comment = 0
-			vim.cmd([[ colorscheme miramare ]])
+			vim.cmd [[ colorscheme miramare ]]
 		end,
 	},
 
@@ -62,27 +60,19 @@ require("lazy").setup({
 			vim.g.vindent_jumps = 1
 			vim.g.vindent_begin = 1
 			vim.g.vindent_count = 0
-		end
+		end,
 	},
 
 	{
 		"junegunn/fzf.vim",
 		dependencies = { "junegunn/fzf" },
 		config = function ()
-			vim.g.fzf_path = vim.fn.system({
-				"which", "fzf",
-				"| xargs realpath",
-				"| xargs dirname",
-				"| xargs dirname",
-				"| xargs printf"
-			})
-			vim.cmd([[
-			let &rtp ..= "," .. g:fzf_path
+			vim.cmd [[
 			let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 			let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
 			let g:fzf_preview_window = [ 'right:40%' ]
 			let g:fzf_layout = { 'down': '~20%' }
-			]])
+			]]
 			vim.keymap.set('n', '<C-B>', ':Buffers<CR>')
 			vim.keymap.set('n', '<C-T>', ':Files<CR>')
 			vim.keymap.set('n', '<C-F>', ':Lines<CR>')
@@ -106,10 +96,12 @@ require("lazy").setup({
 	{
 		"tpope/vim-surround",
 		config = function ()
+			local surround_group = vim.api.nvim_create_augroup("VimSurround", { clear = true })
 			vim.api.nvim_create_autocmd(
 				{ "VimEnter", "BufNewFile", "BufRead" },
 				{
-					pattern = {"*"},
+					pattern = "*",
+					group = surround_group,
 					callback = function ()
 						vim.b.surround_49  = "（\r）"
 						vim.b.surround_50  = "「\r」"
@@ -117,13 +109,27 @@ require("lazy").setup({
 						vim.b.surround_92  = "\\\r\\"
 						vim.b.surround_97  = "\1anything: \1\r\1\1"
 						vim.b.surround_122 = "\1anything(1): \1\r\2anything(2): \2"
-					end
+					end,
 				}
 			)
 		end,
 	},
 
-})
+	{
+		"R-nvim/R.nvim",
+		lazy = false,
+		config = function ()
+			local opts = {
+				R_args = { "--no-save" },
+				disable_cmds = { "RSendLine" },
+				hook = {
+					on_filetype = function ()
+						vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
+					end
+				},
+			}
+			require("r").setup(opts)
+		end,
+	},
 
--- git submodule add 'https://github.com/R-nvim/cmp-r'     main/start/cmp-r
--- git submodule add 'https://github.com/hrsh7th/nvim-cmp' main/start/nvim-cmp
+})

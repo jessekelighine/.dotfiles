@@ -123,7 +123,7 @@ if has('nvim')
 	set laststatus=3
 	set undofile undodir=~/.config/nvim/undodir/
 	set directory^=~/.config/nvim/swap/
-	lua require("init")
+	lua require "init"
 else
 	tnoremap <silent> <Esc><Esc> <C-W><S-N>
 	let &t_SI="\e[5 q"

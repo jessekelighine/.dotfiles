@@ -14,10 +14,10 @@ command! -buffer -nargs=? HiCol         :call csv#HighlightColumn(<args>)
 command! -buffer -nargs=0 InitializeCSV :call csv#InitializeCSV()
 command! -buffer -nargs=0 FindColumn    :call csv#FindColumn()
 
-nnoremap         <buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/csv.vim<CR>
-nnoremap         <buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/csv.vim<CR>
-nnoremap         <buffer> <Space>   :call csv#GoToColumn()<CR>
-nnoremap         <buffer> <leader>; :call csv#HighlightColumn()<CR>
+nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/csv.vim<CR>
+nnoremap <silent><buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/csv.vim<CR>
+nnoremap <silent><buffer> <Space>   :call csv#GoToColumn()<CR>
+nnoremap <silent><buffer> <leader>; :call csv#HighlightColumn()<CR>
 nnoremap <silent><buffer> )         :call csv#PrevNextColumn('next')<CR>
 nnoremap <silent><buffer> (         :call csv#PrevNextColumn('prev')<CR>
 

@@ -35,26 +35,28 @@ function! tex#Quotes(code, double) abort
 	if a:code=="q" && !a:double | exec "norm hvx"  | call search(l:end, "seW") | exec "norm v"    | endif
 endfunction
 
-" Toggle Conceal Level
-if !exists("g:tex_conceal_level") | let g:tex_conceal_level=0 | endif
-function! tex#ConcealToggle(level=-1) abort
-	let g:tex_conceal_level = a:level >= 0 ? a:level : ( g:tex_conceal_level + 1 ) % 4
-	execute "setlocal conceallevel=" .. g:tex_conceal_level
-	echom " Conceal Level: " ..
-				\ ( g:tex_conceal_level==0 ? "Original Text"
-				\ : g:tex_conceal_level==1 ? "One Character"
-				\ : g:tex_conceal_level==2 ? "Replacement Character"
-				\ : g:tex_conceal_level==3 ? "Hide Completely"
-				\ : "ERROR" )
-endfunction
-
 " Delete parenthesis modifiers (left/right, big, large, ...).
-function! tex#DelLeftRight()
-	if getline(".")[col(".")-1] =~ '[' .. '()' .. '\[\]' .. '{}' .. ']'
+function! tex#DelLeftRight() abort
+	if getline(".")[col(".")-1] =~ '[()[\]{}]'
 		silent execute 'norm hhvawohx%hhviwohx%'
 	else
-		call search('\\\(left\|Big\|big\)',  'cb', line(".")) | exec 'norm de'
-		call search('\\\(right\|Big\|big\)', '',   line(".")) | exec 'norm de'
+		let l:line = getline(".")
+		let l:part_of_bar = l:line[col(".")-1] == '\' && l:line[col(".")] == '|'
+		let l:bar_or_dot  = l:line[col(".")-1] =~ '[|.]'
+		if  l:bar_or_dot || l:part_of_bar | execute "norm! hh" | endif
+		execute "norm %%"
+		let l:pos1 = getpos('.') | execute "norm %"
+		let l:pos2 = getpos('.') | execute "norm %"
+		let l:reversed_line = l:pos1[1] > l:pos2[1]
+		let l:same_line_reversed_col = l:pos1[1] == l:pos2[1] && l:pos1[2] >= l:pos2[2]
+		let l:reverse = l:reversed_line || l:same_line_reversed_col
+		let l:pos_former = l:reverse ? l:pos2 : l:pos1
+		let l:pos_latter = l:reverse ? l:pos1 : l:pos2
+		call setpos(".", l:pos_latter) | execute "norm! de"
+		call setpos(".", l:pos_former) | execute "norm! de"
+		call setpos(".", l:pos1)
+		" call search('\\\(left\|\(Big\|big\)l\?\)',  'cb') | exec 'norm de'
+		" call search('\\\(right\|\(Big\|big\)r\?\)', '')   | exec 'norm de'
 	endif
 endfunction
 
@@ -94,7 +96,7 @@ function! tex#EmptyEnvironment(name="", append="")
 	execute 'norm! A'..
 				\ '\begin{' .. l:environment .. '}' .. a:append .. "\<CR>" ..
 				\   '\end{' .. l:environment .. '}' ..
-				\ "\<Esc>vk="
+				\ "\<Esc>vk=_"
 endfunction
 
 " change a tex environment.

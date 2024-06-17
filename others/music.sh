@@ -43,15 +43,12 @@ spiel 'https://www.youtube.com/watch?v=j2311FZWoFQ' # 草東沒有派對 - 山�
 ### Playlist ##################################################################
 
 spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://youtube.com/playlist?list=OLAK5uy_mWa4j3nlpZsGIoLcgsWgL0spyMCgsN590&si=jJzATb0tXVPmh_EE' # Alvvays - Blue Rev
 spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
 spielliste 'https://youtu.be/wsDOo9gQcQU?si=mBV5dvzt0mJLKLz9' # German Playlist - Roadtrips
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
-spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
 spielliste 'https://www.youtube.com/watch?v=skkiVoI7sBk' # Keith Jarret - The Koeln Concert
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
 
 ### Logs ######################################################################
 
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites

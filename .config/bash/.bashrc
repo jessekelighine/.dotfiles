@@ -20,8 +20,7 @@ export LS_COLORS="fi=01;37:di=01;34:ex=01;32:ln=37\
 
 [[ -d "$HOME/.config/shell-source" ]] && {
 	source "$HOME/.config/shell-source/export.sh"
-	source "$HOME/.config/shell-source/alias.sh"
-	source "$HOME/.config/shell-source/function.sh"
+	source "$HOME/.config/shell-source/alias-function.sh"
 	source "$HOME/.config/shell-source/up.sh"
 	source "$HOME/.config/shell-source/pyenv.sh"
 }

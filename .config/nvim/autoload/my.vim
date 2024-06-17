@@ -2,19 +2,39 @@
 
 """ Snippets """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" function! my#GetSnippets(type, name, args={})
+" 	lua << EOF
+" 	local args = vim.fn.eval('a:')
+" 	local begin = vim.fn.line(".")
+" 	-- read snippet
+" 	local snippet_dir = vim.fn.expand("~/.config/nvim/snippets/")
+" 	local file_path = snippet_dir .. args.type .. "/" .. args.name
+" 	local snippet = vim.fn.readfile(file_path)
+" 	-- expansion
+" 	vim.snippet.expand(table.concat(snippet,"\n"))
+" 	-- additional actions
+" 	local do_indent = args.args.indent == nil and true or args.args.indent == 1
+" 	local do_begin  = args.args.begin  == nil and true or args.args.begin  == 1
+" 	if do_indent then vim.fn.execute(begin .. "," .. ( begin + table.getn(snippet) - 1 ) .. "norm! v=") end
+" 	if do_begin  then vim.fn.cursor(begin, 0); vim.cmd[[ call feedkeys("\e") ]] end
+" EOF
+" endfunction
+
 " read from snippets.
-function! my#GetSnippets(type, name, indent=1, delete_begin=1, cursor_begin=1)
+function! my#GetSnippets(type, name, args={})
 	let [ l:begin, l:lines ] = [ line("."), line("$") ]
 	execute "read " .. $HOME .. "/.config/nvim/snippets/" .. a:type .. "/" .. a:name
 	let l:end = l:begin + ( line("$") - l:lines ) - 1
 	call cursor(l:begin,0)
-	if a:delete_begin | exec "norm! dd"                           | endif
-	if a:indent       | exec l:begin .. "," .. l:end .. "norm v=" | endif
-	if a:cursor_begin | call cursor(l:begin,0)                    | endif
+	exec "norm! dd"
+	let l:do_indent = has_key(a:args, "indent") ? a:args.indent : 1
+	let l:do_begin  = has_key(a:args, "begin")  ? a:args.begin  : 1
+	if  l:do_indent | exec l:begin .. "," .. l:end .. "norm! v=" | endif
+	if  l:do_begin  | call cursor(l:begin, 0)                    | endif
 endfunction
 
 function! my#GetAuthor()
- 	let l:path = $HOME .. "/.config/nvim/snippets/website"
+ 	let l:path = expand("~/.config/nvim/snippets/website")
 	return readfile(l:path)[0]
 endfunction
 

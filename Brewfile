@@ -26,7 +26,6 @@ brew "stow"
 brew "tmux"
 brew "xpdf", link: false
 brew "oncletom/cpdf/cpdf"
-brew "samtay/tui/tetris"
 cask "alacritty"
 cask "appcleaner"
 cask "basictex"

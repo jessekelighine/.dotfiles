@@ -37,8 +37,7 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 
 [[ -d "$HOME/.config/shell-source" ]] && {
 	source "$HOME/.config/shell-source/export.sh"
-	source "$HOME/.config/shell-source/alias.sh"
-	source "$HOME/.config/shell-source/function.sh"
+	source "$HOME/.config/shell-source/alias-function.sh"
 	source "$HOME/.config/shell-source/up.sh"
 	source "$HOME/.config/shell-source/pyenv.sh"
 }

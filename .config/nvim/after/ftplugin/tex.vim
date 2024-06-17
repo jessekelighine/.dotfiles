@@ -13,13 +13,17 @@ setlocal commentstring=%\ %s
 setlocal spellfile=~/.config/nvim/spell/en.utf-8.add,~/.config/nvim/spell/latex.utf-8.add
 setlocal foldmethod=manual
 setlocal foldnestmax=1
-let g:tex_noindent_env='document\|verbatim\|lstlisting\|multicols\|letter\|appendix'
-let g:tex_indent_brace=0
+let g:tex_noindent_env = 'document\|verbatim\|lstlisting\|multicols\|letter\|appendix'
+let g:tex_indent_brace = 0
+let b:match_words = '\\left\>:\\right\>,'
+			\ .. '\\bigl\>:\\bigr\>,'
+			\ .. '\\Bigl\>:\\Bigr\>,'
+			\ .. '\\Biggl\>:\\Biggr\>,'
 
 " SURROUND: surround settings.
 let b:surround_indent = 1
-let b:surround_66  = "\\Big\r\\Big"
-let b:surround_98  = "\\big\r\\big"
+let b:surround_66  = "\\Bigl\r\\Bigr"
+let b:surround_98  = "\\bigl\r\\bigr"
 let b:surround_67  = "\\left\\{\r\\right."
 let b:surround_81  = "``\r''"
 let b:surround_113 = "`\r'"
@@ -40,18 +44,15 @@ let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:t
 nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
 nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:tex_compile_command)<CR>
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:tex_compile_command)<CR>
-command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
-command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
+" command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
+" command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 ServerSetup   :call tex#ServerSetup()
 command! -buffer -nargs=0 LastMod       :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
-command! -buffer -nargs=0 ReloadTeX     :call textoggle#Reload(1)
-command! -buffer -nargs=0 ShowToggles   :call textoggle#Show()
-command! -buffer -nargs=0 ClearToggles  :call textoggle#Clear()
+command! -buffer -nargs=0 ReloadTeX     :call textoggle#Reload()
 command! -buffer -nargs=0 FindSection   :call tex#FindSection()
 command! -buffer -nargs=0 JunkRemove    :! latexmk -C %:r
-command! -buffer -nargs=? ConcealToggle :call tex#ConcealToggle(<args>)
 nnoremap <buffer><silent> <leader>S     :call tex#ServerSetup()<CR>
 nnoremap <buffer><silent> <leader>c     :call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d     :call tex#EnvironmentDelete()<CR>
@@ -90,7 +91,7 @@ inoremap <buffer> :color<tab>   <Esc>:call my#GetSnippets('tex','preamble-color.
 inoremap <buffer> :csv<tab>     <Esc>:call my#GetSnippets('tex','preamble-csv.tex')<CR>
 inoremap <buffer> :cols<tab>    <Esc>:call my#GetSnippets('tex','preamble-column.tex')<CR>
 inoremap <buffer> :ct<tab>      <Esc>:call my#GetSnippets('tex','preamble-customtitle.tex')<CR>
-inoremap <buffer> :enum<tab>    <Esc>:call my#GetSnippets('tex','preamble-enumerate.tex')<CR>
+inoremap <buffer> :enum<tab>    <Esc>:call my#GetSnippets('tex','preamble-enumerate.tex',{'indent':0})<CR>
 inoremap <buffer> :faux<tab>    <Esc>:call my#GetSnippets('tex','preamble-fauxsc.tex')<CR>
 inoremap <buffer> :fig<tab>     <Esc>:call my#GetSnippets('tex','preamble-graphics.tex')<CR>
 inoremap <buffer> :foot<tab>    <Esc>:call my#GetSnippets('tex','preamble-footnote.tex')<CR>
@@ -201,7 +202,7 @@ inoremap <buffer> \cases<Tab>  <Esc>:call tex#EmptyEnvironment('cases')<CR>
 inoremap <buffer> \mat<Tab>    <Esc>:call tex#EmptyEnvironment('bmatrix')<CR>
 inoremap <buffer> \vmat<Tab>   <Esc>:call tex#EmptyEnvironment('vmatrix')<CR>
 inoremap <buffer> \btab<Tab>   <Esc>:call my#GetSnippets('tex','indoc-envtable.tex')<CR>
-inoremap <buffer> \csv<Tab>    <Esc>:call my#GetSnippets('tex','indoc-envtable-csv.tex',0)<CR>
+inoremap <buffer> \csv<Tab>    <Esc>:call my#GetSnippets('tex','indoc-envtable-csv.tex')<CR>
 inoremap <buffer> \bfig<Tab>   <Esc>:call my#GetSnippets('tex','indoc-envfigure.tex')<CR>
 inoremap <buffer> \mfig<Tab>   <Esc>:call my#GetSnippets('tex','indoc-marginfigure.tex')<CR>
 inoremap <buffer> \subfig<Tab> <Esc>:call my#GetSnippets('tex','indoc-subfigure.tex')<CR>

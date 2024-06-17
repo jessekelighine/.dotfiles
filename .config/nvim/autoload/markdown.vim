@@ -10,16 +10,28 @@ function! markdown#FillAuthor(author=my#GetAuthor())
 endfunction
 
 " open markdown in firefox
-let g:markdown_view = 0
-if !exists("b:markdown_view_file") | let b:markdown_view_file = expand("%:p") | endif
-function! markdown#View(start=!g:markdown_view)
-	if !a:start | call system('open -a firefox') | return | endif
-	call system("open -a firefox file://" .. b:markdown_view_file)
-	let g:markdown_view = 1
+function! markdown#View()
+	let l:browser = "firefox"
+	let l:command = "open -a " .. l:browser
+	if !exists("b:markdown_view_file")
+		let b:markdown_view_file = file_readable(expand("%:p:r") .. ".html")
+					\ ? expand("%:p:r") .. ".html"
+					\ : expand("%:p")
+	endif
+	if exists("g:markdown_view")
+		call system(l:command)
+		return
+	else
+		call system(l:command .. " file://" .. b:markdown_view_file)
+		let g:markdown_view = 1
+	endif
 endfunction
 
 " toggle codeblock syntax.
 function! markdown#ClearCodeSyntax()
+	if !exists("b:markdown_code_syntax_toggle")
+		let b:markdown_code_syntax_toggle = 0
+	endif
 	if b:markdown_code_syntax_toggle
 		let b:markdown_code_syntax_toggle = 0
 		silent syntax enable MarkdownCodeblock

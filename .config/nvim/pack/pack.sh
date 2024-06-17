@@ -12,6 +12,3 @@ git submodule add 'https://github.com/nvim-treesitter/nvim-treesitter' main/star
 git submodule add 'https://github.com/tpope/vim-repeat'                main/start/vim-repeat
 git submodule add 'https://github.com/tpope/vim-surround'              main/start/vim-surround
 git submodule add 'https://github.com/tpope/vim-vinegar'               main/start/vim-vinegar
-
-# git submodule add 'https://github.com/R-nvim/cmp-r'     main/start/cmp-r
-# git submodule add 'https://github.com/hrsh7th/nvim-cmp' main/start/nvim-cmp

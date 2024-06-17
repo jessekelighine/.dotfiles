@@ -15,10 +15,13 @@ hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")   
 
 -- Eject ----------------------------------------------------------------------
 
-hs.hotkey.bindSpec({ HYPER, "e" }, function ()
-	resp = hs.execute("eject-auto", true)
-	print(resp)
-end)
+hs.hotkey.bindSpec(
+	{ HYPER, "e" },
+	function ()
+		resp = hs.execute("eject-auto", true)
+		print(resp)
+	end
+)
 
 -- Bluetooth ------------------------------------------------------------------
 

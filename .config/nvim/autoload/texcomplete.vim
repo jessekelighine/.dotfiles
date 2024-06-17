@@ -28,7 +28,7 @@ function! texcomplete#Show(type)
 				\ "%s"
 	let l:count = 1
 	for l:item in l:list
-		echo printf(l:print_pattern, l:count, l:item["menu"], l:item["word"])
+		echo printf(l:print_pattern, l:count, l:item.menu, l:item.word)
 		let l:count += 1
 	endfor
 endfunction

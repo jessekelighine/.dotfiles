@@ -4,12 +4,12 @@
 
 " toggle dictionary for textoggle#Master().
 let g:textoggle_dict = {
-			\ 'acronym':   { 'display':'Acronym',    'status':0, 'syntax':'acronym.vim',   'plugin':'acronym.vim'   },
-			\ 'algorithm': { 'display':'Algorithm',  'status':0, 'syntax':'algorithm.vim', 'plugin':''              },
-			\ 'beamer':    { 'display':'Beamer',     'status':0, 'syntax':'',              'plugin':'beamer.vim'    },
-			\ 'notes':     { 'display':'Math Notes', 'status':0, 'syntax':'',              'plugin':'mathnotes.vim' },
-			\ 'plaintex':  { 'display':'Plain Tex',  'status':0, 'syntax':'plaintex.vim',  'plugin':''              },
-			\ 'tikz':      { 'display':'TikZ',       'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
+			\ 'algorithm': { 'status':0, 'syntax':'algorithm.vim', 'plugin':''              },
+			\ 'beamer':    { 'status':0, 'syntax':'',              'plugin':'beamer.vim'    },
+			\ 'glossary':  { 'status':0, 'syntax':'glossary.vim',  'plugin':'glossary.vim'  },
+			\ 'mathnotes': { 'status':0, 'syntax':'',              'plugin':'mathnotes.vim' },
+			\ 'plaintex':  { 'status':0, 'syntax':'plaintex.vim',  'plugin':''              },
+			\ 'tikz':      { 'status':0, 'syntax':'tikz.vim',      'plugin':'tikz.vim'      },
 			\ }
 
 " Unprotected Set Status
@@ -21,6 +21,8 @@ endfunction
 function! <SID>Get(key, attribute) abort
 	return g:textoggle_dict[a:key][a:attribute]
 endfunction
+
+"" Functions """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Reload the toggle dictionary
 function! <SID>ReloadToggleDict() abort
@@ -34,6 +36,16 @@ function! <SID>ReloadToggleDict() abort
 	endfor
 endfunction
 
+" Clear all loaded <buffer> mappings
+function! <SID>UnloadToggleDict() abort
+	imapclear <buffer>
+	nmapclear <buffer>
+	omapclear <buffer>
+	tmapclear <buffer>
+	xmapclear <buffer>
+	silent setlocal filetype=tex
+endfunction
+
 " Expand Key Abbreviations
 function! <SID>ExpandKey(key) abort
 	for l:key in keys(g:textoggle_dict)
@@ -44,60 +56,53 @@ function! <SID>ExpandKey(key) abort
 	return ''
 endfunction
 
-" Set key toggle status
-function! textoggle#Set(key_pattern, status=1) abort
-	let l:key = <SID>ExpandKey(a:key_pattern)
-	if  l:key == '' | return | endif
-	call <SID>Set(l:key, a:status)
+" print all the toggle status.
+function! <SID>Show() abort
+	echo repeat(" ", 5) .. "S P"
+	for l:key in keys(g:textoggle_dict)
+		let l:active = <SID>Get(l:key, "status")
+		echo ""
+					\ .. " " .. ( l:active ? "[+]" : "[ ]" )
+					\ .. " " .. ( <SID>Get(l:key, "syntax")=="" ? " " : l:active ? "*" : "·" )
+					\ .. " " .. ( <SID>Get(l:key, "plugin")=="" ? " " : l:active ? "*" : "·" )
+					\ .. " " .. l:key
+	endfor
 endfunction
 
-" clear all toggles to default (no toggles, all zeros).
-function! textoggle#Clear() abort
+"" Commands """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Reset status of every toggle
+function! textoggle#Begin() abort
 	for l:key in keys(g:textoggle_dict)
 		call <SID>Set(l:key, 0)
 	endfor
-	call textoggle#Reload()
-	redraw | echom '--> All toggles cleared.'
+	command -buffer -nargs=1 Load call <SID>Set(<q-args>)
 endfunction
 
-" print all the toggle status.
-function! textoggle#Show() abort
-	redraw
-	let l:max_key = 1
-	let l:max_dis = 1
-	for l:key in keys(g:textoggle_dict)
-		let l:max_key = { l -> l > l:max_key ? l : l:max_key }( len(l:key) + 3 )
-		let l:max_dis = { l -> l > l:max_dis ? l : l:max_dis }( len(<SID>Get(l:key,"display")) + 1 )
-	endfor
-	for l:key in keys(g:textoggle_dict)
-		let l:format = " " .. ( <SID>Get(l:key, "status") ? '(+)' : '(-)' )
-					\ .. "%" .. l:max_key .. "s"
-					\ .. "%" .. l:max_dis .. "s"
-		echo printf(l:format, '[' .. l:key .. ']', <SID>Get(l:key, "display"))
-	endfor
-endfunction
-
-" reload <buffer> key-mappings and toggles.
+" Reload Toggles
 function! textoggle#Reload() abort
-	imapclear <buffer>
-	nmapclear <buffer>
-	omapclear <buffer>
-	tmapclear <buffer>
-	xmapclear <buffer>
-	silent setlocal filetype=tex
+	call <SID>UnloadToggleDict()
 	call <SID>ReloadToggleDict()
+endfunction
+
+" Unload then reload all toggles
+function! textoggle#End() abort
+	call <SID>UnloadToggleDict()
+	call <SID>ReloadToggleDict()
+	delcommand Load
 endfunction
 
 " toggle syntax/ftplygins.
 function! textoggle#Master() abort
-	call textoggle#Show()
-	let l:key_pattern = input("--> Toggle LaTeX Syntax: ")
+	call <SID>Show()
+	let l:key_pattern = input("--> Toggle: ")
 	if  l:key_pattern == "" | return | endif
 	let l:key = <SID>ExpandKey(l:key_pattern)
-	if  l:key == '' | return | endif
+	if  l:key == "" | return | endif
 	call <SID>Set(l:key, !<SID>Get(l:key, "status"))
-	call textoggle#Reload()
-	redraw | echom "--> "
-				\ ..   <SID>Get(l:key, "display") .. " syntax: "
+	call <SID>UnloadToggleDict()
+	call <SID>ReloadToggleDict()
+	redraw | echom "--> Toggle: "
+				\ .. l:key .. ": "
 				\ .. ( <SID>Get(l:key, "status") ? "ON" : "OFF" )
 endfunction
