@@ -15,7 +15,8 @@ highlight def link MarkdownListExpand Red
 """ LaTeX Math Mode (2024-06-18) """"""""""""""""""""""""""""""""""""""""""""""
 
 syntax match  MarkdownEscapeDollar /\\\$/
-syntax match  MarkdownTexCommand   /\\[a-zA-Z]\+/ contained contains=@NoSpell
+syntax match  MarkdownTexCommand   /\\\{1,2}/ containedin=MarkdownTexMath
+syntax match  MarkdownTexCommand   /\\[a-zA-Z]\+/ containedin=MarkdownTexMath contains=@NoSpell
 syntax match  MarkdownTexAnd       /&/ containedin=MarkdownTexMath
 syntax match  MarkdownTexIgnore    /\\\(%\|{\|}\|\$\|#\|&\|!\|\^\|,\|;\|:\|`\|'\|\"\|_\|=\||\|\[\|\]\|\~\)/ containedin=MarkdownTexMath
 syntax match  MarkdownTexLR        /\\\(left\|right\|middle\)\>/  containedin=MarkdownTexMath contains=@NoSpell
@@ -29,11 +30,11 @@ syntax region MarkdownTexMath matchgroup=MarkdownTexDollar start="\$\$" end="\$\
 highlight MarkdownTexLR ctermfg=238 guifg=#444444
 
 highlight def link MarkdownEscapeDollar SpecialChar
-highlight def link MarkdownTexDollar    Grey
-highlight def link MarkdownTexCommand   Green
-highlight def link MarkdownTexAnd       Orange
-highlight def link MarkdownTexIgnore    Yellow
-highlight def link MarkdownTexBeginEnd  Red
+highlight def link MarkdownTexCommand   Macro
+highlight def link MarkdownTexAnd       Tag
+highlight def link MarkdownTexIgnore    SpecialChar
+highlight def link MarkdownTexDollar    SpecialComment
+highlight def link MarkdownTexBeginEnd  Keyword
 highlight def link MarkdownTexEnv       Identifier
 
 """ Minimum Highlighting of YAML Header """""""""""""""""""""""""""""""""""""""

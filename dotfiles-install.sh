@@ -37,11 +37,7 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && kill
 
 ### Symlinking ################################################################
 
-current_shell=$(echo $SHELL | xargs basename)
-[[ $current_shell == zsh  && ! -f .zshrc  ]] && ln -s .config/zsh/.zshrc   .
-[[ $current_shell == bash && ! -f .bashrc ]] && ln -s .config/bash/.bashrc .
-
-stow . && {
+stow home -t "$HOME" && {
 	printf "$0: installed with 'stow'\n"
 	exit 0
 }

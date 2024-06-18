@@ -29,6 +29,6 @@ git add .
 
 cat << EOF
 $(tput bold)$(basename $0)$(tput sgr0): Updated. Check following files manually:
-	- .stow-local-ignore 
+	- home/.stow-local-ignore 
 	- .gitignore
 EOF

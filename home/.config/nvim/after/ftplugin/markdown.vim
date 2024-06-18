@@ -15,7 +15,7 @@ let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 
 " COMMANDS:
 nnoremap <buffer> <leader>p :call markdown#View()<CR>
-command! -buffer -nargs=0 View        :call markdown#View()
+command! -buffer -nargs=0 -bang View  :call markdown#View(<bang>0)
 command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}"\).\{-}\("\)',min([line("$"),5]))
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()
@@ -75,6 +75,12 @@ onoremap <silent><buffer> i$          :norm! F$lvt$<CR>
 onoremap <silent><buffer> a$          :norm! F$vf$<CR>
 
 " LATEX:
+let b:match_words ..= ','
+			\ .. '\\begin\>:\\end\>,'
+			\ .. '\\left\>:\\right\>,'
+			\ .. '\\bigl\>:\\bigr\>,'
+			\ .. '\\Bigl\>:\\Bigr\>,'
+			\ .. '\\Biggl\>:\\Biggr\>,'
 command! -buffer -nargs=0 TeXScratch :silent execute "norm! :Scratch 8\r:setlocal ft=tex\r"
 nnoremap <silent><buffer> <leader>t  :TeXScratch<CR>
 xnoremap <silent><buffer> <leader>t  "9y:TeXScratch<CR>"9p:sil keepp g/^$/sil exe 'norm! "_dd'<CR>:let @" = @0<CR>:noh<CR>:echo ''<CR>

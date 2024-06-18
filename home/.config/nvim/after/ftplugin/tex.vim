@@ -15,7 +15,8 @@ setlocal foldmethod=manual
 setlocal foldnestmax=1
 let g:tex_noindent_env = 'document\|verbatim\|lstlisting\|multicols\|letter\|appendix'
 let g:tex_indent_brace = 0
-let b:match_words = '\\left\>:\\right\>,'
+let b:match_words ..= ','
+			\ .. '\\left\>:\\right\>,'
 			\ .. '\\bigl\>:\\bigr\>,'
 			\ .. '\\Bigl\>:\\Bigr\>,'
 			\ .. '\\Biggl\>:\\Biggr\>,'

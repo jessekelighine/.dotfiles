@@ -2,41 +2,39 @@
 .netrwhist
 .tex-server
 
-.zshrc
-.bashrc
+home/.gnupg/*
+home/.password-store/*
 
-.config/zsh/.zcompdump
-.config/zsh/.zcompcache
-.config/zsh/.zsh_history
-.config/zsh/.zsh_sessions/*
-.config/zsh/zsh_history
-.config/zsh/zsh_sessions/*
+home/.vim/swap/*
+home/.vim/undodir/*
+home/.ssh/*
 
-.config/bash/.bash_history
-.config/python/.python_history
+home/.local/bin-sources/confucius-analects
+home/.local/bin-sources/mencius-analects
+home/.local/bin-sources/laozi-analects
 
-.config/nvim/undodir/*
-.config/nvim/spell/*.spl
+home/.config/zsh/.zcompdump
+home/.config/zsh/.zcompcache
+home/.config/zsh/.zsh_history
+home/.config/zsh/.zsh_sessions/*
+home/.config/zsh/zsh_history
+home/.config/zsh/zsh_sessions/*
 
-.fzf.bash
-.fzf.zsh
-.vim/swap/*
-.vim/undodir/*
-.ssh/*
+home/.config/bash/.bash_history
+home/.config/python/.python_history
 
-.config/b2/file-with-key-id.txt
-.config/b2/file-with-key.txt
-.config/b2/.b2_account_info
+home/.config/nvim/undodir/*
+home/.config/nvim/spell/*.spl
 
-.gnupg/*
-.password-store/*
+home/.config/b2/file-with-key-id.txt
+home/.config/b2/file-with-key.txt
+home/.config/b2/.b2_account_info
+
 .github-recovery-codes.txt.enc
 .github-token
+
 others/lasciate.txt.enc
 others/oignon.txt.enc
-confucius-analects
-mencius-analects
-laozi-analects
 
 *.acn
 *.acr

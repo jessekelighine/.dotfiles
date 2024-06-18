@@ -12,12 +12,12 @@ all:
 
 .PHONY: update
 update:
-	./.dotfiles-update.sh
+	./dotfiles-update.sh
 
 .PHONY: install
 install:
-	./.dotfiles-install.sh
+	./dotfiles-install.sh
 
 .PHONY: uninstall
 uninstall:
-	./.dotfiles-uninstall.sh
+	./dotfiles-uninstall.sh

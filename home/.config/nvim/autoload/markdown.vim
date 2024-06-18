@@ -10,7 +10,7 @@ function! markdown#FillAuthor(author=my#GetAuthor())
 endfunction
 
 " open markdown in firefox
-function! markdown#View()
+function! markdown#View(force_view=0)
 	let l:browser = "firefox"
 	let l:command = "open -a " .. l:browser
 	if !exists("b:markdown_view_file")
@@ -18,12 +18,12 @@ function! markdown#View()
 					\ ? expand("%:p:r") .. ".html"
 					\ : expand("%:p")
 	endif
-	if exists("g:markdown_view")
-		call system(l:command)
-		return
-	else
+	if a:force_view || !exists("g:markdown_view")
 		call system(l:command .. " file://" .. b:markdown_view_file)
 		let g:markdown_view = 1
+	else
+		call system(l:command)
+		return
 	endif
 endfunction
 

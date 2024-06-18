@@ -1,48 +1,12 @@
 [submodule ".config/zsh/zsh-syntax-highlighting"]
-	path = .config/zsh/zsh-syntax-highlighting
+	path = home/.config/zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule ".config/zsh/zsh-autosuggestions"]
-	path = .config/zsh/zsh-autosuggestions
+	path = home/.config/zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule ".config/nvim/pack/main/start/vindent.vim"]
-	path = .config/nvim/pack/main/start/vindent.vim
-	url = https://github.com/jessekelighine/vindent.vim
-[submodule ".config/nvim/pack/main/start/vim-surround"]
-	path = .config/nvim/pack/main/start/vim-surround
-	url = https://github.com/tpope/vim-surround
-[submodule ".config/nvim/pack/main/start/vim-repeat"]
-	path = .config/nvim/pack/main/start/vim-repeat
-	url = https://github.com/tpope/vim-repeat
-[submodule ".config/nvim/pack/main/start/vim-easy-align"]
-	path = .config/nvim/pack/main/start/vim-easy-align
-	url = https://github.com/junegunn/vim-easy-align
-[submodule ".config/nvim/pack/main/start/undotree"]
-	path = .config/nvim/pack/main/start/undotree
-	url = https://github.com/mbbill/undotree
-[submodule ".config/nvim/pack/main/start/vim-vinegar"]
-	path = .config/nvim/pack/main/start/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar
-[submodule ".config/nvim/pack/main/start/vim-peekaboo"]
-	path = .config/nvim/pack/main/start/vim-peekaboo
-	url = https://github.com/jessekelighine/vim-peekaboo
-[submodule ".config/nvim/pack/color/start/miramare"]
-	path = .config/nvim/pack/color/start/miramare
-	url = https://github.com/jessekelighine/miramare
-[submodule ".config/nvim/pack/main/start/fzf.vim"]
-	path = .config/nvim/pack/main/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
-[submodule ".config/nvim/pack/main/start/nvim-treesitter"]
-	path = .config/nvim/pack/main/start/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter
-[submodule ".config/nvim/pack/lang/start/vim-bunttex"]
-	path = .config/nvim/pack/lang/start/vim-bunttex
-	url = https://github.com/jessekelighine/vim-bunttex
-[submodule "del"]
-	path = del
+[submodule ".local/bin-sources/del"]
+	path = home/.local/bin-sources/del
 	url = https://github.com/jessekelighine/del
-[submodule "whenever"]
-	path = whenever
+[submodule ".local/bin-sources/whenever"]
+	path = home/.local/bin-sources/whenever
 	url = https://github.com/jessekelighine/whenever
-[submodule ".config/nvim/pack/main/start/R.nvim"]
-	path = .config/nvim/pack/main/start/R.nvim
-	url = https://github.com/R-nvim/R.nvim
