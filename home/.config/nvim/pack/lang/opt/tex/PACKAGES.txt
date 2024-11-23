@@ -70,3 +70,12 @@ background
 everypage
 background
 scalerel
+pgfornament
+pgfopts
+pdfjam
+thmtools
+biblatex-ext
+bibtex
+framed
+minted
+csvsimple

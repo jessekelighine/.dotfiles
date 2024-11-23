@@ -74,10 +74,10 @@ endfunction
 
 " put <COUNT> blank lines above/below the current line.
 function! my#MakeRoom(direction,number=1)
-	let l:command = "norm " .
-				\ ( a:direction=='above' ? 'O' : 'o' ) .
-				\ repeat( "\<CR>", a:number-1 ) .
-				\ "\<Esc>"
+	let l:command = "norm "
+				\ .. ( a:direction=='above' ? 'O' : 'o' )
+				\ .. repeat( "\<CR>", a:number-1 )
+				\ .. "\<Esc>"
 	let l:line = line(".") + ( a:direction=="above" ? a:number : 0 )
 	let l:col  = col(".")
 	silent exec l:command
@@ -91,12 +91,15 @@ endfunction
 " Example:
 "     - 'Last Modified' part:    date: "1999-02-10"
 "     - pattern:                 ^\(date:\s\{-}"\).\{-}\(".*\)$
-function! my#LastMod(pattern, line=6)
+function! my#LastMod(pattern, line=min([line("$"), 5])) abort
 	let l:pos = getpos(".")
-	exec "1," .. a:line
-				\ .. 'g/' .. a:pattern .. '/'
-				\ .. 's/' .. a:pattern .. '/\1' .. strftime("%F") .. '\2'
-	call setpos(".", l:pos)
+	let l:command = join([
+				\ "keeppatterns",
+				\ "1," .. a:line,
+				\ "s/" .. a:pattern .. '/\1' .. strftime("%F") .. '\2/e'
+				\ ])
+	silent execute l:command
+	silent call setpos(".", l:pos)
 endfunction
 
 " resize stacking panes like tmux
@@ -138,9 +141,9 @@ endfunction
 " change the display width of a tab.
 function! my#TabSize(size)
 	exec "setlocal noexpandtab"
-	exec "setlocal shiftwidth="  . a:size
-	exec "setlocal softtabstop=" . a:size
-	exec "setlocal tabstop="     . a:size
+	exec "setlocal shiftwidth="  .. a:size
+	exec "setlocal softtabstop=" .. a:size
+	exec "setlocal tabstop="     .. a:size
 endfunction
 
 " toggle line number options

@@ -42,7 +42,7 @@ stow home -t "$HOME" && {
 	exit 0
 }
 
-printf "$0: installation with 'stow' FAILED\n"
+printf "$0: failed to install with 'stow'\n"
 exit 1
 
 ### fzf key-bindings ##########################################################

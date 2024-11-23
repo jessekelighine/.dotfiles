@@ -11,7 +11,6 @@ alias rg='rg --smart-case'
 
 alias 'd'='del'
 alias 'd-restore'="del -l | fzf | sed \"s/\(.*\)/'\\1'/\" | xargs -J % mv % $HOME/Desktop"
-alias 'vim'='nvim'
 alias 'scim'='sc-im'
 alias 'youtube-audio'='yt-dlp -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
 
@@ -39,11 +38,29 @@ tmn () { tmux new -s "$1" -n "$1"; }
 tar-compress () { tar zvcf "$@"; }
 tar-extract  () { tar zvxf "$@"; }
 
+### Encryption / Decryption ###################################################
+
 encrypt () { openssl aes-256-cbc    -a -salt -pbkdf2 -in "$1" ; } # -out "$2"
 decrypt () { openssl aes-256-cbc -d -a       -pbkdf2 -in "$1" ; } # -out "$2"
 
 # encrypt-old () { openssl enc -aes-256-cbc -a -md md5 -salt -e -in "$1" } # -out "$2"
 # decrypt-old () { openssl enc -aes-256-cbc -a -md md5 -salt -d -in "$1" } # -out "$2"
+
+### Vim / Neovim ##############################################################
+
+alias 'vim'='nvim'
+
+vims () {
+	local session; session="${1:-Session.vim}"
+	[[ ! -f ${session} ]] && {
+		echo "$(tput bold)$0$(tput sgr0): ${session} not found"
+		return 1
+	}
+	nvim -S ${session}
+	return 0
+}
+
+### R #########################################################################
 
 R-mean () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); cat(mean(x),fill=TRUE)'; }
 R-sum  () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);  cat(sum(x),fill=TRUE)'; }

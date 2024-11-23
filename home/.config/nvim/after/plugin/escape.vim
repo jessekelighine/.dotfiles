@@ -1,4 +1,4 @@
-" after/plugin/escape.vim
+" ~/.config/nvim/after/plugin/escape.vim
 
 function! <SID>SID()
 	return matchstr(expand('<sfile>'),'<SNR>\zs\d\+\ze_SID$')

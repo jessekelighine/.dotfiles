@@ -11,6 +11,7 @@ nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/matlab.vim<CR>
 
 " SNIPPETS: shebang, template.
 inoremap <buffer> :sign<Tab> <Esc>:call my#GetSnippets('matlab','matlab_sign.m')<CR>
+inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('matlab','matlab_sign.m')<CR>
 inoremap <buffer> :bl<Tab>   <Esc>:call my#GetSnippets('matlab','matlab_block.m')<CR>
 
 " MAPPSINGS: useful mappings.
@@ -24,8 +25,10 @@ xnoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 
 " Vim Slime: IDE-like key-bindings.
-nnoremap <buffer><silent> <leader>rf :call matlab#REPL(1)<CR>
-nnoremap <buffer><silent> <leader>rq :call matlab#REPL(0)<CR>
+nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux('matlab','-D 5')<CR>
+nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux('matlab','-D 5')<CR>
+nnoremap <silent><buffer> <leader>rq :call vimslime#CloseTmux('exit;')<CR>
+xnoremap <buffer><silent> <leader>cc m'"9y:call vimslime#Send("\<C-C>")<CR>`'
 nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#Send(@9)<CR>`'
 nnoremap <buffer><silent> <leader>rp m'"9yiw:call vimslime#Send(@9,1)<CR>`'
 nnoremap <buffer><silent> <leader>rs m'"9yiw:call vimslime#Send('size('.@9.")",1)<CR>`'

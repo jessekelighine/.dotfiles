@@ -7,6 +7,7 @@
 " SETTINGS:
 " let g:markdown_minlines = 100
 " let g:markdown_fenced_languages = [ 'r' ]
+setlocal smartindent smarttab " expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " SURROUND:
 let b:surround_98 = "**\r**"
@@ -15,11 +16,14 @@ let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 
 " COMMANDS:
 nnoremap <buffer> <leader>p :call markdown#View()<CR>
-command! -buffer -nargs=0 -bang View  :call markdown#View(<bang>0)
-command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}"\).\{-}\("\)',min([line("$"),5]))
+command! -buffer -range   FormatTable :'<,'>EasyAlign * /|/
+command! -buffer -range   FormatTable :'<,'>! pandoc -t commonmark_x
+command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)')
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()
-command! -buffer -range   FormatTable :'<,'>EasyAlign * /|/
+command! -buffer -nargs=0 -bang View  :call markdown#View(<bang>0)
+command! -buffer -nargs=? -bang AutoLastMod :call markdown#AutoLastMod(<q-args>, <bang>1)
+silent AutoLastMod ON
 
 " COMPILER:
 let b:pandoc_command_css_file = "~/.config/nvim/snippets/markdown/style.css"
@@ -37,6 +41,9 @@ let b:pandoc_command_number   = b:pandoc_command_nonumber .. " --number-sections
 let b:pandoc_tmux_command = file_readable("Makefile")
 			\ ? "make ; whenever . make"
 			\ : join(["whenever", expand("%:p"), b:pandoc_command_plain])
+" let b:pandoc_tmux_command = file_readable("Makefile")
+" 			\ ? "make ; find . -type f | entr make"
+" 			\ : join(["ls", expand("%:p"), "|", "entr", b:pandoc_command_plain])
 nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
 nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>

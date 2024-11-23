@@ -98,10 +98,10 @@ EOF
 	exit 1
 }
 
-[[ -f "$output.${format:0:3}" ]] && {
-	error "file $output.${format:0:3} already exists."
-	exit 1
-}
+# [[ -f "$output.${format:0:3}" ]] && {
+# 	error "file $output.${format:0:3} already exists."
+# 	exit 1
+# }
 
 ### Generate LaTeX ############################################################
 
@@ -140,11 +140,11 @@ case ${format:-png} in
 	pdf)
 		;;
 	png)
-		convert -quiet -background "${background:-#FFFFFF}" -flatten -density "${density:-1200}" "$output.pdf" "$output.png"
+		magick -quiet -background "${background:-#FFFFFF}" -density "${density:-1200}" "$output.pdf" "$output.png"
 		rm "$output.pdf"
 		;;
 	png-t)
-		convert -quiet -density ${density:-1200} "$output.pdf" "$output.png"
+		magick -quiet -density ${density:-1200} "$output.pdf" "$output.png"
 		rm "$output.pdf"
 		;;
 	*)

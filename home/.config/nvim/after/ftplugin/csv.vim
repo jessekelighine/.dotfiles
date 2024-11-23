@@ -13,6 +13,7 @@ command! -buffer -nargs=* Delim         :call csv#SetDelim(<args>)
 command! -buffer -nargs=? HiCol         :call csv#HighlightColumn(<args>)
 command! -buffer -nargs=0 InitializeCSV :call csv#InitializeCSV()
 command! -buffer -nargs=0 FindColumn    :call csv#FindColumn()
+command! -buffer -nargs=0 HeadingHighlight :source ~/.config/nvim/after/syntax/csv.vim
 
 nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/csv.vim<CR>
 nnoremap <silent><buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/csv.vim<CR>

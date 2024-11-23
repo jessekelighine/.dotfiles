@@ -65,15 +65,15 @@ endfunction
 " SyncTeX: Backwards setup
 function! tex#ServerSetup() abort
 	let l:tex_server_file = "~/.config/nvim/pack/lang/opt/tex/.tex-server"
-	call system("echo " .. v:servername .. " > " .. l:tex_server_file)
+	call system(join([ "echo", v:servername, ">", l:tex_server_file ]))
 	echom " Server Saved: " .. v:servername
 endfunction
 
 " SyncTeX: Forwards function
 function! tex#SkimForward() abort
 	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
-	let l:pdf_file = expand("%:p:r") .. ".pdf"
-	let l:command = join([ l:utility, line('.'), l:pdf_file ], ' ')
+	let l:pdf_file = "'" .. expand("%:p:r") .. ".pdf" .. "'"
+	let l:command = join([ l:utility, line('.'), l:pdf_file ])
 	silent call system(l:command)
 endfunction
 
@@ -81,7 +81,7 @@ endfunction
 
 " replace the environment name on that line.
 function! <SID>EnvironmentReplace(change)
-	call execute( 's/\V\\\(begin\|end\){\.\{-}}/\\\1{' .. a:change .. '}/' )
+	call execute('s/\V\\\(begin\|end\){\.\{-}}/\\\1{' .. a:change .. '}/')
 endfunction
 
 " get the environment name. Helper function for tex#EnvironmentStar().
@@ -101,7 +101,7 @@ endfunction
 
 " change a tex environment.
 function! tex#EnvironmentChange(to='')
-	let l:to = a:to=='' ? input('Environment Name: ') : a:to
+	let l:to = a:to=='' ? input('--> Environment Name: ') : a:to
 	if  l:to=='' | return | endif
 	let l:pos = getpos('.') | exec 'norm _%'
 	call <SID>EnvironmentReplace(l:to) | call setpos('.',l:pos)

@@ -1,36 +1,44 @@
-" after/plugin/statusline.vim
+" ~/.config/nvim/after/plugin/statusline.vim
 
-let s:c = {
-			\ 'red':    { 'a': 167, 'b': '#E68183' },
-			\ 'orange': { 'a': 208, 'b': '#E39B7B' },
-			\ 'gold':   { 'a': 214, 'b': '#D9BB80' },
-			\ 'green':  { 'a': 108, 'b': '#87AF87' },
-			\ 'blue':   { 'a': 109, 'b': '#89BEBA' },
-			\ 'purple': { 'a': 175, 'b': '#D3A0BC' },
-			\ 'white':  { 'a': 223, 'b': '#E6D6AC' },
-			\ 'gray':   { 'a': 237, 'b': '#242021' },
-			\ 'black':  { 'a': 235, 'b': '#2A2426' },
+let s:colors = {
+			\ 'red':    { 'a': 167, 'hex': '#E68183' },
+			\ 'orange': { 'a': 208, 'hex': '#E39B7B' },
+			\ 'gold':   { 'a': 214, 'hex': '#D9BB80' },
+			\ 'green':  { 'a': 108, 'hex': '#87AF87' },
+			\ 'blue':   { 'a': 109, 'hex': '#89BEBA' },
+			\ 'purple': { 'a': 175, 'hex': '#D3A0BC' },
+			\ 'white':  { 'a': 223, 'hex': '#E6D6AC' },
+			\ 'gray':   { 'a': 237, 'hex': '#242021' },
+			\ 'black':  { 'a': 235, 'hex': '#2A2426' },
 			\ }
 
 let g:statusline_change = {
-			\ 'n'      : '%7*',
-			\ "\<C-V>" : '%6*',
-			\ 'v'      : '%5*',
-			\ 'V'      : '%4*',
-			\ 'i'      : '%3*',
-			\ 'R'      : '%2*',
-			\ 'c'      : '%1*',
+			\ 'n':      '%7*',
+			\ "\<C-V>": '%6*',
+			\ 'v':      '%5*',
+			\ 'V':      '%4*',
+			\ 'i':      '%3*',
+			\ 'R':      '%2*',
+			\ 'c':      '%1*',
 			\ }
 
-exe 'hi User1 ctermbg=' .. s:c.red.a    .. ' guibg=' .. s:c.red.b    .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User2 ctermbg=' .. s:c.orange.a .. ' guibg=' .. s:c.orange.b .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User3 ctermbg=' .. s:c.gold.a   .. ' guibg=' .. s:c.gold.b   .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User4 ctermbg=' .. s:c.green.a  .. ' guibg=' .. s:c.green.b  .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User5 ctermbg=' .. s:c.blue.a   .. ' guibg=' .. s:c.blue.b   .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User6 ctermbg=' .. s:c.purple.a .. ' guibg=' .. s:c.purple.b .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User7 ctermbg=' .. s:c.white.a  .. ' guibg=' .. s:c.white.b  .. ' ctermfg=' .. s:c.black.a .. ' guifg=' .. s:c.black.b .. ' cterm=bold gui=bold'
-exe 'hi User8 ctermbg=' .. s:c.gray.a   .. ' guibg=' .. s:c.gray.b   .. ' ctermfg=' .. s:c.white.a .. ' guifg=' .. s:c.white.b
-exe 'hi User9 ctermbg=' .. s:c.black.a  .. ' guibg=' .. s:c.black.b
+function <SID>Highlight(number, bg, fg, bold) abort
+	let l:user = "User" .. a:number
+	let l:bold = a:bold ? "cterm=bold gui=bold" : ""
+	let l:fg = join(["ctermfg=" .. a:fg.a, "guifg=" .. a:fg.hex])
+	let l:bg = join(["ctermbg=" .. a:bg.a, "guibg=" .. a:bg.hex])
+	exe join(["highlight", l:user, l:fg, l:bg, l:bold])
+endfunction
+
+call <SID>Highlight("1", s:colors.red,    s:colors.black, 1)
+call <SID>Highlight("2", s:colors.orange, s:colors.black, 1)
+call <SID>Highlight("3", s:colors.gold,   s:colors.black, 1)
+call <SID>Highlight("4", s:colors.green,  s:colors.black, 1)
+call <SID>Highlight("5", s:colors.blue,   s:colors.black, 1)
+call <SID>Highlight("6", s:colors.purple, s:colors.black, 1)
+call <SID>Highlight("7", s:colors.white,  s:colors.black, 1)
+call <SID>Highlight("8", s:colors.gray,   s:colors.white, 0)
+call <SID>Highlight("9", s:colors.black,  s:colors.white, 0)
 
 set noshowmode
 set statusline=

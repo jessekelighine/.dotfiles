@@ -28,7 +28,5 @@ brew bundle dump --force
 git add .
 
 cat << EOF
-$(tput bold)$(basename $0)$(tput sgr0): Updated. Check following files manually:
-	- home/.stow-local-ignore 
-	- .gitignore
+$(tput bold)$(basename $0)$(tput sgr0): Updated.
 EOF

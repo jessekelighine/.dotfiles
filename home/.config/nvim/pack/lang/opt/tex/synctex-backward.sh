@@ -14,8 +14,8 @@ terminal="Alacritty"
 vim_command="<Esc><Esc>:${line}<CR><CR>zz"
 server=$(cat "$HOME/.config/nvim/pack/lang/opt/tex/.tex-server")
 
-nvim --headless --server "${server}" --remote      ${file}
-nvim --headless --server "${server}" --remote-send ${vim_command}
+nvim --headless --server "${server}" --remote      "${file}"
+nvim --headless --server "${server}" --remote-send "${vim_command}"
 open -a ${terminal}
 
 exit 0

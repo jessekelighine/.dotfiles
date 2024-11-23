@@ -1,5 +1,5 @@
 $bibtex_use = 2;
-$clean_ext = "run.xml synctex.gz nav snm thm soc loc glg acn vrb acr alg bbl glo gls ist";
+$clean_ext = "run.xml synctex.gz nav snm thm soc loc glg acn vrb acr alg bbl glo gls ist -SAVE-ERROR";
 
 add_cus_dep('glo', 'gls', 0, 'makeglossaries');
 add_cus_dep('acn', 'acr', 0, 'makeglossaries');

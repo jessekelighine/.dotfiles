@@ -11,6 +11,7 @@ if [[ $1 == '' ]]; then
 		"$HOME/.config"
 		"$HOME/.dotfiles"
 		"$HOME/jessekelighine.github.io"
+		"$HOME/drive"
 		)
 else
 	folders=( "$1" )

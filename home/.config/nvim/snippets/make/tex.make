@@ -1,32 +1,21 @@
 # LaTeX Makefile
 
-MAIN :=
+MAIN := main
 NAME :=
+TEX_FILES := 
 
-.PHONY: all clean compress
+.PHONY: all clean
 
-all: compress
-
-compress: $(NAME).zip
+all: $(NAME).pdf
 
 clean:
 	latexmk -C
+	rm -rf *-SAVE-ERROR
 	rm -rf $(NAME).pdf
-
-$(NAME).zip: $(MAIN).pdf
-	zip $(NAME).zip \
-		$(NAME).pdf
 
 $(NAME).pdf: $(MAIN).pdf
 	cp $(MAIN).pdf $(NAME).pdf
 
-$(MAIN).pdf: $(MAIN).tex .runcode
+$(MAIN).pdf: $(MAIN).tex $(TEX_FILES)
 	# grep -o '.' $(MAIN).tex | rg '[^\x00-\x7F]' | wc -l | xargs echo "Chinese Word Count:"
-	latexmk -xelatex -synctex=1 $(MAIN).tex
-
-.runcode: code
-	cd bin ; Rscript $(<F) ; cd ..
-	touch $@
-
-figures/%.pdf: figures/%.tex
-	latexmk -outdir=$(<D) -xelatex $<
+	latexmk -shell-escape -xelatex -synctex=1 $(MAIN).tex

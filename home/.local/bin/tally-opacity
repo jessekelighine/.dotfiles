@@ -21,7 +21,7 @@ EOF
 }
 
 modify () {
-	printf "/^opacity\ns/ $original/ $1\nwq\n" | ed -s "$config" &>/dev/null
+	printf "/^opacity\ns/$original/$1\nwq\n" | ed -s "$config" &>/dev/null
 }
 
 [[ $# -lt 1 || $# -gt 2 ]] && {
@@ -35,21 +35,21 @@ pattern="^$1"
 
 [[ "set" =~ $pattern ]] && {
 	[[ -z "$2" ]] && message >&2 && exit 1
-	bc_command="x = $2; if ( x > 1 ) { x = 1 } else if ( x < 0 ) { x = 0 }; x"
+	bc_command="x=$2;if(x>1){x=1}else if(x<0){x=0};x"
 	modify $(bc <<< "$bc_command" | xargs printf "%1.2f")
 	exit 0
 }
 
 [[ "decrease" =~ $pattern ]] && {
 	[[ -n "$2" ]] && increment="$2"
-	bc_command="x = $original + ${increment:-0.1}; if ( x > 1 ) x = 1; x"
+	bc_command="x=$original+${increment:-0.1};if(x>1)x=1;x"
 	modify $(bc <<< "$bc_command" | xargs printf "%1.2f")
 	exit 0
 }
 
 [[ "increase" =~ $pattern ]] && {
 	[[ -n "$2" ]] && increment="$2"
-	bc_command="x = $original - ${increment:-0.1}; if ( x < 0 ) x = 0; x"
+	bc_command="x=$original-${increment:-0.1};if(x<0)x=0;x"
 	modify $(bc <<< "$bc_command" | xargs printf "%1.2f")
 	exit 0
 }

@@ -58,18 +58,34 @@ endfunction
 
 " print all the toggle status.
 function! <SID>Show() abort
-	echo repeat(" ", 5) .. "S P"
+	echo repeat(" ", 5) .. "P S"
 	for l:key in keys(g:textoggle_dict)
 		let l:active = <SID>Get(l:key, "status")
-		echo ""
-					\ .. " " .. ( l:active ? "[+]" : "[ ]" )
-					\ .. " " .. ( <SID>Get(l:key, "syntax")=="" ? " " : l:active ? "*" : "·" )
-					\ .. " " .. ( <SID>Get(l:key, "plugin")=="" ? " " : l:active ? "*" : "·" )
-					\ .. " " .. l:key
+		let l:active_display = l:active ? "[+]" : "[ ]"
+		let l:syntax_display = <SID>Get(l:key, "syntax")=="" ? " " : l:active ? "*" : "·"
+		let l:plugin_display = <SID>Get(l:key, "plugin")=="" ? " " : l:active ? "*" : "·"
+		echo join(["", l:active_display, l:plugin_display, l:syntax_display, l:key])
 	endfor
 endfunction
 
 "" Commands """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Emphasize Environment Color
+" command! -buffer -nargs=? EmphasizeEnvironment :call textoggle#EmphasizeEnvironment(<q-args>)
+" function! textoggle#EmphasizeEnvironment(env="") abort
+" 	if a:env == ""
+" 		let l:env = input(" Emphasize Environment: ")
+" 		if  l:env == "" | return | endif
+" 	else
+" 		let l:env = a:env
+" 	endif
+" 	execute join([
+" 				\ 'syntax', 'match',
+" 				\ 'TexEnvEmph',
+" 				\ '/{\zs' .. l:env .. '\ze}/',
+" 				\ 'containedin=TexEnvironment'
+" 				\ ])
+" endfunction
 
 " Reset status of every toggle
 function! textoggle#Begin() abort
@@ -79,17 +95,17 @@ function! textoggle#Begin() abort
 	command -buffer -nargs=1 Load call <SID>Set(<q-args>)
 endfunction
 
-" Reload Toggles
-function! textoggle#Reload() abort
-	call <SID>UnloadToggleDict()
-	call <SID>ReloadToggleDict()
-endfunction
-
 " Unload then reload all toggles
 function! textoggle#End() abort
 	call <SID>UnloadToggleDict()
 	call <SID>ReloadToggleDict()
 	delcommand Load
+endfunction
+
+" Reload Toggles
+function! textoggle#Reload() abort
+	call <SID>UnloadToggleDict()
+	call <SID>ReloadToggleDict()
 endfunction
 
 " toggle syntax/ftplygins.
@@ -100,8 +116,7 @@ function! textoggle#Master() abort
 	let l:key = <SID>ExpandKey(l:key_pattern)
 	if  l:key == "" | return | endif
 	call <SID>Set(l:key, !<SID>Get(l:key, "status"))
-	call <SID>UnloadToggleDict()
-	call <SID>ReloadToggleDict()
+	call textoggle#Reload()
 	redraw | echom "--> Toggle: "
 				\ .. l:key .. ": "
 				\ .. ( <SID>Get(l:key, "status") ? "ON" : "OFF" )

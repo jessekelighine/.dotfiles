@@ -20,6 +20,7 @@ let b:match_words ..= ','
 			\ .. '\\bigl\>:\\bigr\>,'
 			\ .. '\\Bigl\>:\\Bigr\>,'
 			\ .. '\\Biggl\>:\\Biggr\>,'
+			\ .. '\\makeatletter\>:\\makeatother\>,'
 
 " SURROUND: surround settings.
 let b:surround_indent = 1
@@ -41,6 +42,7 @@ let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 			\ .. "'" .. expand("%:r") .. ".png" .. "'"
 let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-error " .. "'" .. expand("%") .. "'"
 let b:tex_compile_make    = "make ; whenever . make"
+" let b:tex_compile_make    = "make ; find . -type f | entr make"
 let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
 nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
 nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:tex_compile_command)<CR>
@@ -49,21 +51,21 @@ nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:tex_compile_
 " command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
 
 " UTILITIES: utilities.
-command! -buffer -nargs=0 ServerSetup   :call tex#ServerSetup()
-command! -buffer -nargs=0 LastMod       :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
-command! -buffer -nargs=0 ReloadTeX     :call textoggle#Reload()
-command! -buffer -nargs=0 FindSection   :call tex#FindSection()
-command! -buffer -nargs=0 JunkRemove    :! latexmk -C %:r
-nnoremap <buffer><silent> <leader>S     :call tex#ServerSetup()<CR>
-nnoremap <buffer><silent> <leader>c     :call tex#EnvironmentChange()<CR>
-nnoremap <buffer><silent> <leader>d     :call tex#EnvironmentDelete()<CR>
-nnoremap <buffer><silent> <leader>,     :call tex#DelLeftRight()<CR>
-nnoremap <buffer><silent> <leader>8     :call tex#EnvironmentStar()<CR>
-nnoremap <buffer><silent> <leader>g     :call tex#SkimForward()<CR>
-nnoremap <buffer><silent> <leader>t     :call textoggle#Master()<CR>
-nnoremap <buffer><silent> <leader>;     :call my#DelFuncCall('\\','[a-zA-Z]','{}')<CR>
-nnoremap <buffer><silent> <leader>p     :! open %:r.pdf<CR><CR>
-nnoremap <silent><buffer> <F1>          :tabnew ~/.config/nvim/after/ftplugin/tex.vim<CR>
+command! -buffer -nargs=0 ServerSetup :call tex#ServerSetup()
+command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
+command! -buffer -nargs=0 ReloadTeX   :call textoggle#Reload()
+command! -buffer -nargs=0 FindSection :call tex#FindSection()
+command! -buffer -nargs=0 JunkRemove  :! latexmk -C %:r
+nnoremap <buffer><silent> <leader>S :call tex#ServerSetup()<CR>
+nnoremap <buffer><silent> <leader>c :call tex#EnvironmentChange()<CR>
+nnoremap <buffer><silent> <leader>d :call tex#EnvironmentDelete()<CR>
+nnoremap <buffer><silent> <leader>, :call tex#DelLeftRight()<CR>
+nnoremap <buffer><silent> <leader>8 :call tex#EnvironmentStar()<CR>
+nnoremap <buffer><silent> <leader>g :call tex#SkimForward()<CR>
+nnoremap <buffer><silent> <leader>t :call textoggle#Master()<CR>
+nnoremap <buffer><silent> <leader>; :call my#DelFuncCall('\\','[a-zA-Z]','{}')<CR>
+nnoremap <buffer><silent> <leader>p :! open %:r.pdf<CR><CR>
+nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/tex.vim<CR>
 
 " COMPLETETION: `Lables` and `Biblography` complete settings.
 setlocal completefunc=texcomplete#Labs
@@ -179,6 +181,7 @@ inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
 inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
 
 " TEXT: text/font modifiers.
+inoremap <buffer> \sc<Tab> <C-G>u\textsc{}<Left>
 inoremap <buffer> \bf<Tab> <C-G>u\textbf{}<Left>
 inoremap <buffer> \sf<Tab> <C-G>u\textsf{}<Left>
 inoremap <buffer> \tt<Tab> <C-G>u\texttt{}<Left>

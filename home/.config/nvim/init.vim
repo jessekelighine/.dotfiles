@@ -39,7 +39,7 @@ xnoremap //     y/\V<C-R>=escape(@",'/\')<CR><CR>
 xnoremap <silent> p pgvy
 xnoremap <silent> <leader>p p
 nnoremap <silent> <leader>l :set list!<CR>
-nnoremap <silent> <CR>      :noh<Bar>redraw!<Bar>echo''<CR>
+nnoremap <silent> <CR>      <cmd>nohlsearch<CR>
 nnoremap <silent> <F12>     :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <C-N> :Texplore<CR>
 nnoremap [t :tabprev<CR>
@@ -62,9 +62,9 @@ onoremap a" 2i"
 onoremap a` 2i`
 onoremap F  vF
 onoremap T  vT
-inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e\<S-O>":"(\r"<CR>
-inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e\<S-O>":"[\r"<CR>
-inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e\<S-O>":"{\r"<CR>
+inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e==\<S-O>":"(\r"<CR>
+inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e==\<S-O>":"[\r"<CR>
+inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e==\<S-O>":"{\r"<CR>
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -91,12 +91,13 @@ set noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 set autochdir
 set history=1000
 set formatoptions+=jnmB " line joining for CJK characters
-set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:+,eol:¬,space:·
+" set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:~
+set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:·
 set matchpairs+=（:） mps+=「:」 mps+=『:』 mps+=《:》 mps+=【:】 mps+=〈:〉 mps+=“:”
 set splitbelow
 set nrformats+=alpha
 set nrformats-=bin,hex
-set lazyredraw ttyfast re=1
+set lazyredraw ttyfast
 set timeoutlen=500 ttimeoutlen=50
 set updatetime=300
 set shortmess-=S " Show number of matches
@@ -118,7 +119,7 @@ augroup Netrw
 	autocmd FileType netrw setl bufhidden=delete
 augroup END
 
-if has('nvim')
+if has("nvim")
 	tnoremap <silent> <Esc> <C-\><C-n>
 	set laststatus=3
 	set undofile undodir=~/.config/nvim/undodir/

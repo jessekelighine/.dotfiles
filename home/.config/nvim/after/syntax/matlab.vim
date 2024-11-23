@@ -1,5 +1,7 @@
 " ~/.config/nvim/after/syntax/matlab.vim
 
+finish
+
 " syntax match MatlabSection "%%.\{-}$"
 
 " highlight def link MatlabSection Type

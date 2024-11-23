@@ -31,6 +31,8 @@ spiel 'https://www.youtube.com/watch?v=EwqNIMlmkzs' # Patrick Watson - Lost With
 spiel 'https://www.youtube.com/watch?v=1xdA6IJW8hQ' # Pomplamoose - Blue + Around the World
 spiel 'https://www.youtube.com/watch?v=kTP246fnKAI' # Pomplamoose - Je me suis fait tout petit
 spiel 'https://www.youtube.com/watch?v=7B4CLQGxHmI' # Pomplamoose - Les Champs-Elysees
+spiel 'https://www.youtube.com/watch?v=PyUNDr0EcAk' # Pomplamoose - Mr. Blue Sky
+spiel 'https://www.youtube.com/watch?v=CSCr67tSRxQ' # Pomplamoose - Seven
 spiel 'https://www.youtube.com/watch?v=LQj--Kjn0z8' # Smash Mouth - Walking on the Sun
 spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
 spiel 'https://www.youtube.com/watch?v=QG_YH7jxVy0' # The Cat Returns - Theme
@@ -48,7 +50,82 @@ spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
 spielliste 'https://youtu.be/wsDOo9gQcQU?si=mBV5dvzt0mJLKLz9' # German Playlist - Roadtrips
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
 spielliste 'https://www.youtube.com/watch?v=skkiVoI7sBk' # Keith Jarret - The Koeln Concert
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
 
 ### Logs ######################################################################
 
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
+spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
+spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
+spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spiel 'https://www.youtube.com/watch?v=uJ_1HMAGb4k' # Vance Joy - Riptide
+spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
+spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
+spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
+spiel 'https://www.youtube.com/watch?v=foE1mO2yM04' # Mike Posner - I Took A Pill In Ibiza
+spiel '' 
+spiel 'https://www.youtube.com/watch?v=foE1mO2yM04' # Mike Posner - I Took A Pill In Ibiza
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spiel 'https://www.youtube.com/watch?v=uJ_1HMAGb4k' # Vance Joy - Riptide
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://youtu.be/wsDOo9gQcQU?si=mBV5dvzt0mJLKLz9' # German Playlist - Roadtrips
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spiel 'https://www.youtube.com/watch?v=Nj2U6rhnucI' # Dua Lipa - Break My Heart
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites

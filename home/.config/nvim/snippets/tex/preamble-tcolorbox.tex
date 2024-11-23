@@ -1,9 +1,9 @@
 %%% TikZ Color Box %%%
-\usepackage{tcolorbox}
+\usepackage[breakable]{tcolorbox}
 \tcbuselibrary{theorems,skins}
 \makeatletter
 \tcbset{mycolorbox/.style={
-enhanced,breakable,sharp corners,frame hidden,boxrule=0sp,
+enhanced,sharp corners,frame hidden,boxrule=0sp,
 left=8pt,right=4pt,top=4pt,bottom=4pt,
 colback=#1!5,borderline west={3pt}{0pt}{#1}}}
 \tcolorboxenvironment{definition}{mycolorbox={myred}}

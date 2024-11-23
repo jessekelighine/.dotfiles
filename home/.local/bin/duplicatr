@@ -16,12 +16,14 @@ dirname <- commandArgs(trailingOnly=TRUE)
 
 ### Checks ####################################################################
 
-help <- function ( message=NULL ) {
+help <- function ( message = NULL ) {
   if ( !is.null(message) ) paste("ERROR:", message) |> message()
   c(
     "usage: duplicatr [dirname]",
     "description: find duplicated files in [dirname]"
-  ) |> paste0(collapse="\n") |> message()
+  ) |>
+    paste0(collapse="\n") |>
+    message()
   quit()
 }
 
@@ -48,8 +50,8 @@ paste(
   dplyr::group_by(md5sum) |>
   dplyr::filter(n() != 1) |>
   dplyr::ungroup() |>
-  dplyr::arrange(md5sum, filename) |> 
-  dplyr::rowwise() |> 
+  dplyr::arrange(md5sum, filename) |>
+  dplyr::rowwise() |>
   dplyr::group_walk(
     function ( row, key ) {
       cat(

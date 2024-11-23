@@ -9,7 +9,7 @@
 
 " Settings:
 setlocal winminwidth=1
-setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
+setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 let b:match_words  = '\<tic\>:\<toc\>'
 let b:surround_116 = "tic()\rtoc()"
 let b:surround_84  = "timer$tic()\rtimer$toc()"
@@ -19,6 +19,8 @@ command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: \)[^ ]
 command! -buffer -nargs=0 PipeSwitch :let b:r_pipe_type = b:r_pipe_type=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' .. b:r_pipe_type
 command! -buffer -nargs=0 FindSection :call r#FindSection()
 command! -buffer -nargs=0 -range FormatR :'<,'>RFormat
+command! -buffer -nargs=? -bang AutoLastMod :call r#AutoLastMod(<q-args>,<bang>0)
+" silent AutoLastMod on
 " command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
 
 " Snippets:

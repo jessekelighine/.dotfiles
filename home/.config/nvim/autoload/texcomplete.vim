@@ -16,20 +16,16 @@ endfunction
 function! texcomplete#Show(type)
 	execute "call <SID>generate_" .. a:type .. "()"
 	execute "let l:list = g:texcomplete_" .. a:type
-	let l:max_menu = 0
-	let l:max_word = 0
-	for l:item in l:list
-		let l:max_menu = max([ len(l:item["menu"]), l:max_menu ])
-		let l:max_word = max([ len(l:item["word"]), l:max_word ])
-	endfor
-	let l:print_pattern =
-				\ "%" .. ( len(len(l:list)) + 1 ) .. "d" ..
-				\ "%" .. ( l:max_menu + 1 ) .. "s" .. " " ..
+	let l:max_menu = map(copy(l:list), { key,val -> len(val.menu) })->max()
+	let l:print_pattern = join([
+				\ "%" .. ( len(len(l:list)) + 1 ) .. "d",
+				\ "%" .. ( l:max_menu ) .. "s",
 				\ "%s"
-	let l:count = 1
-	for l:item in l:list
-		echo printf(l:print_pattern, l:count, l:item.menu, l:item.word)
-		let l:count += 1
+				\ ])
+	for l:index in range(len(l:list))
+		let l:menu = l:list[l:index].menu
+		let l:word = l:list[l:index].word
+		echo printf(l:print_pattern, l:index, l:menu, l:word)
 	endfor
 endfunction
 
@@ -37,8 +33,8 @@ endfunction
 
 " Makes the list `g:texcomplete_labs` for auto-complete.
 function! <SID>generate_labs(files=g:texcomplete_labsfiles) abort
-	let l:lab_pattern_detect  = '\\label{.\{-}}'
-	let l:lab_pattern_extract = '\\label{\zs.\{-}\ze}'
+	let l:lab_pattern_detect  = '\\.\{-}label{.\{-}}'
+	let l:lab_pattern_extract = '\\.\{-}label{\zs.\{-}\ze}'
 	let l:labs = []
 	for l:file in a:files
 		for l:line in readfile(l:file)
@@ -55,7 +51,7 @@ endfunction
 " Auto-complete for LaTeX labels.
 function! texcomplete#Labs(findstart, base) abort
 	if a:findstart
-		let l:trigger_pattern = '\\[a-zA-Z]*ref{'
+		let l:trigger_pattern = '\\[a-zA-Z]*ref[a-zA-Z]*{'
 		let l:look_ahead_length = 20
 		return matchstrpos(getline('.'),
 					\ l:trigger_pattern,
@@ -95,7 +91,7 @@ endfunction
 " Auto-complete for items in `bib` files.
 function! texcomplete#Bibs(findstart, base)
 	if a:findstart
-		let l:trigger_pattern = '\\[a-zA-Z]*cite{'
+		let l:trigger_pattern = '\\[a-zA-Z]*cite[a-zA-Z]*{'
 		let l:look_ahead_length = 20
 		return matchstrpos(getline('.'),
 					\ l:trigger_pattern,

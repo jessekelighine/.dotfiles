@@ -1,21 +1,21 @@
 " autoload/matlab.vim
 
 " Open Tmux Pane as Matlab REPL.
-function! matlab#REPL(start)
-	packadd! vim-slime
-	if a:start && vimslime#Target()==""
-		let l:command =  'tmux split -c "$PWD";'
-					\ .. "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
-					\ .. 'tmux last-pane;'
-		let l:targets = system(l:command)->split('\n')->map('split(v:val," ")')
-		for l:pane in l:targets | if l:pane[1]==1 | break | endif | endfor
-		call vimslime#SetTarget(l:pane[0])
-		call vimslime#Send('matlab', 1)
-	elseif !a:start && vimslime#Target()!=""
-		call vimslime#Send("exit;\nexit", 1)
-		call vimslime#UnsetTarget()
-	endif
-endfunction
+" function! matlab#REPL(start)
+" 	packadd! vim-slime
+" 	if a:start && vimslime#Target()==""
+" 		let l:command =  'tmux split -c "$PWD";'
+" 					\ .. "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';"
+" 					\ .. 'tmux last-pane;'
+" 		let l:targets = system(l:command)->split('\n')->map('split(v:val," ")')
+" 		for l:pane in l:targets | if l:pane[1]==1 | break | endif | endfor
+" 		call vimslime#SetTarget(l:pane[0])
+" 		call vimslime#Send('matlab', 1)
+" 	elseif !a:start && vimslime#Target()!=""
+" 		call vimslime#Send("exit;\nexit", 1)
+" 		call vimslime#UnsetTarget()
+" 	endif
+" endfunction
 
 " Get line numbers of section headings.
 " let l:list = [] | global/^%%/let l:list = l:list + [ line('.') ]

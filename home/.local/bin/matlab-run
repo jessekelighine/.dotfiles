@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# matlab -nodisplay -nosplash -nodesktop -r "run('$1'); exit;"
+matlab < "$1"

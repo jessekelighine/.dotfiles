@@ -1,4 +1,4 @@
-" plugin/titlecase.vim
+" ~/.config/nvim/after/plugin/titlecase.vim
 
 "" Settings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16,8 +16,8 @@ let s:titlecase_alphabet = '['
 
 let s:titlecase_ignore_words = []
 			\ + ['is', 'are', 'am', 'was', 'were']
-			\ + ['a', 'an', 'the', 'that']
-			\ + ['as', 'at', 'by', 'for', 'in', 'on', 'per', 'to', 'via', 'of']
+			\ + ['a', 'an', 'the', 'that',  'when']
+			\ + ['as', 'at', 'by', 'for', 'in', 'on', 'per', 'to', 'via', 'of', 'from', 'with']
 			\ + ['and', 'as', 'but', 'if', 'or', 'nor']
 			\ + ['v.s.', 'vs.', 'vs', 'en']
 

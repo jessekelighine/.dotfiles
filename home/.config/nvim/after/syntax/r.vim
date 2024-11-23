@@ -1,6 +1,8 @@
 " ~/.config/nvim/after/syntax/r.vim
 " /usr/local/Cellar/neovim/0.8.3/share/nvim/runtime/syntax/r.vim
 
+finish
+
 syntax match RDTSet ":="
 syntax match RPrefix "`.\{-}`"
 syntax match rType "\\"

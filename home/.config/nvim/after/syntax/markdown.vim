@@ -1,5 +1,7 @@
 " ~/.config/nvim/after/syntax/markdown.vim
 
+finish
+
 """ Miscellaneous """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax keyword MarkdownTODO TODO

@@ -14,9 +14,7 @@ export LS_COLORS="fi=01;37:di=01;34:ex=01;32:ln=37\
 :su=37;41:sg=30;43:ca=30;41\
 :tw=07;34:ow=30;44:st=30;44"
 
-[[ -d "$HOME/.config/bash" ]] && {
-	source "$HOME/.config/bash/.fzf.bash"
-}
+[[ -x "$(command -v fzf)" ]] && eval "$(fzf --bash)"
 
 [[ -d "$HOME/.config/shell-source" ]] && {
 	source "$HOME/.config/shell-source/export.sh"

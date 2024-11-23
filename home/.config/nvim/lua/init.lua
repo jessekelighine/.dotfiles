@@ -1,5 +1,7 @@
 -- init.lua
 
+-- Settings -------------------------------------------------------------------
+
 -- Lazy.nvim ------------------------------------------------------------------
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -20,8 +22,23 @@ require("lazy").setup({
 	"jessekelighine/vim-bunttex",
 	"tpope/vim-repeat",
 	"tpope/vim-vinegar",
-	"neovim/nvim-lspconfig",
 	"nvim-treesitter/nvim-treesitter",
+	"neovim/nvim-lspconfig",
+
+	{
+		"unblevable/quick-scope",
+		init = function()
+			vim.cmd [[
+				let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+				let g:qs_lazy_highlight = 1
+				augroup qs_colors
+				autocmd!
+				autocmd ColorScheme * highlight QuickScopePrimary   ctermfg=196 cterm=underline
+				autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=81  cterm=underline
+				augroup END
+			]]
+		end,
+	},
 
 	{
 		"jessekelighine/miramare",
@@ -41,7 +58,6 @@ require("lazy").setup({
 
 	{
 		"jessekelighine/vindent.vim",
-		event = "VimEnter",
 		init = function ()
 			vim.g.vindent_motion_OO_prev = '[l'
 			vim.g.vindent_motion_OO_next = ']l'
@@ -58,7 +74,7 @@ require("lazy").setup({
 			vim.g.vindent_object_XX_ai = 'ai'
 			vim.g.vindent_object_XX_aI = 'aI'
 			vim.g.vindent_jumps = 1
-			vim.g.vindent_begin = 1
+			vim.g.vindent_begin = 0
 			vim.g.vindent_count = 0
 		end,
 	},
@@ -120,6 +136,9 @@ require("lazy").setup({
 		lazy = false,
 		config = function ()
 			local opts = {
+				pdfviewer = "",
+				rmdchunk = 0, -- do not auto-expand ticks to code blocks
+				nvimpager = "tab", -- how help pages are viewed
 				R_args = { "--no-save" },
 				disable_cmds = { "RSendLine" },
 				hook = {

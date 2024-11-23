@@ -1,30 +1,41 @@
 " ~/.config/nvim/autoload/markdown.vim
 
+" Toggle/Set augroup MarkdownAutoLastMod
+function! markdown#AutoLastMod(set="", toggle=1) abort
+	let l:status = exists("#MarkdownAutoLastMod#BufWrite")
+	let l:switch_on =
+				\ a:set =~? "on"  ? 1 :
+				\ a:set =~? "off" ? 0 :
+				\ a:toggle ? !l:status : l:status
+	augroup MarkdownAutoLastMod
+		autocmd!
+		silent execute l:switch_on ? "autocmd BufWrite *.md,*.markdown,*.Rmd,*.rmd silent! undojoin | LastMod" : ""
+	augroup END
+	echom " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
+endfunction
+
+" fill-in Author
 function! markdown#FillAuthor(author=my#GetAuthor())
 	let l:position = getpos(".")
-	execute "1," .. min([line('$'),5])
+	let l:command = "1," .. min([line('$'),5])
 				\ .. 'g/^author/'
 				\ .. 's/:\(\s\+\)\S\+/:\1"' .. a:author .. '"/'
+	silent! execute l:command
 	nohlsearch | redraw | echo ""
 	call setpos(".", l:position)
 endfunction
 
-" open markdown in firefox
-function! markdown#View(force_view=0)
+" open markdown in browser
+function! markdown#View(force_open_file=0)
 	let l:browser = "firefox"
 	let l:command = "open -a " .. l:browser
-	if !exists("b:markdown_view_file")
-		let b:markdown_view_file = file_readable(expand("%:p:r") .. ".html")
-					\ ? expand("%:p:r") .. ".html"
-					\ : expand("%:p")
+	if a:force_open_file || !exists("b:markdown_view")
+		let l:html_file = expand("%:p:r") .. ".html"
+		let l:view_file = file_readable(l:html_file) ? l:html_file : expand("%:p")
+		let l:command = l:command .. " file://" .. l:view_file
+		let b:markdown_view = 1
 	endif
-	if a:force_view || !exists("g:markdown_view")
-		call system(l:command .. " file://" .. b:markdown_view_file)
-		let g:markdown_view = 1
-	else
-		call system(l:command)
-		return
-	endif
+	call system(l:command)
 endfunction
 
 " toggle codeblock syntax.

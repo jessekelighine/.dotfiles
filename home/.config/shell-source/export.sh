@@ -9,9 +9,6 @@ export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
 export SHELL_SESSIONS_DISABLE=1
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --extended'
-
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 export PYTHONSTARTUP=~/.config/python/.python_history

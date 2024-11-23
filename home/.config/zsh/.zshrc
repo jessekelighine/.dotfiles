@@ -29,8 +29,9 @@ export PS1="$PS1%{$fg[magenta]%}%~"    # working directory
 export PS1="$PS1%{$fg[red]%}]"         # ]
 export PS1="$PS1%{$reset_color%}%%%b " # %
 
+[[ -x "$(command -v fzf)" ]] && source <(fzf --zsh)
+
 [[ -d "$HOME/.config/zsh" ]] && {
-	source "$HOME/.config/zsh/.fzf.zsh"
 	source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 	source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 }
@@ -43,3 +44,4 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 }
 
 confucius-said --random
+# mencius-said --random

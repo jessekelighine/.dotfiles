@@ -11,7 +11,7 @@ $(MAIN).html: $(MAIN).md $(STYLE)
 	pandoc $(MAIN).md \
 		--from markdown+east_asian_line_breaks \
 		--toc --number-sections \
-		--standalone --mathjax \
+		--standalone --embed-resources --mathjax \
 		--css $(STYLE) \
 		--output $@
 		# --embed-resources --standalone --mathjax=mathjax-dynoload.js

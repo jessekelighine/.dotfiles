@@ -1,5 +1,19 @@
 " ~/.config/nvim/autoload/r.vim
 
+" Toggle/Set augroup MarkdownAutoLastMod
+function! r#AutoLastMod(set="", toggle=0)
+	let l:status = exists("#RAutoLastMod#BufWrite")
+	let l:switch_on =
+				\ a:set =~? "on" ? 1 :
+				\ a:set =~? "off" ? 0 :
+				\ a:toggle ? !l:status : l:status
+	augroup RAutoLastMod
+		autocmd!
+		silent execute l:switch_on ? "autocmd BufWrite *.R,*.r LastMod" : ""
+	augroup END
+	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
+endfunction
+
 " expand pipe symbol
 if !exists("b:r_pipe_type") | let b:r_pipe_type = "|>" | endif
 function! r#PipeExpand(type, symbol=b:r_pipe_type)
