@@ -23,17 +23,16 @@ alias 'opencc-2s'='opencc -c t2s.json'
 
 alias wordsegment='python -m wordsegment'
 
-alias ':q'='cowsay  -e xx -T U "You are not in Vim!"'
-alias ':w'='cowsay  -e xx -T U "You are not in Vim!"'
-alias ':x'='cowsay  -e xx -T U "You are not in Vim!"'
-alias ':wq'='cowsay -e xx -T U "You are not in Vim!"'
-
 alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
 # alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
 tmn () { tmux new -s "$1" -n "$1"; }
+
+for vim_cmd in ":q" ":qa" ":w" ":wa" ":x" ":wq" ":wqa" ; do
+	alias "${vim_cmd}"='cowsay -e xx "You are not in Vim!" | rainbowize'
+done
 
 tar-compress () { tar zvcf "$@"; }
 tar-extract  () { tar zvxf "$@"; }

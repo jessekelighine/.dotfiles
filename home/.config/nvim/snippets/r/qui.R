@@ -2,7 +2,7 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen (jessekelighine.com)                                  #
+# Author: Jesse C. Chen (https://jessekelighine.com)                          #
 # Description:                                                                #
 #                                                                             #
 # Last Modified: OOOO-OO-OO                                                   #

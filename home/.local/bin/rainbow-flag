@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]] ; do
 done
 
 length=${length:=$(tput cols)}
-colors=(160 166 214 28 21 126)
+colors=(196 202 214 34 21 127)
 for color in ${colors[@]}; do
 	echo -n $(tput setab $color)
 	count=0

@@ -17,9 +17,9 @@ endfunction
 " fill-in Author
 function! markdown#FillAuthor(author=my#GetAuthor())
 	let l:position = getpos(".")
-	let l:command = "1," .. min([line('$'),5])
-				\ .. 'g/^author/'
-				\ .. 's/:\(\s\+\)\S\+/:\1"' .. a:author .. '"/'
+	let l:command = "1," .. min([line('$'), 5])
+				\ .. 'g?^author?'
+				\ .. 's?:\(\s\{0,}\)\S\+?:\1"' .. a:author .. '"?'
 	silent! execute l:command
 	nohlsearch | redraw | echo ""
 	call setpos(".", l:position)

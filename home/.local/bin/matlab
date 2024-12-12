@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-/Applications/MATLAB_R2024b.app/bin/matlab -nosplash -nodesktop "$@"
+matlab="/Applications/MATLAB_R2024b.app/bin/matlab"
+${matlab} -nosplash -nodesktop "$@"
 # -nodisplay 

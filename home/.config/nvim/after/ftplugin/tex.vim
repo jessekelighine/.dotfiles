@@ -49,6 +49,7 @@ nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:tex_compile_
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:tex_compile_command)<CR>
 " command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
 " command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
+" nnoremap <silent><buffer><expr> <Space><Space> vimslime#Send("\<C-D>")
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 ServerSetup :call tex#ServerSetup()
@@ -126,6 +127,7 @@ inoremap <buffer> :dinkus<Tab>  <Esc>:call my#GetSnippets('tex','preamble-dinkus
 inoremap <buffer> :gloss<Tab>   <Esc>:call my#GetSnippets('tex','preamble-glossaries.tex')<CR>
 inoremap <buffer> :btheme<Tab>  <Esc>:call my#GetSnippets('tex','preamble-beamer_theme.tex')<CR>
 inoremap <buffer> :tcolor<Tab>  <Esc>:call my#GetSnippets('tex','preamble-tcolorbox.tex')<CR>
+inoremap <buffer> :minted<Tab>  <Esc>:call my#GetSnippets('tex','preamble-minted.tex')<CR>
 
 " TEXT OBJECT: TeX specific objects.
 xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>

@@ -1,7 +1,5 @@
 -- init.lua
 
--- Settings -------------------------------------------------------------------
-
 -- Lazy.nvim ------------------------------------------------------------------
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -19,24 +17,40 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
+	{ import = "plugins" },
+
 	"jessekelighine/vim-bunttex",
 	"tpope/vim-repeat",
 	"tpope/vim-vinegar",
-	"nvim-treesitter/nvim-treesitter",
-	"neovim/nvim-lspconfig",
+
+	{
+		"neovim/nvim-lspconfig",
+		config = function ()
+		end,
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate"
+	},
 
 	{
 		"unblevable/quick-scope",
 		init = function()
-			vim.cmd [[
-				let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-				let g:qs_lazy_highlight = 1
-				augroup qs_colors
-				autocmd!
-				autocmd ColorScheme * highlight QuickScopePrimary   ctermfg=196 cterm=underline
-				autocmd ColorScheme * highlight QuickScopeSecondary ctermfg=81  cterm=underline
-				augroup END
-			]]
+			local qs_colors = vim.api.nvim_create_augroup("qs_colors", { clear = true })
+			vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
+			vim.g.qs_lazy_highlight = true
+			vim.api.nvim_create_autocmd(
+				{ "ColorScheme" },
+				{
+					pattern = "*",
+					group = qs_colors,
+					command = [[
+						highlight QuickScopePrimary   ctermfg=196 cterm=underline
+						highlight QuickScopeSecondary ctermfg=81  cterm=underline
+						]]
+				}
+			)
 		end,
 	},
 
@@ -45,12 +59,13 @@ require("lazy").setup({
 		config = function ()
 			vim.g.miramare_transparent_background = 1
 			vim.g.miramare_disable_italic_comment = 0
-			vim.cmd [[ colorscheme miramare ]]
+			vim.cmd.colorscheme "miramare"
 		end,
 	},
 
 	{
 		"jessekelighine/vim-peekaboo",
+		enabled = false,
 		config = function ()
 			vim.g.peekaboo_compact = 1
 		end,
@@ -135,7 +150,7 @@ require("lazy").setup({
 		"R-nvim/R.nvim",
 		lazy = false,
 		config = function ()
-			local opts = {
+			require("r").setup {
 				pdfviewer = "",
 				rmdchunk = 0, -- do not auto-expand ticks to code blocks
 				nvimpager = "tab", -- how help pages are viewed
@@ -147,7 +162,6 @@ require("lazy").setup({
 					end
 				},
 			}
-			require("r").setup(opts)
 		end,
 	},
 

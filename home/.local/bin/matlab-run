@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
+matlab="/Applications/MATLAB_R2024b.app/bin/matlab"
+${matlab} -nodisplay -nosplash -nodesktop -r "run('$1'); exit;"
+
 # matlab -nodisplay -nosplash -nodesktop -r "run('$1'); exit;"
-matlab < "$1"
+# matlab < "$1"
