@@ -3,7 +3,7 @@
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'
 bind -m vi-insert 'Control-l: clear-screen'
-shopt -s autocd
+# shopt -s autocd
 
 export PS1="\e[1;31m[\e[1;33m\u\e[1;37m@\e[1;34m\h \e[1;35m\w\e[1;31m]\e[m\$ \e[0m"
 export HISTFILE="$HOME/.config/bash/.bash_history"
@@ -22,3 +22,5 @@ export LS_COLORS="fi=01;37:di=01;34:ex=01;32:ln=37\
 	source "$HOME/.config/shell-source/up.sh"
 	source "$HOME/.config/shell-source/pyenv.sh"
 }
+
+confucius-said --random

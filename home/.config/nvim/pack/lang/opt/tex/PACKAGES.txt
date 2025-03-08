@@ -79,3 +79,6 @@ bibtex
 framed
 minted
 csvsimple
+customdice
+cprotect
+bigfoot

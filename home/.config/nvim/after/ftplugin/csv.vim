@@ -17,9 +17,9 @@ command! -buffer -nargs=0 HeadingHighlight :source ~/.config/nvim/after/syntax/c
 
 nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/csv.vim<CR>
 nnoremap <silent><buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/csv.vim<CR>
-nnoremap <silent><buffer> <Space>   :call csv#GoToColumn()<CR>
-nnoremap <silent><buffer> <leader>; :call csv#HighlightColumn()<CR>
-nnoremap <silent><buffer> )         :call csv#PrevNextColumn('next')<CR>
-nnoremap <silent><buffer> (         :call csv#PrevNextColumn('prev')<CR>
+nnoremap <silent><buffer> <Space>   <Cmd>call csv#GoToColumn()<CR>
+nnoremap <silent><buffer> <leader>; <Cmd>call csv#HighlightColumn()<CR>
+nnoremap <silent><buffer> )         <Cmd>call csv#PrevNextColumn('next')<CR>
+nnoremap <silent><buffer> (         <Cmd>call csv#PrevNextColumn('prev')<CR>
 
 call csv#InitializeCSV()

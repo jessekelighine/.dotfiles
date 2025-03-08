@@ -3,7 +3,7 @@
 " ~/.config/nvim/snippets/rmd
 
 " Surround:
-let b:surround_114 = "```{r}\r```"
+" let b:surround_114 = "```{r}\r```"
 
 setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 
@@ -11,7 +11,7 @@ command! -buffer -nargs=0 FindSection :call markdown#FindSection()
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)')
 command! -buffer -nargs=? -bang AutoLastMod :call markdown#AutoLastMod(<q-args>, <bang>1)
-silent AutoLastMod OFF
+silent AutoLastMod ON
 
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/rmd.vim<CR>
 nnoremap <buffer> <F5> :call rmd#Knit()<CR>
@@ -33,6 +33,10 @@ inoremap <buffer> $<Tab>    <C-G>u$$<Left>
 inoremap <buffer> $$<Tab>   <C-G>u$$$$<Left><Left>
 inoremap <buffer> $$<CR>    <C-G>u$$<CR>$$<Esc>O
 inoremap <buffer> ``<Tab>   <C-G>u```{r}<Enter>```<esc><S-O>
+
+inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
+inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>
+nnoremap <buffer><silent> <leader>;  :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
 
 " TEXT OBJECTS:
 xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>

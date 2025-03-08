@@ -9,9 +9,7 @@ home/.vim/swap/*
 home/.vim/undodir/*
 home/.ssh/*
 
-home/.local/bin-sources/confucius-analects
-home/.local/bin-sources/mencius-analects
-home/.local/bin-sources/laozi-analects
+home/.local/bin-sources/laozi-said
 
 home/.config/zsh/.zcompdump
 home/.config/zsh/.zcompcache

@@ -4,7 +4,7 @@
 # -*- encoding: UTF-8 -*-                                                     #
 # Description: Music List                                                     #
 #                                                                             #
-# Last Modified: 2024-12-07                                                   #
+# Last Modified: 2025-03-08                                                   #
 ###############################################################################
 
 ### Singles ###################################################################
@@ -62,11 +62,13 @@ spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXy
 spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
 
 ### Logs ######################################################################
+
+spiel 'https://www.youtube.com/watch?v=LQj--Kjn0z8' # Smash Mouth - Walking on the Sun
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' 
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
 spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
-spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma' # GoodGood

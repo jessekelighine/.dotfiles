@@ -9,7 +9,7 @@ function! r#AutoLastMod(set="", toggle=0)
 				\ a:toggle ? !l:status : l:status
 	augroup RAutoLastMod
 		autocmd!
-		silent execute l:switch_on ? "autocmd BufWrite *.R,*.r LastMod" : ""
+		silent execute l:switch_on ? "autocmd BufWrite *.R,*.r silent! undojoin | LastMod" : ""
 	augroup END
 	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
 endfunction
@@ -17,9 +17,9 @@ endfunction
 " expand pipe symbol
 if !exists("b:r_pipe_type") | let b:r_pipe_type = "|>" | endif
 function! r#PipeExpand(type, symbol=b:r_pipe_type)
-	execute 'norm! a' .. ( getline(".")[col(".")-1] != " " ? " " : "" ) .. a:symbol
-	if     a:type=='CR'  | call feedkeys( "a\<CR>" )
-	elseif a:type=='Tab' | call feedkeys( "a" .. ( getline(".")[col(".")]==" " ? "" : " " ) )
+	execute "norm! a" .. ( getline(".")[col(".")-1] != " " ? " " : "" ) .. a:symbol
+	if     a:type=="CR"  | call feedkeys( "a\<CR>" )
+	elseif a:type=="Tab" | call feedkeys( "a" .. ( getline(".")[col(".")]==" " ? "" : " " ) )
 	endif
 endfunction
 

@@ -13,14 +13,14 @@ setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 let b:match_words  = '\<tic\>:\<toc\>'
 let b:surround_116 = "tic()\rtoc()"
 let b:surround_84  = "timer$tic()\rtimer$toc()"
-let b:surround_112 = "pdf(file=\"\")\rdev.off()"
+let b:surround_112 = "pdf(file = \"\")\rdev.off()"
 let b:r_pipe_type  = "|>"
 command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: \)[^ ]*\(.*\)', min([line('$'),10]))
 command! -buffer -nargs=0 PipeSwitch :let b:r_pipe_type = b:r_pipe_type=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' .. b:r_pipe_type
 command! -buffer -nargs=0 FindSection :call r#FindSection()
 command! -buffer -nargs=0 -range FormatR :'<,'>RFormat
 command! -buffer -nargs=? -bang AutoLastMod :call r#AutoLastMod(<q-args>,<bang>0)
-" silent AutoLastMod on
+silent AutoLastMod on
 " command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
 
 " Snippets:
@@ -43,7 +43,7 @@ nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/after/ftplugin/r.vim
 nnoremap <buffer><silent> <F2>       :tabnew ~/.config/nvim/after/syntax/r.vim<CR>
 inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
 inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>
-nnoremap <buffer><silent> <leader>;  :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
+nnoremap <buffer><silent> <leader>;  :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
 inoremap <buffer><silent> %<Tab>     %%<Left>
 inoremap <buffer><silent> ^<Tab>     ^()<Left>
 nnoremap <buffer><silent> <leader>cc :RStop<CR>

@@ -17,7 +17,7 @@ let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 " COMMANDS:
 nnoremap <buffer> <leader>p :call markdown#View()<CR>
 command! -buffer -range   FormatTable :'<,'>EasyAlign * /|/
-command! -buffer -range   FormatTable :'<,'>! pandoc -t commonmark_x
+" command! -buffer -range   FormatTable :'<,'>! pandoc -t commonmark_x
 command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)')
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()

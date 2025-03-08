@@ -19,13 +19,13 @@ done
 colors=(196 202 214 34 21 127)
 color_index=-1
 while IFS=$'\n' read -r line; do
-	color_index=$(( ( ${color_index} + 1 ) % ${#colors[@]} ))
+	color_index=$(( ( color_index + 1 ) % ${#colors[@]} ))
 	index=0
 	while [ $index -lt ${#line} ]; do
-		color_index_inner=$(( ( ${color_index} + $index ) % ${#colors[@]} ))
+		color_index_inner=$(( ( color_index + index ) % ${#colors[@]} ))
 		color="${colors[$color_index_inner]}"
-		echo -n "$(tput setaf $color)${line:index:1}"
-		index=$(( $index + 1 ))
+		echo -n "$(tput setaf "$color")${line:index:1}"
+		index=$(( index + 1 ))
 	done
-	printf "\n$(tput sgr0)"
+	printf "\n"
 done

@@ -38,15 +38,9 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && kill
 ### Symlinking ################################################################
 
 stow home -t "$HOME" && {
-	printf "$0: installed with 'stow'\n"
+	printf "%s: installed with 'stow'\n" "$0"
 	exit 0
 }
 
-printf "$0: failed to install with 'stow'\n"
+printf "%s: failed to install with 'stow'\n" "$0"
 exit 1
-
-### fzf key-bindings ##########################################################
-
-$(brew --prefix)/opt/fzf/install
-mv "$HOME/.fzf.bash" "$HOME/.config/bash/.fzf.bash"
-mv "$HOME/.fzf.zsh"  "$HOME/.config/zsh/.fzf.zsh"

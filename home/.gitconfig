@@ -6,6 +6,6 @@
 	llog = log --oneline --decorate --graph
 [user]
 	name = Jesse C. Chen
-	email = jcc@jessekelighine.com
+	email = jessekelighine@gmail.com
 [core]
 	editor = nvim

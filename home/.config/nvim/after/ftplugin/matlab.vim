@@ -16,7 +16,7 @@ inoremap <buffer> :bl<Tab>   <Esc>:call my#GetSnippets('matlab','matlab_block.m'
 
 " MAPPSINGS: useful mappings.
 inoremap <buffer> ^<Tab>    ^()<Left>
-nnoremap <buffer> <leader>; :call my#DelFuncCall('[a-zA-Z]','[a-zA-Z0-9_]')<CR>
+nnoremap <buffer> <leader>; :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9_]')<CR>
 
 " visual select "a section".
 xnoremap <buffer><silent> as :call matlab#GetSection('a')<CR>

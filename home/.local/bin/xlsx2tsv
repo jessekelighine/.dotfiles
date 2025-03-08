@@ -5,16 +5,16 @@
 # Description: Convert Excel to TSV                                           #
 # Author: Jesse C. Chen (jessekelighine.com)                                  #
 #                                                                             #
-# Last Modified: 2023-12-19                                                   #
+# Last Modified: 2024-12-17                                                   #
 ###############################################################################
 library(readxl)
 library(readr)
 library(stringr)
 ###############################################################################
 
-help <- function ( message=NULL ) {
-  if ( !is.null(message) ) cat("ERROR:", message, fill=TRUE)
-  cat("usage: xlsx2tsv [filename]", fill=TRUE)
+help <- function(message = NULL) {
+  if (!is.null(message)) cat("ERROR:", message, fill = TRUE)
+  cat("usage: xlsx2tsv [filename]", fill = TRUE)
   quit()
 }
 
@@ -26,18 +26,12 @@ newname <- str_replace(
   replacement = ".tsv"
 )
 
-if ( length(filename) == 0 ) help()
-if ( length(filename) > 1 ) help("too many arguments.")
-if ( !file.exists(filename) ) help("file not readable.")
-if ( file.exists(newname) ) {
-  cat("File", newname, "already exists. Proceed and replace? [Yn] ")
-  proceed <- readLines("stdin", n = 1)
-  if ( proceed != "Y" ) {
-    cat("Aborting...", fill = TRUE)
-    quit()
-  } else {
-    cat("Replacing...", fill = TRUE)
-  }
-}
+if (length(filename) == 0) help()
+
+if (length(filename) > 1) help("too many arguments.")
+
+if (!file.exists(filename)) help("file", filename, "not readable.")
+
+if (file.exists(newname)) help("file", newname, "already exists, aborting...")
 
 read_excel(filename) |> write_tsv(file = newname)

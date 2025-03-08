@@ -1,7 +1,7 @@
 -- init.lua
 
-HYPER = { "alt" }
-HYPER_SHIFT = { table.unpack(HYPER), "shift" }
+local HYPER = { "alt" }
+local HYPER_SHIFT = { table.unpack(HYPER), "shift" }
 
 -- Applications and Shortcuts -------------------------------------------------
 
@@ -14,24 +14,25 @@ hs.hotkey.bindSpec({ HYPER, "s" }, function () hs.application.open("Skim")      
 hs.hotkey.bindSpec({ HYPER, "x" }, function () hs.application.open("Firefox")    end)
 hs.hotkey.bindSpec({ HYPER, "e" },
 	function ()
-		resp = hs.execute("eject-auto", true)
+		local resp = hs.execute("eject-auto", true)
 		print(resp)
 	end
 )
 
 -- Bluetooth ------------------------------------------------------------------
 
-blueutil         = "/opt/homebrew/bin/blueutil"
-blueutil_off     = blueutil .. " -p 0; "
-blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect 2c-41-a1-88-27-9a"
+local blueutil         = "/opt/homebrew/bin/blueutil"
+local blueutil_off     = blueutil .. " -p 0; "
+local blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect 2c-41-a1-88-27-9a"
 hs.hotkey.bindSpec({ HYPER_SHIFT, "b" }, function () hs.execute(blueutil_off)     end)
 hs.hotkey.bindSpec({ HYPER,       "b" }, function () hs.execute(blueutil_connect) end)
 
 -- Wifi -----------------------------------------------------------------------
 
-wifi_interface = "en0"
-known_networks = {
+local wifi_interface = "en0"
+local known_networks = {
 	["Utopie"]          = "1997aaaaaa", -- Phone
+	["sheep"]           = "1997aaaaaa", -- iPhone
 	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
 	["cos"]             = "0906802822", -- Room 645
 	["RickyWramLin_5G"] = "room656656", -- Room 656
@@ -64,7 +65,11 @@ spoon.ClipboardTool.menubar_title = "✂"
 spoon.ClipboardTool.paste_on_select = true
 spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool.show_copied_alert = false
-spoon.ClipboardTool.max_size = true
+spoon.ClipboardTool.max_size = false
 -- spoon.ClipboardTool.max_entry_size = 1000
 spoon.ClipboardTool:bindHotkeys({ toggle_clipboard = { { "cmd", "shift" }, "v" } })
 spoon.ClipboardTool:start()
+
+-------------------------------------------------------------------------------
+
+hs.alert("Hammerspoon Config Loaded.")

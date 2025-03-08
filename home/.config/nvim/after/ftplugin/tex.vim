@@ -13,7 +13,7 @@ setlocal commentstring=%\ %s
 setlocal spellfile=~/.config/nvim/spell/en.utf-8.add,~/.config/nvim/spell/latex.utf-8.add
 setlocal foldmethod=manual
 setlocal foldnestmax=1
-let g:tex_noindent_env = 'document\|verbatim\|lstlisting\|multicols\|letter\|appendix'
+let g:tex_noindent_env = 'document\|verbatim\|lstlisting\|multicols\|letter\|appendix\|spacing'
 let g:tex_indent_brace = 0
 let b:match_words ..= ','
 			\ .. '\\left\>:\\right\>,'
@@ -24,8 +24,8 @@ let b:match_words ..= ','
 
 " SURROUND: surround settings.
 let b:surround_indent = 1
-let b:surround_66  = "\\Bigl\r\\Bigr"
-let b:surround_98  = "\\bigl\r\\bigr"
+let b:surround_66  = "\\Big\r\\Big"
+let b:surround_98  = "\\big\r\\big"
 let b:surround_67  = "\\left\\{\r\\right."
 let b:surround_81  = "``\r''"
 let b:surround_113 = "`\r'"
@@ -44,37 +44,37 @@ let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-
 let b:tex_compile_make    = "make ; whenever . make"
 " let b:tex_compile_make    = "make ; find . -type f | entr make"
 let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
-nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
-nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:tex_compile_command)<CR>
-nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:tex_compile_command)<CR>
+nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#CloseTmux()<CR>
+nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
+nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
 " command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
 " command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
 " nnoremap <silent><buffer><expr> <Space><Space> vimslime#Send("\<C-D>")
 
 " UTILITIES: utilities.
-command! -buffer -nargs=0 ServerSetup :call tex#ServerSetup()
-command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
-command! -buffer -nargs=0 ReloadTeX   :call textoggle#Reload()
-command! -buffer -nargs=0 FindSection :call tex#FindSection()
-command! -buffer -nargs=0 JunkRemove  :! latexmk -C %:r
-nnoremap <buffer><silent> <leader>S :call tex#ServerSetup()<CR>
-nnoremap <buffer><silent> <leader>c :call tex#EnvironmentChange()<CR>
-nnoremap <buffer><silent> <leader>d :call tex#EnvironmentDelete()<CR>
-nnoremap <buffer><silent> <leader>, :call tex#DelLeftRight()<CR>
-nnoremap <buffer><silent> <leader>8 :call tex#EnvironmentStar()<CR>
-nnoremap <buffer><silent> <leader>g :call tex#SkimForward()<CR>
-nnoremap <buffer><silent> <leader>t :call textoggle#Master()<CR>
-nnoremap <buffer><silent> <leader>; :call my#DelFuncCall('\\','[a-zA-Z]','{}')<CR>
+command! -buffer -nargs=0 ServerSetup call tex#ServerSetup()
+command! -buffer -nargs=0 LastMod     call my#LastMod('^\(%* *Last Modified: *\)[^ ]*',7)
+command! -buffer -nargs=0 ReloadTeX   call textoggle#Reload()
+command! -buffer -nargs=0 FindSection call tex#FindSection()
+command! -buffer -nargs=0 JunkRemove  ! latexmk -C %:r
+nnoremap <buffer><silent> <leader>S <Cmd>call tex#ServerSetup()<CR>
+nnoremap <buffer><silent> <leader>c <Cmd>call tex#EnvironmentChange()<CR>
+nnoremap <buffer><silent> <leader>d <Cmd>call tex#EnvironmentDelete()<CR>
+nnoremap <buffer><silent> <leader>, <Cmd>call tex#DelLeftRight()<CR>
+nnoremap <buffer><silent> <leader>8 <Cmd>call tex#EnvironmentStar()<CR>
+nnoremap <buffer><silent> <leader>g <Cmd>call tex#SkimForward()<CR>
+nnoremap <buffer><silent> <leader>t <Cmd>call textoggle#Master()<CR>
+nnoremap <buffer><silent> <leader>; <Cmd>call funcargs#DeleteFunction('\\','[a-zA-Z]','{}')<CR>
 nnoremap <buffer><silent> <leader>p :! open %:r.pdf<CR><CR>
 nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/tex.vim<CR>
 
 " COMPLETETION: `Lables` and `Biblography` complete settings.
 setlocal completefunc=texcomplete#Labs
 setlocal omnifunc=texcomplete#Bibs
-command! -buffer -nargs=0 ShowLabs     :call texcomplete#Show('labs')
-command! -buffer -nargs=0 ShowBibs     :call texcomplete#Show('bibs')
-command! -buffer -nargs=0 GenerateLabs :call texcomplete#GenerateLabs()
-command! -buffer -nargs=0 GenerateBibs :call texcomplete#GenerateBibs()
+command! -buffer -nargs=0 ShowLabs     call texcomplete#Show('labs')
+command! -buffer -nargs=0 ShowBibs     call texcomplete#Show('bibs')
+command! -buffer -nargs=0 GenerateLabs call texcomplete#GenerateLabs()
+command! -buffer -nargs=0 GenerateBibs call texcomplete#GenerateBibs()
 " command! -buffer -nargs=1 SetLabsFiles :call texcomplete#SetFiles('labs',<args>)
 " command! -buffer -nargs=1 SetBibsFiles :call texcomplete#SetFiles('bibs',<args>)
 
@@ -138,10 +138,10 @@ xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
 xnoremap <silent><buffer> a<bar> <Esc>:norm! F<bar>vf<bar><CR>
 onoremap <silent><buffer> i<bar> :norm! F<bar>lvt<bar><CR>
 onoremap <silent><buffer> a<bar> :norm! F<bar>vf<bar><CR>
-xnoremap <silent><buffer> ia     <Esc>:call my#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
-xnoremap <silent><buffer> aa     <Esc>:call my#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
-onoremap <silent><buffer> ia          :call my#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
-onoremap <silent><buffer> aa          :call my#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
+xnoremap <silent><buffer> ia     <Esc>:call funcargs#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
+xnoremap <silent><buffer> aa     <Esc>:call funcargs#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
+onoremap <silent><buffer> ia          :call funcargs#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
+onoremap <silent><buffer> aa          :call funcargs#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
 xnoremap <silent><buffer> iQ     :<C-U>call tex#Quotes("i",1)<CR>
 xnoremap <silent><buffer> aQ     :<C-U>call tex#Quotes("a",1)<CR>
 onoremap <silent><buffer> iQ     :<C-U>call tex#Quotes("i",1)<CR>
@@ -179,6 +179,7 @@ inoremap <buffer> \mb<Tab> <C-G>u\mathbf{}<Left>
 inoremap <buffer> \mc<Tab> <C-G>u\mathcal{}<Left>
 inoremap <buffer> \ms<Tab> <C-G>u\mathscr{}<Left>
 inoremap <buffer> \mf<Tab> <C-G>u\mathsf{}<Left>
+inoremap <buffer> \mt<Tab> <C-G>u\mathtt{}<Left>
 inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
 inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
 

@@ -2,7 +2,7 @@
 
 [[ $# -lt 1 ]] && {
 	cat << EOF >&2
-usage: $(basename $0) [file.pdf]
+usage: $(basename "$0") [file.pdf]
 description: remove first page of pdf.
 EOF
 	exit 1
@@ -19,5 +19,5 @@ pdfsplit "$1" 2 "$pages" "$temp"
 	exit 0
 }
 
-echo "$(basename $0): an error occurred." >&2
+echo "$(basename "$0"): an error occurred." >&2
 exit 1

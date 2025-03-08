@@ -1,7 +1,7 @@
 ---
 title:  "VIM - LaTeX"
 author: "jessekelighine.com"
-date:   "2024-04-25"
+date:   "2025-02-06"
 ---
 
 Since I really do not like the TeXshop layout and Vim is evidently a superior
@@ -72,7 +72,7 @@ The `open` part is to return to the terminal automatically.
   ```
 - Use bopomofo and normal Chinese ellipsis in xeCJK:
   add `"02CA, "02C7 , "02CB , "02D9 , "22EF,` after `"3100,` in the file
-  `/usr/local/texlive/2022basic/texmf-dist/tex/xelatex/xecjk/xeCJK.sty`
+  `/usr/local/texlive/2024basic/texmf-dist/tex/xelatex/xecjk/xeCJK.sty`
   to create the appropriate mapping.
 - Convert pdf output to png: install `imagemagick` through `HomeBrew`.
 - See `~/.vim/ftplugin/tex_snippets/PACKAGES.txt` for packages all the packages

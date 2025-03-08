@@ -9,4 +9,3 @@ augroup filetypedetect
 	autocmd! BufRead,BufNewFile *.mod               setlocal filetype=cpp " Dynare File
 	" autocmd! BufRead,BufNewFile *.Rmd,*.rmd         setlocal filetype=markdown
 augroup END
-

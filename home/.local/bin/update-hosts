@@ -7,8 +7,8 @@ message () {
 	local head; head="$(tput bold)$(basename "$0")$(tput sgr0): $1"
 	local symb_succ; symb_succ="$(tput setaf 10)OK$(tput sgr0)"
 	local symb_fail; symb_fail="$(tput setaf  9)NO$(tput sgr0)"
-	[[ "$2" == "0" ]] && { printf "\r[ $symb_succ ] $head\n"; return 0; }
-	[[ -n "$2"     ]] && { printf "\r[ $symb_fail ] $head\n"; return $2; }
+	[[ "$2" == "0" ]] && { printf "\r[ %s ] %s\n" "$symb_succ" "$head"; return 0; }
+	[[ -n "$2"     ]] && { printf "\r[ %s ] %s\n" "$symb_fail" "$head"; return "$2"; }
 	local symbols1; symbols1='.o08o.  '
 	local symbols2; symbols2='   o08o.'
 	local symb_len; symb_len=${#symbols2}
@@ -17,14 +17,13 @@ message () {
 	while kill -0 $pid 2> /dev/null
 	do
 		iter=$(( ( iter + 1 ) % symb_len ))
-		printf "\r[ ${symbols1:$iter:1}${symbols2:$iter:1} ] $head"
+		printf "\r[ %s%s ] %s" "${symbols1:$iter:1}" "${symbols2:$iter:1}" "$head"
 		sleep $delay
 	done
 	if wait $pid
-	then printf "\r[ $symb_succ ] $head\n"; return 0
-	else printf "\r[ $symb_fail ] $head\n"; return $(wait $pid)
+	then printf "\r[ %s ] %s\n" "$symb_succ" "$head"; return 0
+	else printf "\r[ %s ] %s\n" "$symb_fail" "$head"; return "$(wait "$pid")"
 	fi
-	return 0
 }
 
 ### Variables #################################################################
@@ -55,9 +54,10 @@ trap clean_up EXIT SIGINT
 
 ## Check if "Ad-block" line is present in "/etc/hosts".
 grep -q "${ad_block}" "$hosts_original"
+
 [[ $? -ne 0 ]] && {
 	message "puting '${ad_block}' line in '$hosts_original'..." 0
-	printf "\n\n${ad_block}" | sudo tee -a "$hosts_original"
+	printf "\n\n%s" "${ad_block}" | sudo tee -a "$hosts_original"
 }
 
 ## Get ad-block file
@@ -65,12 +65,12 @@ curl -s "$hosts_site" > "$hosts_zero" & message "downloading hosts file"
 
 ## Split original hosts file
 cp "$hosts_original" "$hosts_temp"
-printf "/^${ad_block}\n.,\$d\nwq\n" | ed -s "$hosts_temp" 1> /dev/null
+printf "/^%s\n.,\$d\nwq\n" "${ad_block}" | ed -s "$hosts_temp" 1> /dev/null
 
 ## Construct new hosts file
 {
 	cat "$hosts_temp"
-	printf "${ad_block} ( $(date +'%F %X') )\n\n"
+	printf "%s ( $(date +'%F %X') )\n\n" "${ad_block}"
 	cat "$hosts_zero"
 } > "$hosts_final"
 

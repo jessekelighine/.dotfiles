@@ -1,59 +1,60 @@
 " autoload/vimslime.vim
 
-""" Manipulate Panes """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let b:vimslime_target = ""
+let b:vimslime_tmux_close_command = repeat("\<C-C>", 10) .. "\<C-D>" .. "exit" .. "\<C-D>"
 
-" Tmux: Open pane
-function! vimslime#OpenTmux(command="", resize_pane='-U 12') abort
-	if vimslime#Target() != "" | call system("tmux resize-pane -Z") | return | endif
+" Tmux: Open Pane
+function! vimslime#OpenTmux(command="", resize_pane='-U 12', close_command="") abort
+	if b:vimslime_target != ""
+		call system("tmux resize-pane -Z")
+		return
+	endif
+	if a:close_command != ""
+		let b:vimslime_tmux_close_command = a:close_command
+	endif
 	let l:command = join([
 				\ 'tmux split -c "$PWD";',
 				\ 'tmux resize-pane ' .. a:resize_pane .. ';',
 				\ "tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_active}';",
 				\ 'tmux last-pane;'
 				\ ])
-	let l:target_pane = system(l:command)->split('\n')->map('split(v:val," ")')->filter('v:val[1]==1')
-	call vimslime#SetTarget(l:target_pane[0][0])
+	let b:vimslime_target = system(l:command)
+				\ ->split('\n')
+				\ ->map({ key, val -> split(val, " ") })
+				\ ->filter({ key, val -> val[1] == 1 })
+				\ ->{ x -> x[0][0] }()
+	call join(["sleep", ".2s"])->system() " wait just a moment for zshrc or bashrc to fully load
 	call vimslime#Send(a:command, 1)
 	augroup VimslimeOpenTmux
 		autocmd!
-		autocmd VimLeave * exe vimslime#Target()=="" ? "" : 'call vimslime#CloseTmux()'
+		autocmd VimLeave * exe b:vimslime_target == "" ? "" : 'call vimslime#CloseTmux()'
 	augroup END
 endfunction
 
-" Tmux: Close pane
+" Tmux: Close Pane
 function! vimslime#CloseTmux(command="")
-    if a:command != ""
-        call vimslime#Send(a:command, 1)
-    endif
-	call vimslime#Send(repeat("\<C-C>", 10) .. "exit" .. "\<C-D>", 1)
-	call vimslime#UnsetTarget()
+	let l:command = a:command == "" ? b:vimslime_tmux_close_command : a:command
+	call vimslime#Send(l:command, 1)
+	let b:vimslime_target = ""
 endfunction
 
-""" Simple Commands """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Escape Text
+function! <SID>EscapeText(text) abort
+	return substitute(a:text, "'", "'\\\\''", 'g')
+endfunction
 
-" Send "a:text" to a tmux pane.
+" Send Text to Tmux Pane.
 function! vimslime#Send(text, return=0) abort
-	if vimslime#Target()=="" | call vimslime#SetTarget() | end
-	let l:command = "'" .. substitute(a:text, "'", "'\\\\''", 'g') .. ( a:return ? "\n" : "" ) .. "'"
-	echo system("tmux send-keys -t " .. b:vimslime_target .. " " .. l:command)
+	if b:vimslime_target == "" | call vimslime#SetTarget() | end
+	let l:text = "'" .. <SID>EscapeText(a:text) .. ( a:return ? "\n" : "" ) .. "'"
+	let l:command = join(["tmux send-keys -t", b:vimslime_target, l:text])
+	echo system(l:command)
 endfunction
 
-" Get the vimslime target if it exists.
-function! vimslime#Target() abort
-	return exists("b:vimslime_target") ? b:vimslime_target : ""
-endfunction
-
-" Figure out which tmux pane to send the text to.
+" Set Target Tmux Pane
 function! vimslime#SetTarget(target='') abort
-	let b:vimslime_target = a:target != "" ? a:target : input("session:window.pane> ","","custom,vimslime#PaneNames")
+	let b:vimslime_target = a:target != "" ? a:target : input("session:window.pane> ", "", "custom,vimslime#PaneNames")
 endfunction
-
-" Remove variabel b:vimslime_target
-function! vimslime#UnsetTarget() abort
-	unlet b:vimslime_target
-endfunction
-
-" Get a list of active panes of tmux.
 function! vimslime#PaneNames(ArgLead, CmdLine, CursorPos) abort
 	return system("tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}'")
 endfunction

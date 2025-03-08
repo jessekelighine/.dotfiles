@@ -39,7 +39,7 @@ xnoremap //     y/\V<C-R>=escape(@",'/\')<CR><CR>
 xnoremap <silent> p pgvy
 xnoremap <silent> <leader>p p
 nnoremap <silent> <leader>l :set list!<CR>
-nnoremap <silent> <CR>      <cmd>nohlsearch<CR>
+nnoremap <silent> <CR>      <Cmd>nohlsearch<CR>
 nnoremap <silent> <F12>     :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <C-N> :Texplore<CR>
 nnoremap [t :tabprev<CR>
@@ -65,6 +65,7 @@ onoremap T  vT
 inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e==\<S-O>":"(\r"<CR>
 inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e==\<S-O>":"[\r"<CR>
 inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e==\<S-O>":"{\r"<CR>
+inoremap :shruggie<Tab> ¯\_(ツ)_/¯
 
 set encoding=utf-8
 set fileencoding=utf-8

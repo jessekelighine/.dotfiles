@@ -1,5 +1,11 @@
 -- init.lua
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+	desc = 'Highlight when yanking (copying) text',
+	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+	callback = function() vim.highlight.on_yank() end,
+})
+
 -- Lazy.nvim ------------------------------------------------------------------
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -15,48 +21,38 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require("lazy").setup {
 
 	{ import = "plugins" },
 
-	"jessekelighine/vim-bunttex",
 	"tpope/vim-repeat",
 	"tpope/vim-vinegar",
 
 	{
-		"neovim/nvim-lspconfig",
-		config = function ()
-		end,
-	},
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate"
+		"jessekelighine/vim-bunttex",
+		enable = false,
+		ft = "tex",
 	},
 
 	{
 		"unblevable/quick-scope",
 		init = function()
-			local qs_colors = vim.api.nvim_create_augroup("qs_colors", { clear = true })
 			vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 			vim.g.qs_lazy_highlight = true
-			vim.api.nvim_create_autocmd(
-				{ "ColorScheme" },
-				{
-					pattern = "*",
-					group = qs_colors,
-					command = [[
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "*",
+				group = vim.api.nvim_create_augroup("qs_colors", { clear = true }),
+				command = [[
 						highlight QuickScopePrimary   ctermfg=196 cterm=underline
 						highlight QuickScopeSecondary ctermfg=81  cterm=underline
 						]]
-				}
-			)
+			})
 		end,
 	},
 
 	{
 		"jessekelighine/miramare",
-		config = function ()
+		config = function()
 			vim.g.miramare_transparent_background = 1
 			vim.g.miramare_disable_italic_comment = 0
 			vim.cmd.colorscheme "miramare"
@@ -66,77 +62,52 @@ require("lazy").setup({
 	{
 		"jessekelighine/vim-peekaboo",
 		enabled = false,
-		config = function ()
+		config = function()
 			vim.g.peekaboo_compact = 1
 		end,
 	},
 
 	{
-		"jessekelighine/vindent.vim",
-		init = function ()
-			vim.g.vindent_motion_OO_prev = '[l'
-			vim.g.vindent_motion_OO_next = ']l'
-			vim.g.vindent_motion_less_prev = '[-'
-			vim.g.vindent_motion_less_next = ']-'
-			vim.g.vindent_motion_more_prev = '[='
-			vim.g.vindent_motion_more_next = ']='
-			vim.g.vindent_motion_XX_ss = '[p'
-			vim.g.vindent_motion_XX_se = ']p'
-			vim.g.vindent_motion_OX_ss = '[P'
-			vim.g.vindent_motion_OX_se = ']P'
-			vim.g.vindent_object_OO_ii = 'iI'
-			vim.g.vindent_object_XX_ii = 'ii'
-			vim.g.vindent_object_XX_ai = 'ai'
-			vim.g.vindent_object_XX_aI = 'aI'
-			vim.g.vindent_jumps = 1
-			vim.g.vindent_begin = 0
-			vim.g.vindent_count = 0
-		end,
-	},
-
-	{
-		"junegunn/fzf.vim",
-		dependencies = { "junegunn/fzf" },
-		config = function ()
-			vim.cmd [[
-			let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-			let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
-			let g:fzf_preview_window = [ 'right:40%' ]
-			let g:fzf_layout = { 'down': '~20%' }
-			]]
-			vim.keymap.set('n', '<C-B>', ':Buffers<CR>')
-			vim.keymap.set('n', '<C-T>', ':Files<CR>')
-			vim.keymap.set('n', '<C-F>', ':Lines<CR>')
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.8",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "<C-t>", builtin.find_files)
+			vim.keymap.set("n", "<C-f>", builtin.live_grep)
+			vim.keymap.set("n", "<C-b>", builtin.buffers)
+			vim.keymap.set("n", "<C-s>", builtin.spell_suggest)
+			require("telescope").setup {}
 		end,
 	},
 
 	{
 		"junegunn/vim-easy-align",
-		config = function ()
+		config = function()
 			vim.keymap.set({ 'x', 'n' }, 'ga', '<Plug>(EasyAlign)')
 		end,
 	},
 
 	{
 		"mbbill/undotree",
-		config = function ()
+		config = function()
 			vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>')
 		end,
 	},
 
 	{
 		"tpope/vim-surround",
-		config = function ()
-			local surround_group = vim.api.nvim_create_augroup("VimSurround", { clear = true })
+		config = function()
 			vim.api.nvim_create_autocmd(
 				{ "VimEnter", "BufNewFile", "BufRead" },
 				{
 					pattern = "*",
-					group = surround_group,
-					callback = function ()
+					group = vim.api.nvim_create_augroup("VimSurround", { clear = true }),
+					callback = function()
 						vim.b.surround_49  = "（\r）"
 						vim.b.surround_50  = "「\r」"
 						vim.b.surround_51  = "《\r》"
+						vim.b.surround_52  = "〈\r〉"
 						vim.b.surround_92  = "\\\r\\"
 						vim.b.surround_97  = "\1anything: \1\r\1\1"
 						vim.b.surround_122 = "\1anything(1): \1\r\2anything(2): \2"
@@ -147,22 +118,48 @@ require("lazy").setup({
 	},
 
 	{
+		"hrsh7th/nvim-cmp",
+		config = function()
+			local cmp = require("cmp")
+			cmp.setup {
+				sources = {{ name = "cmp_r" }},
+				mapping = cmp.mapping.preset.insert {
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+				},
+			}
+			require("cmp_r").setup {}
+		end,
+	},
+
+	{
 		"R-nvim/R.nvim",
 		lazy = false,
-		config = function ()
-			require("r").setup {
+		dependencies = { "R-nvim/cmp-r" },
+		config = function()
+			local r = require("r")
+			r.setup {
 				pdfviewer = "",
-				rmdchunk = 0, -- do not auto-expand ticks to code blocks
+				-- rmdchunk = 0, -- do not auto-expand ticks to code blocks
 				nvimpager = "tab", -- how help pages are viewed
-				R_args = { "--no-save" },
+				R_args = { "--quiet", "--no-save" },
 				disable_cmds = { "RSendLine" },
 				hook = {
-					on_filetype = function ()
-						vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
+					on_filetype = function()
+						vim.api.nvim_buf_set_keymap(0, "n", "<leader>d", "<Plug>RDSendLine", {})
+						vim.api.nvim_buf_set_keymap(0, "v", "<leader>d", "<Plug>RSendSelection", {})
+						-- vim.api.nvim_buf_set_keymap(0, "n", "<Enter>", "<Plug>RDSendLine:noh<CR>", {})
+						-- vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
 					end
 				},
 			}
 		end,
 	},
 
-})
+}

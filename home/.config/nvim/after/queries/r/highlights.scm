@@ -1,5 +1,8 @@
 ;; extends
 
+;((call function: (identifier) ) @hello (#eq? @hello "rnorm"))
+((call function: (_) @hello) (#match? @hello "norm"))
+
 ;(left_assignment) @indent.begin
 ;
 ;(if (call)) @indent.begin

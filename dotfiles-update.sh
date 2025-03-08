@@ -27,4 +27,4 @@ brew bundle dump --force
 
 git add .
 
-echo "$(tput bold)$(basename $0)$(tput sgr0): Updated."
+echo "$(tput bold)$(basename "$0")$(tput sgr0): Updated."

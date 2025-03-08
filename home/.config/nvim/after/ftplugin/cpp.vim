@@ -9,7 +9,7 @@ nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/cpp.vim<CR>
 nnoremap <buffer> <F5> :call cpp#Compile()<CR>
 nnoremap <buffer> <F6> :call cpp#Compile()<CR>
 
-nnoremap <buffer> <leader>; :call my#DelFuncCall('[a-zA-Z]','[:a-zA-Z0-9_]')<CR>
+nnoremap <buffer> <leader>; :call funcargs#DeleteFunction('[a-zA-Z]','[:a-zA-Z0-9_]')<CR>
 
 inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets("cpp","skeleton.cpp")<CR>
 inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("cpp","sign.cpp")<CR>

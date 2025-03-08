@@ -7,8 +7,8 @@
 #                                                                             #
 # Last Modified: OOOO-OO-OO                                                   #
 ###############################################################################
-options(scipen=999999)
-options(tidyverse.quiet=TRUE)
+options(scipen = 999999)
+options(tidyverse.quiet = TRUE)
 library(conflicted)
 library(tidyverse)
 ###############################################################################

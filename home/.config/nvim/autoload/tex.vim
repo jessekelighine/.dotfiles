@@ -104,8 +104,8 @@ function! tex#EnvironmentChange(to='')
 	let l:to = a:to=='' ? input('--> Environment Name: ') : a:to
 	if  l:to=='' | return | endif
 	let l:pos = getpos('.') | exec 'norm _%'
-	call <SID>EnvironmentReplace(l:to) | call setpos('.',l:pos)
-	call <SID>EnvironmentReplace(l:to)
+	call <SID>EnvironmentReplace(l:to) | call setpos('.', l:pos)
+	call <SID>EnvironmentReplace(l:to) | call setpos('.', l:pos)
 endfunction
 
 " toggle star of a tex environment.

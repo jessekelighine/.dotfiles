@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-escbasenames() {
-    find . -mindepth 1 -maxdepth 1 -exec printf '%s\0' "$(basename {})" \; | xargs -0 -I {} bash -c 'printf "%q\n" "${0#./}"' {} | sort
-}
-
 setopt autocd
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
