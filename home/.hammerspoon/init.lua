@@ -3,6 +3,19 @@
 local HYPER = { "alt" }
 local HYPER_SHIFT = { table.unpack(HYPER), "shift" }
 
+-- Window Manager -------------------------------------------------------------
+
+local wm = require("window-management")
+
+hs.hotkey.bindSpec({ HYPER,       "down"  }, function() wm.move_to(wm.positions.bottom)     end)
+hs.hotkey.bindSpec({ HYPER,       "left"  }, function() wm.move_to(wm.positions.left)       end)
+hs.hotkey.bindSpec({ HYPER,       "right" }, function() wm.move_to(wm.positions.right)      end)
+hs.hotkey.bindSpec({ HYPER,       "up"    }, function() wm.move_to(wm.positions.top)        end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "down"  }, function() wm.move_to(wm.positions.bottom_fat) end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "left"  }, function() wm.move_to(wm.positions.left_fat)   end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "right" }, function() wm.move_to(wm.positions.right_fat)  end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "up"    }, function() wm.move_to(wm.positions.full)       end)
+
 -- Applications and Shortcuts -------------------------------------------------
 
 hs.hotkey.bindSpec({ HYPER, "a" }, function () hs.application.open("Alacritty")  end)
@@ -41,22 +54,40 @@ local known_networks = {
 hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function () hs.wifi.setPower(false, wifi_interface) end)
 hs.hotkey.bindSpec({ HYPER,       "w" }, function () hs.wifi.setPower(true,  wifi_interface) end)
 
--- local wifi_menubar = hs.menubar.new():setTitle(hs.wifi.currentNetwork())
--- hs.hotkey.bindSpec(
--- 	{ HYPER, "w" },
--- 	function ()
--- 		hs.wifi.setPower(true, wifi_interface)
--- 		for network, password in pairs(known_networks) do
--- 			print("Trying to connect to network " .. network .. " ...")
--- 			if hs.wifi.associate(network, password, wifi_interface) then
--- 				print("Connected to network " .. network)
--- 				-- hs.menubar.new():setTitle(network)
--- 				return true
--- 			end
--- 		end
--- 		return false
--- 	end
--- )
+-- Wifi Menu Bar ---
+
+WifiMenu = hs.menubar.new()
+WifiMenu:autosaveName("WifiMenu")
+WifiMenu:setClickCallback(function()
+	local wifi_settings = "x-apple.systempreferences:com.apple.wifi-settings-extension"
+	local command = "open " .. wifi_settings
+	hs.execute(command)
+end)
+
+local wifi_set_display_name = function()
+	local wifi_name = hs.wifi.currentNetwork(wifi_interface)
+	if wifi_name then
+		local max_display_length = 13
+		if string.len(wifi_name) > max_display_length then
+			wifi_name = string.sub(wifi_name, 1, max_display_length)
+			wifi_name = string.gsub(wifi_name, "...$", "...")
+		end
+		WifiMenu:setTitle(wifi_name)
+	else
+		WifiMenu:setTitle("¯\\_(ツ)_/¯")
+	end
+end
+
+wifi_set_display_name()
+WifiWatcher = hs.wifi.watcher.new(wifi_set_display_name):start()
+
+-- Keep = hs.menubar.new()
+-- Keep:autosaveName("Keep"):setTitle("毋忘")
+-- Keep:setClickCallback(function()
+-- 	local browser = "firefox"
+-- 	local website = "https://keep.google.com"
+-- 	hs.execute("open -a " .. browser .. " " .. website)
+-- end)
 
 -- Clipboard ------------------------------------------------------------------
 

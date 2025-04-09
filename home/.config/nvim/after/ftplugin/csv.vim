@@ -23,3 +23,4 @@ nnoremap <silent><buffer> )         <Cmd>call csv#PrevNextColumn('next')<CR>
 nnoremap <silent><buffer> (         <Cmd>call csv#PrevNextColumn('prev')<CR>
 
 call csv#InitializeCSV()
+HeadingHighlight

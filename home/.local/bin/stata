@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+stata="/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp"
+${stata} "$@"

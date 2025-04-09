@@ -1,5 +1,6 @@
 return {
 	-- "junegunn/fzf.vim",
+	-- enable = false,
 	-- dependencies = { "junegunn/fzf" },
 	-- config = function()
 	-- 	vim.cmd [[

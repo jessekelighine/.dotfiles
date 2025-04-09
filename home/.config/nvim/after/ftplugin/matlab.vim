@@ -24,20 +24,22 @@ onoremap <buffer><silent> as :call matlab#GetSection('a')<CR>
 xnoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 
-" Vim Slime: IDE-like key-bindings.
-nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux('matlab','-D 5')<CR>
-nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux('matlab','-D 5')<CR>
-nnoremap <silent><buffer> <leader>rq :call vimslime#CloseTmux('exit;')<CR>
-xnoremap <buffer><silent> <leader>cc m'"9y:call vimslime#Send("\<C-C>")<CR>`'
-nnoremap <buffer><silent> <leader>d  m'"9yy:call vimslime#Send(@9)<CR>`'
-nnoremap <buffer><silent> <leader>rp m'"9yiw:call vimslime#Send(@9,1)<CR>`'
-nnoremap <buffer><silent> <leader>rs m'"9yiw:call vimslime#Send('size('.@9.")",1)<CR>`'
-nnoremap <buffer><silent> <leader>rh m'"9yiw:call vimslime#Send("help ".@9,1)<CR>`'
-nnoremap <buffer><silent> <leader>rG m'"9yG:call vimslime#Send(@9)<CR>`'
-nnoremap <buffer><silent> <leader>pp m'"9yip:call vimslime#Send(@9)<CR>`'
-nnoremap <buffer><silent> <leader>ss m':call matlab#GetSection('i')<CR>"9y:call vimslime#Send(@9)<CR>`'
-nnoremap <buffer><silent> <leader>ro :call vimslime#Send("who",1)<CR>
-nnoremap <buffer><silent> <leader>rr :call vimslime#Send("clc",1)<CR>
-xnoremap <buffer><silent> <leader>ss m'"9y:call vimslime#Send(@9,1)<CR>`'
-xnoremap <buffer><silent> <leader>rs m'"9y:call vimslime#Send("size(".@9.")",1)<CR>`'
-xnoremap <buffer><silent> <leader>rp m'"9y:call vimslime#Send(@9,1)<CR>`'
+" IDE
+let b:matlab_command = "matlab"
+let b:matlab_exit_command = "exit;\r\n\<C-D>"
+nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#OpenTmux(b:matlab_command, '-D 5', b:matlab_exit_command)<CR>
+nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#OpenTmux(b:matlab_command, '-D 5', b:matlab_exit_command)<CR>
+nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#CloseTmux(b:matlab_exit_command)<CR>
+xnoremap <buffer><silent> <leader>cc      <Cmd>call vimslime#Send("\<C-C>")<CR>
+nnoremap <buffer><silent> <leader>ro      <Cmd>call vimslime#Send("who", 1)<CR>
+nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("clc", 1)<CR>
+nnoremap <buffer><silent> <leader>d       <Cmd>call vimslime#Forward("line")<CR>
+nnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("word")<CR>
+nnoremap <buffer><silent> <leader>rG      <Cmd>call vimslime#Forward("end")<CR>
+nnoremap <buffer><silent> <leader>pp      <Cmd>call vimslime#Forward("paragraph")<CR>
+xnoremap <buffer><silent> <leader>ss      <Cmd>call vimslime#Forward("selection")<CR>
+xnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("selection")<CR>
+nnoremap <buffer><silent> <leader>rh      <Cmd>call vimslime#Forward("word", 1, { x -> "help " .. x })<CR>
+nnoremap <buffer><silent> <leader>rs      <Cmd>call vimslime#Forward("word", 1, { x -> "size(" .. x .. ")" })<CR>
+xnoremap <buffer><silent> <leader>rs      <Cmd>call vimslime#Forward("selection", 1, { x -> "size(" .. x .. ")" })<CR>
+nnoremap <buffer><silent> <leader>ss      m':call matlab#GetSection('i')<CR>"9y:call vimslime#Send(@9)<CR>`'

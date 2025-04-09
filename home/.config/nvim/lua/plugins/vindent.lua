@@ -18,7 +18,36 @@ return {
 		vindent.map.Object("ii", "ii", block_opts.loose)
 		vindent.map.Object("ai", "ai", block_opts.loose)
 		vindent.map.Object("aI", "aI", block_opts.loose)
-		vindent.setup { begin = false }
+		vindent.setup {
+			begin = false,
+			noisy = true,
+		}
+
+		vim.api.nvim_create_user_command(
+			"VindentNoisy",
+			function(opts)
+				if not opts.bang then
+					vim.g.vindent_noisy = not vim.g.vindent_noisy
+				end
+				local status = vim.g.vindent_noisy and "ON" or "OFF"
+				local message = "'" .. ( ":VindentNoisy " .. status ) .. "'"
+				vim.cmd.echo(message)
+			end,
+			{ bang = true }
+		)
+
+		vim.api.nvim_create_user_command(
+			"VindentBegin",
+			function(opts)
+				if not opts.bang then
+					vim.g.vindent_begin = not vim.g.vindent_begin
+				end
+				local status = vim.g.vindent_begin and "ON" or "OFF"
+				local message = "'" .. ( ":VindentBegin " .. status ) .. "'"
+				vim.cmd.echo(message)
+			end,
+			{ bang = true }
+		)
 	end
 }
 

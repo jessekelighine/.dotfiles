@@ -92,7 +92,8 @@ function! textoggle#Begin() abort
 	for l:key in keys(g:textoggle_dict)
 		call <SID>Set(l:key, 0)
 	endfor
-	command -buffer -nargs=1 Load call <SID>Set(<q-args>)
+	command -buffer -nargs=1 Load   call <SID>Set(<q-args>)
+	command -buffer -nargs=1 Unload call <SID>Set(<q-args>, 0)
 endfunction
 
 " Unload then reload all toggles
@@ -100,6 +101,7 @@ function! textoggle#End() abort
 	call <SID>UnloadToggleDict()
 	call <SID>ReloadToggleDict()
 	delcommand Load
+	delcommand Unload
 endfunction
 
 " Reload Toggles

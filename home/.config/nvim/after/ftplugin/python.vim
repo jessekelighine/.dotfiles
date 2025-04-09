@@ -29,9 +29,10 @@ nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#OpenTmux(b:python_c
 nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#CloseTmux()<CR>
 nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("\<C-l>")<CR>
 nnoremap <buffer><silent> <leader>cc      <Cmd>call vimslime#Send("\<C-C>")<CR>
-nnoremap <buffer><silent> <leader>d       m'"9yy  :call vimslime#Send(@9)<CR>`'
-nnoremap <buffer><silent> <leader>rp      m'"9yiw :call vimslime#Send("print(" .. @9 .. ")", 1)<CR>`'
-xnoremap <buffer><silent> <leader>rp      m'"9y   :call vimslime#Send("print(" .. @9 .. ")", 1)<CR>`'
-xnoremap <buffer><silent> <leader>ss      m'"9y   :call vimslime#Send(@9, 1)<CR>`'
-nnoremap <buffer><silent> <leader>pp      m'"9yip :call vimslime#Send(@9, 1)<CR>`'
-nnoremap <buffer><silent> <leader>rG      m'"9yG  :call vimslime#Send(@9, 1)<CR>`'
+nnoremap <buffer><silent> <leader>d       <Cmd>call vimslime#Forward("line")<CR>
+nnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("word")<CR>
+xnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("selection")<CR>
+xnoremap <buffer><silent> <leader>ss      <Cmd>call vimslime#Forward("selection")<CR>
+nnoremap <buffer><silent> <leader>pp      <Cmd>call vimslime#Forward("paragraph", 1)<CR>
+nnoremap <buffer><silent> <leader>rG      <Cmd>call vimslime#Forward("end", 1)<CR>
+nnoremap <buffer><silent> <leader>rt      <Cmd>call vimslime#Forward("word", 1, { x -> "type(" .. x .. ")" })<CR>

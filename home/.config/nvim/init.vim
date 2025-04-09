@@ -122,6 +122,7 @@ augroup END
 
 if has("nvim")
 	tnoremap <silent> <Esc> <C-\><C-n>
+	set inccommand=split
 	set laststatus=3
 	set undofile undodir=~/.config/nvim/undodir/
 	set directory^=~/.config/nvim/swap/

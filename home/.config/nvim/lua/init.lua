@@ -25,13 +25,30 @@ require("lazy").setup {
 
 	{ import = "plugins" },
 
+	"tpope/vim-sleuth",
 	"tpope/vim-repeat",
 	"tpope/vim-vinegar",
 
 	{
-		"jessekelighine/vim-bunttex",
-		enable = false,
-		ft = "tex",
+		"tpope/vim-surround",
+		config = function()
+			vim.api.nvim_create_autocmd(
+				{ "VimEnter", "BufNewFile", "BufRead" },
+				{
+					pattern = "*",
+					group = vim.api.nvim_create_augroup("VimSurround", { clear = true }),
+					callback = function()
+						vim.b.surround_49  = "（\r）"
+						vim.b.surround_50  = "「\r」"
+						vim.b.surround_51  = "《\r》"
+						vim.b.surround_52  = "〈\r〉"
+						vim.b.surround_92  = "\\\r\\"
+						vim.b.surround_97  = "\1anything: \1\r\1\1"
+						vim.b.surround_122 = "\1anything(1): \1\r\2anything(2): \2"
+					end,
+				}
+			)
+		end,
 	},
 
 	{
@@ -60,14 +77,6 @@ require("lazy").setup {
 	},
 
 	{
-		"jessekelighine/vim-peekaboo",
-		enabled = false,
-		config = function()
-			vim.g.peekaboo_compact = 1
-		end,
-	},
-
-	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -77,7 +86,16 @@ require("lazy").setup {
 			vim.keymap.set("n", "<C-f>", builtin.live_grep)
 			vim.keymap.set("n", "<C-b>", builtin.buffers)
 			vim.keymap.set("n", "<C-s>", builtin.spell_suggest)
-			require("telescope").setup {}
+			require("telescope").setup {
+				defaults = {
+					mappings = {
+						i = {
+							["<C-k>"] = "move_selection_previous",
+							["<C-j>"] = "move_selection_next",
+						}
+					}
+				}
+			}
 		end,
 	},
 
@@ -92,28 +110,6 @@ require("lazy").setup {
 		"mbbill/undotree",
 		config = function()
 			vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>')
-		end,
-	},
-
-	{
-		"tpope/vim-surround",
-		config = function()
-			vim.api.nvim_create_autocmd(
-				{ "VimEnter", "BufNewFile", "BufRead" },
-				{
-					pattern = "*",
-					group = vim.api.nvim_create_augroup("VimSurround", { clear = true }),
-					callback = function()
-						vim.b.surround_49  = "（\r）"
-						vim.b.surround_50  = "「\r」"
-						vim.b.surround_51  = "《\r》"
-						vim.b.surround_52  = "〈\r〉"
-						vim.b.surround_92  = "\\\r\\"
-						vim.b.surround_97  = "\1anything: \1\r\1\1"
-						vim.b.surround_122 = "\1anything(1): \1\r\2anything(2): \2"
-					end,
-				}
-			)
 		end,
 	},
 
@@ -143,13 +139,21 @@ require("lazy").setup {
 		lazy = false,
 		dependencies = { "R-nvim/cmp-r" },
 		config = function()
-			local r = require("r")
-			r.setup {
+			require("r").setup {
 				pdfviewer = "",
-				-- rmdchunk = 0, -- do not auto-expand ticks to code blocks
 				nvimpager = "tab", -- how help pages are viewed
 				R_args = { "--quiet", "--no-save" },
-				disable_cmds = { "RSendLine" },
+				view_df = {
+					open_app = ":tabnew %s | setlocal ft=csv",
+					csv_sep = "\t",
+					n_lines = -1,
+				},
+				disable_cmds = {
+					"RSendLine",
+					"RCustomStart",
+					"RSPlot",
+					"RSaveClose",
+				},
 				hook = {
 					on_filetype = function()
 						vim.api.nvim_buf_set_keymap(0, "n", "<leader>d", "<Plug>RDSendLine", {})

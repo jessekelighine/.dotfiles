@@ -4,6 +4,8 @@
 	br = branch
 	st = status
 	llog = log --oneline --decorate --graph
+[diff]
+	tool = nvimdiff
 [user]
 	name = Jesse C. Chen
 	email = jessekelighine@gmail.com

@@ -81,11 +81,26 @@ return {
 			lspconfig.bashls.setup { vim.diagnostic.config { handlers = handlers, signs = true } }
 
 			lspconfig.r_language_server.setup {
+				on_attach = function(client, _)
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end,
 				settings = {
 					["r_language_server"] = {
 						line_length_linter = { enable = false }
 					}
-				}
+				},
+			}
+
+			lspconfig.air.setup {
+				on_attach = function(_, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format()
+						end,
+					})
+				end,
 			}
 
 			lspconfig.pyright.setup {}

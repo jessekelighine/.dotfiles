@@ -72,3 +72,11 @@ spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisociali
 spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
 spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma' # GoodGood
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix

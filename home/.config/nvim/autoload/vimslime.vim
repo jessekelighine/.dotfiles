@@ -38,6 +38,14 @@ function! vimslime#CloseTmux(command="")
 	let b:vimslime_target = ""
 endfunction
 
+" Set Target Tmux Pane
+function! vimslime#SetTarget(target='') abort
+	let b:vimslime_target = a:target != "" ? a:target : input("session:window.pane> ", "", "custom,vimslime#PaneNames")
+endfunction
+function! vimslime#PaneNames(ArgLead, CmdLine, CursorPos) abort
+	return system("tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}'")
+endfunction
+
 " Escape Text
 function! <SID>EscapeText(text) abort
 	return substitute(a:text, "'", "'\\\\''", 'g')
@@ -51,10 +59,23 @@ function! vimslime#Send(text, return=0) abort
 	echo system(l:command)
 endfunction
 
-" Set Target Tmux Pane
-function! vimslime#SetTarget(target='') abort
-	let b:vimslime_target = a:target != "" ? a:target : input("session:window.pane> ", "", "custom,vimslime#PaneNames")
-endfunction
-function! vimslime#PaneNames(ArgLead, CmdLine, CursorPos) abort
-	return system("tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}'")
+" Wraper for vimslime#Send
+function! vimslime#Forward(type, return=v:null, wrapper={ x -> x }) range
+	let l:types = {
+				\ "line":      { "pre": "",   "yank": "yy",  "return": 0 },
+				\ "paragraph": { "pre": "",   "yank": "yip", "return": 0 },
+				\ "selection": { "pre": "gv", "yank": "y",   "return": 1 },
+				\ "word":      { "pre": "",   "yank": "yiw", "return": 1 },
+				\ "end":       { "pre": "VG", "yank": "y",   "return": 0 },
+				\ }
+	let l:type = l:types[a:type]
+	let l:return = a:return is v:null ? l:type.return : a:return
+	let l:command = [
+				\ "norm! m'" .. l:type.pre .. '"9' .. l:type.yank,
+				\ "norm! `'"
+				\ ]
+	silent exec "norm! \<Esc>"
+	silent exec l:command[0]
+	silent call vimslime#Send(a:wrapper(@9), l:return) 
+	silent exec l:command[1]
 endfunction

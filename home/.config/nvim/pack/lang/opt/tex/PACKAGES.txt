@@ -82,3 +82,10 @@ csvsimple
 customdice
 cprotect
 bigfoot
+fmtcount
+accents
+titlesec
+biblatex
+xecjk
+tcolorbox
+tikzfill
