@@ -11,7 +11,7 @@
 #' is_john("john list") # TRUE
 #' is_john("karl list") # FALSE
 #'
-`%<%` <- function ( func, args ) {
-  fixed_args <- if ( class(args)=="list" ) args else list(args)
-  function ( ... ) do.call(func, c(..., fixed_args)) # curried function
+`%<%` <- function(func, args) {
+  fixed_args <- if (class(args) == "list") args else list(args)
+  function(...) do.call(func, c(..., fixed_args)) # curried function
 }

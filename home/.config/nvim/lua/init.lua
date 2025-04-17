@@ -30,6 +30,16 @@ require("lazy").setup {
 	"tpope/vim-vinegar",
 
 	{
+		"github/copilot.vim",
+		config = function()
+			-- vim.cmd [[
+			-- 		imap <silent><script><expr> <C-p> copilot#Accept("\<CR>")
+			-- 		let g:copilot_no_tab_map = v:true
+			-- 		]]
+		end
+	},
+
+	{
 		"tpope/vim-surround",
 		config = function()
 			vim.api.nvim_create_autocmd(

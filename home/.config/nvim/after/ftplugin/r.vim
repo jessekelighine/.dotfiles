@@ -24,19 +24,20 @@ silent AutoLastMod on
 " command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
 
 " Snippets:
-inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("r","sign.R")<CR>
-inoremap <buffer> :bl<Tab>    <Esc>:call my#GetSnippets("r","block.R")<CR>
-inoremap <buffer> :qui<Tab>   <Esc>:call my#GetSnippets("r","qui.R")<CR>
-inoremap <buffer> :lib<Tab>   <Esc>:call my#GetSnippets("r","library.R")<CR>
-inoremap <buffer> :ggs<Tab>   <Esc>:call my#GetSnippets("r","ggsave.R")<CR>
-inoremap <buffer> :ggch<Tab>  <Esc>:call my#GetSnippets("r","ggplotChinese.R")<CR>
-inoremap <buffer> :se<Tab>    <Esc>:call my#GetSnippets("r","robust.R")<CR>
-inoremap <buffer> :log<Tab>   <Esc>:call my#GetSnippets("r","logfile.R")<CR>
-inoremap <buffer> :cl<Tab>    <Esc>:call my#GetSnippets("r","consolelog.R")<CR>
-inoremap <buffer> :mode<Tab>  <Esc>:call my#GetSnippets("r","modus.R")<CR>
-inoremap <buffer> :rm<Tab>    <Esc>:call my#GetSnippets("r","rm.R")<CR>
-inoremap <buffer> :timer<Tab> <Esc>:call my#GetSnippets("r","timer.R")<CR>
-inoremap <buffer> :curry<Tab> <Esc>:call my#GetSnippets("r","curry.R")<CR>
+inoremap <buffer> :sign<Tab>   <Esc>:call my#GetSnippets("r","sign.R")<CR>
+inoremap <buffer> :future<Tab> <Esc>:call my#GetSnippets("r","future.R")<CR>
+inoremap <buffer> :bl<Tab>     <Esc>:call my#GetSnippets("r","block.R")<CR>
+inoremap <buffer> :qui<Tab>    <Esc>:call my#GetSnippets("r","qui.R")<CR>
+inoremap <buffer> :lib<Tab>    <Esc>:call my#GetSnippets("r","library.R")<CR>
+inoremap <buffer> :ggs<Tab>    <Esc>:call my#GetSnippets("r","ggsave.R")<CR>
+inoremap <buffer> :ggch<Tab>   <Esc>:call my#GetSnippets("r","ggplotChinese.R")<CR>
+inoremap <buffer> :se<Tab>     <Esc>:call my#GetSnippets("r","robust.R")<CR>
+inoremap <buffer> :log<Tab>    <Esc>:call my#GetSnippets("r","logfile.R")<CR>
+inoremap <buffer> :cl<Tab>     <Esc>:call my#GetSnippets("r","consolelog.R")<CR>
+inoremap <buffer> :mode<Tab>   <Esc>:call my#GetSnippets("r","modus.R")<CR>
+inoremap <buffer> :rm<Tab>     <Esc>:call my#GetSnippets("r","rm.R")<CR>
+inoremap <buffer> :timer<Tab>  <Esc>:call my#GetSnippets("r","timer.R")<CR>
+inoremap <buffer> :curry<Tab>  <Esc>:call my#GetSnippets("r","curry.R")<CR>
 
 " Mappings:
 nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/after/ftplugin/r.vim<CR>

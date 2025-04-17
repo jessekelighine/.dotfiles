@@ -7,8 +7,8 @@ language en_US.UTF-8
 
 " nnoremap jk <Esc>
 " nnoremap kj <Esc>
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
+" nnoremap <expr> n 'Nn'[v:searchforward]
+" nnoremap <expr> N 'nN'[v:searchforward]
 nnoremap <Space> <Nop>
 xnoremap ''     "*y
 nnoremap ''     "*y

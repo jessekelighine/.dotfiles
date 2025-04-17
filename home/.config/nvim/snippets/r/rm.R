@@ -1,1 +1,2 @@
-rm(list=ls(all.name=TRUE)); gc()
+rm(list = ls(all.name = TRUE))
+gc()
