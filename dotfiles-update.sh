@@ -25,8 +25,16 @@ brew bundle dump --force
 
 ### Finish ####################################################################
 
-git add .
-git commit --message "Updated on $(date "+%Y-%m-%d %H:%M:%S")"
-git push -u origin main
+script_name="$(tput bold)$(basename "$0")$(tput sgr0)"
+last_update="$(git log -1 --pretty='format:%cd' --date='format:%Y-%m-%d')"
 
-echo "$(tput bold)$(basename "$0")$(tput sgr0): Updated."
+git add .
+
+read -p "${script_name}: commit and push changes? (last commit: ${last_update}) [yn]: " -r commit_and_push
+if [[ $commit_and_push =~ ^[Yy]$ ]]; then
+	git commit --message "Update: $(date "+%Y-%m-%d %H:%M:%S")"
+	git push -u origin main
+	echo "${script_name}: pushed changes to remote repository"
+fi
+
+echo "${script_name}: finished"

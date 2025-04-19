@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+dotfiles_directory="$HOME/.dotfiles"
+cd "$dotfiles_directory"
+make update
