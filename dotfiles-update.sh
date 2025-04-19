@@ -26,7 +26,7 @@ brew bundle dump --force
 ### Finish ####################################################################
 
 git add .
-git commit --message "Updated on $(date)"
+git commit --message "Updated on $(date "+%Y-%m-%d %H:%M:%S")"
 git push -u origin main
 
 echo "$(tput bold)$(basename "$0")$(tput sgr0): Updated."
