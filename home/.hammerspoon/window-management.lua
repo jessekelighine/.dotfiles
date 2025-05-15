@@ -6,7 +6,7 @@ hs.grid.setGrid("2x2")
 hs.grid.setMargins({ 5, 5 })
 hs.window.animationDuration = 0
 
-local grid_position = {
+M.grid_position = {
 	full   = { x = 0, y = 0, w = 2, h = 2 },
 	left   = { x = 0, y = 0, w = 1, h = 2 },
 	right  = { x = 1, y = 0, w = 1, h = 2 },
@@ -17,7 +17,7 @@ local grid_position = {
 M.move_to = function(position)
 	local window = hs.window.focusedWindow()
 	local screen = window:screen()
-	hs.grid.set(window, grid_position[position], screen)
+	hs.grid.set(window, M.grid_position[position], screen)
 end
 
 return M

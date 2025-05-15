@@ -1,5 +1,6 @@
 " ~/.config/nvim/after/ftplugin/css.vim
 
-" setlocal commentstring=/*%s*/
-
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/css.vim<CR>
+
+" SNIPPETS:
+inoremap <silent><buffer> :quarto<Tab> <Esc>:call my#GetSnippets("css", "quarto.css")<CR>

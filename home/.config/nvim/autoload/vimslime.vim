@@ -1,7 +1,7 @@
 " autoload/vimslime.vim
 
 let b:vimslime_target = ""
-let b:vimslime_tmux_close_command = repeat("\<C-C>", 10) .. "\<C-D>" .. "exit" .. "\<C-D>"
+let b:vimslime_tmux_close_command = repeat("\<C-C>", 5) .. repeat("\<C-D>", 5)
 
 " Tmux: Open Pane
 function! vimslime#OpenTmux(command="", resize_pane='-U 12', close_command="") abort
@@ -35,6 +35,7 @@ endfunction
 function! vimslime#CloseTmux(command="")
 	let l:command = a:command == "" ? b:vimslime_tmux_close_command : a:command
 	call vimslime#Send(l:command, 1)
+	call system("tmux kill-pane -t " .. b:vimslime_target)
 	let b:vimslime_target = ""
 endfunction
 
@@ -42,6 +43,8 @@ endfunction
 function! vimslime#SetTarget(target='') abort
 	let b:vimslime_target = a:target != "" ? a:target : input("session:window.pane> ", "", "custom,vimslime#PaneNames")
 endfunction
+
+" List Tmux Panes
 function! vimslime#PaneNames(ArgLead, CmdLine, CursorPos) abort
 	return system("tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}'")
 endfunction

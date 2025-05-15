@@ -1,0 +1,15 @@
+---
+title: ""
+author: ""
+date: ""
+code-annotations: hover
+format:
+  html:
+    css: style.css
+    toc: true
+    toc-depth: 10
+    toc-expand: 10
+    fig-cap-location: bottom
+  # pdf:
+  #   include-in-header: preamble.tex
+---

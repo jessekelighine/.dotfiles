@@ -63,29 +63,3 @@ spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/
 
 ### Logs ######################################################################
 
-spiel 'https://www.youtube.com/watch?v=LQj--Kjn0z8' # Smash Mouth - Walking on the Sun
-spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' 
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
-spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=pYFPPTB2hEEsghBD' # MrSuicideSheep - House
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma' # GoodGood
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites

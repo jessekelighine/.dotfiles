@@ -27,15 +27,15 @@ return {
 					end
 					map('<leader>D',  vim.diagnostic.open_float, '[D]iagnostics')
 					map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-					if vim.bo.filetype ~= "python" then
-						map('<leader>fm', vim.lsp.buf.format, '[F]or[m]at', { "n", "x" })
-					else
-						vim.cmd [[
-						nnoremap <silent><buffer> <leader>fm m':Black<CR>`'
-						xnoremap <silent><buffer> <leader>fm   :Black<CR>
-						]]
-					end
 					vim.opt.signcolumn = "yes:1"
+					-- if vim.bo.filetype ~= "python" then
+					-- 	map('<leader>fm', vim.lsp.buf.format, '[F]or[m]at', { "n", "x" })
+					-- else
+					-- 	vim.cmd [[
+					-- 	nnoremap <silent><buffer> <leader>fm m':Black<CR>`'
+					-- 	xnoremap <silent><buffer> <leader>fm   :Black<CR>
+					-- 	]]
+					-- end
 				end
 			})
 
@@ -46,28 +46,14 @@ return {
 				float = { solid = true },
 			}
 
-			-- starting from the NE corner and proceed clock-wise
-			local border = {
-				{ "┌", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "┐", "FloatBorder" },
-				{ "│", "FloatBorder" },
-				{ "┘", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "└", "FloatBorder" },
-				{ "│", "FloatBorder" },
-			}
-
-			local lspconfig = require("lspconfig")
-			local handlers = {
-				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-			}
-
 			--- [[ Language Specific Configurations ]] ---
 
+			local lspconfig = require("lspconfig")
+
 			lspconfig.lua_ls.setup {
-				vim.diagnostic.config { handlers = handlers, signs = true },
+				vim.diagnostic.config {
+					signs = true
+				},
 				settings = {
 					Lua = {
 						diagnostics = { globals = { "vim", "require", "hs", "spoon" }, },
@@ -78,7 +64,9 @@ return {
 				},
 			}
 
-			lspconfig.bashls.setup { vim.diagnostic.config { handlers = handlers, signs = true } }
+			lspconfig.bashls.setup {
+				vim.diagnostic.config { signs = true }
+			}
 
 			lspconfig.r_language_server.setup {
 				on_attach = function(client, _)
@@ -93,27 +81,33 @@ return {
 			}
 
 			lspconfig.air.setup {
-				on_attach = function(_, bufnr)
+	 			on_attach = function(_, bufnr)
 					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = vim.api.nvim_create_augroup('AirFormatter', { clear = true }),
 						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.format()
-						end,
+						callback = function() vim.lsp.buf.format() end,
 					})
 				end,
 			}
 
 			lspconfig.pyright.setup {}
 
-			--- [[ Overwrite `open_floating_preview` ]] ---
-
-			local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+			local open_floating_preview_original = vim.lsp.util.open_floating_preview
 			---@diagnostic disable-next-line: duplicate-set-field
-			function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+			vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
 				opts = opts or {}
-				---@diagnostic disable-next-line: inject-field
-				opts.border = opts.border or border
-				return orig_util_open_floating_preview(contents, syntax, opts, ...)
+				-- Force a Boarder
+				opts.border = opts.border or {
+					{ "┌", "FloatBorder" },
+					{ "─", "FloatBorder" },
+					{ "┐", "FloatBorder" },
+					{ "│", "FloatBorder" },
+					{ "┘", "FloatBorder" },
+					{ "─", "FloatBorder" },
+					{ "└", "FloatBorder" },
+					{ "│", "FloatBorder" },
+				}
+				return open_floating_preview_original(contents, syntax, opts, ...)
 			end
 
 		end,

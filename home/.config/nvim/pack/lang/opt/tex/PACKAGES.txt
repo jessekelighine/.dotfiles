@@ -89,3 +89,4 @@ biblatex
 xecjk
 tcolorbox
 tikzfill
+epsf

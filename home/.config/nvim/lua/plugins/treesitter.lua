@@ -40,5 +40,22 @@ return {
 			ignore_install = {},
 			auto_install = false,
 		}
+
+		--[[ Special handling for Quarto files ]]--
+		vim.api.nvim_create_autocmd('FileType', {
+			group = vim.api.nvim_create_augroup("HighlightQuartoBlocks", { clear = true }),
+			desc = "Highlight Quarto Blocks",
+			pattern = "quarto",
+			callback = function()
+				vim.cmd[[
+				syntax match quartoTag /{#.\{-}}/
+				syntax match quartoDiv /^:::.*$/
+				syntax match quartoCite /@[a-zA-Z0-9-_:]\+/
+				highlight def link quartoDiv Todo
+				highlight def link quartoTag Todo
+				highlight def link quartoCite Label
+				]]
+			end
+		})
 	end
 }

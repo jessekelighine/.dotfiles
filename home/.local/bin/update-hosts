@@ -22,7 +22,7 @@ message () {
 	done
 	if wait $pid
 	then printf "\r[ %s ] %s\n" "$symb_succ" "$head"; return 0
-	else printf "\r[ %s ] %s\n" "$symb_fail" "$head"; return "$(wait "$pid")"
+	else printf "\r[ %s ] %s\n" "$symb_fail" "$head"; return 1
 	fi
 }
 

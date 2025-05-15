@@ -59,7 +59,7 @@ vims () {
 	return 0
 }
 
-### R #########################################################################
+## R #########################################################################
 
 R-mean () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE); cat(mean(x),fill=TRUE)'; }
 R-sum  () { R --no-echo -e 'x <- scan(file="stdin", quiet=TRUE);  cat(sum(x),fill=TRUE)'; }

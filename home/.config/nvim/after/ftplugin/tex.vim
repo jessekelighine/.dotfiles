@@ -43,10 +43,11 @@ let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-error " .. "'" .. expand("%") .. "'"
 let b:tex_compile_make    = "make ; whenever . make"
 " let b:tex_compile_make    = "make ; find . -type f | entr make"
-let b:tex_compile_command = file_readable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
-nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#CloseTmux()<CR>
-nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
-nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
+let b:tex_compile_command = filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
+nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#CloseTmux()<CR>
+nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
+nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
+nnoremap <silent><buffer> <leader><leader> <Cmd>call vimslime#Send("\<C-D>")<CR>
 " command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
 " command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
 " nnoremap <silent><buffer><expr> <Space><Space> vimslime#Send("\<C-D>")
@@ -65,8 +66,10 @@ nnoremap <buffer><silent> <leader>8 <Cmd>call tex#EnvironmentStar()<CR>
 nnoremap <buffer><silent> <leader>g <Cmd>call tex#SkimForward()<CR>
 nnoremap <buffer><silent> <leader>t <Cmd>call textoggle#Master()<CR>
 nnoremap <buffer><silent> <leader>; <Cmd>call funcargs#DeleteFunction('\\','[a-zA-Z]','{}')<CR>
-nnoremap <buffer><silent> <leader>p :! open %:r.pdf<CR><CR>
+" nnoremap <buffer><silent> <leader>p :! open %:r.pdf<CR><CR>
+nnoremap <buffer><silent> <leader>p <Cmd>call tex#SkimForward()<CR>
 nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/tex.vim<CR>
+silent ServerSetup
 
 " COMPLETETION: `Lables` and `Biblography` complete settings.
 setlocal completefunc=texcomplete#Labs

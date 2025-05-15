@@ -1,7 +1,7 @@
 ---
 title: "Tmux Notes"
 author: "jessekelighine.com"
-date: "2024-01-01"
+date: "2025-05-14"
 ---
 
 # Change Window Number
@@ -11,4 +11,4 @@ date: "2024-01-01"
 # Change Session Name
 
 - Command `:rename-session newname` changes the current session name to `newname`.
-- Or use shortcut `<C-B>$`.
+  Or use shortcut `<C-B>$`.

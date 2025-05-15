@@ -21,7 +21,7 @@ hs.hotkey.bindSpec({ HYPER, "f" }, function() hs.application.open("Finder")     
 hs.hotkey.bindSpec({ HYPER, "x" }, function() hs.application.open("Firefox")    end)
 -- hs.hotkey.bindSpec({ HYPER, "l" }, function() hs.application.open("Line")       end)
 -- hs.hotkey.bindSpec({ HYPER, "p" }, function() hs.application.open("Preview")    end)
--- hs.hotkey.bindSpec({ HYPER, "s" }, function() hs.application.open("Skim")       end)
+hs.hotkey.bindSpec({ HYPER, "s" }, function() hs.application.open("Skim")       end)
 -- hs.hotkey.bindSpec({ HYPER, "e" },
 -- 	function ()
 -- 		local resp = hs.execute("eject-auto", true)
@@ -50,8 +50,8 @@ local wifi_interface = "en0"
 -- 	["RickyWramLin_5G"] = "room656656", -- Room 656
 -- }
 
-hs.hotkey.bindSpec({ HYPER,       "w" }, function() hs.wifi.setPower(true,  wifi_interface) end)
 hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function() hs.wifi.setPower(false, wifi_interface) end)
+hs.hotkey.bindSpec({ HYPER,       "w" }, function() hs.wifi.setPower(true,  wifi_interface) end)
 
 -- Clipboard ------------------------------------------------------------------
 

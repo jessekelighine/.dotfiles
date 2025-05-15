@@ -9,7 +9,7 @@ function! markdown#AutoLastMod(set="", toggle=1) abort
 				\ a:toggle ? !l:status : l:status
 	augroup MarkdownAutoLastMod
 		autocmd!
-		silent execute l:switch_on ? "autocmd BufWrite *.md,*.markdown,*.Rmd,*.rmd silent! undojoin | LastMod" : ""
+		silent execute l:switch_on ? "autocmd BufWrite *.qmd,*.md,*.markdown,*.Rmd,*.rmd silent! undojoin | LastMod" : ""
 	augroup END
 	echom " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
 endfunction

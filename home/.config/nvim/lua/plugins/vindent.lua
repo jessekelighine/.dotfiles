@@ -1,6 +1,6 @@
 return {
 	"jessekelighine/vindent.nvim",
-	branch = "experimental",
+	branch = "main",
 	config = function()
 		local vindent = require("vindent")
 		local block_opts = {
@@ -19,7 +19,7 @@ return {
 		vindent.map.Object("ai", "ai", block_opts.loose)
 		vindent.map.Object("aI", "aI", block_opts.loose)
 		vindent.setup {
-			begin = false,
+			begin = true,
 			noisy = true,
 		}
 

@@ -7,8 +7,13 @@ function! tex#FindSection() abort
 	let  l:header = printf(l:header_format, "Line", "Index", "Title")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
 	global/^\\\(\(sub\)\{0,2}section\|\(sub\)\?paragraph\|chapter\|appendix\)/
-				\ if match(getline("."), '^\\appendix') >= 0 | let l:display_name = "[Appendix]" |
-				\ else | let @9 = @" | execute 'norm! yi{' | let l:section_name = @" | let @" = @9 |
+				\ if match(getline("."), '^\\appendix') >= 0 |
+				\ let l:display_name = "[Appendix]" |
+				\ else |
+				\ let @9 = @" |
+				\ execute 'norm! yi{' |
+				\ let l:section_name = @" |
+				\ let @" = @9 |
 				\ let l:display_name = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 20) .. l:section_name
 				\                    : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 16) .. l:section_name
 				\                    : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 12) .. l:section_name
@@ -64,9 +69,14 @@ endfunction
 
 " SyncTeX: Backwards setup
 function! tex#ServerSetup() abort
-	let l:tex_server_file = "~/.config/nvim/pack/lang/opt/tex/.tex-server"
-	call system(join([ "echo", v:servername, ">", l:tex_server_file ]))
+	let g:tex_server_file = "~/.config/nvim/pack/lang/opt/tex/.tex-server"
+	let l:command = join([ "echo", v:servername, ">", g:tex_server_file ])
+	call system(l:command)
 	echom " Server Saved: " .. v:servername
+	augroup TeXRemoveServerFile
+		autocmd!
+		autocmd VimLeave * call system("rm -rf " .. g:tex_server_file)
+	augroup END
 endfunction
 
 " SyncTeX: Forwards function
@@ -74,6 +84,7 @@ function! tex#SkimForward() abort
 	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
 	let l:pdf_file = "'" .. expand("%:p:r") .. ".pdf" .. "'"
 	let l:command = join([ l:utility, line('.'), l:pdf_file ])
+	silent call tex#ServerSetup()
 	silent call system(l:command)
 endfunction
 
