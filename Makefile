@@ -3,7 +3,7 @@
 # Author: jessekelighine at gmail dot com                                     #
 # Description: update or install the dotfiles.                                #
 #                                                                             #
-# Last Modified: 2023-06-18                                                   #
+# Last Modified: 2025-05-15                                                   #
 ###############################################################################
 
 .PHONY: all

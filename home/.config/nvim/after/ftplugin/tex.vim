@@ -40,8 +40,8 @@ let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 			\ .. "-density 600 "
 			\ .. "'" .. expand("%:r") .. ".pdf" .. "'" .. " "
 			\ .. "'" .. expand("%:r") .. ".png" .. "'"
-let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none -halt-on-error " .. "'" .. expand("%") .. "'"
-let b:tex_compile_make    = "make ; whenever . make"
+let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none " .. "'" .. expand("%") .. "'"
+let b:tex_compile_make    = "make; echo . | whenever make"
 " let b:tex_compile_make    = "make ; find . -type f | entr make"
 let b:tex_compile_command = filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
 nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#CloseTmux()<CR>

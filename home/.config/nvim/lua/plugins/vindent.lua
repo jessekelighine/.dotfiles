@@ -2,6 +2,7 @@ return {
 	"jessekelighine/vindent.nvim",
 	branch = "main",
 	config = function()
+
 		local vindent = require("vindent")
 		local block_opts = {
 			strict     = { skip_empty_lines = false, skip_more_indented_lines = false },
@@ -19,7 +20,7 @@ return {
 		vindent.map.Object("ai", "ai", block_opts.loose)
 		vindent.map.Object("aI", "aI", block_opts.loose)
 		vindent.setup {
-			begin = true,
+			begin = false,
 			noisy = true,
 		}
 
@@ -48,6 +49,7 @@ return {
 			end,
 			{ bang = true }
 		)
+
 	end
 }
 

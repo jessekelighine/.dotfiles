@@ -63,3 +63,6 @@ spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/
 
 ### Logs ######################################################################
 
+spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
+spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist

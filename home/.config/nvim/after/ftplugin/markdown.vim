@@ -11,7 +11,7 @@ setlocal smartindent smarttab " expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " SURROUND:
 let b:surround_98 = "**\r**"
-let b:surround_99 = "<!-- \r -->"
+let b:surround_99 = "```\r```"
 let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 
 " COMMANDS:
@@ -33,17 +33,14 @@ let b:pandoc_command_plain = join([
 			\ "--css", b:pandoc_command_css_file,
 			\ "--mathjax",
 			\ "--standalone",
-			\ expand("%:p"),
-			\ "--output", expand("%:p:r") .. ".html"
+			\ expand("%"),
+			\ "--output", expand("%:r") .. ".html"
 			\ ])
 let b:pandoc_command_nonumber = b:pandoc_command_plain .. " --toc"
 let b:pandoc_command_number   = b:pandoc_command_nonumber .. " --number-sections"
 let b:pandoc_tmux_command = file_readable("Makefile")
-			\ ? "make ; whenever . make"
-			\ : join(["whenever", expand("%:p"), b:pandoc_command_plain])
-" let b:pandoc_tmux_command = file_readable("Makefile")
-" 			\ ? "make ; find . -type f | entr make"
-" 			\ : join(["ls", expand("%:p"), "|", "entr", b:pandoc_command_plain])
+			\ ? "echo . | whenever make"
+			\ : join(["echo", expand("%"), "|", "whenever", b:pandoc_command_plain])
 nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
 nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>

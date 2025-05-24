@@ -16,7 +16,7 @@ silent AutoLastMod ON
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/rmd.vim<CR>
 nnoremap <buffer> <F5> :call rmd#Knit()<CR>
 
-let b:rmarkdown_knit_command = "whenever . make"
+let b:rmarkdown_knit_command = "echo . | whenever make"
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:rmarkdown_knit_command)<CR>
 
 " Snippets:

@@ -1,6 +1,8 @@
 " ~/.config/nvim/autoload/quarto_complete.vim
 
 if !exists("g:quarto_complete_labsfiles") | let g:quarto_complete_labsfiles = [expand("%")] | endif
+if !exists("g:quarto_complete_bibsfiles") | let g:quarto_complete_bibsfiles = ["references.bib"] | endif
+
 let s:sort = {
 			\ 'word': { x,y -> x.word >#  y.word ? 1 : -1 },
 			\ 'menu': { x,y -> x.menu ==# y.menu ? s:sort.word(x,y) : ( x.menu ># y.menu ? 1 : -1 ) },
@@ -34,7 +36,7 @@ endfunction
 function! <SID>generate_labs(files=g:quarto_complete_labsfiles) abort
 	let l:lab_pattern_detect  = '{#[a-zA-Z0-9-_:]*'
 	let l:lab_pattern_extract = '{#\zs[a-zA-Z0-9-_:]*\ze'
-	let l:lab_pattern_extract_type = '{#\zs[a-zA-Z0-9]*\ze'
+	let l:lab_pattern_extract_type = '{#\zs[a-zA-Z]*\ze'
 	let l:labs = []
 	for l:file in a:files
 		for l:line in readfile(l:file)

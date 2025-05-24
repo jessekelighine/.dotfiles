@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
 alias mv='mv -i'
-alias la='ls -lAhG'
-alias lad='ls -lAhGd */'
+
+if command -v eza >/dev/null 2>&1
+then
+	alias la='eza --long --all'
+	alias lad='eza --long --all --only-dirs'
+else
+	alias la='ls -lAhG'
+	alias lad='ls -lAhGd */'
+fi
 
 alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'

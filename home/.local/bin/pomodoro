@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+
+set -e
+
+# symbols1='.o08o.      '
+# symbols2='   o08o.    '
+# symbols3='     o08o.  '
+# symbols4='       o08o.'
+# symb_len=${#symbols2}
+# display_delay=0.1
+# iter=0
+# symb_succ="$(tput setaf 10)DONE$(tput sgr0)"
+# symb_work="$(tput setaf  9)Work$(tput sgr0)"
+symb_rest="$(tput setaf 10)Rest$(tput sgr0)"
+symb_long_rest="$(tput setaf 10)Long Rest$(tput sgr0)"
+
+progress () {
+	local yellow; yellow=$(tput bold && tput setaf 214)
+	local norm; norm=$(tput sgr0)
+	printf "${yellow}== whenever: %d ==================================${norm}\n" "$1"
+}
+
+RunPeriod () {
+	symbols1='.o08o.  '
+	symbols2='   o08o.'
+	# symbols3='.o08o.  '
+	# symbols4='   o08o.'
+	symb_len=${#symbols2}
+	display_delay=0.1
+	symb_succ="$(tput setaf 10)OK$(tput sgr0)"
+	symb_work="$(tput setaf  9)Work$(tput sgr0)"
+	symb_rest="$(tput setaf 10)Rest$(tput sgr0)"
+	stop_time=$(($(date +%s) + $1));
+	iter=0
+	while [ "$stop_time" -ge "$(date +%s)" ]
+	do
+		iter=$(( ( iter + 1 ) % symb_len ))
+		time_diff=$(( stop_time - $(date +%s) ))
+		message="$(date -u -j -f %s "$time_diff" +%H:%M:%S) $2 period $3 of cycle $4"
+		printf "\r[ %s%s ] %s" "${symbols1:$iter:1}" "${symbols2:$iter:1}" "$message"
+		sleep $display_delay
+	done
+	message="$(date +%X) $2 period $3 of cycle $4"
+	printf "\r[ %s ] %s\n" "${symb_succ}" "$message"
+}
+
+RestPeriod () {
+	RunPeriod "$rest_interval" "$symb_rest" "$1" "$2"
+}
+
+WorkPeriod () {
+	RunPeriod "$work_interval" "$symb_work" "$1" "$2"
+}
+
+LongRestPeriod () {
+	RunPeriod "$long_rest_interval" "$symb_long_rest" "$1" "$2"
+}
+
+###############################################################################
+
+Message () {
+	cat <<EOF
+usage: pomodoro [options]
+description:
+	Use this script to manage your pomodoro sessions.
+	You can set the work, rest and long rest intervals.
+options:
+	-h --help     show this help message
+EOF
+}
+
+###############################################################################
+
+while [[ $# -gt 0 ]]
+do
+	case "$1" in
+		-h | --help)
+			Message
+			exit 0
+			;;
+		--work-interval)
+			work_interval="$2"
+			shift 2
+			;;
+		--rest-interval)
+			rest_interval="$2"
+			shift 2
+			;;
+		--long-rest-interval)
+			long_rest_interval="$2"
+			shift 2
+			;;
+		--periods)
+			periods="$2"
+			shift 2
+			;;
+		--cycles)
+			cycles="$2"
+			shift 2
+			;;
+		-*)
+			Errors "unknown option $1."
+			exit 1
+			;;
+		*)
+			positional_args+=("$1")
+			shift
+			;;
+	esac
+done
+
+###############################################################################
+
+: "${work_interval:=$((5))}"
+: "${rest_interval:=$((5))}"
+: "${long_rest_interval:=$((5))}"
+: "${periods:=2}"
+: "${cycles:=1}"
+
+for cycle in $(seq "$cycles")
+do
+	for period in $(seq "$periods")
+	do
+		WorkPeriod "$period" "$cycle"
+		[ "$period" -ne "$periods" ] && RestPeriod "$period" "$cycle"
+	done
+	[ "$cycle" -ne "$cycles" ] && LongRestPeriod "$cycles" "$cycles"
+done

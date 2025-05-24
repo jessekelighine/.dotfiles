@@ -101,7 +101,7 @@ set nrformats-=bin,hex
 set lazyredraw ttyfast
 set timeoutlen=500 ttimeoutlen=50
 set updatetime=300
-set shortmess-=S " Show number of matches
+set shortmess-=S " Show number of matches.
 set notermguicolors
 let g:html_number_lines=1
 let g:netrw_banner=0
