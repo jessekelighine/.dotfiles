@@ -2,6 +2,8 @@
 
 local M = {}
 
+M.wifi_interface = "en0"
+
 M.wifi_menubar = hs.menubar.new()
 
 -- This keeps the menuar in the same position after a restart
@@ -14,10 +16,9 @@ M.wifi_menubar:setClickCallback(function()
 end)
 
 local wifi_set_display_name = function()
-	local wifi_interface = "en0"
-	local wifi_name = hs.wifi.currentNetwork(wifi_interface)
+	local wifi_name = hs.wifi.currentNetwork(M.wifi_interface)
 	if wifi_name then
-		local max_display_length = 13
+		local max_display_length = 10
 		if string.len(wifi_name) > max_display_length then
 			wifi_name = string.sub(wifi_name, 1, max_display_length)
 			wifi_name = string.gsub(wifi_name, "...$", "...")

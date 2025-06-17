@@ -1,0 +1,168 @@
+{
+
+	"block-tip": {
+		"prefix": "tip",
+		"body": [
+			"::: {.callout-tip}",
+			"$0",
+			":::"
+		],
+		"description": "Tip"
+	},
+	"block-note": {
+		"prefix": "note",
+		"body": [
+			"::: {.callout-note}",
+			"$0",
+			":::"
+		],
+		"description": "Note"
+	},
+	"block-warn": {
+		"prefix": "warn",
+		"body": [
+			"::: {.callout-warning}",
+			"$0",
+			":::"
+		],
+		"description": "Warn"
+	},
+	"block-important": {
+		"prefix": "important",
+		"body": [
+			"::: {.callout-important}",
+			"$0",
+			":::"
+		],
+		"description": "Important"
+	},
+	"block-caution": {
+		"prefix": "caution",
+		"body": [
+			"::: {.callout-caution}",
+			"$0",
+			":::"
+		],
+		"description": "Caution"
+	},
+
+	"block-definition": {
+		"prefix": "def",
+		"body": [
+			"::: {#def-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Definition"
+	},
+	"block-theorem": {
+		"prefix": "thm",
+		"body": [
+			"::: {#thm-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Theorem"
+	},
+	"block-lemma": {
+		"prefix": "lem",
+		"body": [
+			"::: {#lem-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Lemma"
+	},
+	"block-corollary": {
+		"prefix": "cor",
+		"body": [
+			"::: {#cor-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Corollary"
+	},
+	"block-proposition": {
+		"prefix": "prop",
+		"body": [
+			"::: {#prp-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Proposition"
+	},
+	"block-remark": {
+		"prefix": "rmk",
+		"body": [
+			"::: {#rem-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Remark"
+	},
+	"block-exercise": {
+		"prefix": "exercise",
+		"body": [
+			"::: {#exr-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Exercise"
+	},
+	"block-solution": {
+		"prefix": "solution",
+		"body": [
+			"::: {#sol-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Solution"
+	},
+	"block-conjecture": {
+		"prefix": "conjecture",
+		"body": [
+			"::: {#cjn-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Conjecture"
+	},
+	"block-example": {
+		"prefix": "eg",
+		"body": [
+			"::: {#exm-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Example"
+	},
+	"block-proof": {
+		"prefix": "pf",
+		"body": [
+			"::: {.proof}",
+			"$0",
+			":::"
+		],
+		"description": "Proof"
+	},
+
+	"block-figure": {
+		"prefix": "fig",
+		"body": [
+			"::: {#fig-$1 fig-env=\"figure*\" name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Figure"
+	},
+	"block-table": {
+		"prefix": "tab",
+		"body": [
+			"::: {#tab-$1 name=\"$2\"}",
+			"$0",
+			":::"
+		],
+		"description": "Table"
+	}
+
+}

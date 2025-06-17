@@ -1,0 +1,67 @@
+{
+	"text": {
+		"prefix": "t",
+		"body": "\\text{$1}$0",
+		"description": "Math Text"
+	},
+	"boldsymbol": {
+		"prefix": "bs",
+		"body": "\\boldsymbol{$1}$0",
+		"description": "Bold Symbol"
+	},
+	"math-bold": {
+		"prefix": "mb",
+		"body": "\\mathbf{$1}$0",
+		"description": "Math Bold"
+	},
+	"math-calligraphic": {
+		"prefix": "mc",
+		"body": "\\mathcal{$1}$0",
+		"description": "Math Calligraphic"
+	},
+	"math-script": {
+		"prefix": "ms",
+		"body": "\\mathscr{$1}$0",
+		"description": "Math Script"
+	},
+	"math-sans-serif": {
+		"prefix": "mf",
+		"body": "\\mathsf{$1}$0",
+		"description": "Math Sans-Serif"
+	},
+	"math-typewriter": {
+		"prefix": "mt",
+		"body": "\\mathtt{$1}$0",
+		"description": "Math Typewriter"
+	},
+	"math-roman": {
+		"prefix": "mr",
+		"body": "\\mathrm{$1}$0",
+		"description": "Math Roman"
+	},
+	"math-bb": {
+		"prefix": "bb",
+		"body": "\\mathbb{$1}$0",
+		"description": "mathbb"
+	},
+	"math-fraktur": {
+		"prefix": "mk",
+		"body": "\\mathfrak{$1}$0",
+		"description": "Math Fraktur"
+	},
+	"fraction": {
+		"prefix": "f",
+		"body": "\\frac{$1}{$2}$0",
+		"description": "Fraction"
+	},
+	"sum": {
+		"prefix": "sum",
+		"body": "\\sum_{$1}^{$2}$0",
+		"description": "Summation"
+	},
+	"product": {
+		"prefix": "prod",
+		"body": "\\prod_{$1}^{$2}$0",
+		"description": "Product"
+	}
+}

@@ -44,3 +44,6 @@ set noshowmode
 set statusline=
 set statusline+=%{%g:statusline_change[mode()]%}\ [%M]\ %8*\ %F\ %y\ %9*
 set statusline+=%=%(%c%V\ %{%'%'.len(line('$')).'l'%}/%L\ %3p%%\ %8*\ [%{&fileencoding}]\ %)
+
+command! -nargs=0 StatuslineReload source $HOME/.config/nvim/after/plugin/statusline.vim
+nnoremap <silent> <CR> :StatuslineReload<CR>:nohlsearch<CR>

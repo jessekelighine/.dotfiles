@@ -1,0 +1,47 @@
+{
+	"emphasize": {
+		"prefix": "em",
+		"body": "\\emph{$1} $0",
+		"description": "Emphasize"
+	},
+	"bold": {
+		"prefix": "bf",
+		"body": "\\textbf{$1} $0",
+		"description": "Bold"
+	},
+	"verbatim": {
+		"prefix": "v",
+		"body": "\\verb\"$1\" $0",
+		"description": "Verbatim"
+	},
+	"verbatim-fancyvrb": {
+		"prefix": "V",
+		"body": "\\Verb\"$1\" $0",
+		"description": "Verbatim (fancyvrb)"
+	},
+	"underdot": {
+		"prefix": "ud",
+		"body": "\\underdot{$1} $0",
+		"description": "Underdot"
+	},
+	"italics": {
+		"prefix": "it",
+		"body": "\\textit{$1} $0",
+		"description": "Italics"
+	},
+	"typewriter": {
+		"prefix": "tt",
+		"body": "\\texttt{$1} $0",
+		"description": "Typewriter"
+	},
+	"sans-serif": {
+		"prefix": "sf",
+		"body": "\\textsf{$1} $0",
+		"description": "Sans-Serif"
+	},
+	"small-caps": {
+		"prefix": "sc",
+		"body": "\\textsc{$1} $0",
+		"description": "Small Caps"
+	}
+}

@@ -9,4 +9,4 @@ nnoremap <buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/html.vim<CR>
 nnoremap <buffer> <leader>p :! open <C-R>'%:r.html<CR><CR>
 
 " SNIPPETS
-inoremap <buffer> :qui<Tab> <esc>:call my#GetSnippets('html','html_qui.html')<CR>
+inoremap <buffer> :qui<Tab> <esc>:call snippets#Get('html','html_qui.html')<CR>

@@ -6,5 +6,5 @@ setlocal shiftwidth=8 softtabstop=8 tabstop=8 smarttab
 
 nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/zsh.vim<CR>
 
-inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('zsh','shebang.zsh')<CR>
-inoremap <buffer> :sign<Tab> <Esc>:call my#GetSnippets('zsh','sign.zsh')<CR>
+inoremap <buffer> :qui<Tab>  <Esc>:call snippets#Get('zsh','shebang.zsh')<CR>
+inoremap <buffer> :sign<Tab> <Esc>:call snippets#Get('zsh','sign.zsh')<CR>

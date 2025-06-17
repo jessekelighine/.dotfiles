@@ -21,10 +21,9 @@ onoremap <silent> aa <Cmd> call funcargs#SelectArgument("a")<CR>
 command! -nargs=?       LocalVimrc           call my#LocalVimrc(<args>)
 command! -nargs=1       TabSize              call my#TabSize(<args>)
 command! -nargs=0       SudoWrite            write !sudo tee % > /dev/null " This only works for vim, not neovim.
-command! -nargs=0       StatuslineReload     source $HOME/.config/nvim/after/plugin/statusline.vim
 command! -nargs=0       VirtualEditToggle    call my#ToggleVirtualEdit()
 command! -nargs=0       RemoveTrailingSpaces call my#RemoveTrailingSpaces()
-command! -nargs=0       GitConflictHighlight call my#GitConflictHighlight()
+command! -nargs=0 -bang GitConflictHighlight call git#ConflictHighlight(<bang>1)
 command! -nargs=0 -bang FocusCursor          call my#FocusCursor(<bang>1)
 command! -range=% -bang SplitChineseSentence call chinese#SplitSentence(<line1>, <line2>, <bang>0)
 command! -range=%       ChineseWordCount     call chinese#WordCount(<line1>, <line2>)

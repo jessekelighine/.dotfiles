@@ -7,7 +7,7 @@
 " SETTINGS:
 " let g:markdown_minlines = 100
 " let g:markdown_fenced_languages = [ 'r' ]
-setlocal smartindent smarttab " expandtab shiftwidth=2 softtabstop=2 tabstop=2
+setlocal smartindent smarttab expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " SURROUND:
 let b:surround_98 = "**\r**"
@@ -39,7 +39,7 @@ let b:pandoc_command_plain = join([
 let b:pandoc_command_nonumber = b:pandoc_command_plain .. " --toc"
 let b:pandoc_command_number   = b:pandoc_command_nonumber .. " --number-sections"
 let b:pandoc_tmux_command = file_readable("Makefile")
-			\ ? "echo . | whenever make"
+			\ ? "make; echo . | whenever make"
 			\ : join(["echo", expand("%"), "|", "whenever", b:pandoc_command_plain])
 nnoremap <silent><buffer> <leader>rq      :call vimslime#CloseTmux()<CR>
 nnoremap <silent><buffer> <leader>rf      :call vimslime#OpenTmux(b:pandoc_tmux_command)<CR>
@@ -54,7 +54,7 @@ nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/markdown.vim<CR>
 nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/markdown.vim<CR>
 
 " SNIPPETS AND TAB COMPLETIONS:
-inoremap <buffer> :qui<Tab> <esc>:call my#GetSnippets('markdown','skeleton.md')<CR>:LastMod<CR>:FillAuthor<CR>G
+inoremap <buffer> :qui<Tab> <esc>:call snippets#Get('markdown','skeleton.md')<CR>:LastMod<CR>:FillAuthor<CR>
 inoremap <buffer> :c<Tab>   <C-G>u<!--  --><esc>hhhi
 inoremap <buffer> :e<Tab>   <C-G>u\[\]<Left><Left>
 inoremap <buffer> `<Tab>    <C-G>u``<Left>

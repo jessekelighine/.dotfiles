@@ -20,7 +20,7 @@ let b:rmarkdown_knit_command = "echo . | whenever make"
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:rmarkdown_knit_command)<CR>
 
 " Snippets:
-inoremap <buffer> :qui<Tab> <Esc>:call my#GetSnippets('rmd','skeleton.Rmd')<CR>:LastMod<CR>:FillAuthor<CR>G
+inoremap <buffer> :qui<Tab> <Esc>:call snippets#Get('rmd','skeleton.Rmd')<CR>:LastMod<CR>:FillAuthor<CR>G
 
 " Mappings:
 inoremap <buffer> :c<Tab>   <C-G>u<!--  --><esc>hhhi

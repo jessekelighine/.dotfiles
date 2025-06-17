@@ -1,0 +1,101 @@
+{
+	"environment-corollary": {
+		"prefix": "cor",
+		"body": [
+			"\\begin{corollary}",
+			"\t$0",
+			"\\end{corollary}"
+		],
+		"description": "Corollary"
+	},
+	"environment-definition": {
+		"prefix": "dfn",
+		"body": [
+			"\\begin{definition}[$1]",
+			"\t$0",
+			"\\end{definition}"
+		],
+		"description": "Definition"
+	},
+	"environment-example": {
+		"prefix": "eg",
+		"body": [
+			"\\begin{example}",
+			"\t$0",
+			"\\end{example}"
+		],
+		"description": "Example"
+	},
+	"environment-lemma": {
+		"prefix": "lem",
+		"body": [
+			"\\begin{lemma}",
+			"\t$0",
+			"\\end{lemma}"
+		],
+		"description": "Lemma"
+	},
+	"environment-proof": {
+		"prefix": "pf",
+		"body": [
+			"\\begin{proof}",
+			"\t$0",
+			"\\end{proof}"
+		],
+		"description": "Proof"
+	},
+	"environment-proposition": {
+		"prefix": "prop",
+		"body": [
+			"\\begin{proposition}",
+			"\t$0",
+			"\\end{proposition}"
+		],
+		"description": "Proposition"
+	},
+	"environment-remark": {
+		"prefix": "rmk",
+		"body": [
+			"\\begin{remark}",
+			"\t$0",
+			"\\end{remark}"
+		],
+		"description": "Remark"
+	},
+	"environment-theorem": {
+		"prefix": "thm",
+		"body": [
+			"\\begin{theorem}${1}",
+			"\t$0",
+			"\\end{theorem}"
+		],
+		"description": "Theorem"
+	},
+	"environment-assumption": {
+		"prefix": "ass",
+		"body": [
+			"\\begin{assumption}[$1]",
+			"\t$0",
+			"\\end{assumption}"
+		],
+		"description": "Assumption"
+	},
+	"environment-claim": {
+		"prefix": "clm",
+		"body": [
+			"\\begin{claim}",
+			"\t$0",
+			"\\end{claim}"
+		],
+		"description": "Claim"
+	},
+	"environment-axiom": {
+		"prefix": "axm",
+		"body": [
+			"\\begin{axiom}[$1]",
+			"\t$0",
+			"\\end{axiom}"
+		],
+		"description": "Axiom"
+	}
+}

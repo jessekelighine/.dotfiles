@@ -61,8 +61,8 @@ spoon.ClipboardTool.menubar_title = "✂"
 spoon.ClipboardTool.paste_on_select = true
 spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool.show_copied_alert = false
--- spoon.ClipboardTool.max_size = false
--- spoon.ClipboardTool.max_entry_size = 1000
+spoon.ClipboardTool.max_size = false
+-- spoon.ClipboardTool.max_entry_size = 10000
 spoon.ClipboardTool:bindHotkeys({ toggle_clipboard = { clipboard_toggle, "v" } })
 spoon.ClipboardTool:start()
 

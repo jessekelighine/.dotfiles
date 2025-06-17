@@ -1,0 +1,9 @@
+{
+
+	"function": {
+		"prefix": "fun",
+		"body": "$1 <- function($2) {\n\t$0\n}",
+		"description": "Function"
+	}
+
+}

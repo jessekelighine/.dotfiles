@@ -1,0 +1,280 @@
+{
+	"environment": {
+		"prefix": "b",
+		"body": [
+			"\\begin{$1}",
+			"\t$0",
+			"\\end{$1}"
+		],
+		"description": "Environment"
+	},
+	"environment-algorithmic": {
+		"prefix": "alg",
+		"body": [
+			"\\begin{algorithmic}[1]",
+			"\t$0",
+			"\\end{algorithmic}"
+		],
+		"description": "Environment: Algorithmic"
+	},
+	"environment-figure": {
+		"prefix": "bfig",
+		"body": [
+			"\\begin{figure}[t]",
+			"\t\\centering",
+			"\t\\includegraphics[scale=1]{$1}",
+			"\t\\caption{$2}",
+			"\t\\label{fig:$3}",
+			"\\end{figure}"
+		],
+		"description": "Environment: Figure"
+	},
+	"environment-subfigure": {
+		"prefix": "subfig",
+		"body": [
+			"\\begin{subfigure}{0.45\\textwidth}",
+			"\t\\centering",
+			"\t\\includegraphics[scale=1]{$1}",
+			"\t\\caption{$2}",
+			"\t\\label{fig:$3}",
+			"\\end{subfigure}"
+		],
+		"description": "Environment: Sub-Figure"
+	},
+	"environment-csv": {
+		"prefix": "csv",
+		"body": [
+			"\\begin{table}[t]",
+			"\t\\centering",
+			"\t\\csvreader[head to column names,",
+				"\t\ttabular	= ${1:cccc},",
+				"\t\ttable head = \\toprule${2:[HEADER]}\\\\\\midrule,",
+				"\t\ttable foot = \\bottomrule",
+				"\t]{${3:[FILENAME]}}{}{${4:\\csvcoli & \\csvcolii & \\csvcoliii & \\csvcoliv}}",
+				"\t\\caption{$5}",
+				"\t\\label{tab:$6}",
+				"\\end{table}"
+		],
+		"description": "Environment: CSV"
+	},
+	"environment-itemize": {
+		"prefix": "item",
+		"body": [
+			"\\begin{itemize}",
+			"\t\\item",
+			"\t\t$0",
+			"\\end{itemize}"
+		],
+		"description": "Environment: Itemize"
+	},
+	"environment-enumerate": {
+		"prefix": "enum",
+		"body": [
+			"\\begin{enumerate}",
+			"\t\\item",
+			"\t\t$0",
+			"\\end{enumerate}"
+		],
+		"description": "Environment: Enumerate"
+	},
+	"environment-enumerate-alphabet": {
+		"prefix": "enuma",
+		"body": [
+			"\\begin{enumerate}[label=(\\alph*)]",
+			"\t\\item",
+			"\t\t$0",
+			"\\end{enumerate}"
+		],
+		"description": "Environment: Enumerate (Alphabet)"
+	},
+	"environment-enumerate-roman": {
+		"prefix": "enumr",
+		"body": [
+			"\\begin{enumerate}[label=(\\roman*)]",
+			"\t\\item",
+			"\t\t$0",
+			"\\end{enumerate}"
+		],
+		"description": "Environment: Enumerate (Roman)"
+	},
+	"environment-table": {
+		"prefix": "btab",
+		"body": [
+			"\\begin{table}[t]",
+			"\t\\centering",
+			"\t\\begin{tabular}{${1:cccc}}",
+			"\t\t\\toprule",
+			"\t\t${2:[HEADER]}",
+			"\t\t\\midrule",
+			"\t\t${3:[CONTENTS]}",
+			"\t\t\\bottomrule",
+			"\t\\end{tabular}",
+			"\t\\caption{$4}",
+			"\t\\label{tab:$5}",
+			"\\end{table}"
+		],
+		"description": "Environment: Table"
+	},
+	"environment-tikz": {
+		"prefix": "tikz",
+		"body": [
+			"\\begin{tikzpicture}[thick,line cap=round]",
+			"\t\\tikzstyle{bai}=[solid,circle,draw,inner sep=.07em,fill=white];",
+			"\t\\tikzstyle{hei}=[solid,circle,draw,inner sep=.07em,fill];",
+			"\t$0",
+			"\\end{tikzpicture}"
+		],
+		"description": "Environment: TikZ"
+	},
+	"environment-minipage": {
+		"prefix": "mini",
+		"body": [
+			"\\begin{minipage}{.49\\textwidth}",
+			"\t$1",
+			"\\end{minipage}%",
+			"\\hspace{0.01\\textwidth}",
+			"\\begin{minipage}{.49\\textwidth}",
+			"\\end{minipage}"
+		],
+		"description": "Environment: Minipage"
+	},
+	"environment-multicols": {
+		"prefix": "cols",
+		"body": [
+			"\\begin{multicols}{2}",
+			"\t$1",
+			"\\end{multicols}"
+		],
+		"description": "Environment: Multi-columns"
+	},
+	"environment-aligned": {
+		"prefix": "ali",
+		"body": [
+			"\\begin{aligned}",
+			"\t$1",
+			"\\end{aligned}"
+		],
+		"description": "Environment: Aligned"
+	},
+	"environment-align": {
+		"prefix": "ba",
+		"body": [
+			"\\begin{align*}",
+			"\t$0",
+			"\\end{align*}"
+		],
+		"description": "Environment: Align"
+	},
+	"environment-gather": {
+		"prefix": "ga",
+		"body": [
+			"\\begin{gather*}",
+			"\t$0",
+			"\\end{gather*}"
+		],
+		"description": "Environment: Gather"
+	},
+	"environment-gather": {
+		"prefix": "ga",
+		"body": [
+			"\\begin{gather*}",
+			"\t$0",
+			"\\end{gather*}"
+		],
+		"description": "Environment: Gather"
+	},
+	"environment-equation": {
+		"prefix": "eq",
+		"body": [
+			"\\begin{equation*}",
+			"\t$0",
+			"\\end{equation*}"
+		],
+		"description": "Environment: Equation"
+	},
+	"environment-equations": {
+		"prefix": "eqs",
+		"body": [
+			"\\begin{equations*}",
+			"\t$0",
+			"\\end{equations*}"
+		],
+		"description": "Environment: Equations"
+	},
+	"environment-cases": {
+		"prefix": "cases",
+		"body": [
+			"\\begin{cases*}",
+			"\t$0",
+			"\\end{cases*}"
+		],
+		"description": "Environment: Cases"
+	},
+	"environment-matrix": {
+		"prefix": "ma",
+		"body": [
+			"\\begin{matrix*}",
+			"\t$0",
+			"\\end{matrix*}"
+		],
+		"description": "Environment: Matrix"
+	},
+	"environment-bmatrix": {
+		"prefix": "mat",
+		"body": [
+			"\\begin{bmatrix*}",
+			"\t$0",
+			"\\end{bmatrix*}"
+		],
+		"description": "Environment: Matrix"
+	},
+	"environment-vmatrix": {
+		"prefix": "vmat",
+		"body": [
+			"\\begin{vmatrix*}",
+			"\t$0",
+			"\\end{vmatrix*}"
+		],
+		"description": "Environment: Matrix"
+	},
+	"environment-iff": {
+		"prefix": "iff",
+		"body": [
+			"\\begin{itemize}",
+			"\t\\item[$(\\Rightarrow)$]",
+			"\t\t$0",
+			"\t\\item[$(\\Leftarrow)$]",
+			"\\end{itemize}"
+		],
+		"description": "Environment: Iff"
+	},
+	"environment-iff-cup": {
+		"prefix": "iffc",
+		"body": [
+			"\\begin{itemize}",
+			"\t\\item[$(\\subset)$]",
+			"\t\t$0",
+			"\t\\item[$(\\supset)$]",
+			"\\end{itemize}"
+		],
+		"description": "Environment: Iff Cup"
+	},
+	"environment-frame": {
+		"prefix": "fr",
+		"body": [
+			"\\begin{frame}{$1}",
+			"\t$0",
+			"\\end{frame}"
+		],
+		"description": "Environment: Frame"
+	},
+	"environment-block": {
+		"prefix": "bl",
+		"body": [
+			"\\begin{block}{$1}",
+			"\t$0",
+			"\\end{block}"
+		],
+		"description": "Environment: Block"
+	}
+}

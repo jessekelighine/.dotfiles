@@ -1,0 +1,32 @@
+{
+	"acronym-short": {
+		"prefix": "as",
+		"body": "\\acrshort{$1} $0",
+		"description": "Short Acronym"
+	},
+	"acronym-long": {
+		"prefix": "al",
+		"body": "\\acrlong{$1} $0",
+		"description": "Long Acronym"
+	},
+	"glossary": {
+		"prefix": "g",
+		"body": "\\gls{$1} $0",
+		"description": "Glossary"
+	},
+	"glossary*": {
+		"prefix": "g*",
+		"body": "\\gls*{$1} $0",
+		"description": "Glossary"
+	},
+	"glossary-long": {
+		"prefix": "gl",
+		"body": "\\glsentrylong{$1} $0",
+		"description": "Long Glossary"
+	},
+	"glossary-short": {
+		"prefix": "gs",
+		"body": "\\glsentryshort{$1} $0",
+		"description": "Short Glossary"
+	}
+}

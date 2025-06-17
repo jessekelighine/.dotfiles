@@ -10,9 +10,9 @@ nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/matlab.vim<CR>
 nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/matlab.vim<CR>
 
 " SNIPPETS: shebang, template.
-inoremap <buffer> :sign<Tab> <Esc>:call my#GetSnippets('matlab','matlab_sign.m')<CR>
-inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('matlab','matlab_sign.m')<CR>
-inoremap <buffer> :bl<Tab>   <Esc>:call my#GetSnippets('matlab','matlab_block.m')<CR>
+inoremap <buffer> :sign<Tab> <Esc>:call snippets#Get('matlab','matlab_sign.m')<CR>
+inoremap <buffer> :qui<Tab>  <Esc>:call snippets#Get('matlab','matlab_sign.m')<CR>
+inoremap <buffer> :bl<Tab>   <Esc>:call snippets#Get('matlab','matlab_block.m')<CR>
 
 " MAPPSINGS: useful mappings.
 inoremap <buffer> ^<Tab>    ^()<Left>

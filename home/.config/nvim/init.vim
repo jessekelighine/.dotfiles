@@ -22,17 +22,6 @@ nnoremap <C-k>  <C-W>k
 nnoremap <C-h>  <C-W>h
 nnoremap <C-l>  <C-W>l
 inoremap <C-l>  <C-G>u<Esc>[s1z=`]a<C-G>u
-inoremap (<Tab> ()<Left>
-inoremap [<Tab> []<Left>
-inoremap {<Tab> {}<Left>
-inoremap <<Tab> <><Left>
-inoremap )<Tab> ()<Left>
-inoremap ]<Tab> []<Left>
-inoremap }<Tab> {}<Left>
-inoremap ><Tab> <><Left>
-inoremap '<Tab> ''<Left>
-inoremap `<Tab> ``<Left>
-inoremap "<Tab> ""<Left>
 xnoremap >      >gv
 xnoremap <      <gv
 xnoremap //     y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -62,10 +51,22 @@ onoremap a" 2i"
 onoremap a` 2i`
 onoremap F  vF
 onoremap T  vT
+iabbrev shruggie ¯\_(ツ)_/¯
+
 inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e==\<S-O>":"(\r"<CR>
 inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e==\<S-O>":"[\r"<CR>
 inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e==\<S-O>":"{\r"<CR>
-inoremap :shruggie<Tab> ¯\_(ツ)_/¯
+inoremap (<Tab> ()<Left>
+inoremap [<Tab> []<Left>
+inoremap {<Tab> {}<Left>
+inoremap <<Tab> <><Left>
+inoremap )<Tab> ()<Left>
+inoremap ]<Tab> []<Left>
+inoremap }<Tab> {}<Left>
+inoremap ><Tab> <><Left>
+inoremap '<Tab> ''<Left>
+inoremap `<Tab> ``<Left>
+inoremap "<Tab> ""<Left>
 
 set encoding=utf-8
 set fileencoding=utf-8

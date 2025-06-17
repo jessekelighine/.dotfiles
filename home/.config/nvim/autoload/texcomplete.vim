@@ -38,14 +38,16 @@ function! <SID>generate_labs(files=g:texcomplete_labsfiles) abort
 	let l:labs = []
 	for l:file in a:files
 		for l:line in readfile(l:file)
-			if matchstrpos(l:line, l:lab_pattern_detect)[1] < 0 | continue | endif
+			let l:contains_label = matchstrpos(l:line, l:lab_pattern_detect)[1] >= 0
+			if !l:contains_label | continue | endif
+			let l:label = matchstr(l:line, l:lab_pattern_extract)
 			let l:labs = l:labs + [{
-						\ 'word': matchstr(l:line, l:lab_pattern_extract),
+						\ 'word': l:label,
 						\ 'menu': '[' .. l:file .. ']',
 						\ }]
 		endfor
 	endfor
-	let g:texcomplete_labs = sort(l:labs, s:sort.word)
+	return sort(l:labs, s:sort.word)
 endfunction
 
 " Auto-complete for LaTeX labels.
@@ -57,9 +59,9 @@ function! texcomplete#Labs(findstart, base) abort
 					\ l:trigger_pattern,
 					\ col('.') - l:look_ahead_length)[2]
 	else
-		call <SID>generate_labs()
+		let l:all_labs = <SID>generate_labs()
 		let l:suggestions = []
-		for l:item in g:texcomplete_labs
+		for l:item in l:all_labs
 			if l:item['word'] =~ '^' .. a:base
 				call add(l:suggestions, l:item)
 			endif
@@ -78,14 +80,17 @@ function! <SID>generate_bibs(files=g:texcomplete_bibsfiles)
 	let l:bibs = []
 	for l:file in a:files
 		for l:line in readfile(l:file)
-			if matchstrpos(l:line, l:bib_pattern_detect)[1] < 0 | continue | endif
+			let l:contains_bib = matchstrpos(l:line, l:bib_pattern_detect)[1] >= 0
+			if !l:contains_bib | continue | endif
+			let l:bib = matchstr(l:line, l:bib_pattern_extract)
+			let l:type = matchstr(l:line, l:bib_pattern_extract_menu)
 			let l:bibs = l:bibs + [{
-						\ 'word': matchstr(l:line, l:bib_pattern_extract),
-						\ 'menu': '[' .. matchstr(l:line, l:bib_pattern_extract_menu) .. ']',
+						\ 'word': l:bib,
+						\ 'menu': '[' .. l:type .. ']',
 						\ }]
 		endfor
 	endfor
-	let g:texcomplete_bibs = sort(l:bibs, s:sort.menu)
+	return sort(l:bibs, s:sort.menu)
 endfunction
 
 " Auto-complete for items in `bib` files.
@@ -97,9 +102,9 @@ function! texcomplete#Bibs(findstart, base)
 					\ l:trigger_pattern,
 					\ col('.') - l:look_ahead_length)[2]
 	else
-		call <SID>generate_bibs()
+		let l:all_bibs = <SID>generate_bibs()
 		let l:suggestions = []
-		for l:item in g:texcomplete_bibs
+		for l:item in l:all_bibs
 			if l:item['word'] =~ '^' .. a:base
 				call add(l:suggestions, l:item)
 			endif

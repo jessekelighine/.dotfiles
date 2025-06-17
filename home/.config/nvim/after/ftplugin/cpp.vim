@@ -11,13 +11,13 @@ nnoremap <buffer> <F6> :call cpp#Compile()<CR>
 
 nnoremap <buffer> <leader>; :call funcargs#DeleteFunction('[a-zA-Z]','[:a-zA-Z0-9_]')<CR>
 
-inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets("cpp","skeleton.cpp")<CR>
-inoremap <buffer> :sign<Tab>  <Esc>:call my#GetSnippets("cpp","sign.cpp")<CR>
-inoremap <buffer> :rcpp<Tab> <Esc>:call my#GetSnippets("cpp","Rcpp.cpp")<CR>
-inoremap <buffer> :arma<Tab> <Esc>:call my#GetSnippets("cpp","RcppArmadillo.cpp")<CR>
-inoremap <buffer> :cl<Tab>   <Esc>:call my#GetSnippets("cpp","class.cpp")<CR>/<++><CR>ca<
-inoremap <buffer> :bl<Tab>   <Esc>:call my#GetSnippets("cpp","block.cpp")<CR>/<++><CR>ca<
-inoremap <buffer> :h<Tab>    <Esc>:call my#GetSnippets("cpp","header.cpp")<CR>/<++><CR>ca<
+inoremap <buffer> :qui<Tab>  <Esc>:call snippets#Get("cpp","skeleton.cpp")<CR>
+inoremap <buffer> :sign<Tab>  <Esc>:call snippets#Get("cpp","sign.cpp")<CR>
+inoremap <buffer> :rcpp<Tab> <Esc>:call snippets#Get("cpp","Rcpp.cpp")<CR>
+inoremap <buffer> :arma<Tab> <Esc>:call snippets#Get("cpp","RcppArmadillo.cpp")<CR>
+inoremap <buffer> :cl<Tab>   <Esc>:call snippets#Get("cpp","class.cpp")<CR>/<++><CR>ca<
+inoremap <buffer> :bl<Tab>   <Esc>:call snippets#Get("cpp","block.cpp")<CR>/<++><CR>ca<
+inoremap <buffer> :h<Tab>    <Esc>:call snippets#Get("cpp","header.cpp")<CR>/<++><CR>ca<
 inoremap <buffer> :c<Tab>   /*<Space><Space>*/<left><left><left>
 
 inoremap <buffer> :c<Tab>   /*<Space><Space>*/<left><left><left>

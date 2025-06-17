@@ -25,8 +25,7 @@ return {
 						mode = mode or 'n'
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
 					end
-					map('<leader>D',  vim.diagnostic.open_float, '[D]iagnostics')
-					map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+					map('gdd', vim.diagnostic.open_float, '[D]iagnostics')
 					vim.opt.signcolumn = "yes:1"
 					-- if vim.bo.filetype ~= "python" then
 					-- 	map('<leader>fm', vim.lsp.buf.format, '[F]or[m]at', { "n", "x" })
@@ -91,6 +90,8 @@ return {
 			}
 
 			lspconfig.pyright.setup {}
+
+			--[[ Border for Every Float ]]--
 
 			local open_floating_preview_original = vim.lsp.util.open_floating_preview
 			---@diagnostic disable-next-line: duplicate-set-field

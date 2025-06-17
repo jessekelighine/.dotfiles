@@ -60,9 +60,24 @@ spielliste 'https://www.youtube.com/watch?v=skkiVoI7sBk' # Keith Jarret - The Ko
 spielliste 'https://www.youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt' # MrSuicideSheep - House
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
 spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3' # YOASOBI - The Book Series
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
 
 ### Logs ######################################################################
 
-spielliste 'https://www.youtube.com/watch?v=0kXdYDeOc4U' # 2010s EDM Mix
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1

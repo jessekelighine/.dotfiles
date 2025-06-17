@@ -1,0 +1,42 @@
+{
+	"name": "snippets",
+	"engines": {
+		"vscode": "^1.11.0"
+	},
+	"contributes": {
+		"snippets": [
+			{
+				"language": "r",
+				"path": "./r/r.json"
+			},
+			{
+				"language": ["tex", "quarto"],
+				"path": "./tex/tex.json"
+			},
+			{
+				"language": ["tex", "quarto"],
+				"path": "./tex/tex-math.json"
+			},
+			{
+				"language": ["tex", "quarto"],
+				"path": "./tex/tex-font-styles.json"
+			},
+			{
+				"language": ["tex", "quarto"],
+				"path": "./tex/tex-environments.json"
+			},
+			{
+				"language": "tex",
+				"path": "./tex/tex-glossary.json"
+			},
+			{
+				"language": "tex",
+				"path": "./tex/tex-mathnotes.json"
+			},
+			{
+				"language": "quarto",
+				"path": "./quarto/quarto.json"
+			}
+		]
+	}
+}

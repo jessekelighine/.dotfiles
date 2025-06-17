@@ -1,0 +1,14 @@
+{
+    "initial_working_directory": "~",
+    "editor_theme": "Tomorrow",
+    "posix_terminal_shell": "bash",
+    "insert_native_pipe_operator": true,
+    "vertically_align_arguments_indent": false,
+    "editor_keybindings": "vim",
+    "help_font_size_points": 13,
+    "font_size_points": 13,
+    "auto_detect_indentation": true,
+    "jobs_tab_visibility": "shown",
+    "copilot_enabled": true,
+    "copilot_indexing_enabled": true
+}

@@ -73,12 +73,8 @@ function! vimslime#Forward(type, return=v:null, wrapper={ x -> x }) range
 				\ }
 	let l:type = l:types[a:type]
 	let l:return = a:return is v:null ? l:type.return : a:return
-	let l:command = [
-				\ "norm! m'" .. l:type.pre .. '"9' .. l:type.yank,
-				\ "norm! `'"
-				\ ]
 	silent exec "norm! \<Esc>"
-	silent exec l:command[0]
+	silent exec "norm! m'" .. l:type.pre .. '"9' .. l:type.yank,
 	silent call vimslime#Send(a:wrapper(@9), l:return) 
-	silent exec l:command[1]
+	silent exec "norm! `'"
 endfunction

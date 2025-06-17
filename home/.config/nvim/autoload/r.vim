@@ -14,15 +14,6 @@ function! r#AutoLastMod(set="", toggle=0)
 	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
 endfunction
 
-" expand pipe symbol
-if !exists("b:r_pipe_type") | let b:r_pipe_type = "|>" | endif
-function! r#PipeExpand(type, symbol=b:r_pipe_type)
-	execute "norm! a" .. ( getline(".")[col(".")-1] != " " ? " " : "" ) .. a:symbol
-	if     a:type=="CR"  | call feedkeys( "a\<CR>" )
-	elseif a:type=="Tab" | call feedkeys( "a" .. ( getline(".")[col(".")]==" " ? "" : " " ) )
-	endif
-endfunction
-
 " Print the line number (sub)sections.
 function! r#FindSection() abort
 	let l:index = 0
@@ -47,3 +38,20 @@ endfunction
 " function! r#DatatableExplainComplete(ArgLead, CmdLine, CursorPos)
 " 	return "dcast"."\n"."melt"
 " endfunction
+
+""" Pipe Symbol """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" expand pipe symbol
+function! r#PipeExpand(type)
+	execute "norm! a" .. ( getline(".")[col(".") - 1] != " " ? " " : "" ) .. b:r_pipe
+	if     a:type == "CR"  | call feedkeys("a\<CR>")
+	elseif a:type == "Tab" | call feedkeys("a" .. ( getline(".")[col(".")]==" " ? "" : " " ))
+	endif
+endfunction
+
+" guess the pipe symbol
+function! r#PipeAutoDetect() abort
+	let l:recognized_packages = [ 'tidyverse', 'magrittr' ]
+	let l:package_pattern = join(l:recognized_packages, '\|')
+	let b:r_pipe = search(l:package_pattern, 'nw') > 0 ? "%>%" : "|>"
+endfunction

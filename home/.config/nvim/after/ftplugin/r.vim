@@ -14,30 +14,32 @@ let b:match_words  = '\<tic\>:\<toc\>'
 let b:surround_116 = "tic()\rtoc()"
 let b:surround_84  = "timer$tic()\rtimer$toc()"
 let b:surround_112 = "pdf(file = \"\")\rdev.off()"
-let b:r_pipe_type  = "|>"
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#* *Last Modified: \)[^ ]*\(.*\)', min([line('$'),10]))
-command! -buffer -nargs=0 PipeSwitch :let b:r_pipe_type = b:r_pipe_type=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' .. b:r_pipe_type
-command! -buffer -nargs=0 FindSection :call r#FindSection()
+command! -buffer -nargs=0 LastMod :call my#LastMod('^\(#\' .. "'" .. ' @date \)[^ ]*\(.*\)', min([line('$'), 10]))
+command! -buffer -nargs=0 PipeSwitch :let b:r_pipe = b:r_pipe=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' .. b:r_pipe
+command! -buffer -nargs=0 PipeAutoDetect :call r#PipeAutoDetect() | redraw | echom ' Pipe: ' .. b:r_pipe
+command! -buffer -nargs=0 FindSection call r#FindSection()
 command! -buffer -nargs=0 -range FormatR :'<,'>RFormat
 command! -buffer -nargs=? -bang AutoLastMod :call r#AutoLastMod(<q-args>,<bang>0)
 silent AutoLastMod on
+silent PipeAutoDetect
 " command! -buffer -nargs=1 -complete=custom,r#DatatableExplainComplete DatatableExplain :call r#DatatableExplain(<q-args>)
 
 " Snippets:
-inoremap <buffer> :sign<Tab>   <Esc>:call my#GetSnippets("r","sign.R")<CR>
-inoremap <buffer> :future<Tab> <Esc>:call my#GetSnippets("r","future.R")<CR>
-inoremap <buffer> :bl<Tab>     <Esc>:call my#GetSnippets("r","block.R")<CR>
-inoremap <buffer> :qui<Tab>    <Esc>:call my#GetSnippets("r","qui.R")<CR>
-inoremap <buffer> :lib<Tab>    <Esc>:call my#GetSnippets("r","library.R")<CR>
-inoremap <buffer> :ggs<Tab>    <Esc>:call my#GetSnippets("r","ggsave.R")<CR>
-inoremap <buffer> :ggch<Tab>   <Esc>:call my#GetSnippets("r","ggplotChinese.R")<CR>
-inoremap <buffer> :se<Tab>     <Esc>:call my#GetSnippets("r","robust.R")<CR>
-inoremap <buffer> :log<Tab>    <Esc>:call my#GetSnippets("r","logfile.R")<CR>
-inoremap <buffer> :cl<Tab>     <Esc>:call my#GetSnippets("r","consolelog.R")<CR>
-inoremap <buffer> :mode<Tab>   <Esc>:call my#GetSnippets("r","modus.R")<CR>
-inoremap <buffer> :rm<Tab>     <Esc>:call my#GetSnippets("r","rm.R")<CR>
-inoremap <buffer> :timer<Tab>  <Esc>:call my#GetSnippets("r","timer.R")<CR>
-inoremap <buffer> :curry<Tab>  <Esc>:call my#GetSnippets("r","curry.R")<CR>
+inoremap <buffer> :sign<Tab>   <Esc>:call snippets#Get("r","sign.R")<CR>
+inoremap <buffer> :future<Tab> <Esc>:call snippets#Get("r","future.R")<CR>
+inoremap <buffer> :bl<Tab>     <Esc>:call snippets#Get("r","block.R")<CR>
+inoremap <buffer> :qui<Tab>    <Esc>:call snippets#Get("r","skeleton.R")<CR>
+inoremap <buffer> :lib<Tab>    <Esc>:call snippets#Get("r","library.R")<CR>
+inoremap <buffer> :ggs<Tab>    <Esc>:call snippets#Get("r","ggsave.R")<CR>
+inoremap <buffer> :ggch<Tab>   <Esc>:call snippets#Get("r","ggplotChinese.R")<CR>
+inoremap <buffer> :se<Tab>     <Esc>:call snippets#Get("r","robust.R")<CR>
+inoremap <buffer> :log<Tab>    <Esc>:call snippets#Get("r","logfile.R")<CR>
+inoremap <buffer> :cl<Tab>     <Esc>:call snippets#Get("r","consolelog.R")<CR>
+inoremap <buffer> :mode<Tab>   <Esc>:call snippets#Get("r","modus.R")<CR>
+inoremap <buffer> :rm<Tab>     <Esc>:call snippets#Get("r","rm.R")<CR>
+inoremap <buffer> :timer<Tab>  <Esc>:call snippets#Get("r","timer.R")<CR>
+inoremap <buffer> :curry<Tab>  <Esc>:call snippets#Get("r","curry.R")<CR>
+inoremap <buffer> :showtext<Tab>  <Esc>:call snippets#Get("r","showtext.R")<CR>
 
 " Mappings:
 nnoremap <buffer><silent> <F1>       :tabnew ~/.config/nvim/after/ftplugin/r.vim<CR>

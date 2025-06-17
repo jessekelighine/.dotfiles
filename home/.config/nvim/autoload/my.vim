@@ -1,26 +1,5 @@
 " my.vim
 
-""" Snippets """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-function! my#GetSnippets(type, name, args={})
-	let [ l:begin, l:lines ] = [ line("."), line("$") ]
-	exe "read " .. $HOME .. "/.config/nvim/snippets/" .. a:type .. "/" .. a:name
-	let l:end = l:begin + ( line("$") - l:lines ) - 1
-	call cursor(l:begin,0)
-	exe "norm! dd"
-	let l:do_indent = has_key(a:args, "indent") ? a:args.indent : 1
-	let l:do_begin  = has_key(a:args, "begin")  ? a:args.begin  : 1
-	if  l:do_indent | exec l:begin .. "," .. l:end .. "norm! v=" | endif
-	if  l:do_begin  | call cursor(l:begin, 0)                    | endif
-endfunction
-
-function! my#GetAuthor()
- 	let l:path = expand("~/.config/nvim/snippets/website")
-	return readfile(l:path)[0]
-endfunction
-
-""" Miscellaneous """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " clear all registers
 function! my#FlushRegisters()
 	let l:registers = split(
@@ -37,7 +16,7 @@ endfunction
 " source a local vimrc file if exists.
 function! my#LocalVimrc(filename=".vimrc")
 	if filereadable(a:filename)
-		call execute("source " .. a:filename)
+		exec join(["source", a:filename])
 	endif
 endfunction
 
@@ -45,21 +24,25 @@ endfunction
 function! my#RemoveTrailingSpaces(line1=1,line2=line('$'))
 	let l:pos = getpos(".")
 	try
-		silent execute join([a:line1,a:line2],',') .. 's/^\(.\{-}\)\s\+$/\1/g'
+		let l:range = join([a:line1, a:line2], ',')
+		let l:command = l:range .. 's/^\(.\{-}\)\s\+$/\1/g'
+		silent exec l:command
 		redraw | echom " Remove Trailing Spaces: REMOVED!"
 	catch
 		redraw | echom " Remove Trailing Spaces: NONE FOUND."
 	endtry
-	call setpos('.',l:pos)
+	call setpos('.', l:pos)
 endfunction
 
 " put <COUNT> blank lines above/below the current line.
 function! my#MakeRoom(direction,number=1)
-	let l:command = "norm "
-				\ .. ( a:direction=='above' ? 'O' : 'o' )
-				\ .. repeat( "\<CR>", a:number-1 )
-				\ .. "\<Esc>"
-	let l:line = line(".") + ( a:direction=="above" ? a:number : 0 )
+	let l:command = join([
+				\ "norm!",
+				\ a:direction == "above" ? "O" : "o",
+				\ repeat("\<CR>", a:number - 1),
+				\ "\<Esc>"
+				\ ])
+	let l:line = line(".") + ( a:direction == "above" ? a:number : 0 )
 	let l:col  = col(".")
 	silent exec l:command
 	call cursor(l:line, l:col)
@@ -114,9 +97,9 @@ function! my#Spell(set="", de=0)
 	else
 		execute "setlocal " .. ( a:set ? "" : "no" ) .. "spell"
 	endif
-	execute "setlocal spelllang=en" .. ( a:de ? ",de" : "" )
+	exec "setl spelllang=en" .. ( a:de ? ",de" : "" )
 	call chinese#Spell()
-	setlocal spell?
+	setl spell?
 endfunction
 
 " change the display width of a tab.
@@ -148,27 +131,5 @@ endfunction
 function! my#FocusCursor(on)
 	if a:on | set   cursorline   cursorcolumn
 	else    | set nocursorline nocursorcolumn
-	endif
-endfunction
-
-""" Git """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" highlight git merge conflict.
-let g:my_git_conflict_highlight = 0
-function! my#GitConflictHighlight()
-	if !g:my_git_conflict_highlight
-		match GitConflict /^\(<<<<<<<.*\|=======\|>>>>>>>.*\)$/
-		highlight GitConflict ctermbg=red ctermfg=white
-		execute "let b:match_words" .
-					\ ( exists("b:match_words") ? "+=" : "=" ) . "'" .
-					\ ( exists("b:match_words") ? "," : "" ) .
-					\ '\(<<<<<<<\):\(=======\):\(>>>>>>>\)' . "'"
-		let g:my_git_conflict_highlight = 1
-		redraw | echom "--> Git Merge Conflict Highlighted: ON"
-	else
-		match
-		silent syntax clear GitConflict
-		let g:my_git_conflict_highlight = 0
-		redraw | echom "--> Git Merge Conflict Highlight: OFF"
 	endif
 endfunction

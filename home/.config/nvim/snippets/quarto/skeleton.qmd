@@ -10,6 +10,7 @@ format:
     toc-depth: 10
     toc-expand: 10
     fig-cap-location: bottom
-  # pdf:
-  #   include-in-header: preamble.tex
+    reference-location: margin
+  pdf:
+    include-in-header: preamble.tex
 ---

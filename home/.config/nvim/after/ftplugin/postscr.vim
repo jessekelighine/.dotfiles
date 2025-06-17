@@ -11,9 +11,9 @@ nnoremap <buffer> <F5>      :call postscr#Convert()<CR>
 nnoremap <buffer> <leader>p :!open %:r.pdf<CR><CR>
 
 " SNIPPETS:
-inoremap <buffer> :qui<Tab>  <Esc>:call my#GetSnippets('postscr','qui.eps')<CR>
-inoremap <buffer> :cm<Tab>   <Esc>:call my#GetSnippets('postscr','unit_cm.eps')<CR>
-inoremap <buffer> :inch<Tab> <Esc>:call my#GetSnippets('postscr','unit_inch.eps')<CR>
+inoremap <buffer> :qui<Tab>  <Esc>:call snippets#Get('postscr','qui.eps')<CR>
+inoremap <buffer> :cm<Tab>   <Esc>:call snippets#Get('postscr','unit_cm.eps')<CR>
+inoremap <buffer> :inch<Tab> <Esc>:call snippets#Get('postscr','unit_inch.eps')<CR>
 
 " INSERT MAPPINGS:
 inoremap <buffer> {<CR>      {<CR><Space><CR>}<Esc>0kA<BackSpace>

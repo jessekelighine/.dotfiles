@@ -16,3 +16,6 @@
 [submodule "home/.local/bin-sources/mencius-said"]
 	path = home/.local/bin-sources/mencius-said
 	url = https://github.com/jessekelighine/mencius-said
+[submodule "home/.local/bin-sources/xiaolin-said"]
+	path = home/.local/bin-sources/xiaolin-said
+	url = https://github.com/jessekelighine/xiaolin-said
