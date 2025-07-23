@@ -2,8 +2,8 @@
 
 help () {
 	cat << EOF
-usage: $(basename "$0") [file] [output]
-desription:
+USAGE: $(basename "$0") [file] [output]
+DESRIPTION:
 	Convert [file] to mp4 format with name [output]. If [output] is not
 	provided, "[file].mp4" is used as the output filename.
 EOF

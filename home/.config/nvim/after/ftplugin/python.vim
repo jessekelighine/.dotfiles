@@ -2,8 +2,11 @@
 " ~/.config/nvim/snippets/python/
 " ~/.config/nvim/autoload/python.vim
 
-command! -buffer -nargs=0 LastMod call my#LastMod('^\(#* *Last Modified: *\)[^ ]*', min([line("$"), 10]))
 command! -buffer -nargs=0 -range=% Black silent <line1>,<line2> ! black --quiet -
+
+" LASTMOD:
+let b:lastmod_pattern = '^\(#* *Last Modified: *\)' .. '[^ ]*' .. '\(.*\)$'
+command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 
 " GENERAL SETTINGS: disables 8-wide tab, sensible listchars.
 " let g:python_recommended_style = 0
@@ -11,8 +14,7 @@ command! -buffer -nargs=0 -range=% Black silent <line1>,<line2> ! black --quiet 
 " setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 " setl listchars=tab:┊\ ,trail:·,extends:»,precedes:«,nbsp:+
 
-" FUNCTION KEYS:
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/python.vim<CR>
+" FUNCTION ARGS:
 nnoremap <buffer> <leader>; <Cmd>call funcargs#DeleteFunction('[a-zA-Z_]','[a-zA-Z0-9_]')<CR>
 
 " SNIPPETS:

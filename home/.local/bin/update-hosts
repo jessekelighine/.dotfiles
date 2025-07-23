@@ -61,7 +61,8 @@ grep -q "${ad_block}" "$hosts_original"
 }
 
 ## Get ad-block file
-curl -s "$hosts_site" > "$hosts_zero" & message "downloading hosts file"
+user_agent="Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)"
+curl -s "$hosts_site" -A "$user_agent" > "$hosts_zero" & message "downloading hosts file"
 
 ## Split original hosts file
 cp "$hosts_original" "$hosts_temp"

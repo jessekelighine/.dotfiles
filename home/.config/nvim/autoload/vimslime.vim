@@ -27,7 +27,8 @@ function! vimslime#OpenTmux(command="", resize_pane='-U 12', close_command="") a
 	call vimslime#Send(a:command, 1)
 	augroup VimslimeOpenTmux
 		autocmd!
-		autocmd VimLeave * exe b:vimslime_target == "" ? "" : 'call vimslime#CloseTmux()'
+		" autocmd VimLeave * exe b:vimslime_target == "" ? "" : 'call vimslime#CloseTmux()'
+		autocmd VimLeave * call vimslime#CloseTmux()
 	augroup END
 endfunction
 

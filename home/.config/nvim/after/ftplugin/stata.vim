@@ -1,8 +1,9 @@
 " ~/.config/nvim/after/ftplugin/stata.vim
 
+" SETTINGS:
 setlocal commentstring=//\ %s
 
-nmap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/stata.vim<CR>
+" STATA SYNTAX:
 inoremap <buffer> `<Tab> `'<Left>
 
 " IDE

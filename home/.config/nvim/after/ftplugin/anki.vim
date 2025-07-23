@@ -31,13 +31,10 @@ function! <SID>StichwoeterAnordnen()
 	redraw | echom '--> Stichwörter nach Wortarten angeordnet.'
 endfunction
 
-set  list
-call my#TabSize(30)
-call my#ChineseSpelling(0) " english
-" call my#ChineseSpelling(1) " german
+set list
+TabSize 30
+SpellToggle 1
 setl spellfile=~/.vim/spell/en.utf-8.add,~/.vim/spell/anki.utf-8.add
 
-nnoremap <buffer><silent> <F1>                    :tabnew ~/.config/nvim/after/ftplugin/anki.vim<CR>
-inoremap <buffer><silent> .<Tab>                  .<br>:<Space>
-inoremap <buffer><silent> <<Tab>                  <br>:<Space>
-" nnoremap <buffer><silent> <Plug>(ChineseSpelling) :call my#ChineseSpelling(1)<CR>
+inoremap <buffer><silent> .<Tab> .<br>:<Space>
+inoremap <buffer><silent> <<Tab> <br>:<Space>

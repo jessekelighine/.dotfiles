@@ -1,7 +1,7 @@
 ---
 title:  "youtube-dl: notes"
 author: "jessekelighine.com"
-date:   "2021-Aug-04"
+date:   "2025-07-04"
 ---
 
 - [repo](https://github.com/ytdl-org/youtube-dl)

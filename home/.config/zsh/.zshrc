@@ -4,8 +4,9 @@ setopt autocd
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
+export SHELL_SESSIONS_DISABLE=1
 
-# HOMEBREW
+# HOMEBREW:
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
@@ -21,6 +22,7 @@ export LSCOLORS='exfxcxdxbxegedabagacad'
 export CLICOLOR=1
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$ZDOTDIR/.zsh_history"
+
 export PS1="%B%{$fg[red]%}["           # [
 export PS1="$PS1%{$fg[yellow]%}%n"     # username
 export PS1="$PS1%{$reset_color%}%B@"   # @
@@ -29,7 +31,10 @@ export PS1="$PS1%{$fg[magenta]%}%~"    # working directory
 export PS1="$PS1%{$fg[red]%}]"         # ]
 export PS1="$PS1%{$reset_color%}%%%b " # %
 
-[[ -x "$(command -v fzf)" ]] && source <(fzf --zsh)
+[[ -x "$(command -v fzf)" ]] && {
+	export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git'
+	source <(fzf --zsh)
+}
 
 [[ -d "$HOME/.config/zsh" ]] && {
 	source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -43,10 +48,13 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 	source "$HOME/.config/shell-source/pyenv.sh"
 }
 
-# confucius-said --random
+confucius-said --random
+
 # xiaolin-said --random
 
-mencius_chapters=(7 8 9 10 11 12 13 14)
-random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
-random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
-mencius-said --random-from-chapter "$random_mencius_chapter"
+# mencius_chapters=(7 8 9 10 11 12 13 14)
+# random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
+# random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
+# mencius-said --random-from-chapter "$random_mencius_chapter"
+
+# mencius-said --random-from-chapter 13

@@ -1,32 +1,54 @@
 #!/usr/bin/env Rscript
 
-###############################################################################
-# -*- encoding: UTF-8 -*-                                                     #
-# Author: jessekelighine.com                                                  #
-# Download packages as a repository, then use the created repository to       #
-# install packages.                                                           #
-#                                                                             #
-# Last Modified: 2022-08-10                                                   #
-###############################################################################
+#' @encoding UTF-8
+#' @description
+#' Download packages as a repository, then use the created
+#' repository to install packages.
+#' @date 2025-07-04
+
+install.packages("miniCRAN", type = "mac.binary")
 library(miniCRAN)
-###############################################################################
 
-# install.packages("miniCRAN", type="mac.binary")
+## Settings ###################################################################
 
-### Settings ##################################################################
+package_path <- "~/Desktop/packages/"
+packages <- c("rlang")
+r_version <- "4.1.2"
+repository <- "http://cran.us.r-project.org"
 
-PATH <- "~/Desktop/packages/"
-PKGS <- c("rlang")
-RVER <- "4.1.2"
-REPO <- "http://cran.us.r-project.org"
+## Download Packages ##########################################################
 
-### Download Packages #########################################################
+dir.create(
+  package_path,
+  recursive = TRUE
+)
 
-dir.create(PATH, recursive=TRUE)
-package.list <- pkgDep(PKGS, type="source", suggests=FALSE, Rversion=RVER, repos=REPO)
-makeRepo(package.list, path=PATH, type=c("source"), Rversion=RVER, repos=REPO)
-pkgAvail(repos=PATH, type="source", Rversion=RVER)
+package_list <- pkgDep(
+  packages,
+  type = "source",
+  suggests = FALSE,
+  Rversion = r_version,
+  repos = repository
+)
 
-#### Installation #############################################################
+makeRepo(
+  package_list,
+  path = package_path,
+  type = c("source"),
+  Rversion = r_version,
+  repos = repository
+)
 
-install.packages(PKGS, repos="file:///home/.../packages", type="source")
+pkgAvail(
+  repos = package_path,
+  type = "source",
+  Rversion = r_version
+)
+
+## Installation ###############################################################
+
+install.packages(
+  packages,
+  repos = "file:///home/.../packages",
+  type = "source"
+)

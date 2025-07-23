@@ -7,10 +7,12 @@ let s:SID = "\<SNR>" .. <SID>SID() .. '_'
 
 function! <SID>setup(bool)
 	if a:bool
-		let s:showcmd    = &showcmd    | set noshowcmd
-		let s:timeoutlen = &timeoutlen | set timeoutlen=80
+		let s:showcmd = &showcmd
+		let s:timeoutlen = &timeoutlen
+		set noshowcmd
+		set timeoutlen=40
 	else
-		let &showcmd    = s:showcmd
+		let &showcmd = s:showcmd
 		let &timeoutlen = s:timeoutlen
 	endif
 endfunction
@@ -30,12 +32,12 @@ function! <SID>trigger_success(key)
 	return s:SID .. 'success:' .. a:key
 endfunction
 
-imap     <expr> j            <SID>trigger_key('j')
-imap     <expr> k            <SID>trigger_key('k')
-imap     <expr> <SID>work:j  <SID>trigger_cancel('j')
-imap     <expr> <SID>work:k  <SID>trigger_cancel('k')
-imap     <expr> <SID>work:jk <SID>trigger_success('jk')
-imap     <expr> <SID>work:kj <SID>trigger_success('kj')
+imap <expr> j            <SID>trigger_key('j')
+imap <expr> k            <SID>trigger_key('k')
+imap <expr> <SID>work:j  <SID>trigger_cancel('j')
+imap <expr> <SID>work:k  <SID>trigger_cancel('k')
+imap <expr> <SID>work:jk <SID>trigger_success('jk')
+imap <expr> <SID>work:kj <SID>trigger_success('kj')
 inoremap <expr> <SID>cancel:j   "j"
 inoremap <expr> <SID>cancel:k   "k"
 inoremap <expr> <SID>success:jk "\e"

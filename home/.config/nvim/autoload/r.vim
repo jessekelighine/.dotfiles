@@ -1,15 +1,21 @@
 " ~/.config/nvim/autoload/r.vim
 
 " Toggle/Set augroup MarkdownAutoLastMod
-function! r#AutoLastMod(set="", toggle=0)
-	let l:status = exists("#RAutoLastMod#BufWrite")
-	let l:switch_on =
-				\ a:set =~? "on" ? 1 :
-				\ a:set =~? "off" ? 0 :
-				\ a:toggle ? !l:status : l:status
+function! <SID>LastMod() abort
+	try
+		undojoin | LastMod
+	catch
+		LastMod
+	endtry
+endfunction
+function! r#AutoLastMod(set = "")
+	let l:status = exists("#RAutoLastMod#BufWritePost")
+	let l:switch_on = a:set =~? "on" ? 1 : ( a:set =~? "off" ? 0 : !l:status )
 	augroup RAutoLastMod
 		autocmd!
-		silent execute l:switch_on ? "autocmd BufWrite *.R,*.r silent! undojoin | LastMod" : ""
+		if l:switch_on
+			autocmd BufWritePost *.R,*.r call <SID>LastMod()
+		endif
 	augroup END
 	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
 endfunction
@@ -18,7 +24,7 @@ endfunction
 function! r#FindSection() abort
 	let l:index = 0
 	let l:section_lines = []
-	let l:pos = getpos('.')
+	let l:position = getpos('.')
 	let l:header_format = "%6s %6s  %s"
 	let l:header = printf(l:header_format, "Line", "Index", "Title")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
@@ -28,24 +34,19 @@ function! r#FindSection() abort
 				\ call add(l:section_lines, line(".")) |
 				\ let l:index += 1
 	let l:index = input("--> Go to: ")
-	exe l:index =~ '\d\+' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
+	let l:valid_index = l:index =~ '\d\+'
+	if l:valid_index
+		exec "norm! " .. l:section_lines[l:index] .. "G"
+	else
+		call setpos('.', l:position)
+	endif
 endfunction
-
-" " explain "dcast" and "melt" from data.table
-" function! r#DatatableExplain(name)
-" 	exec "split $HOME/.config/nvim/snippets/r/datatable-" .. a:name .. ".md"
-" endfunction
-" function! r#DatatableExplainComplete(ArgLead, CmdLine, CursorPos)
-" 	return "dcast"."\n"."melt"
-" endfunction
-
-""" Pipe Symbol """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " expand pipe symbol
 function! r#PipeExpand(type)
 	execute "norm! a" .. ( getline(".")[col(".") - 1] != " " ? " " : "" ) .. b:r_pipe
-	if     a:type == "CR"  | call feedkeys("a\<CR>")
-	elseif a:type == "Tab" | call feedkeys("a" .. ( getline(".")[col(".")]==" " ? "" : " " ))
+	if     a:type =~ "CR"  | call feedkeys("a\<CR>")
+	elseif a:type =~ "Tab" | call feedkeys("a" .. ( getline(".")[col(".")]==" " ? "" : " " ))
 	endif
 endfunction
 

@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/plugin/r-nvim.lua
+
 return {
 	"R-nvim/R.nvim",
 	lazy = false,

@@ -2,10 +2,12 @@
 
 setlocal commentstring=//\ %s
 setlocal shiftwidth=4 softtabstop=4 tabstop=4 smarttab
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(\s*\* *Date: *\)[^ ]*',10)
 
-" FUNCTION KEYS: complie and run
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/cpp.vim<CR>
+" LASTMOD:
+let b:lastmod_pattern = '^\(\s*\* *Date: *\)' .. '[^ ]*' .. '\(.*\)$'
+command! -buffer -nargs=0 LastMod :call lastmod#Update(b:lastmod_pattern)
+
+" FUNCTION KEYS:
 nnoremap <buffer> <F5> :call cpp#Compile()<CR>
 nnoremap <buffer> <F6> :call cpp#Compile()<CR>
 

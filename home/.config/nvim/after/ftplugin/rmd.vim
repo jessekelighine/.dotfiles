@@ -9,11 +9,13 @@ setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2 smarttab
 
 command! -buffer -nargs=0 FindSection :call markdown#FindSection()
 command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
-command! -buffer -nargs=0 LastMod     :call my#LastMod('^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)')
-command! -buffer -nargs=? -bang AutoLastMod :call markdown#AutoLastMod(<q-args>, <bang>1)
-silent AutoLastMod ON
 
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/rmd.vim<CR>
+" LASTMOD:
+let b:lastmod_pattern = '^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)'
+command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
+command! -buffer -nargs=? AutoLastMod call markdown#AutoLastMod(<q-args>)
+silent AutoLastMod on
+
 nnoremap <buffer> <F5> :call rmd#Knit()<CR>
 
 let b:rmarkdown_knit_command = "echo . | whenever make"

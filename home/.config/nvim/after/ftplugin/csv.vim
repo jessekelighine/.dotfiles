@@ -1,4 +1,5 @@
 " ~/.config/nvim/after/ftplugin/csv.vim
+" ~/.config/nvim/after/syntax/csv.vim
 " ~/.config/nvim/autoload/csv.vim
 
 let b:csv_delim               = ","
@@ -15,8 +16,6 @@ command! -buffer -nargs=0 InitializeCSV :call csv#InitializeCSV()
 command! -buffer -nargs=0 FindColumn    :call csv#FindColumn()
 command! -buffer -nargs=0 HeadingHighlight :source ~/.config/nvim/after/syntax/csv.vim
 
-nnoremap <silent><buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/csv.vim<CR>
-nnoremap <silent><buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/csv.vim<CR>
 nnoremap <silent><buffer> <Space>   <Cmd>call csv#GoToColumn()<CR>
 nnoremap <silent><buffer> <leader>; <Cmd>call csv#HighlightColumn()<CR>
 nnoremap <silent><buffer> )         <Cmd>call csv#PrevNextColumn('next')<CR>

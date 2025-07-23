@@ -2,14 +2,14 @@
 
 [[ $# -ne 2 ]] && {
 	cat << EOF >&2
-usage: $(basename $0) [input-1.pdf] [input-2.pdf] [output.pdf]
-description:
-	+---------+  +---------+       +---------+---------+
-	|         |  |         |       |         |         |
-	| input 1 |  | input 2 |  -->  | input 1 | input 2 |
-	|         |  |         |       |         |         |
-	+---------+  +---------+       +---------+---------+
-	                                      output
+USAGE: $(basename "$0") [input-1.pdf] [input-2.pdf] [output.pdf]
+DESCRIPTION:
+	+-------------+-------------+
+	|             |             |
+	| input-1.pdf | input-2.pdf |
+	|             |             |
+	+-------------+-------------+
+	          output.pdf
 EOF
 	exit 1
 }

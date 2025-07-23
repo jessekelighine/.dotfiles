@@ -24,7 +24,7 @@
 			"\t\\centering",
 			"\t\\includegraphics[scale=1]{$1}",
 			"\t\\caption{$2}",
-			"\t\\label{fig:$3}",
+			"\t\\label{fig-$3}",
 			"\\end{figure}"
 		],
 		"description": "Environment: Figure"
@@ -36,7 +36,7 @@
 			"\t\\centering",
 			"\t\\includegraphics[scale=1]{$1}",
 			"\t\\caption{$2}",
-			"\t\\label{fig:$3}",
+			"\t\\label{fig-$3}",
 			"\\end{subfigure}"
 		],
 		"description": "Environment: Sub-Figure"
@@ -47,13 +47,13 @@
 			"\\begin{table}[t]",
 			"\t\\centering",
 			"\t\\csvreader[head to column names,",
-				"\t\ttabular	= ${1:cccc},",
-				"\t\ttable head = \\toprule${2:[HEADER]}\\\\\\midrule,",
-				"\t\ttable foot = \\bottomrule",
-				"\t]{${3:[FILENAME]}}{}{${4:\\csvcoli & \\csvcolii & \\csvcoliii & \\csvcoliv}}",
-				"\t\\caption{$5}",
-				"\t\\label{tab:$6}",
-				"\\end{table}"
+			"\t\ttabular	= ${1:cccc},",
+			"\t\ttable head = \\toprule${2:HEADER}\\\\\\midrule,",
+			"\t\ttable foot = \\bottomrule",
+			"\t]{${3:FILENAME}}{}{${4:\\csvcoli & \\csvcolii & \\csvcoliii & \\csvcoliv}}",
+			"\t\\caption{$5}",
+			"\t\\label{tab-$6}",
+			"\\end{table}"
 		],
 		"description": "Environment: CSV"
 	},
@@ -104,27 +104,16 @@
 			"\t\\centering",
 			"\t\\begin{tabular}{${1:cccc}}",
 			"\t\t\\toprule",
-			"\t\t${2:[HEADER]}",
+			"\t\t${2:HEADER}",
 			"\t\t\\midrule",
-			"\t\t${3:[CONTENTS]}",
+			"\t\t${3:CONTENTS}",
 			"\t\t\\bottomrule",
 			"\t\\end{tabular}",
 			"\t\\caption{$4}",
-			"\t\\label{tab:$5}",
+			"\t\\label{tab-$5}",
 			"\\end{table}"
 		],
 		"description": "Environment: Table"
-	},
-	"environment-tikz": {
-		"prefix": "tikz",
-		"body": [
-			"\\begin{tikzpicture}[thick,line cap=round]",
-			"\t\\tikzstyle{bai}=[solid,circle,draw,inner sep=.07em,fill=white];",
-			"\t\\tikzstyle{hei}=[solid,circle,draw,inner sep=.07em,fill];",
-			"\t$0",
-			"\\end{tikzpicture}"
-		],
-		"description": "Environment: TikZ"
 	},
 	"environment-minipage": {
 		"prefix": "mini",
@@ -134,6 +123,7 @@
 			"\\end{minipage}%",
 			"\\hspace{0.01\\textwidth}",
 			"\\begin{minipage}{.49\\textwidth}",
+			"\t$2",
 			"\\end{minipage}"
 		],
 		"description": "Environment: Minipage"

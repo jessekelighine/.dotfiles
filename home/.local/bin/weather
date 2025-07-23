@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Author: Jesse Chieh Chen                                                    #
+# Description: Wrapper for "curl wttr.in"                                     #
+#                                                                             #
+# Last Modified: 2025-06-26                                                   #
+###############################################################################
+
+base_url="wttr.in"
+url="$base_url"
+
+error () {
+	echo "$(tput bold)$(basename "$0")$(tput sgr0): $*" >&2
+}
+
+message () {
+	local command; command="$(tput bold)$(basename "$0")$(tput sgr0)"
+	local examples; examples="$(tput bold)EXAMPLES$(tput sgr0)"
+	local description; description="$(tput bold)DESCRIPTION$(tput sgr0)"
+	local usage; usage="$(tput bold)USAGE$(tput sgr0)"
+	local options; options="$(tput bold)OPTIONS$(tput sgr0)"
+	cat << EOF
+$usage: $command [options]
+$description:
+	This command fetches the weather report from \`wttr.in\`.  If no option is
+	specified, it will show the weather in the current location based on the IP
+	address.  Go to https://github.com/chubin/wttr.in for more details.
+$options:
+	-h --help                  display this help message
+	-l --location <LOCATION>   specify the location for the weather report
+	-L --language <LANG>       specify the language for the weather report
+	-n --dry-run               show the url without curling it
+	-m --metric                force metric units (Celsius, km/h, etc.)
+	-u --uscs                  force USCS units (Fahrenheit, mph, etc.)
+$examples:
+	# Show the weather in New York City with USCS units in German
+	$command --location new+york --uscs --language de
+EOF
+}
+
+### Options ###################################################################
+
+force_uscs=false
+force_metric=false
+dry_run=false
+language=""
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		-m | --metric)
+			force_metric=true
+			shift
+			;;
+		-u | --uscs)
+			force_uscs=true
+			shift
+			;;
+		-l | --location)
+			[[ -z "$2" ]] && {
+				error "location missing"
+				exit 1
+			}
+			url="$url/$2"
+			shift
+			shift
+			;;
+		-L | --language)
+			[[ -z "$2" ]] && {
+				error "language missing"
+				exit 1
+			}
+			language="$2"
+			shift
+			shift
+			;;
+		-h | --help)
+			message
+			exit 0
+			;;
+		-n | --dry-run)
+			dry_run=true
+			shift
+			;;
+		*)
+			error "unrecognized option: $1"
+			exit 1
+			;;
+	esac
+done
+
+### Main ######################################################################
+
+[[ $force_metric == true ]] && {
+	url="$url?m"
+}
+
+[[ $force_uscs == true ]] && {
+	url="$url?u"
+}
+
+[[ -n $language ]] && {
+	if [[ $force_metric == true || $force_uscs == true ]]; then
+		url="$url&lang=$language"
+	else
+		url="$url?m&lang=$language"
+	fi
+}
+
+[[ $dry_run == true ]] && {
+	echo "$url"
+	exit 0
+}
+
+curl "$url"

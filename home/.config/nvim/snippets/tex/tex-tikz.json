@@ -1,0 +1,18 @@
+{
+	"environment-tikz": {
+		"prefix": "tikz",
+		"body": [
+			"\\begin{tikzpicture}[thick,line cap=round]",
+			"\t\\tikzstyle{bai}=[solid,circle,draw,inner sep=.07em,fill=white];",
+			"\t\\tikzstyle{hei}=[solid,circle,draw,inner sep=.07em,fill];",
+			"\t$0",
+			"\\end{tikzpicture}"
+		],
+		"description": "Environment: TikZ"
+	},
+	"tikz-intersection": {
+		"prefix": "int",
+		"body": "\\path[name intersections={of= $1 and $2}]; % (intersection-1)",
+		"description": "TikZ Intersection"
+	}
+}

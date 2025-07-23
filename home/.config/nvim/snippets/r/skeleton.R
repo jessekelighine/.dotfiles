@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 
+#' @encoding UTF-8
 #' @title
 #' @description
-#' @details
 #' @author Jesse Chieh Chen \url{https://jessekelighine.com}
-#' @date 0000-00-00
+#' @note Date Created: 0000-00-00
 
 options(scipen = 999999)
 options(tidyverse.quiet = TRUE)

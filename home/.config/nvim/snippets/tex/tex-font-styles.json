@@ -9,21 +9,6 @@
 		"body": "\\textbf{$1} $0",
 		"description": "Bold"
 	},
-	"verbatim": {
-		"prefix": "v",
-		"body": "\\verb\"$1\" $0",
-		"description": "Verbatim"
-	},
-	"verbatim-fancyvrb": {
-		"prefix": "V",
-		"body": "\\Verb\"$1\" $0",
-		"description": "Verbatim (fancyvrb)"
-	},
-	"underdot": {
-		"prefix": "ud",
-		"body": "\\underdot{$1} $0",
-		"description": "Underdot"
-	},
 	"italics": {
 		"prefix": "it",
 		"body": "\\textit{$1} $0",
@@ -43,5 +28,20 @@
 		"prefix": "sc",
 		"body": "\\textsc{$1} $0",
 		"description": "Small Caps"
+	},
+	"underdot": {
+		"prefix": "ud",
+		"body": "\\underdot{$1} $0",
+		"description": "Underdot"
+	},
+	"verbatim": {
+		"prefix": "v",
+		"body": "\\verb\"$1\" $0",
+		"description": "Verbatim"
+	},
+	"verbatim-fancyvrb": {
+		"prefix": "V",
+		"body": "\\Verb\"$1\" $0",
+		"description": "Verbatim (fancyvrb)"
 	}
 }

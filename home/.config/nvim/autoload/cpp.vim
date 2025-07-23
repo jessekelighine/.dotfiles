@@ -1,9 +1,9 @@
-" autoload/cpp.vim
+" ~/.config/nvim/autoload/cpp.vim
 
 function! cpp#Compile()
-	silent write
-	let l:cmd = 'gcc -lstdc++ -std=c++17 -o '
-				\ . (expand('%:r')) . '.o '
-				\ . (expand('%'))
-	execute '! ' . l:cmd
+	silent! write
+	let l:command = 'gcc -lstdc++ -std=c++17 -o '
+				\ .. expand("%:r") .. '.o '
+				\ .. expand("%")
+	execute '!' .. l:command
 endfunction

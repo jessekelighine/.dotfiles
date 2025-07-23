@@ -15,6 +15,7 @@ let s:colors = {
 let g:statusline_change = {
 			\ 'n':      '%7*',
 			\ "\<C-V>": '%6*',
+			\ 's':      '%5*',
 			\ 'v':      '%5*',
 			\ 'V':      '%4*',
 			\ 'i':      '%3*',
@@ -46,4 +47,4 @@ set statusline+=%{%g:statusline_change[mode()]%}\ [%M]\ %8*\ %F\ %y\ %9*
 set statusline+=%=%(%c%V\ %{%'%'.len(line('$')).'l'%}/%L\ %3p%%\ %8*\ [%{&fileencoding}]\ %)
 
 command! -nargs=0 StatuslineReload source $HOME/.config/nvim/after/plugin/statusline.vim
-nnoremap <silent> <CR> :StatuslineReload<CR>:nohlsearch<CR>
+nnoremap <silent> <CR> :StatuslineReload<CR>:nohlsearch<CR>:echo ""<CR>

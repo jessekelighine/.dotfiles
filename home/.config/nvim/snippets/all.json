@@ -1,45 +1,7 @@
 {
-
-	"brackets": {
-		"prefix": "(",
-		"body": "($1)$0",
-		"description": "Brackets"
-	},
-	"square-brackets": {
-		"prefix": "[",
-		"body": "[$1]$0",
-		"description": "Square Brackets"
-	},
-	"curly-brackets": {
-		"prefix": "{",
-		"body": "{$1}$0",
-		"description": "Curly Brackets"
-	},
-	"brackets": {
-		"prefix": ")",
-		"body": "($1)$0",
-		"description": "Brackets"
-	},
-	"square-brackets": {
-		"prefix": "]",
-		"body": "[$1]$0",
-		"description": "Square Brackets"
-	},
-	"curly-brackets": {
-		"prefix": "}",
-		"body": "{$1}$0",
-		"description": "Curly Brackets"
-	},
-
-	"single-quote": {
-		"prefix": "'",
-		"body": "'$1' $0",
-		"description": "Single Quotes"
-	},
-	"double-quote": {
-		"prefix": "\"",
-		"body": "\"$1\" $0",
-		"description": "Double Quotes"
+	"shruggie": {
+		"prefix": "shruggie",
+		"body": "¯\\_(ツ)_/¯",
+		"description": "Shruggie"
 	}
-
 }

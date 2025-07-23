@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/plugin/miramare.lua
+
 return {
 	"jessekelighine/miramare",
 	config = function()

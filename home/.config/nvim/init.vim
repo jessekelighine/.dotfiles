@@ -1,48 +1,46 @@
-" init.vim
+" ~/.config/nvim/init.vim
 
 filetype plugin on
 filetype indent plugin on
 syntax on
 language en_US.UTF-8
 
-" nnoremap jk <Esc>
-" nnoremap kj <Esc>
+" inoremap jk <Esc>
+" inoremap kj <Esc>
 " nnoremap <expr> n 'Nn'[v:searchforward]
 " nnoremap <expr> N 'nN'[v:searchforward]
+
+" nnoremap Y      y$
 nnoremap <Space> <Nop>
-xnoremap ''     "*y
-nnoremap ''     "*y
-onoremap ''     "*y
-nnoremap Y      y$
 nnoremap zS     zszH
 nnoremap <Up>   gk
 nnoremap <Down> gj
-nnoremap <C-j>  <C-W>j
-nnoremap <C-k>  <C-W>k
-nnoremap <C-h>  <C-W>h
-nnoremap <C-l>  <C-W>l
-inoremap <C-l>  <C-G>u<Esc>[s1z=`]a<C-G>u
-xnoremap >      >gv
-xnoremap <      <gv
-xnoremap //     y/\V<C-R>=escape(@",'/\')<CR><CR>
-xnoremap <silent> p pgvy
-xnoremap <silent> <leader>p p
-nnoremap <silent> <leader>l :set list!<CR>
-nnoremap <silent> <CR>      <Cmd>nohlsearch<CR>
-nnoremap <silent> <F12>     :tabnew ~/.config/nvim/init.vim<CR>
-nnoremap <C-N> :Texplore<CR>
+inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
+xnoremap // y/\V<C-R>=escape(@", '/\')<CR><CR>
+xnoremap >  >gv
+xnoremap <  <gv
+noremap  '' "*y
+xnoremap p pgvy
+xnoremap <leader>p p
+
+nnoremap <F12> :tabnew ~/.config/nvim/init.vim<CR>
+nnoremap <CR> :nohlsearch<CR>:echo ""<CR>
+" nnoremap <C-N> :Texplore<CR>
+" nnoremap - :Explore<CR>
+
 nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 nnoremap [T :tabfirst<CR>
 nnoremap ]T :tablast<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprevious<CR>
-nnoremap ]Q :clast<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap [b :bprev<CR>
-nnoremap ]b :bnext<CR>
-nnoremap [B :bfirst<CR>
-nnoremap ]B :blast<CR>
+" nnoremap ]q :cnext<CR>
+" nnoremap [q :cprevious<CR>
+" nnoremap ]Q :clast<CR>
+" nnoremap [Q :cfirst<CR>
+" nnoremap [b :bprev<CR>
+" nnoremap ]b :bnext<CR>
+" nnoremap [B :bfirst<CR>
+" nnoremap ]B :blast<CR>
+
 xnoremap a' 2i'
 xnoremap a" 2i"
 xnoremap a` 2i`
@@ -51,7 +49,11 @@ onoremap a" 2i"
 onoremap a` 2i`
 onoremap F  vF
 onoremap T  vT
-iabbrev shruggie ¯\_(ツ)_/¯
+
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e==\<S-O>":"(\r"<CR>
 inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e==\<S-O>":"[\r"<CR>
@@ -92,8 +94,6 @@ set autoindent breakindent
 set noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 set autochdir
 set history=1000
-set formatoptions+=jnmB " line joining for CJK characters
-" set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:~
 set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:·
 set matchpairs+=（:） mps+=「:」 mps+=『:』 mps+=《:》 mps+=【:】 mps+=〈:〉 mps+=“:”
 set splitbelow
@@ -105,20 +105,12 @@ set updatetime=300
 set shortmess-=S " Show number of matches.
 set notermguicolors
 let g:html_number_lines=1
-let g:netrw_banner=0
-let g:netrw_fastbrowse=0
-let g:netrw_liststyle=3
-let g:netrw_altv=1
 
 augroup CommentAndIndent
 	autocmd!
 	autocmd BufNewFile,BufRead * setl formatoptions-=o
 	autocmd BufNewFile,BufRead * setl formatoptions+=rn
-augroup END
-
-augroup Netrw
-	autocmd!
-	autocmd FileType netrw setl bufhidden=delete
+	autocmd BufNewFile,BufRead * setl formatoptions+=jnmB " line joining for CJK characters
 augroup END
 
 if has("nvim")

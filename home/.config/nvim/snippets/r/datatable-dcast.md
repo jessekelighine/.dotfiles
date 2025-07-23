@@ -1,9 +1,9 @@
 ---
 title: "data.table: dcast"
-date:  "2023-12-03"
+date:  "2025-06-27"
 ---
 
-*data.frame.long*
+Long data.table:
 
 | month | day | variable | value |
 |-------|-----|----------|-------|
@@ -20,9 +20,11 @@ date:  "2023-12-03"
 # dcast 1
 
 ```r
-dcast(data      = data.frame.long,
-      formula   = math + day ~ variable,
-      value.var = "value")
+dcast(
+  data      = data.frame.long,
+  formula   = math + day ~ variable,
+  value.var = "value"
+)
 ```
 
 | month | day | ozone | temp | wind |

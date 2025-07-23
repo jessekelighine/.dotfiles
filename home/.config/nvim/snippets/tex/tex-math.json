@@ -56,12 +56,12 @@
 	},
 	"sum": {
 		"prefix": "sum",
-		"body": "\\sum_{$1}^{$2}$0",
+		"body": "\\sum_{${1:i=1}}^{${2:n}} $0",
 		"description": "Summation"
 	},
 	"product": {
 		"prefix": "prod",
-		"body": "\\prod_{$1}^{$2}$0",
+		"body": "\\prod_{${1:i=1}}^{$2:n} $0",
 		"description": "Product"
 	}
 }

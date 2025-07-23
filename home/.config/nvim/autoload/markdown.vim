@@ -1,17 +1,23 @@
 " ~/.config/nvim/autoload/markdown.vim
 
 " Toggle/Set augroup MarkdownAutoLastMod
-function! markdown#AutoLastMod(set="", toggle=1) abort
-	let l:status = exists("#MarkdownAutoLastMod#BufWrite")
-	let l:switch_on =
-				\ a:set =~? "on"  ? 1 :
-				\ a:set =~? "off" ? 0 :
-				\ a:toggle ? !l:status : l:status
+function! <SID>LastMod() abort
+	try
+		undojoin | LastMod
+	catch
+		LastMod
+	endtry
+endfunction
+function! markdown#AutoLastMod(set = "") abort
+	let l:status = exists("#MarkdownAutoLastMod#BufWritePost")
+	let l:switch_on = a:set =~? "on" ? 1 : ( a:set =~? "off" ? 0 : !l:status )
 	augroup MarkdownAutoLastMod
 		autocmd!
-		silent execute l:switch_on ? "autocmd BufWrite *.qmd,*.md,*.markdown,*.Rmd,*.rmd silent! undojoin | LastMod" : ""
+		if l:switch_on
+			autocmd BufWritePost *.qmd,*.md,*.markdown,*.Rmd,*.rmd call <SID>LastMod()
+		endif
 	augroup END
-	echom " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
+	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
 endfunction
 
 " fill-in Author
@@ -60,7 +66,7 @@ function! markdown#FindSection() abort
 	let l:index = 0
 	let l:section_lines = []
 	let l:header_format = "%6s %6s  %s"
-	let l:header = printf(l:header_format, "Line", "Index", "Title")
+	let l:header = printf(l:header_format, "Line", "Index", "1   2   3   4   5")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
 	global/^#\+/
 				\ let l:temp = getline(".") |
@@ -73,5 +79,5 @@ function! markdown#FindSection() abort
 				\ call add(l:section_lines, line(".")) |
 				\ let l:index += 1
 	let l:index = input("--> Go to: ")
-	exe l:index =~ '^\d\+$' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
+	execute l:index =~ '^\d\+$' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
 endfunction

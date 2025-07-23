@@ -1,9 +1,9 @@
 ---
 title: "data.table: melt"
-date:  "2023-12-03"
+date:  "2025-06-27"
 ---
 
-*data.frame.wide*
+Wide data.table:
 
 | student | school | english | math  | physics |
 |---------|--------|---------|-------|---------|
@@ -15,10 +15,12 @@ date:  "2023-12-03"
 # melt 1
 
 ```r
-melt(data          = data.frame.wide,
-     id.vars       = c("student", "school"),
-     variable.name = "class",
-     value.name    = "grade")
+melt(
+  data          = data.frame.wide,
+  id.vars       = c("student", "school"),
+  variable.name = "class",
+  value.name    = "grade"
+)
 ```
 
 | student | school | class   | grade |
@@ -39,11 +41,13 @@ melt(data          = data.frame.wide,
 # melt 2
 
 ```r
-melt(data          = data.frame.wide,
-     id.vars       = "student",
-	 measure.vars  = c("english", "math"),
-     variable.name = "class",
-     value.name    = "grade")
+melt(
+  data          = data.frame.wide,
+  id.vars       = "student",
+  measure.vars  = c("english", "math"),
+  variable.name = "class",
+  value.name    = "grade"
+)
 ```
 
 | student | class   | grade |
@@ -64,10 +68,12 @@ melt(data          = data.frame.wide,
 # melt 3
 
 ```r
-melt(data          = data.frame.wide,
-     id.vars       = "student",
-     variable.name = "class",
-     value.name    = "grade")
+melt(
+  data          = data.frame.wide,
+  id.vars       = "student",
+  variable.name = "class",
+  value.name    = "grade"
+)
 ```
 
 | student | class   | grade |

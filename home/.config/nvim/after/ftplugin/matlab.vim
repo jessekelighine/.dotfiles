@@ -1,13 +1,13 @@
 " ~/.config/nvim/after/ftplugin/matlab.vim
+" ~/.config/nvim/after/syntax/matlab.vim
 " ~/.config/nvim/autoload/matlab.vim
-" ~/.config/nvim/snippets/matlab/
+" ~/.config/nvim/snippets/matlab
 
 set expandtab
-command! -buffer -nargs=0 LastMod :call my#LastMod('^\(%* Last Modified: *\)[^ ]*',min([10,line("$")]))
 
-" FUNCTION KEYS: compile.
-nnoremap <buffer> <F1> :tabnew ~/.config/nvim/after/ftplugin/matlab.vim<CR>
-nnoremap <buffer> <F2> :tabnew ~/.config/nvim/after/syntax/matlab.vim<CR>
+" LASTMOD:
+let b:lastmod_pattern = '^\(%* Last Modified: *\)' .. '[^ ]*' .. '\(.*\)$'
+command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 
 " SNIPPETS: shebang, template.
 inoremap <buffer> :sign<Tab> <Esc>:call snippets#Get('matlab','matlab_sign.m')<CR>

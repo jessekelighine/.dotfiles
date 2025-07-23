@@ -7,12 +7,12 @@ message () {
 	local green; green=$(tput bold && tput setaf 10)
 	local blue; blue=$(tput bold && tput setaf 12)
 	local norm; norm=$(tput sgr0)
-	local usage; usage="${green}usage:${norm}"
+	local usage; usage="${green}USAGE${norm}"
 	local command; command="${blue}$(basename "$0")${norm}"
-	local options; options="${green}options:${norm}"
+	local options; options="${green}OPTIONS${norm}"
 	cat << EOF
-${usage} ${command} [options]
-${options}
+${usage}: ${command} [options]
+${options}:
 	set      [VALUE]   set opacity value 
 	increase [VALUE]   increase opacity value
 	decrease [VALUE]   decrease opacity value

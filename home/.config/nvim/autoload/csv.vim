@@ -123,14 +123,14 @@ endfunction
 " Set `b:csv_total_column_number` to the total number of column numbers. Does
 " not retun anything.
 function! <SID>SetTotalColumnNumber()
-	let l:counting = execute('1,1s/' .. b:csv_delim .. '//gn')
-	let l:counting = <SID>StripSearch(l:counting)+1
-	let b:csv_total_column_number = l:counting
+	let l:count_output = execute('1,1s/' .. b:csv_delim .. '//gn')
+	let l:count = <SID>StripSearch(l:count_output) + 1
+	let b:csv_total_column_number = l:count
 	silent norm :noh
 endfunction
 
 " Returns information about the focused column.
-function! <SID>GetColumnInfo(number=b:csv_column,name=b:csv_column_name,delim=b:csv_delim)
+function! <SID>GetColumnInfo(number=b:csv_column, name=b:csv_column_name, delim=b:csv_delim)
 	return ' Column ' .. a:number ..
 				\ ' [' .. a:name .. ']' ..
 				\ ' of ' .. b:csv_total_column_number ..

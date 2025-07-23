@@ -2,36 +2,41 @@
 
 " Print the line number (sub)sections.
 function! tex#FindSection() abort
-	let  [ l:index, l:section_lines, l:pos ] = [ 0, [], getpos('.') ]
-	let  l:header_format = "%6s %6s  %s"
-	let  l:header = printf(l:header_format, "Line", "Index", "Title")
+	let l:index = 0
+	let l:section_lines = []
+	let l:pos = getpos('.')
+	let l:header_format = "%6s %6s  %s"
+	let l:header = printf(l:header_format, "Line", "Index", "1  2  3  4  5  6")
 	echo l:header .. "\n" .. repeat("=", len(l:header))
 	global/^\\\(\(sub\)\{0,2}section\|\(sub\)\?paragraph\|chapter\|appendix\)/
 				\ if match(getline("."), '^\\appendix') >= 0 |
 				\     let l:display_name = "[Appendix]" |
 				\ else |
 				\     let @9 = @" |
-				\     exe "norm! yi{" |
+				\     execute "norm! yi{" |
 				\     let l:section_name = @" |
 				\     let @" = @9 |
-				\     let l:display_name = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 20) .. l:section_name
-				\                        : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 16) .. l:section_name
-				\                        : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 12) .. l:section_name
-				\                        : match(getline("."), '^\\subsection')    >= 0 ? repeat(' ',  8) .. l:section_name
-				\                        : match(getline("."), '^\\section')       >= 0 ? repeat(' ',  4) .. l:section_name
-				\                        : match(getline("."), '^\\chapter')       >= 0 ? repeat(' ',  0) .. l:section_name : "ERROR" |
+				\     let l:display_name = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 5 * 3) .. l:section_name
+				\                        : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 4 * 3) .. l:section_name
+				\                        : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 3 * 3) .. l:section_name
+				\                        : match(getline("."), '^\\subsection')    >= 0 ? repeat(' ', 2 * 3) .. l:section_name
+				\                        : match(getline("."), '^\\section')       >= 0 ? repeat(' ', 1 * 3) .. l:section_name
+				\                        : match(getline("."), '^\\chapter')       >= 0 ? repeat(' ', 0 * 3) .. l:section_name
+				\                        : "ERROR" |
 				\ endif |
 				\ echo printf(l:header_format, line("."), l:index, l:display_name) |
 				\ call add(l:section_lines, line(".")) |
 				\ let l:index += 1
 	let l:index = input("--> Go to: ")
-	exe l:index =~ '\d\+' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
+	let l:index_is_valid = l:index =~ '\d\+'
+	let l:goto_section = "norm!" .. l:section_lines[l:index] .. "G0"
+	execute l:index_is_valid ? l:goto_section : "call setpos('.', l:pos)"
 endfunction
 
 " creates quote object in latex.
 function! tex#Quotes(code, double) abort
-	let l:begin = repeat("`", ( a:double ? 2 : 1 ))
-	let l:end   = repeat("'", ( a:double ? 2 : 1 ))
+	let l:begin = repeat("`", (a:double ? 2 : 1))
+	let l:end   = repeat("'", (a:double ? 2 : 1))
 	call search(l:begin, "bcW") | exec "norm " .. repeat('l', ( a:double ? 2 : 1 ))
 	if a:code=="i"                                 | call search(l:end,  "sW") | exec "norm hv`'" | endif
 	if a:code=="a" &&  a:double | exec "norm 2h"   | call search(l:end, "seW") | exec "norm v`'"  | endif

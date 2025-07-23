@@ -1,5 +1,8 @@
+-- ~/.config/nvim/lua/plugin/vim-surround.lua
+
 return	{
 	"tpope/vim-surround",
+	dependencies = { "tpope/vim-repeat" },
 	config = function()
 		vim.api.nvim_create_autocmd(
 			{ "VimEnter", "BufNewFile", "BufRead" },

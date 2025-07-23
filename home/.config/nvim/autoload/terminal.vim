@@ -2,12 +2,12 @@
 
 " open a temporary terminal to run command.
 function! terminal#Open(cmd, height=10)
-	exec a:height.'new'
+	execute a:height .. 'new'
 	call termopen(a:cmd, { 'on_exit': 'terminal#Close' })
-	let  g:terminal_temp_terminal_bn = bufnr('%')
-	exec 'normal G'
-	exec 'wincmd p'
-	nnoremap <buffer><silent> <Space> :exec "bdelete!" .. g:terminal_temp_terminal_bn<CR>
+	let g:terminal_temp_terminal_bn = bufnr('%')
+	execute 'normal G'
+	execute 'wincmd p'
+	nnoremap <Space> <Cmd>exec "bdelete!" .. g:terminal_temp_terminal_bn<CR>
 endfunction
 
 " (on) exit the temporary terminal.

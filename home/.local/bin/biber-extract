@@ -17,7 +17,6 @@ ${description}:
 	  then pass the '.bcf' file as the first argument to ${command}. 
 	- When using this command, make sure the original bib-file is
 	  readable in the same directory.
-	- ${command} depends on ${formatter} to format [output.bib].
 EOF
 }
 

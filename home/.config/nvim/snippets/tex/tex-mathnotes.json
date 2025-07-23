@@ -2,16 +2,16 @@
 	"environment-corollary": {
 		"prefix": "cor",
 		"body": [
-			"\\begin{corollary}",
+			"\\begin{corollary}\\label{cor-$1}",
 			"\t$0",
 			"\\end{corollary}"
 		],
 		"description": "Corollary"
 	},
 	"environment-definition": {
-		"prefix": "dfn",
+		"prefix": "def",
 		"body": [
-			"\\begin{definition}[$1]",
+			"\\begin{definition}[$1]\\label{def-$2}",
 			"\t$0",
 			"\\end{definition}"
 		],
@@ -29,7 +29,7 @@
 	"environment-lemma": {
 		"prefix": "lem",
 		"body": [
-			"\\begin{lemma}",
+			"\\begin{lemma}\\label{lem-$1}",
 			"\t$0",
 			"\\end{lemma}"
 		],
@@ -47,7 +47,7 @@
 	"environment-proposition": {
 		"prefix": "prop",
 		"body": [
-			"\\begin{proposition}",
+			"\\begin{proposition}\\label{prop-$1}",
 			"\t$0",
 			"\\end{proposition}"
 		],
@@ -65,7 +65,7 @@
 	"environment-theorem": {
 		"prefix": "thm",
 		"body": [
-			"\\begin{theorem}${1}",
+			"\\begin{theorem}[$1]\\label{thm-$2}",
 			"\t$0",
 			"\\end{theorem}"
 		],
@@ -74,7 +74,7 @@
 	"environment-assumption": {
 		"prefix": "ass",
 		"body": [
-			"\\begin{assumption}[$1]",
+			"\\begin{assumption}[$1]\\label{ass-$2}",
 			"\t$0",
 			"\\end{assumption}"
 		],
@@ -92,7 +92,7 @@
 	"environment-axiom": {
 		"prefix": "axm",
 		"body": [
-			"\\begin{axiom}[$1]",
+			"\\begin{axiom}[$1]\\label{axm-$2}",
 			"\t$0",
 			"\\end{axiom}"
 		],

@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/plugin/undotree.lua
+
 return {
 	"mbbill/undotree",
 	config = function()

@@ -9,11 +9,6 @@
 		"body": "\\VerbatimInput[frame=single,numbers=left]{$1}",
 		"description": "Verbatim Input"
 	},
-	"tikz-intersection": {
-		"prefix": "int",
-		"body": "\\path[name intersections={of= $1 and $2}]; % (intersection-1)",
-		"description": "TikZ Intersection"
-	},
 
 	"figure": {
 		"prefix": "fig",
@@ -30,9 +25,9 @@
 			"\\begin{center}",
 			"\t\\begin{tabular}{${1:cccc}}",
 			"\t\t\\toprule",
-			"\t\t${2:[HEADER]}",
+			"\t\t${2:HEADER}",
 			"\t\t\\midrule",
-			"\t\t${3:[CONTENTS]}",
+			"\t\t${3:CONTENTS}",
 			"\t\t\\bottomrule",
 			"\t\\end{tabular}",
 			"\\end{center}"

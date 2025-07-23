@@ -1,0 +1,26 @@
+.CFUserTextEncoding
+.Xauthority
+.hushlogin
+.DS_Store
+.fdignore
+
+.Trash
+.cache
+.gnupg
+.ipython
+.keras
+.npm
+.pyenv
+.ssh
+.stata16
+.terminfo
+.vim
+.virtualenvs
+.visidata
+Google Drive
+Library
+Movies
+Music
+Public
+
+undodir

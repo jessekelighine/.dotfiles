@@ -1,5 +1,7 @@
 " ~/.config/nvim/autoload/julia.vim
 
 function! julia#Compile()
-	! /Applications/Julia-1.7.app/Contents/Resources/julia/bin/julia %
+	let l:command = 'julia ' .. expand("%")
+	silent! write
+	execute "!" .. l:command
 endfunction

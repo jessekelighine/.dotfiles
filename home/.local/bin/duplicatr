@@ -1,18 +1,13 @@
 #!/usr/bin/env Rscript
 
-###############################################################################
-# -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen (jessekelighine.com)                                  #
-# Description: Find Duplicated Files in a Directory.                          #
-#                                                                             #
-# Last Modified: 2024-04-03                                                   #
-###############################################################################
+#' @encoding UTF-8
+#' @description Find Duplicated Files in a Directory.
+#' @author Jesse Chieh Chen \url{https://jessekelighine.com}
+#' @note Date Created: 2024-04-03
+
 library(conflicted)
 library(dplyr)
 library(stringr)
-###############################################################################
-
-dirname <- commandArgs(trailingOnly = TRUE)
 
 ### Checks ####################################################################
 
@@ -26,6 +21,8 @@ help <- function(message = NULL) {
     message()
   quit()
 }
+
+dirname <- commandArgs(trailingOnly = TRUE)
 
 if (length(dirname) == 0) help()
 if (!dir.exists(dirname)) paste(dirname, "not readable") |> help()

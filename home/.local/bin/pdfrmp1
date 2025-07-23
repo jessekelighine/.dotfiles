@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
 [[ $# -lt 1 ]] && {
+	usage="$(tput bold)USAGE$(tput sgr0)"
+	description="$(tput bold)DESCRIPTION$(tput sgr0)"
+	command="$(tput bold)$(basename "$0")$(tput sgr0)"
 	cat << EOF >&2
-usage: $(basename "$0") [file.pdf]
-description: remove first page of pdf.
+$usage: $command [file.pdf]
+$description: remove first page of pdf.
 EOF
 	exit 1
 }

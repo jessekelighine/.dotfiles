@@ -1,12 +1,11 @@
 " ~/.config/nvim/after/ftplugin/postscr.vim
+" ~/.config/nvim/after/syntax/postscr.vim
 
 setlocal commentstring=%\ %s
 let g:surround_103="gsave\rgrestore"
 let g:surround_98 ="begin\rend"
 
 " UTILITIES: often used utilities.
-nnoremap <buffer> <F1>      :tabnew ~/.config/nvim/after/ftplugin/postscr.vim<CR>
-nnoremap <buffer> <F2>      :tabnew ~/.config/nvim/after/syntax/postscr.vim<CR>
 nnoremap <buffer> <F5>      :call postscr#Convert()<CR>
 nnoremap <buffer> <leader>p :!open %:r.pdf<CR><CR>
 

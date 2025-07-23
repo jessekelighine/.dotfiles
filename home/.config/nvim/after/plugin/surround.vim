@@ -1,20 +1,4 @@
-" ~/.config/nvim/plugin/surround.vim
+" ~/.config/nvim/after/plugin/surround.vim
+" ~/.config/nvim/autoload/surround.vim
 
-" xnoremap Q` :call surround#Surround("`" , "`")<CR>
-" xnoremap Q' :call surround#Surround("'" , "'")<CR>
-" xnoremap Q" :call surround#Surround('"' , '"')<CR>
-" xnoremap Q( :call surround#Surround('( ',' )')<CR>
-" xnoremap Q[ :call surround#Surround('[ ',' ]')<CR>
-" xnoremap Q{ :call surround#Surround('{ ',' }')<CR>
-" xnoremap Q) :call surround#Surround('(' , ')')<CR>
-" xnoremap Q] :call surround#Surround('[' , ']')<CR>
-" xnoremap Q} :call surround#Surround('{' , '}')<CR>
-" 
-" onoremap Q( :call surround#DelSurround('(')<CR>
-" onoremap Q[ :call surround#DelSurround('[')<CR>
-" onoremap Q{ :call surround#DelSurround('{')<CR>
-" onoremap Q) :call surround#DelSurround('(')<CR>
-" onoremap Q] :call surround#DelSurround('[')<CR>
-" onoremap Q} :call surround#DelSurround('{')<CR>
-" onoremap Q' :call surround#DelSurround("'")<CR>
-" onoremap Q" :call surround#DelSurround('"')<CR>
+nnoremap <silent> dm <Cmd>call surround#Delete()<CR>

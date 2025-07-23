@@ -7,10 +7,10 @@ format:
   html:
     css: style.css
     toc: true
-    toc-depth: 10
-    toc-expand: 10
-    fig-cap-location: bottom
-    reference-location: margin
-  pdf:
-    include-in-header: preamble.tex
+  #   toc-depth: 10
+  #   toc-expand: 10
+  #   fig-cap-location: bottom
+  #   reference-location: margin
+  # pdf:
+  #   include-in-header: preamble.tex
 ---

@@ -1,4 +1,5 @@
 " ~/.config/nvim/autoload/funcargs.vim
+" ~/.config/nvim/after/plugin/funcargs.vim
 
 " Delete surrounding function calls: 'print(...)' --> '...'. A function assumes
 " the form "<HEAD><BODY>\{-}<BRACKETS_OPEN>...<BRACKETS_CLOSE>".
@@ -15,7 +16,7 @@ function! funcargs#DeleteFunction(head='[a-zA-Z]', body='[a-zA-Z0-9]', brackets=
 		break
 	endfor
 	call search(a:head .. a:body .. '\{-}' .. a:brackets[0], 'cb')
-	exec 'norm dt' .. a:brackets[0]
+	exec 'norm! dt' .. a:brackets[0]
 	call surround#Delete()
 endfunction
 

@@ -1,89 +1,75 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# up.sh: Quickly traverse up the current working path.
-# Author: Shannon Moeller <me@shannonmoeller.com>
-# Source to use: [ -f /path/to/up.sh ] && . /path/to/up.sh
+###############################################################################
+# -*- encoding: UTF-8 -*-                                                     #
+# Description: Quickly traverse up the current working path.                  #
+# Original Author: Shannon Moeller <me@shannonmoeller.com>                    #
+# Modified: Jesse Chieh Chen <https://jessekelighine.com>                     #
+#                                                                             #
+# Last Modified: 2025-07-16                                                   #
+###############################################################################
 
-__updir() {
-	if [[ "$1" == "/" || -z "$1" || -z "$2" ]]; then
+__updir () {
+	[[ "$1" == "/" || -z "$1" || -z "$2" ]] && return
+
+	local parent_dir_full; parent_dir_full="$(dirname "$1")"
+	local parent_dir_base; parent_dir_base="$(basename "$parent_dir_full")"
+	local pattern; pattern="$(basename "$2")"
+
+	[[ -z "$parent_dir_base" || -z "$pattern" ]] && return
+
+	[[ "$parent_dir_base" == "$pattern"* ]] && {
+		echo "$parent_dir_full"
 		return
-	fi
+	}
 
-	local p="$(dirname "$1")"
-	local a="$(basename "$p")"
-	local b="$(basename "$2")"
-
-	if [[ -z "$a" || -z "$b" ]]; then
-		return
-	fi
-
-	if [[ "$a" == "$b"* ]]; then
-		echo "$p"
-		return
-	fi
-
-	__updir "$p" "$2"
+	__updir "$parent_dir_full" "$2"
 }
 
-__upnum() {
-	if [[ -z "$1" || -z "$2" || ! "$2" =~ ^[0-9]+$ ]]; then
-		return
-	fi
+__upnum () {
+	[[ -z "$1" || -z "$2" || ! "$2" =~ ^[0-9]+$ ]] && return
 
-	local p="$1"
-	local i="$2"
+	local parent_dir; parent_dir="$1"
+	local number; number="$2"
 
-	while (( i-- )); do
-		p="$(dirname "$p")"
+	while (( number-- ))
+	do
+		parent_dir="$(dirname "$parent_dir")"
 	done
 
-	echo "$p"
+	echo "$parent_dir"
 }
 
-_up() {
-	local p="$(dirname $PWD)"
-	local w="${COMP_WORDS[COMP_CWORD]}"
+up () {
+	# GO UP ONE LEVEL IF NO ARGUMENTS:
+	(( ! $# )) && {
+		cd .. && return || return
+	}
 
-	COMPREPLY=( $(IFS=';' compgen -S/ -W "${p//\//;}" -- "$w") )
+	local updir
+
+	# GO UP TO MATCHED DIRECTORY:
+	updir="$(__updir "$PWD" "$1")"
+	[[ -d "$updir" ]] && {
+		cd "$updir" && return || return
+	}
+
+	# GO UP NUMBER DIRECTORIES:
+	updir="$(__upnum "$PWD" "$1")"
+	[[ -d "$updir" ]] && {
+		cd "$updir" && return || return
+	}
+
+	# USAGE:
+	local command; command="$(tput bold)up$(tput sgr0)"
+	local usage; usage="$(tput bold)USAGE$(tput sgr0)"
+	local description; description="$(tput bold)DESCRIPTION$(tput sgr0)"
+	cat <<EOF
+$usage: $command [directory|number]
+$description:
+	Change directory to a parent directory depending on the argument: 
+	1. go to the first parent directory whose name starts with [directory];
+	2. go up [number] directories;
+	3. go up one directory if no argument is provided.
+EOF
 }
-
-up() {
-	# up one
-	if (( ! $# )); then
-		cd ..
-		return
-	fi
-
-	# up dir
-	local d="$(__updir "$PWD" "$1")"
-
-	if [[ -d "$d" ]]; then
-		cd "$d"
-		return
-	fi
-
-	# up num
-	local n="$(__upnum "$PWD" "$1")"
-
-	if [[ -d "$n" ]]; then
-		cd "$n"
-		return
-	fi
-
-	# fallback
-	if [[ $1 == - || -d $1 ]]; then
-		cd $1
-		return
-	fi
-
-	# usage
-	echo -e "usage: up [dir|num|-]\npwd: $PWD"
-}
-
-# zsh compatibility
-# if [[ -n ${ZSH_VERSION-} ]]; then
-# 	autoload -U +X bashcompinit && bashcompinit
-# fi
-
-# tab-completion
-# complete -o nospace -F _up up

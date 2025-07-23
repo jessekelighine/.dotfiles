@@ -1,9 +1,12 @@
 {
-
 	"function": {
 		"prefix": "fun",
-		"body": "$1 <- function($2) {\n\t$0\n}",
+		"body": "$1 <- function($2) {\n\t$3\n}",
 		"description": "Function"
+	},
+	"section-block": {
+		"prefix": "bl",
+		"body": "$0###############################################################################",
+		"description": "Section Block"
 	}
-
 }

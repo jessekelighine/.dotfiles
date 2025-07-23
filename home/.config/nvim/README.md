@@ -1,7 +1,7 @@
 ---
 title:  "Nvim"
 author: "jessekelighine.com"
-date:   "2023-03-29"
+date:   "2025-06-25"
 ---
 
 # Modifications

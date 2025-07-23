@@ -1,37 +1,44 @@
 #!/usr/bin/env Rscript
 
-###############################################################################
-# -*- encoding: UTF-8 -*-                                                     #
-# Description: Convert Excel to TSV                                           #
-# Author: Jesse C. Chen (jessekelighine.com)                                  #
-#                                                                             #
-# Last Modified: 2024-12-17                                                   #
-###############################################################################
+#' @encoding UTF-8
+#' @description Convert Excel to CSV/TSV
+#' @author Jesse C. Chen (jessekelighine.com)
+#' @note Date Created: 2025-07-15
+
 library(readxl)
 library(readr)
 library(stringr)
-###############################################################################
 
-help <- function(message = NULL) {
-  if (!is.null(message)) cat("ERROR:", message, fill = TRUE)
-  cat("usage: xlsx2tsv [filename]", fill = TRUE)
+help <- function(...) {
+  if (...length() > 0) cat("ERROR:", ..., fill = TRUE)
+  cat("USAGE: xlsx2csv [filename]", fill = TRUE)
   quit()
 }
 
 filename <- commandArgs(trailingOnly = TRUE)
 
-newname <- str_replace(
+newname <- stringr::str_replace(
   string = filename,
   pattern = "\\.[a-z]+$",
-  replacement = ".tsv"
+  replacement = ".csv"
 )
 
-if (length(filename) == 0) help()
+if (length(filename) == 0) {
+  help()
+}
 
-if (length(filename) > 1) help("too many arguments.")
+if (length(filename) > 1) {
+  help("too many arguments.")
+}
 
-if (!file.exists(filename)) help("file", filename, "not readable.")
+if (!file.exists(filename)) {
+  help("file", paste0("\"", filename, "\""), "not readable, aborting...")
+}
 
-if (file.exists(newname)) help("file", newname, "already exists, aborting...")
+if (file.exists(newname)) {
+  help("file", paste0("\"", newname, "\""), "already exists, aborting...")
+}
 
-read_excel(filename) |> write_tsv(file = newname)
+filename |>
+  readxl::read_excel() |>
+  readr::write_tsv(file = newname)
