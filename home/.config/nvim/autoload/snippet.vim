@@ -1,11 +1,11 @@
-" ~/.config/nvim/autoload/snippets.vim
+" ~/.config/nvim/autoload/snippet.vim
 
-let s:snippets_path = expand("~/.config/nvim/snippets")
+let s:snippet_path = expand("~/.config/nvim/snippets")
 
-function! snippets#Get(type, name, args={}) abort
+function! snippet#Get(type, name, args={}) abort
 	let l:begin_line = line(".")
 	let l:total_line = line("$")
-	let l:snippet_file = join([s:snippets_path, a:type, a:name], "/")
+	let l:snippet_file = join([s:snippet_path, a:type, a:name], "/")
 	execute "read " .. l:snippet_file
 	execute l:begin_line .. "d"
 	let l:do = {
@@ -23,7 +23,7 @@ function! snippets#Get(type, name, args={}) abort
 	endif
 endfunction
 
-function! snippets#GetAuthor() abort
-	let l:signature_path = join([s:snippets_path, "website"], "/")
+function! snippet#GetAuthor() abort
+	let l:signature_path = join([s:snippet_path, "website"], "/")
 	return readfile(l:signature_path)[0]
 endfunction

@@ -1,4 +1,5 @@
 " ~/.config/nvim/autoload/surround.vim
+" ~/.config/nvim/after/plugin/surround.vim
 
 let s:matchpairs = split(substitute(&matchpairs, ',\|:', "\<Space>", 'g'))
 let s:matchpairs_dict = {

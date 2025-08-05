@@ -1,12 +1,13 @@
 " ~/.config/nvim/after/ftplugin/quarto.vim
 " ~/.config/nvim/after/ftplugin/quarto.lua
+" ~/.config/nvim/lua/cmp/quarto.lua
 " ~/.config/nvim/after/ftplugin/r.vim
 " ~/.config/nvim/after/plugin/treesitter.lua
 " ~/.config/nvim/autoload/quarto_complete.vim
 " ~/.config/nvim/autoload/r.vim
 " ~/.config/nvim/autoload/markdown.vim
-" ~/.config/nvim/snippets/quarto
-" ~/.config/nvim/snippets/r
+" ~/.config/nvim/snippets/quarto/
+" ~/.config/nvim/snippets/r/
 
 " SETTINGS:
 setlocal commentstring=<!--\ %s\ -->
@@ -29,6 +30,8 @@ command! -buffer -range   FormatTable '<,'>EasyAlign * /|/
 command! -buffer -nargs=0 FillAuthor  call markdown#FillAuthor()
 command! -buffer -nargs=0 FindSection call markdown#FindSection()
 command! -buffer -nargs=0 -bang View  call markdown#View(<bang>0)
+command! -buffer -range   FormatR '<,'>! air-pipe
+command! -buffer -range   RFormat '<,'>! air-pipe
 
 " LASTMOD:
 let b:lastmod_pattern = '^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)'
@@ -58,10 +61,10 @@ command! -buffer -nargs=0 GenerateLabs call quarto_complete#GenerateLabs()
 command! -buffer -nargs=0 GenerateBibs call quarto_complete#GenerateBibs()
 
 " R MACROS:
-nnoremap <buffer><silent> <leader>;  :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
+nnoremap <buffer><silent> <leader>;  <Cmd>call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
+nnoremap <buffer><silent> <leader>cc <Cmd>RStop<CR>
 inoremap <buffer><silent> %<Tab>     %%<Left>
 inoremap <buffer><silent> ^<Tab>     ^()<Left>
-nnoremap <buffer><silent> <leader>cc :RStop<CR>
 
 " R PIPE:
 inoremap <buffer><silent> <S-M><Tab> <Esc>:call r#PipeExpand('Tab')<CR>
@@ -69,28 +72,6 @@ inoremap <buffer><silent> <S-M><CR>  <Esc>:call r#PipeExpand('CR')<CR>
 command! -buffer -nargs=0 PipeSwitch :let b:r_pipe = b:r_pipe=='%>%' ? '|>' : '%>%' | echom ' Pipe: ' .. b:r_pipe
 command! -buffer -nargs=0 PipeAutoDetect call r#PipeAutoDetect() | echom ' Pipe: ' .. b:r_pipe
 silent PipeAutoDetect
-
-" SNIPPETS:
-inoremap <buffer> :qui<Tab>    <Esc>:call snippets#Get('quarto', 'skeleton.qmd', { 'indent': 0 })<CR>:LastMod<CR>:FillAuthor<CR>
-inoremap <buffer> :future<Tab> <Esc>:call snippets#Get("r", "future.R")<CR>
-inoremap <buffer> :bl<Tab>     <Esc>:call snippets#Get("r", "block.R")<CR>
-inoremap <buffer> :lib<Tab>    <Esc>:call snippets#Get("r", "library.R")<CR>
-inoremap <buffer> :ggs<Tab>    <Esc>:call snippets#Get("r", "ggsave.R")<CR>
-inoremap <buffer> :ggch<Tab>   <Esc>:call snippets#Get("r", "ggplotChinese.R")<CR>
-inoremap <buffer> :se<Tab>     <Esc>:call snippets#Get("r", "robust.R")<CR>
-inoremap <buffer> :log<Tab>    <Esc>:call snippets#Get("r", "logfile.R")<CR>
-inoremap <buffer> :cl<Tab>     <Esc>:call snippets#Get("r", "consolelog.R")<CR>
-inoremap <buffer> :mode<Tab>   <Esc>:call snippets#Get("r", "modus.R")<CR>
-inoremap <buffer> :rm<Tab>     <Esc>:call snippets#Get("r", "rm.R")<CR>
-inoremap <buffer> :timer<Tab>  <Esc>:call snippets#Get("r", "timer.R")<CR>
-inoremap <buffer> :curry<Tab>  <Esc>:call snippets#Get("r", "curry.R")<CR>
-
-" MARKDOWN SYNTAX:
-inoremap <silent><buffer> :c<Tab> <C-G>u<!--  --><Esc>hhhi
-inoremap <buffer><silent> ::<Tab> <C-G>u:::<Space>{}<CR>:::<Esc><Up>$i
-inoremap <silent><buffer> ``<Tab> <C-G>u```{r}<CR>```<Esc>O
-inoremap <silent><buffer> *<Tab>  <C-G>u**<Left>
-inoremap <silent><buffer> **<Tab> <C-G>u****<Left><Left>
 
 " MARKDOWN TEXT OBJECTS:
 xnoremap <silent><buffer> a* <Esc>:norm! F*vf*<CR>
@@ -125,15 +106,3 @@ inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
 inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
 inoremap <buffer> $$<Tab>          <C-G>u$$<CR>$$<Esc>O
 inoremap <buffer> $$<CR>           <C-G>u$$<CR>$$<Esc>O
-
-" MATH TEXT:
-inoremap <buffer> \t<Tab>  <C-G>u\text{}<Left>
-inoremap <buffer> \bs<Tab> <C-G>u\boldsymbol{}<Left>
-inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
-inoremap <buffer> \mb<Tab> <C-G>u\mathbold{}<Left>
-inoremap <buffer> \mc<Tab> <C-G>u\mathcal{}<Left>
-inoremap <buffer> \ms<Tab> <C-G>u\mathscr{}<Left>
-inoremap <buffer> \mf<Tab> <C-G>u\mathsf{}<Left>
-inoremap <buffer> \mt<Tab> <C-G>u\mathtt{}<Left>
-inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
-inoremap <buffer> \mk<Tab> <C-G>u\mathfrak{}<Left>

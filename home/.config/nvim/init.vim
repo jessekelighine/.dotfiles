@@ -5,28 +5,26 @@ filetype indent plugin on
 syntax on
 language en_US.UTF-8
 
-" inoremap jk <Esc>
-" inoremap kj <Esc>
+" inoremap jk     <Esc>
+" inoremap kj     <Esc>
+" nnoremap <Up>   gk
+" nnoremap <Down> gj
+xnoremap >      >gv
+xnoremap <      <gv
 " nnoremap <expr> n 'Nn'[v:searchforward]
 " nnoremap <expr> N 'nN'[v:searchforward]
-
 " nnoremap Y      y$
-nnoremap <Space> <Nop>
-nnoremap zS     zszH
-nnoremap <Up>   gk
-nnoremap <Down> gj
-inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
-xnoremap // y/\V<C-R>=escape(@", '/\')<CR><CR>
-xnoremap >  >gv
-xnoremap <  <gv
-noremap  '' "*y
-xnoremap p pgvy
-xnoremap <leader>p p
+" xnoremap //     y/\V<C-R>=escape(@", '/\')<CR><CR>
+" nnoremap <C-N>  :Texplore<CR>
+" nnoremap -      :Explore<CR>
+" nnoremap <CR>   :nohlsearch<CR>:echo ""<CR>
 
+nnoremap <Space> <Nop>
+nnoremap zS zszH
+inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
+xnoremap <leader>p pgvy
 nnoremap <F12> :tabnew ~/.config/nvim/init.vim<CR>
-nnoremap <CR> :nohlsearch<CR>:echo ""<CR>
-" nnoremap <C-N> :Texplore<CR>
-" nnoremap - :Explore<CR>
+noremap  '' "*y
 
 nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
@@ -55,20 +53,20 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
-inoremap <silent> (<CR> <C-R>=getline(".")[col(".")-1]==""?"(\r)\e==\<S-O>":"(\r"<CR>
-inoremap <silent> [<CR> <C-R>=getline(".")[col(".")-1]==""?"[\r]\e==\<S-O>":"[\r"<CR>
-inoremap <silent> {<CR> <C-R>=getline(".")[col(".")-1]==""?"{\r}\e==\<S-O>":"{\r"<CR>
-inoremap (<Tab> ()<Left>
-inoremap [<Tab> []<Left>
-inoremap {<Tab> {}<Left>
-inoremap <<Tab> <><Left>
-inoremap )<Tab> ()<Left>
-inoremap ]<Tab> []<Left>
-inoremap }<Tab> {}<Left>
-inoremap ><Tab> <><Left>
-inoremap '<Tab> ''<Left>
-inoremap `<Tab> ``<Left>
-inoremap "<Tab> ""<Left>
+inoremap <silent> (<CR>  <C-R>=getline(".")[col(".")-1]==""?"(\r)\e==\<S-O>":"(\r"<CR>
+inoremap <silent> [<CR>  <C-R>=getline(".")[col(".")-1]==""?"[\r]\e==\<S-O>":"[\r"<CR>
+inoremap <silent> {<CR>  <C-R>=getline(".")[col(".")-1]==""?"{\r}\e==\<S-O>":"{\r"<CR>
+inoremap <silent> (<Tab> ()<Left>
+inoremap <silent> [<Tab> []<Left>
+inoremap <silent> {<Tab> {}<Left>
+inoremap <silent> <<Tab> <><Left>
+inoremap <silent> )<Tab> ()<Left>
+inoremap <silent> ]<Tab> []<Left>
+inoremap <silent> }<Tab> {}<Left>
+inoremap <silent> ><Tab> <><Left>
+inoremap <silent> '<Tab> ''<Left>
+inoremap <silent> `<Tab> ``<Left>
+inoremap <silent> "<Tab> ""<Left>
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -95,7 +93,6 @@ set noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 set autochdir
 set history=1000
 set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:·
-set matchpairs+=（:） mps+=「:」 mps+=『:』 mps+=《:》 mps+=【:】 mps+=〈:〉 mps+=“:”
 set splitbelow
 set nrformats+=alpha
 set nrformats-=bin,hex

@@ -4,14 +4,15 @@ return {
 	"stevearc/oil.nvim",
 	lazy = false,
 	config = function()
-		require("oil").setup {
-			view_options = { show_hidden = true },
+		local oil = require	"oil"
+		oil.setup {
 			default_file_explorer = true,
+			view_options = { show_hidden = true },
 			keymaps = {
 				["<C-t>"] = false
 			}
 		}
-		local oil = ":Oil<CR>"
+		local explore = ":Oil<CR>"
 		local newtab = ":" .. table.concat({
 			"tabnew",
 			"setlocal buftype=nofile",
@@ -19,7 +20,7 @@ return {
 			"setlocal noswapfile",
 			"setlocal nobuflisted"
 		}, " | ") .. "<CR>"
-		vim.keymap.set("n", "-", oil, { silent = true })
-		vim.keymap.set("n", "<C-N>", newtab .. oil, { silent = true })
+		vim.keymap.set("n", "-", explore, { silent = true })
+		vim.keymap.set("n", "<C-N>", newtab .. explore, { silent = true })
 	end
 }

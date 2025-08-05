@@ -1,5 +1,6 @@
 " ~/.config/nvim/after/ftplugin/markdown.vim
 " ~/.config/nvim/after/ftplugin/markdown.lua
+" ~/.config/nvim/lua/cmp/markdown.lua
 " ~/.config/nvim/snippets/markdown/
 " ~/.config/nvim/autoload/markdown.vim
 " ~/.config/nvim/after/indent/markdown.vim
@@ -58,9 +59,6 @@ nnoremap <silent><buffer> <leader>rf      <Cmd>Compile<CR>
 nnoremap <silent><buffer> <leader><Space> <Cmd>Compile<CR>
 nnoremap <silent><buffer> <leader>c       :call markdown#ClearCodeSyntax()<CR>
 
-" SNIPPETS:
-inoremap <buffer> :qui<Tab> <esc>:call snippets#Get('markdown','skeleton.md')<CR>:FillAuthor<CR>
-
 " LATEX TEXT OBJECTS:
 xnoremap <silent><buffer> i<bar> <Esc>:norm! F<bar>lvt<bar><CR>
 xnoremap <silent><buffer> a<bar> <Esc>:norm! F<bar>vf<bar><CR>
@@ -85,15 +83,3 @@ inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
 inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
 inoremap <buffer> $$<Tab>          <C-G>u$$<CR>$$<Esc>O
 inoremap <buffer> $$<CR>           <C-G>u$$<CR>$$<Esc>O
-
-" MATH TEXT:
-inoremap <buffer> \t<Tab>  <C-G>u\text{}<Left>
-inoremap <buffer> \bs<Tab> <C-G>u\boldsymbol{}<Left>
-inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
-inoremap <buffer> \mb<Tab> <C-G>u\mathbold{}<Left>
-inoremap <buffer> \mc<Tab> <C-G>u\mathcal{}<Left>
-inoremap <buffer> \ms<Tab> <C-G>u\mathscr{}<Left>
-inoremap <buffer> \mf<Tab> <C-G>u\mathsf{}<Left>
-inoremap <buffer> \mt<Tab> <C-G>u\mathtt{}<Left>
-inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
-inoremap <buffer> \mk<Tab> <C-G>u\mathfrak{}<Left>

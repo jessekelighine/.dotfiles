@@ -1,6 +1,6 @@
 ---
 title: "data.table: melt"
-date:  "2025-06-27"
+date:  "2025-07-29"
 ---
 
 Wide data.table:
@@ -15,7 +15,7 @@ Wide data.table:
 # melt 1
 
 ```r
-melt(
+data.table::melt(
   data          = data.frame.wide,
   id.vars       = c("student", "school"),
   variable.name = "class",
@@ -41,7 +41,7 @@ melt(
 # melt 2
 
 ```r
-melt(
+data.table::melt(
   data          = data.frame.wide,
   id.vars       = "student",
   measure.vars  = c("english", "math"),
@@ -68,7 +68,7 @@ melt(
 # melt 3
 
 ```r
-melt(
+data.table::melt(
   data          = data.frame.wide,
   id.vars       = "student",
   variable.name = "class",

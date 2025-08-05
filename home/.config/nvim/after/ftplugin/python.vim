@@ -17,11 +17,11 @@ command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 " FUNCTION ARGS:
 nnoremap <buffer> <leader>; <Cmd>call funcargs#DeleteFunction('[a-zA-Z_]','[a-zA-Z0-9_]')<CR>
 
-" SNIPPETS:
-inoremap <buffer> :bang<Tab> <Cmd>call snippets#Get('python', 'python_bang.py')<CR><Esc>
-inoremap <buffer> :qui<Tab>  <Cmd>call snippets#Get('python', 'skeleton.py')<CR><Esc>
-inoremap <buffer> :sign<Tab> <Cmd>call snippets#Get('python', 'sign.py')<CR><Esc>
-inoremap <buffer> :bl<Tab>   <Cmd>call snippets#Get('python', 'block.py')<CR><Esc>
+" SNIPPET:
+inoremap <buffer> :bang<Tab> <Cmd>call snippet#Get('python', 'python_bang.py')<CR><Esc>
+inoremap <buffer> :qui<Tab>  <Cmd>call snippet#Get('python', 'skeleton.py')<CR><Esc>
+inoremap <buffer> :sign<Tab> <Cmd>call snippet#Get('python', 'sign.py')<CR><Esc>
+inoremap <buffer> :bl<Tab>   <Cmd>call snippet#Get('python', 'block.py')<CR><Esc>
 
 " IDE:
 let b:python_command = "ipython --no-autoindent"

@@ -49,19 +49,4 @@
 		"body": "\\mathfrak{$1}$0",
 		"description": "Math Fraktur"
 	},
-	"fraction": {
-		"prefix": "f",
-		"body": "\\frac{$1}{$2}$0",
-		"description": "Fraction"
-	},
-	"sum": {
-		"prefix": "sum",
-		"body": "\\sum_{${1:i=1}}^{${2:n}} $0",
-		"description": "Summation"
-	},
-	"product": {
-		"prefix": "prod",
-		"body": "\\prod_{${1:i=1}}^{$2:n} $0",
-		"description": "Product"
-	}
 }

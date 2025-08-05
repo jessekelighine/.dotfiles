@@ -1,4 +1,4 @@
-#ifndef <++>
-#define <++>
+#ifndef $0
+#define
 
 #endif

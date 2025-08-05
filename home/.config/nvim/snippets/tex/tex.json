@@ -8,30 +8,5 @@
 		"prefix": "vi",
 		"body": "\\VerbatimInput[frame=single,numbers=left]{$1}",
 		"description": "Verbatim Input"
-	},
-
-	"figure": {
-		"prefix": "fig",
-		"body": [
-			"\\begin{center}",
-			"\t\\includegraphics[${1:width=0.8\\textwidth}]{$2}",
-			"\\end{center}"
-		],
-		"description": "Figure"
-	},
-	"table": {
-		"prefix": "tab",
-		"body": [
-			"\\begin{center}",
-			"\t\\begin{tabular}{${1:cccc}}",
-			"\t\t\\toprule",
-			"\t\t${2:HEADER}",
-			"\t\t\\midrule",
-			"\t\t${3:CONTENTS}",
-			"\t\t\\bottomrule",
-			"\t\\end{tabular}",
-			"\\end{center}"
-		],
-		"description": "Table"
 	}
 }

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+message () {
+	local command; command="$(tput bold)$(basename "$0")$(tput sgr0)"
+	local usage; usage="$(tput bold)USAGE$(tput sgr0)"
+	local description; description="$(tput bold)DESCRIPTION$(tput sgr0)"
+	cat << EOF
+${usage}: ${command} <<< [R CODE]
+${description}:
+	A wrapper for the "air" commmand that formats the input
+	and outputs it to the terminal.
+EOF
+}
+
+temp=$(mktemp -t "air")
+
+clean_up () {
+	rm -rf "$temp"
+}
+
+trap clean_up EXIT SIGINT
+
+[[ $# -ne 0 ]] && {
+	message
+	exit 0
+}
+
+cat > "$temp"
+air format "$temp"
+cat "$temp"

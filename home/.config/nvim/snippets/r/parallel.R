@@ -1,14 +1,7 @@
-### Async #####################################################################
-library(foreach)
-library(parallel)
-library(doParallel)
+### Future ####################################################################
 
-n.cores    <- parallel::detectCores() - 1
-my.cluster <- parallel::makeCluster(spec=n.cores, type="PSOCK")
-doParallel::registerDoParallel(my.cluster)
-foreach::getDoParRegistered()
-foreach::getDoParWorkers()
+library(future)
+library(future.apply)
 
-# parallel::stopCluster(cl = my.cluster)
-
-###############################################################################
+future::plan(multisession)
+future::availableCores()

@@ -1,10 +1,17 @@
--- init.lua
+-- ~/.config/nvim/lua/init.lua
 
 vim.api.nvim_create_autocmd('TextYankPost', {
 	desc = 'Highlight when yanking (copying) text',
-	group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+	group = vim.api.nvim_create_augroup('HighlightYank', { clear = true }),
 	callback = function() vim.highlight.on_yank() end,
 })
+
+vim.loader.enable()
+vim.opt.winborder = "single"
+vim.diagnostic.config {
+	signs = false,
+	float = { solid = true },
+}
 
 -- Lazy.nvim ------------------------------------------------------------------
 
@@ -20,4 +27,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup {{ import = "plugin" }}
+require("lazy").setup {
+	spec = {{ import = "plugin" }},
+	ui = { border = "single" },
+}

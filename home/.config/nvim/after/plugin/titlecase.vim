@@ -19,7 +19,6 @@ let s:titlecase_ignored_words = [
 			\ 'a', 'an', 'the', 'that',  'when', 'which', 'is', 'are', 'am', 'was', 'were',
 			\ 'as', 'at', 'by', 'for', 'in', 'on', 'per', 'to', 'via', 'of', 'from', 'with',
 			\ 'and', 'as', 'but', 'if', 'or', 'nor', 'v.s.', 'vs.', 'vs', 'en',
-			\ 'so', 'down', 'into', 'like', 'near', 'off', 'onto', 'out', 'over', 'up', 'upon'
 			\ ]
 
 function! <SID>Capitalize(word) abort

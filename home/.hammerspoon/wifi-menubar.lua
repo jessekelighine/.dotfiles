@@ -2,7 +2,7 @@
 
 local M = {}
 
-M.wifi_interface = "en0"
+M.interface = "en0"
 
 M.wifi_menubar = hs.menubar.new()
 
@@ -16,7 +16,7 @@ M.wifi_menubar:setClickCallback(function()
 end)
 
 local wifi_set_display_name = function()
-	local wifi_name = hs.wifi.currentNetwork(M.wifi_interface)
+	local wifi_name = hs.wifi.currentNetwork(M.interface)
 	if wifi_name then
 		local max_display_length = 10
 		if string.len(wifi_name) > max_display_length then

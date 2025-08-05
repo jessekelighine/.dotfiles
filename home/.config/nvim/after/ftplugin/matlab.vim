@@ -1,18 +1,14 @@
 " ~/.config/nvim/after/ftplugin/matlab.vim
+" ~/.config/nvim/lua/cmp/matlab.lua
 " ~/.config/nvim/after/syntax/matlab.vim
 " ~/.config/nvim/autoload/matlab.vim
-" ~/.config/nvim/snippets/matlab
+" ~/.config/nvim/snippets/matlab/
 
 set expandtab
 
 " LASTMOD:
 let b:lastmod_pattern = '^\(%* Last Modified: *\)' .. '[^ ]*' .. '\(.*\)$'
 command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
-
-" SNIPPETS: shebang, template.
-inoremap <buffer> :sign<Tab> <Esc>:call snippets#Get('matlab','matlab_sign.m')<CR>
-inoremap <buffer> :qui<Tab>  <Esc>:call snippets#Get('matlab','matlab_sign.m')<CR>
-inoremap <buffer> :bl<Tab>   <Esc>:call snippets#Get('matlab','matlab_block.m')<CR>
 
 " MAPPSINGS: useful mappings.
 inoremap <buffer> ^<Tab>    ^()<Left>
@@ -24,7 +20,7 @@ onoremap <buffer><silent> as :call matlab#GetSection('a')<CR>
 xnoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 
-" IDE
+" IDE:
 let b:matlab_command = "matlab"
 let b:matlab_exit_command = "exit;\r\n\<C-D>"
 nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#OpenTmux(b:matlab_command, '-D 5', b:matlab_exit_command)<CR>

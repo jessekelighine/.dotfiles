@@ -1,8 +1,9 @@
 -- ~/.config/nvim/lua/plugin/vindent.lua
+
 return {
 	"jessekelighine/vindent.nvim",
 	config = function()
-		--- MAIN CONFIG:
+		-- MAIN CONFIG:
 		local vindent = require "vindent"
 		local block_opts = {
 			strict     = { skip_empty_lines = false, skip_more_indented_lines = false },
@@ -23,23 +24,23 @@ return {
 			begin = true,
 			noisy = true,
 		}
-		--- TOGGLE NOISY:
-		vim.api.nvim_create_user_command("VindentNoisy", function(opts)
-			if not opts.bang then
-				vim.g.vindent_noisy = not vim.g.vindent_noisy
-			end
-			local status = vim.g.vindent_noisy and "ON" or "OFF"
-			local message = "'" .. ( ":VindentNoisy " .. status ) .. "'"
-			vim.cmd.echo(message)
-		end, { bang = true })
-		--- TOGGLE BEGIN:
+		-- TOGGLE BEGIN:
 		vim.api.nvim_create_user_command("VindentBegin", function(opts)
 			if not opts.bang then
 				vim.g.vindent_begin = not vim.g.vindent_begin
 			end
 			local status = vim.g.vindent_begin and "ON" or "OFF"
-			local message = "'" .. ( ":VindentBegin " .. status ) .. "'"
-			vim.cmd.echo(message)
+			local message = ":VindentBegin " .. status
+			vim.notify(message, vim.log.levels.INFO)
+		end, { bang = true })
+		-- TOGGLE NOISY:
+		vim.api.nvim_create_user_command("VindentNoisy", function(opts)
+			if not opts.bang then
+				vim.g.vindent_noisy = not vim.g.vindent_noisy
+			end
+			local status = vim.g.vindent_noisy and "ON" or "OFF"
+			local message = ":VindentNoisy " .. status
+			vim.notify(message, vim.log.levels.INFO)
 		end, { bang = true })
 	end
 }

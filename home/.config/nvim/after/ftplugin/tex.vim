@@ -1,5 +1,6 @@
 " ~/.config/nvim/after/ftplugin/tex.vim
 " ~/.config/nvim/after/ftplugin/tex.lua
+" ~/.config/nvim/lua/cmp/tex.lua
 " ~/.config/nvim/after/indent/tex.vim
 " ~/.config/nvim/autoload/tex.vim
 " ~/.config/nvim/autoload/tex_toggle.vim
@@ -57,6 +58,7 @@ command! -buffer -nargs=0 ServerSetup call tex#ServerSetup()
 command! -buffer -nargs=0 ReloadTeX   call tex_toggle#Reload()
 command! -buffer -nargs=0 FindSection call tex#FindSection()
 command! -buffer -nargs=0 JunkRemove  ! latexmk -C %:r
+command! -buffer -nargs=0 WordCount   ! texcount %:p
 nnoremap <buffer><silent> <leader>S <Cmd>call tex#ServerSetup()<CR>
 nnoremap <buffer><silent> <leader>c <Cmd>call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d <Cmd>call tex#EnvironmentDelete()<CR>
@@ -82,58 +84,6 @@ command! -buffer -nargs=0 GenerateLabs call tex_complete#GenerateLabs()
 command! -buffer -nargs=0 GenerateBibs call tex_complete#GenerateBibs()
 " command! -buffer -nargs=1 SetLabsFiles :call tex_complete#SetFiles('labs',<args>)
 " command! -buffer -nargs=1 SetBibsFiles :call tex_complete#SetFiles('bibs',<args>)
-
-" PREAMBLES:
-inoremap <buffer> :qui<tab>     <Esc>:call snippets#Get('tex','skeleton.tex')<CR>
-inoremap <buffer> :letter<tab>  <Esc>:call snippets#Get('tex','skeleton-letter.tex')<CR>
-inoremap <buffer> :beamer<tab>  <Esc>:call snippets#Get('tex','preamble-beamer.tex')<CR>
-inoremap <buffer> :std<tab>     <Esc>:call snippets#Get('tex','preamble-standalone.tex')<CR>
-inoremap <buffer> :alg<tab>     <Esc>:call snippets#Get('tex','preamble-algorithm.tex')<CR>
-inoremap <buffer> :cjk<tab>     <Esc>:call snippets#Get('tex','preamble-xeCJK.tex')<CR>
-inoremap <buffer> :cw<tab>      <Esc>:call snippets#Get('tex','preamble-cwtex.tex')<CR>
-inoremap <buffer> :punct<tab>   <Esc>:call snippets#Get('tex','preamble-punct.tex')<CR>
-inoremap <buffer> :bib<tab>     <Esc>:call snippets#Get('tex','preamble-biblatex.tex')<CR>
-inoremap <buffer> :tit<tab>     <Esc>:call snippets#Get('tex','preamble-title.tex')<CR>
-inoremap <buffer> :chenum<tab>  <Esc>:call snippets#Get('tex','preamble-chineseenumerate.tex')<CR>
-inoremap <buffer> :chnum<tab>   <Esc>:call snippets#Get('tex','preamble-chinesenumber.tex')<CR>
-inoremap <buffer> :color<tab>   <Esc>:call snippets#Get('tex','preamble-color.tex')<CR>
-inoremap <buffer> :csv<tab>     <Esc>:call snippets#Get('tex','preamble-csv.tex')<CR>
-inoremap <buffer> :cols<tab>    <Esc>:call snippets#Get('tex','preamble-column.tex')<CR>
-inoremap <buffer> :ct<tab>      <Esc>:call snippets#Get('tex','preamble-customtitle.tex')<CR>
-inoremap <buffer> :enum<tab>    <Esc>:call snippets#Get('tex','preamble-enumerate.tex', { 'indent': 0 })<CR>
-inoremap <buffer> :faux<tab>    <Esc>:call snippets#Get('tex','preamble-fauxsc.tex')<CR>
-inoremap <buffer> :fig<tab>     <Esc>:call snippets#Get('tex','preamble-graphics.tex')<CR>
-inoremap <buffer> :foot<tab>    <Esc>:call snippets#Get('tex','preamble-footnote.tex')<CR>
-inoremap <buffer> :font<tab>    <Esc>:call snippets#Get('tex','preamble-font.tex')<CR>
-inoremap <buffer> :german<tab>  <Esc>:call snippets#Get('tex','preamble-german.tex')<CR>
-inoremap <buffer> :hyper<tab>   <Esc>:call snippets#Get('tex','preamble-hyperreference.tex')<CR>
-inoremap <buffer> :lof<tab>     <Esc>:call snippets#Get('tex','preamble-listoffigures.tex')<CR>
-inoremap <buffer> :math<tab>    <Esc>:call snippets#Get('tex','preamble-math.tex')<CR>
-inoremap <buffer> :mn<tab>      <Esc>:call snippets#Get('tex','preamble-mathnotes.tex')<CR>
-inoremap <buffer> :ow<tab>      <Esc>:call snippets#Get('tex','preamble-noorphanwidow.tex')<CR>
-inoremap <buffer> :problem<tab> <Esc>:call snippets#Get('tex','preamble-problem.tex')<CR>
-inoremap <buffer> :prob<tab>    <Esc>:call snippets#Get('tex','preamble-mathprob.tex')<CR>
-inoremap <buffer> :pageb<tab>   <Esc>:call snippets#Get('tex','preamble-pagebeamer.tex')<CR>
-inoremap <buffer> :page<tab>    <Esc>:call snippets#Get('tex','preamble-fancyhdr.tex')<CR>
-inoremap <buffer> :ruby<tab>    <Esc>:call snippets#Get('tex','preamble-ruby.tex')<CR>
-inoremap <buffer> :tab<tab>     <Esc>:call snippets#Get('tex','preamble-table.tex')<CR>
-inoremap <buffer> :secf<tab>    <Esc>:call snippets#Get('tex','preamble-sectionfont.tex')<CR>
-inoremap <buffer> :set<tab>     <Esc>:call snippets#Get('tex','preamble-package.tex')<CR>
-inoremap <buffer> :shrug<tab>   <Esc>:call snippets#Get('tex','preamble-shruggie.tex')<CR>
-inoremap <buffer> :sign<tab>    <Esc>:call snippets#Get('tex','preamble-sign.tex')<CR>
-inoremap <buffer> :tikz<tab>    <Esc>:call snippets#Get('tex','preamble-tikz.tex')<CR>
-inoremap <buffer> :toc<tab>     <Esc>:call snippets#Get('tex','preamble-tableofcontents.tex')<CR>
-inoremap <buffer> :udxe<tab>    <Esc>:call snippets#Get('tex','preamble-underdotxe.tex')<CR>
-inoremap <buffer> :udcw<tab>    <Esc>:call snippets#Get('tex','preamble-underdotcwtex.tex')<CR>
-inoremap <buffer> :verb<tab>    <Esc>:call snippets#Get('tex','preamble-fancyvrb.tex')<CR>
-inoremap <buffer> :date<Tab>    <Esc>:call snippets#Get('tex','preamble-datetime.tex')<CR>
-inoremap <buffer> :dinkus<Tab>  <Esc>:call snippets#Get('tex','preamble-dinkus.tex')<CR>
-inoremap <buffer> :gloss<Tab>   <Esc>:call snippets#Get('tex','preamble-glossaries.tex')<CR>
-inoremap <buffer> :btheme<Tab>  <Esc>:call snippets#Get('tex','preamble-beamer_theme.tex')<CR>
-inoremap <buffer> :tcolor<Tab>  <Esc>:call snippets#Get('tex','preamble-tcolorbox.tex')<CR>
-inoremap <buffer> :minted<Tab>  <Esc>:call snippets#Get('tex','preamble-minted.tex')<CR>
-inoremap <buffer> :blind<Tab>   <Esc>:call snippets#Get('tex','indoc-blindtext.tex')<CR>
-inoremap <buffer> :blindzh<Tab> <Esc>:call snippets#Get('tex','indoc-blindtext-zh.tex')<CR>
 
 " LATEX ARGUMENTS:
 xnoremap <silent><buffer> ia <Esc>:call funcargs#SelectArgument("i",'{\<bar>[',']\<bar>}')<CR>
@@ -179,15 +129,3 @@ inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
 inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
 inoremap <buffer> $$<Tab>          <C-G>u$$<CR>$$<Esc>O
 inoremap <buffer> $$<CR>           <C-G>u$$<CR>$$<Esc>O
-
-" MATH TEXT:
-inoremap <buffer> \t<Tab>  <C-G>u\text{}<Left>
-inoremap <buffer> \bs<Tab> <C-G>u\boldsymbol{}<Left>
-inoremap <buffer> \bb<Tab> <C-G>u\mathbb{}<Left>
-inoremap <buffer> \mb<Tab> <C-G>u\mathbold{}<Left>
-inoremap <buffer> \mc<Tab> <C-G>u\mathcal{}<Left>
-inoremap <buffer> \ms<Tab> <C-G>u\mathscr{}<Left>
-inoremap <buffer> \mf<Tab> <C-G>u\mathsf{}<Left>
-inoremap <buffer> \mt<Tab> <C-G>u\mathtt{}<Left>
-inoremap <buffer> \mr<Tab> <C-G>u\mathrm{}<Left>
-inoremap <buffer> \mk<Tab> <C-G>u\mathfrak{}<Left>

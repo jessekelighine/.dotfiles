@@ -4,7 +4,7 @@
 # -*- encoding: UTF-8 -*-                                                     #
 # Description: Music List                                                     #
 #                                                                             #
-# Last Modified: 2025-03-08                                                   #
+# Last Modified: 2025-08-01                                                   #
 ###############################################################################
 
 ### Singles ###################################################################
@@ -61,33 +61,8 @@ spielliste 'https://www.youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
 spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
 spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3' # YOASOBI - The Book Series
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
 
 ### Logs ######################################################################
 
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=PLHzbdUAUXMMKO_CMF7oRu8Xj2vdDCCORs' # YOASOBI - Book 1
-spielliste 'https://www.youtube.com/playlist?list=OLAK5uy_mWa4j3nlpZsGIoLcgsWgL0spyMCgsN590' # Alvvays - Blue Rev
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI

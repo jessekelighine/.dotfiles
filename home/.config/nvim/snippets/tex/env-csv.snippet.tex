@@ -1,0 +1,10 @@
+\begin{table}[t]
+	\centering
+	\csvreader[head to column names,
+		tabular    = ${1:cccc},
+		table head = \toprule${2:HEADER}\\\midrule,
+		table foot = \bottomrule
+	]{${3:FILENAME}}{}{${4:\\csvcoli & \\csvcolii & \\csvcoliii & \\csvcoliv}}
+	\caption{$5}
+	\label{tab-$6}
+\end{table}

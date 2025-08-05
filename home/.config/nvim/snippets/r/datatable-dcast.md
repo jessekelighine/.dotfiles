@@ -20,7 +20,7 @@ Long data.table:
 # dcast 1
 
 ```r
-dcast(
+data.table::dcast(
   data      = data.frame.long,
   formula   = math + day ~ variable,
   value.var = "value"

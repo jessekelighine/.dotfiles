@@ -7,8 +7,8 @@ message () {
 	local blue; blue=$(tput bold && tput setaf 12)
 	local norm; norm=$(tput sgr0)
 	local command; command="${blue}$(basename "$0")${norm}"
-	local usage; usage="${green}usage${norm}"
-	local description; description="${green}description${norm}"
+	local usage; usage="${green}USAGE${norm}"
+	local description; description="${green}DESCRIPTION${norm}"
 	local biber; biber="${blue}${biber_formatter}${norm}"
 	cat << EOF
 ${usage}: ${command} [input.bib] [output.bib]

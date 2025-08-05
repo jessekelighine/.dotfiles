@@ -1,6 +1,5 @@
 " ~/.config/nvim/after/ftplugin/rmd.vim
-" ~/.config/nvim/autoload/rmd.vim
-" ~/.config/nvim/snippets/rmd
+" ~/.config/nvim/snippets/rmd/
 
 " Surround:
 " let b:surround_114 = "```{r}\r```"
@@ -16,13 +15,11 @@ command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 command! -buffer -nargs=? AutoLastMod call markdown#AutoLastMod(<q-args>)
 silent AutoLastMod on
 
-nnoremap <buffer> <F5> :call rmd#Knit()<CR>
-
 let b:rmarkdown_knit_command = "echo . | whenever make"
 nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:rmarkdown_knit_command)<CR>
 
-" Snippets:
-inoremap <buffer> :qui<Tab> <Esc>:call snippets#Get('rmd','skeleton.Rmd')<CR>:LastMod<CR>:FillAuthor<CR>G
+" SNIPPET:
+inoremap <buffer> :qui<Tab> <Esc>:call snippet#Get('rmd','skeleton.Rmd')<CR>:LastMod<CR>:FillAuthor<CR>G
 
 " Mappings:
 inoremap <buffer> :c<Tab>   <C-G>u<!--  --><esc>hhhi

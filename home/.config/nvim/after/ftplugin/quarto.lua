@@ -1,8 +1,6 @@
 -- ~/.config/nvim/after/ftplugin/quarto.lua
 -- ~/.config/nvim/after/ftplugin/quarto.vim
 
-vim.keymap.set("i", ":c<Tab>", function() vim.snippet.expand("<!-- $0 -->") end, { buffer = true })
-vim.keymap.set("i", "::<Tab>", function() vim.snippet.expand(":::{$1}\n$0\n:::") end, { buffer = true })
 vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("```{r}\n$0\n```") end, { buffer = true })
 vim.keymap.set("i", "*<Tab>",  function() vim.snippet.expand("*$1* $0") end, { buffer = true })
 vim.keymap.set("i", "**<Tab>", function() vim.snippet.expand("**$1** $0") end, { buffer = true })
@@ -25,41 +23,20 @@ vim.keymap.set("i", "\\f<Tab>", function() vim.snippet.expand("\\frac{$1}{$2}$0"
 vim.keymap.set("i", "\\sum<Tab>", function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
 vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
 
---- FORMATTING ----------------------------------------------------------------
+-- HIGHLIGHT BLOCK ------------------------------------------------------------
 
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
 	pattern = { '*.qmd' },
-	desc = "Format R code with Air in Quarto",
-	group = vim.api.nvim_create_augroup('QuartoAirFormator', { clear = true }),
+	desc = "Highlight Quarto Blocks",
+	group = vim.api.nvim_create_augroup("HighlightQuartoBlocks", { clear = true }),
 	callback = function()
-		vim.api.nvim_buf_create_user_command(0, "FormatR", function()
-			require("conform").format()
-		end, { nargs = 0, range = 2 })
-	end,
+		vim.cmd[[
+		syntax match quartoTag /{#.\{-}}/
+		syntax match quartoDiv /^:::.*$/
+		syntax match quartoCite /@[a-zA-Z0-9-_:]\+/
+		highlight def link quartoDiv Todo
+		highlight def link quartoTag Todo
+		highlight def link quartoCite Label
+		]]
+	end
 })
-
---- NVIM-CMP COMPLETION -------------------------------------------------------
-
-local cmp = require "cmp"
-local source = {}
-
-local prepare_item = function(item)
-	return {
-		label = item.label,
-		insertText = item.insertText,
-		insertTextFormat = cmp.lsp.InsertTextFormat.Snippet,
-		kind = cmp.lsp.CompletionItemKind.Snippet,
-	}
-end
-
----@diagnostic disable-next-line: unused-local
-function source:complete(params, callback)
-	local items = {}
-	table.insert(items, prepare_item({ label = 'test', insertText = '($1 -> $2) $0' }))
-	callback(items)
-end
-
-cmp.register_source("quarto", source)
-local config = cmp.get_config()
-table.insert(config.sources, { name = "quarto" })
-cmp.setup(config)

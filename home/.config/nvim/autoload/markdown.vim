@@ -21,7 +21,7 @@ function! markdown#AutoLastMod(set = "") abort
 endfunction
 
 " fill-in Author
-function! markdown#FillAuthor(author=snippets#GetAuthor())
+function! markdown#FillAuthor(author=snippet#GetAuthor())
 	let l:position = getpos(".")
 	let l:command = "1," .. min([line('$'), 5])
 				\ .. 'g?^author?'

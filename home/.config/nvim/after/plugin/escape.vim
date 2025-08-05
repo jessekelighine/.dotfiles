@@ -32,12 +32,12 @@ function! <SID>trigger_success(key)
 	return s:SID .. 'success:' .. a:key
 endfunction
 
-imap <expr> j            <SID>trigger_key('j')
-imap <expr> k            <SID>trigger_key('k')
-imap <expr> <SID>work:j  <SID>trigger_cancel('j')
-imap <expr> <SID>work:k  <SID>trigger_cancel('k')
-imap <expr> <SID>work:jk <SID>trigger_success('jk')
-imap <expr> <SID>work:kj <SID>trigger_success('kj')
+imap     <expr> j            <SID>trigger_key('j')
+imap     <expr> k            <SID>trigger_key('k')
+imap     <expr> <SID>work:j  <SID>trigger_cancel('j')
+imap     <expr> <SID>work:k  <SID>trigger_cancel('k')
+imap     <expr> <SID>work:jk <SID>trigger_success('jk')
+imap     <expr> <SID>work:kj <SID>trigger_success('kj')
 inoremap <expr> <SID>cancel:j   "j"
 inoremap <expr> <SID>cancel:k   "k"
 inoremap <expr> <SID>success:jk "\e"

@@ -41,15 +41,15 @@ x = 0
 y = 0
 
 [font.normal]
-family = "IBM Plex Mono"
+family = "BlexMono Nerd Font Mono"
 style = "Light"
 
 [font.bold]
-family = "IBM Plex Mono"
+family = "BlexMono Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "IBM Plex Mono"
+family = "BlexMono Nerd Font Mono"
 style = "Light Italic"
 
 [font.offset]

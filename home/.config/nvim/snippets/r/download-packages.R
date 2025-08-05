@@ -1,10 +1,8 @@
 #!/usr/bin/env Rscript
 
 #' @encoding UTF-8
-#' @description
-#' Download packages as a repository, then use the created
+#' @description Download packages as a repository, then use the created
 #' repository to install packages.
-#' @date 2025-07-04
 
 install.packages("miniCRAN", type = "mac.binary")
 library(miniCRAN)

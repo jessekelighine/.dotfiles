@@ -1,7 +1,7 @@
 -- ~/.config/nvim/after/ftplugin/tex.lua
 -- ~/.config/nvim/after/ftplugin/tex.vim
 
---- FONT STYLES ---------------------------------------------------------------
+-- FONT STYLES ----------------------------------------------------------------
 
 vim.keymap.set("i", "\\em<Tab>", function() vim.snippet.expand("\\emph{$1} $0") end, { buffer = true })
 vim.keymap.set("i", "\\it<Tab>", function() vim.snippet.expand("\\textit{$1} $0") end, { buffer = true })
@@ -13,7 +13,7 @@ vim.keymap.set("i", "\\ud<Tab>", function() vim.snippet.expand("\\underdot{$1} $
 vim.keymap.set("i", "\\v<Tab>", function() vim.snippet.expand('\\verb"$1" $0') end, { buffer = true })
 vim.keymap.set("i", "\\V<Tab>", function() vim.snippet.expand('\\Verb"$1" $0') end, { buffer = true })
 
---- MATH FONT STYLES ----------------------------------------------------------
+-- MATH FONT STYLES -----------------------------------------------------------
 
 vim.keymap.set("i", "\\t<Tab>", function() vim.snippet.expand("\\text{$1}$0") end, { buffer  = true })
 vim.keymap.set("i", "\\mb<Tab>", function() vim.snippet.expand("\\mathbf{$1}$0") end, { buffer  = true })
@@ -26,20 +26,29 @@ vim.keymap.set("i", "\\ms<Tab>", function() vim.snippet.expand("\\mathscr{$1}$0"
 vim.keymap.set("i", "\\mk<Tab>", function() vim.snippet.expand("\\mathfrak{$1}$0") end, { buffer  = true })
 vim.keymap.set("i", "\\bs<Tab>", function() vim.snippet.expand("\\boldsymbol{$1}$0") end, { buffer  = true })
 
---- MATH STUFF ----------------------------------------------------------------
+-- MATH STUFF -----------------------------------------------------------------
 
-vim.keymap.set("i", "_<Tab>", function() vim.snippet.expand("_{$1}$0") end, { buffer = true })
-vim.keymap.set("i", "^<Tab>", function() vim.snippet.expand("^{$1}$0") end, { buffer = true })
-vim.keymap.set("i", "$<Tab>", function() vim.snippet.expand("\\$$0\\$") end, { buffer = true })
+-- vim.keymap.set("i", "_<Tab>", function() vim.snippet.expand("_{$1}$0") end, { buffer = true })
+-- vim.keymap.set("i", "^<Tab>", function() vim.snippet.expand("^{$1}$0") end, { buffer = true })
+-- vim.keymap.set("i", "$<Tab>", function() vim.snippet.expand("\\$$0\\$") end, { buffer = true })
 vim.keymap.set("i", "\\f<Tab>", function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer  = true })
 vim.keymap.set("i", "\\sum<Tab>", function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
 vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
 
---- QUOTES --------------------------------------------------------------------
+-- GLOSSARIES -----------------------------------------------------------------
+
+vim.keymap.set("i", "\\as<Tab>", function() vim.snippet.expand("\\acrshort{$1} $0") end, { buffer = true })
+vim.keymap.set("i", "\\al<Tab>", function() vim.snippet.expand("\\acrlong{$1} $0") end, { buffer = true })
+-- vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls{$1} $0") end, { buffer = true })
+vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls*{$1} $0") end, { buffer = true })
+vim.keymap.set("i", "\\gl<Tab>", function() vim.snippet.expand("\\glsentrylong{$1} $0") end, { buffer = true })
+vim.keymap.set("i", "\\gs<Tab>", function() vim.snippet.expand("\\glsentryshort{$1} $0") end, { buffer = true })
+
+-- QUOTES ---------------------------------------------------------------------
 
 vim.keymap.set("i", "`<Tab>", function() vim.snippet.expand("`$1' $0") end, { buffer = true })
 vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("``$1'' $0") end, { buffer = true })
 
---- ENVIRONMENT ---------------------------------------------------------------
+-- ENVIRONMENT ----------------------------------------------------------------
 
 vim.keymap.set("i", "\\b<Tab>", function() vim.snippet.expand("\\begin{$1}\n\t$0\n\\end{$1}") end, { buffer  = true })

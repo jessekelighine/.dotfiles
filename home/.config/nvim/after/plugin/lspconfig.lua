@@ -3,7 +3,15 @@
 
 local lspconfig = require "lspconfig"
 
---- R -------------------------------------------------------------------------
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('KickstartLspAttach', { clear = true }),
+	desc = "LSP Actions on Attach",
+	callback = function()
+		vim.opt.signcolumn = "yes:1"
+	end
+})
+
+-- R --------------------------------------------------------------------------
 
 lspconfig.r_language_server.setup {
 	on_attach = function(client, _)
@@ -27,12 +35,10 @@ lspconfig.air.setup {
 	end,
 }
 
---- LUA -----------------------------------------------------------------------
+-- LUA ------------------------------------------------------------------------
 
 lspconfig.lua_ls.setup {
-	vim.diagnostic.config {
-		signs = true
-	},
+	vim.diagnostic.config { signs = true },
 	settings = {
 		Lua = {
 			diagnostics = { globals = { "vim", "require", "hs", "spoon" }, },
@@ -43,11 +49,11 @@ lspconfig.lua_ls.setup {
 	},
 }
 
---- PYTHON --------------------------------------------------------------------
+-- PYTHON ---------------------------------------------------------------------
 
 lspconfig.pyright.setup {}
 
---- BASH ----------------------------------------------------------------------
+-- BASH -----------------------------------------------------------------------
 
 lspconfig.bashls.setup {
 	vim.diagnostic.config { signs = true }

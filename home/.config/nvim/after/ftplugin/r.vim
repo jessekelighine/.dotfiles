@@ -1,7 +1,9 @@
 " ~/.config/nvim/after/ftplugin/r.vim
+" ~/.config/nvim/after/ftplugin/r.lua
+" ~/.config/nvim/lua/cmp/r.lua
 " ~/.config/nvim/after/syntax/r.vim
 " ~/.config/nvim/autoload/r.vim
-" ~/.config/nvim/snippets/r
+" ~/.config/nvim/snippets/r/
 
 " SETTINGS:
 setlocal winminwidth=1
@@ -26,26 +28,6 @@ command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 command! -buffer -nargs=? AutoLastMod call r#AutoLastMod(<q-args>)
 silent! AutoLastMod off
 
-" SNIPPETS:
-inoremap <buffer> :sign<Tab>     <Esc>:call snippets#Get("r","sign.R")<CR>
-inoremap <buffer> :future<Tab>   <Esc>:call snippets#Get("r","future.R")<CR>
-inoremap <buffer> :qui<Tab>      <Esc>:call snippets#Get("r","skeleton.R")<CR>:LastMod<CR>
-inoremap <buffer> :lib<Tab>      <Esc>:call snippets#Get("r","library.R")<CR>
-inoremap <buffer> :ggs<Tab>      <Esc>:call snippets#Get("r","ggsave.R")<CR>
-inoremap <buffer> :ggch<Tab>     <Esc>:call snippets#Get("r","ggplotChinese.R")<CR>
-inoremap <buffer> :se<Tab>       <Esc>:call snippets#Get("r","robust.R")<CR>
-inoremap <buffer> :log<Tab>      <Esc>:call snippets#Get("r","logfile.R")<CR>
-inoremap <buffer> :cl<Tab>       <Esc>:call snippets#Get("r","consolelog.R")<CR>
-inoremap <buffer> :mode<Tab>     <Esc>:call snippets#Get("r","modus.R")<CR>
-inoremap <buffer> :rm<Tab>       <Esc>:call snippets#Get("r","rm.R")<CR>
-inoremap <buffer> :timer<Tab>    <Esc>:call snippets#Get("r","timer.R")<CR>
-inoremap <buffer> :curry<Tab>    <Esc>:call snippets#Get("r","curry.R")<CR>
-inoremap <buffer> :showtext<Tab> <Esc>:call snippets#Get("r","showtext.R")<CR>
-inoremap <buffer> :dt<Tab>       <Esc>:call snippets#Get("r","datatable.R")<CR>
-inoremap <buffer> :bl<Tab>       <Esc>:call snippets#Get("r","block.R")<CR>
-
 " R MACROS:
 nnoremap <buffer><silent> <leader>;  :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
-inoremap <buffer><silent> %<Tab>     %%<Left>
-inoremap <buffer><silent> ^<Tab>     ^()<Left>
 nnoremap <buffer><silent> <leader>cc :RStop<CR>

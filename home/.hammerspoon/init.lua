@@ -5,7 +5,7 @@ local HYPER_SHIFT = { table.unpack(HYPER), "shift" }
 
 -- Window Manager -------------------------------------------------------------
 
-local wm = require("window-management")
+local wm = require "window-management"
 
 hs.hotkey.bindSpec({ HYPER,       "down"  }, function() wm.move_to("bottom") end)
 hs.hotkey.bindSpec({ HYPER,       "left"  }, function() wm.move_to("left")   end)
@@ -37,23 +37,21 @@ hs.hotkey.bindSpec({ HYPER_SHIFT, "b" }, function() hs.execute(blueutil_off)    
 
 -- Wifi -----------------------------------------------------------------------
 
-require("wifi-menubar")
+local wifi = require "wifi-menubar"
+local known_networks = {
+	["Utopie"]          = "1997aaaaaa", -- Phone
+	["sheep"]           = "1997aaaaaa", -- iPhone
+	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
+	["cos"]             = "0906802822", -- Room 645
+	["RickyWramLin_5G"] = "room656656", -- Room 656
+}
 
-local wifi_interface = "en0"
--- local known_networks = {
--- 	["Utopie"]          = "1997aaaaaa", -- Phone
--- 	["sheep"]           = "1997aaaaaa", -- iPhone
--- 	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
--- 	["cos"]             = "0906802822", -- Room 645
--- 	["RickyWramLin_5G"] = "room656656", -- Room 656
--- }
-
-hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function() hs.wifi.setPower(false, wifi_interface) end)
-hs.hotkey.bindSpec({ HYPER,       "w" }, function() hs.wifi.setPower(true,  wifi_interface) end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function() hs.wifi.setPower(false, wifi.interface) end)
+hs.hotkey.bindSpec({ HYPER,       "w" }, function() hs.wifi.setPower(true,  wifi.interface) end)
 
 -- Clipboard ------------------------------------------------------------------
 
-hs.loadSpoon("ClipboardTool")
+hs.loadSpoon "ClipboardTool"
 local clipboard_toggle = { "cmd", "shift" }
 spoon.ClipboardTool.menubar_title = "✂"
 spoon.ClipboardTool.paste_on_select = true
@@ -61,13 +59,13 @@ spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool.show_copied_alert = false
 spoon.ClipboardTool.max_size = false
 -- spoon.ClipboardTool.max_entry_size = 10000
-spoon.ClipboardTool:bindHotkeys({ toggle_clipboard = { clipboard_toggle, "v" } })
+spoon.ClipboardTool:bindHotkeys { toggle_clipboard = { clipboard_toggle, "v" } }
 spoon.ClipboardTool:start()
 
 -- Caffeine -------------------------------------------------------------------
 
-hs.loadSpoon("Caffeine")
-spoon.Caffeine:bindHotkeys({ toggle = { HYPER, "c" } })
+hs.loadSpoon "Caffeine"
+spoon.Caffeine:bindHotkeys { toggle = { HYPER, "c" } }
 spoon.Caffeine:start()
 
 -- Reload Config --------------------------------------------------------------

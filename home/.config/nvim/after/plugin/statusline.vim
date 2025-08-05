@@ -12,7 +12,7 @@ let s:colors = {
 			\ 'black':  { 'a': 235, 'hex': '#2A2426' },
 			\ }
 
-let g:statusline_change = {
+let g:statusline_mode_color_map = {
 			\ 'n':      '%7*',
 			\ "\<C-V>": '%6*',
 			\ 's':      '%5*',
@@ -23,12 +23,19 @@ let g:statusline_change = {
 			\ 'c':      '%1*',
 			\ }
 
-function <SID>Highlight(number, bg, fg, bold) abort
+function! <SID>Highlight(number, bg, fg, bold) abort
 	let l:user = "User" .. a:number
 	let l:bold = a:bold ? "cterm=bold gui=bold" : ""
 	let l:fg = join(["ctermfg=" .. a:fg.a, "guifg=" .. a:fg.hex])
 	let l:bg = join(["ctermbg=" .. a:bg.a, "guibg=" .. a:bg.hex])
-	exe join(["highlight", l:user, l:fg, l:bg, l:bold])
+	execute join(["highlight", l:user, l:fg, l:bg, l:bold])
+endfunction
+
+function! <SID>StatusLine() abort
+    set noshowmode
+    set statusline=
+    set statusline+=%{%g:statusline_mode_color_map[mode()]%}\ [%M]\ %8*\ %F\ %y\ %9*
+    set statusline+=%=%(%c%V\ %{%'%'.len(line('$')).'l'%}/%L\ %3p%%\ %8*\ [%{&fileencoding}]\ %)
 endfunction
 
 call <SID>Highlight("1", s:colors.red,    s:colors.black, 1)
@@ -40,11 +47,12 @@ call <SID>Highlight("6", s:colors.purple, s:colors.black, 1)
 call <SID>Highlight("7", s:colors.white,  s:colors.black, 1)
 call <SID>Highlight("8", s:colors.gray,   s:colors.white, 0)
 call <SID>Highlight("9", s:colors.black,  s:colors.white, 0)
+call <SID>StatusLine()
 
-set noshowmode
-set statusline=
-set statusline+=%{%g:statusline_change[mode()]%}\ [%M]\ %8*\ %F\ %y\ %9*
-set statusline+=%=%(%c%V\ %{%'%'.len(line('$')).'l'%}/%L\ %3p%%\ %8*\ [%{&fileencoding}]\ %)
-
-command! -nargs=0 StatuslineReload source $HOME/.config/nvim/after/plugin/statusline.vim
+command! -nargs=0 StatuslineReload call <SID>StatusLine()
 nnoremap <silent> <CR> :StatuslineReload<CR>:nohlsearch<CR>:echo ""<CR>
+
+augroup StatusLineReload
+	autocmd!
+	autocmd BufWritePost * StatuslineReload
+augroup END
