@@ -4,14 +4,13 @@
 
 local snippet = require "snippet"
 local filetype = "quarto"
-local language = filetype
 local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { language = language }
+source.is_available = snippet.is_available { filetype = filetype }
 
----@param opts table with fields "env", "append", and "content"
+---@param opts table with fields "tags" and "content"
 ---@return string snippet quarto block snippet
 local block = function(opts)
 	opts.tags = opts.tags or "$1"
@@ -24,8 +23,7 @@ local block = function(opts)
 end
 
 function source:complete(_, callback)
-	local items = {
-
+	callback {
 		{
 			label = ":skeleton",
 			insertText = snippet:get "quarto/skeleton.qmd",
@@ -55,9 +53,7 @@ function source:complete(_, callback)
 		snippet.snippet { label = ":eg",          insertText = block { tags = "#exm-$1 name=\"$2\"" } },
 		snippet.snippet { label = ":figure",      insertText = block { tags = "#fig-$1 fig-env=\"figure*\" name=\"$2\"" } },
 		snippet.snippet { label = ":table",       insertText = block { tags = "#tab-$1 name=\"$2\"" } },
-
 	}
-	callback(items)
 end
 
 return source

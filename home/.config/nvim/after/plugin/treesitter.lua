@@ -26,12 +26,16 @@ vim.api.nvim_set_hl(0, "@label.latex", { link = "Identifier" })
 vim.api.nvim_create_user_command(
 	"InspectLanguage",
 	function()
+		-- In Neovim 0.12 and later, `vim.treesitter.get_parser` will return
+		-- `nil` if no parser is available for the current buffer, so this
+		-- implementation with `pcall` needs to be changed in the future.
 		local ok, parser = pcall(vim.treesitter.get_parser)
 		if not ok or parser == nil then
 			print("No Treesitter Parser Available")
 		else
 			local line = vim.fn.line(".")
-			local language = parser:language_for_range({line, 0, line, 0}):lang()
+			local col = vim.fn.col(".")
+			local language = parser:language_for_range({line, col, line, col}):lang()
 			print(language)
 		end
 	end,

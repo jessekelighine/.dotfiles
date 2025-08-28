@@ -22,10 +22,9 @@ onoremap <buffer><silent> is :call matlab#GetSection('i')<CR>
 
 " IDE:
 let b:matlab_command = "matlab"
-let b:matlab_exit_command = "exit;\r\n\<C-D>"
-nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#OpenTmux(b:matlab_command, '-D 5', b:matlab_exit_command)<CR>
-nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#OpenTmux(b:matlab_command, '-D 5', b:matlab_exit_command)<CR>
-nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#CloseTmux(b:matlab_exit_command)<CR>
+nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#Open(b:matlab_command, '-l 10')<CR>
+nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#Open(b:matlab_command, '-l 10')<CR>
+nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#Close()<CR>
 xnoremap <buffer><silent> <leader>cc      <Cmd>call vimslime#Send("\<C-C>")<CR>
 nnoremap <buffer><silent> <leader>ro      <Cmd>call vimslime#Send("who", 1)<CR>
 nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("clc", 1)<CR>

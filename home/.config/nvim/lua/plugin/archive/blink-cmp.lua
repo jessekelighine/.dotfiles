@@ -25,9 +25,7 @@ return {
 			},
 		},
 		sources = {
-			default = {
-				"cmp_r",
-			},
+			default = { "cmp_r" },
 			providers = {
 				cmp_r = {
 					name = "cmp_r",

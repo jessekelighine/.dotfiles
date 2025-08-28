@@ -10,7 +10,6 @@ return {
 		vim.keymap.set("n", "<C-t>", builtin.find_files)
 		vim.keymap.set("n", "<C-f>", builtin.live_grep)
 		vim.keymap.set("n", "<C-b>", builtin.buffers)
-		vim.keymap.set("n", "<C-s>", builtin.spell_suggest)
 		vim.keymap.set("n", "<leader>h", builtin.help_tags)
 		telescope.setup {
 			defaults = {
@@ -22,7 +21,14 @@ return {
 						["<C-j>"] = "move_selection_next",
 					}
 				},
-			}
+			},
+			-- pickers = {
+			-- 	find_files = {
+			-- 		find_command = {
+			-- 			"fd", "--hidden", "--follow", "--exclude .git"
+			-- 		}
+			-- 	}
+			-- }
 		}
 	end,
 }

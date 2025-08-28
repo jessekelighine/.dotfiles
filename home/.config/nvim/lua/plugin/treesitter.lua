@@ -23,6 +23,7 @@ return {
 				"csv",
 				"make",
 				"yaml",
+				"bibtex",
 			},
 			sync_install = false,
 			highlight = {

@@ -48,7 +48,7 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 	source "$HOME/.config/shell-source/pyenv.sh"
 }
 
-confucius-said --random
+# confucius-said --random
 
 # xiaolin-said --random
 
@@ -56,5 +56,4 @@ confucius-said --random
 # random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
 # random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
 # mencius-said --random-from-chapter "$random_mencius_chapter"
-
-# mencius-said --random-from-chapter 13
+mencius-said --random

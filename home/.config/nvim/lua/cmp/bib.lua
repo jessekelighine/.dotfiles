@@ -4,15 +4,16 @@
 
 local snippet = require "snippet"
 local filetype = "bib"
-local language = filetype
+local language = "bibtex"
 local source = {}
 
+function source:get_trigger_characters() return { "@" } end
 function source:get_keyword_pattern() return [[@\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { filetype = filetype, language = language }
+source.is_available = snippet.is_available { language = language }
 
 function source:complete(_, callback)
-	local items = {
+	callback {
 		snippet.snippet { label = "@article",     insertText = snippet:get "bib/article.snippet.bib" },
 		snippet.snippet { label = "@book",        insertText = snippet:get "bib/book.snippet.bib" },
 		snippet.snippet { label = "@inbook",      insertText = snippet:get "bib/inbook.snippet.bib" },
@@ -21,7 +22,6 @@ function source:complete(_, callback)
 		snippet.snippet { label = "@proceedings", insertText = snippet:get "bib/proceedings.snippet.bib" },
 		snippet.snippet { label = "@thesis",      insertText = snippet:get "bib/thesis.snippet.bib" },
 	}
-	callback(items)
 end
 
 return source

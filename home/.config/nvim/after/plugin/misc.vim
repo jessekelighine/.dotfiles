@@ -19,5 +19,4 @@ function! <SID>RemoveTrailingSpaces(line1 = 1,line2 = line('$'))
 endfunction
 
 command! -nargs=0 SudoWrite            write ! sudo tee % > /dev/null " This only works for Vim, not NeoVim.
-command! -nargs=* TallyOpacity         silent ! tally-opacity <args>
 command! -nargs=0 RemoveTrailingSpaces call <SID>RemoveTrailingSpaces()

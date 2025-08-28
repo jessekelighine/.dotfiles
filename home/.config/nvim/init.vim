@@ -11,8 +11,8 @@ language en_US.UTF-8
 " nnoremap <Down> gj
 xnoremap >      >gv
 xnoremap <      <gv
-" nnoremap <expr> n 'Nn'[v:searchforward]
-" nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
 " nnoremap Y      y$
 " xnoremap //     y/\V<C-R>=escape(@", '/\')<CR><CR>
 " nnoremap <C-N>  :Texplore<CR>

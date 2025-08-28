@@ -9,6 +9,9 @@
 
 ### Singles ###################################################################
 
+spiel 'https://www.youtube.com/watch?v=EYGGd2NKwtI' # 手嶌葵 - 森の小さなレストラン - Small Restaurant in the Forest
+spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # 松原みき - 真夜中のドア - Stay with Me
+spiel 'https://www.youtube.com/watch?v=j2311FZWoFQ' # 草東沒有派對 - 山海 - Wayfarer
 spiel 'https://www.youtube.com/watch?v=kxnTcgZ5ZuE' # Alvvays - Alvvays
 spiel 'https://www.youtube.com/watch?v=ZXu6q-6JKjA' # Alvvays - Dreams Tonite
 spiel 'https://www.youtube.com/watch?v=sXd2WxoOP5g' # Avril Lavigne - Heres to Never Growing Up
@@ -16,9 +19,9 @@ spiel 'https://www.youtube.com/watch?v=ebXbLfLACGM' # Calvin Harris - Summer
 spiel 'https://www.youtube.com/watch?v=NGrLb6W5YOM' # Celine Dion- All by Myself
 spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
 spiel 'https://www.youtube.com/watch?v=aatr_2MstrI' # Clean Bandit - Symphony
-spiel 'https://www.youtube.com/watch?v=euCqAq6BRa4' # DJ Snake - Let Me Love You ft. Justin Bieber
 spiel 'https://www.youtube.com/watch?v=bQUpUwJDSHY' # Daft Punk - Veridis Quo "Slowed and Reverb"
 spiel 'https://www.youtube.com/watch?v=_1d-Axi4mhY' # David Brubeck - Time Out
+spiel 'https://www.youtube.com/watch?v=euCqAq6BRa4' # DJ Snake - Let Me Love You ft. Justin Bieber
 spiel 'https://www.youtube.com/watch?v=Nj2U6rhnucI' # Dua Lipa - Break My Heart
 spiel 'https://www.youtube.com/watch?v=k2qgadSvNyU' # Dua Lipa - New Rules
 spiel 'https://www.youtube.com/watch?v=Qut5e3OfCvg' # Dvorak - New World Symphony
@@ -42,12 +45,10 @@ spiel 'https://www.youtube.com/watch?v=PyUNDr0EcAk' # Pomplamoose - Mr. Blue Sky
 spiel 'https://www.youtube.com/watch?v=CSCr67tSRxQ' # Pomplamoose - Seven
 spiel 'https://www.youtube.com/watch?v=LQj--Kjn0z8' # Smash Mouth - Walking on the Sun
 spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
+spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
 spiel 'https://www.youtube.com/watch?v=QG_YH7jxVy0' # The Cat Returns - Theme
 spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
 spiel 'https://www.youtube.com/watch?v=uJ_1HMAGb4k' # Vance Joy - Riptide
-spiel 'https://www.youtube.com/watch?v=EYGGd2NKwtI' # 手嶌葵 - 森の小さなレストラン - Small Restaurant in the Forest
-spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # 松原みき - 真夜中のドア - Stay with Me
-spiel 'https://www.youtube.com/watch?v=j2311FZWoFQ' # 草東沒有派對 - 山海 - Wayfarer
 
 ### Playlist ##################################################################
 
@@ -64,5 +65,7 @@ spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
 
 ### Logs ######################################################################
-
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
+spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
+spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
+spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers

@@ -44,19 +44,19 @@ let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 			\ .. "'" .. expand("%:r") .. ".png" .. "'"
 let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none " .. "'" .. expand("%") .. "'"
 let b:tex_compile_make    = "make; echo . | whenever make"
-let b:tex_compile_command = filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex
-nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#CloseTmux()<CR>
-nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
-nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#OpenTmux(b:tex_compile_command)<CR>
+let b:tex_compile_command = "" .. ( filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex )
+nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#Close()<CR>
+nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
+nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
 nnoremap <silent><buffer> <leader><leader> <Cmd>call vimslime#Send("\<C-D>")<CR>
-" command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#OpenTmux(b:tex_compile_xelatex)
-" command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#OpenTmux(b:tex_compile_make)
+" command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#Open(b:tex_compile_xelatex)
+" command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#Open(b:tex_compile_make)
 " nnoremap <silent><buffer><expr> <Space><Space> vimslime#Send("\<C-D>")
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 ServerSetup call tex#ServerSetup()
 command! -buffer -nargs=0 ReloadTeX   call tex_toggle#Reload()
-command! -buffer -nargs=0 FindSection call tex#FindSection()
+command! -buffer -nargs=? FindSection call tex#FindSection(<q-args>)
 command! -buffer -nargs=0 JunkRemove  ! latexmk -C %:r
 command! -buffer -nargs=0 WordCount   ! texcount %:p
 nnoremap <buffer><silent> <leader>S <Cmd>call tex#ServerSetup()<CR>
@@ -64,7 +64,7 @@ nnoremap <buffer><silent> <leader>c <Cmd>call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d <Cmd>call tex#EnvironmentDelete()<CR>
 nnoremap <buffer><silent> <leader>, <Cmd>call tex#DelLeftRight()<CR>
 nnoremap <buffer><silent> <leader>8 <Cmd>call tex#EnvironmentStar()<CR>
-nnoremap <buffer><silent> <leader>g <Cmd>call tex#SkimForward()<CR>
+" nnoremap <buffer><silent> <leader>g <Cmd>call tex#SkimForward()<CR>
 nnoremap <buffer><silent> <leader>t <Cmd>call tex_toggle#Master()<CR>
 nnoremap <buffer><silent> <leader>; <Cmd>call funcargs#DeleteFunction('\\','[a-zA-Z]','{}')<CR>
 nnoremap <buffer><silent> <leader>p <Cmd>call tex#SkimForward()<CR>

@@ -39,7 +39,6 @@ vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=
 
 vim.keymap.set("i", "\\as<Tab>", function() vim.snippet.expand("\\acrshort{$1} $0") end, { buffer = true })
 vim.keymap.set("i", "\\al<Tab>", function() vim.snippet.expand("\\acrlong{$1} $0") end, { buffer = true })
--- vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls{$1} $0") end, { buffer = true })
 vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls*{$1} $0") end, { buffer = true })
 vim.keymap.set("i", "\\gl<Tab>", function() vim.snippet.expand("\\glsentrylong{$1} $0") end, { buffer = true })
 vim.keymap.set("i", "\\gs<Tab>", function() vim.snippet.expand("\\glsentryshort{$1} $0") end, { buffer = true })
@@ -51,4 +50,5 @@ vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("``$1'' $0") end, {
 
 -- ENVIRONMENT ----------------------------------------------------------------
 
-vim.keymap.set("i", "\\b<Tab>", function() vim.snippet.expand("\\begin{$1}\n\t$0\n\\end{$1}") end, { buffer  = true })
+vim.keymap.set("i", "\\b<Tab>",  function() vim.snippet.expand("\\begin{$1}$2\n\t$0\n\\end{$1}") end, { buffer  = true })
+vim.keymap.set("i", "\\fn<Tab>", function() vim.snippet.expand("\\footnote{$0}") end, { buffer  = true })

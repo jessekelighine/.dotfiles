@@ -15,7 +15,7 @@ hs.hotkey.bindSpec({ HYPER_SHIFT, "up"    }, function() wm.move_to("full")   end
 
 -- Applications and Shortcuts -------------------------------------------------
 
-hs.hotkey.bindSpec({ HYPER, "a" }, function() hs.application.open("Alacritty")  end)
+hs.hotkey.bindSpec({ HYPER, "a" }, function() hs.application.open("Kitty")      end)
 hs.hotkey.bindSpec({ HYPER, "d" }, function() hs.application.open("Dictionary") end)
 hs.hotkey.bindSpec({ HYPER, "f" }, function() hs.application.open("Finder")     end)
 hs.hotkey.bindSpec({ HYPER, "x" }, function() hs.application.open("Firefox")    end)
@@ -38,13 +38,13 @@ hs.hotkey.bindSpec({ HYPER_SHIFT, "b" }, function() hs.execute(blueutil_off)    
 -- Wifi -----------------------------------------------------------------------
 
 local wifi = require "wifi-menubar"
-local known_networks = {
-	["Utopie"]          = "1997aaaaaa", -- Phone
-	["sheep"]           = "1997aaaaaa", -- iPhone
-	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
-	["cos"]             = "0906802822", -- Room 645
-	["RickyWramLin_5G"] = "room656656", -- Room 656
-}
+-- local known_networks = {
+-- 	["Utopie"]          = "1997aaaaaa", -- Phone
+-- 	["sheep"]           = "1997aaaaaa", -- iPhone
+-- 	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
+-- 	["cos"]             = "0906802822", -- Room 645
+-- 	["RickyWramLin_5G"] = "room656656", -- Room 656
+-- }
 
 hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function() hs.wifi.setPower(false, wifi.interface) end)
 hs.hotkey.bindSpec({ HYPER,       "w" }, function() hs.wifi.setPower(true,  wifi.interface) end)

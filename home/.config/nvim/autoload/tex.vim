@@ -1,36 +1,52 @@
 " ~/.config/nvim/autoload/tex.vim
 
 " Print the line number (sub)sections.
-function! tex#FindSection() abort
+function! tex#FindSection(index="") abort
+	" Populate Section Lines and Titles
+	let l:pos = getpos('.')
 	let l:index = 0
 	let l:section_lines = []
-	let l:pos = getpos('.')
-	let l:header_format = "%6s %6s  %s"
-	let l:header = printf(l:header_format, "Line", "Index", "1  2  3  4  5  6")
-	echo l:header .. "\n" .. repeat("=", len(l:header))
+	let l:section_titles = []
 	global/^\\\(\(sub\)\{0,2}section\|\(sub\)\?paragraph\|chapter\|appendix\)/
 				\ if match(getline("."), '^\\appendix') >= 0 |
-				\     let l:display_name = "[Appendix]" |
+				\     let l:title = "[Appendix]" |
 				\ else |
 				\     let @9 = @" |
 				\     execute "norm! yi{" |
 				\     let l:section_name = @" |
 				\     let @" = @9 |
-				\     let l:display_name = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 5 * 3) .. l:section_name
-				\                        : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 4 * 3) .. l:section_name
-				\                        : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 3 * 3) .. l:section_name
-				\                        : match(getline("."), '^\\subsection')    >= 0 ? repeat(' ', 2 * 3) .. l:section_name
-				\                        : match(getline("."), '^\\section')       >= 0 ? repeat(' ', 1 * 3) .. l:section_name
-				\                        : match(getline("."), '^\\chapter')       >= 0 ? repeat(' ', 0 * 3) .. l:section_name
-				\                        : "ERROR" |
+				\     let l:title = match(getline("."), '^\\subparagraph')  >= 0 ? repeat(' ', 5 * 3) .. l:section_name
+				\                 : match(getline("."), '^\\paragraph')     >= 0 ? repeat(' ', 4 * 3) .. l:section_name
+				\                 : match(getline("."), '^\\subsubsection') >= 0 ? repeat(' ', 3 * 3) .. l:section_name
+				\                 : match(getline("."), '^\\subsection')    >= 0 ? repeat(' ', 2 * 3) .. l:section_name
+				\                 : match(getline("."), '^\\section')       >= 0 ? repeat(' ', 1 * 3) .. l:section_name
+				\                 : match(getline("."), '^\\chapter')       >= 0 ? repeat(' ', 0 * 3) .. l:section_name
+				\                 : "ERROR" |
 				\ endif |
-				\ echo printf(l:header_format, line("."), l:index, l:display_name) |
 				\ call add(l:section_lines, line(".")) |
+				\ call add(l:section_titles, l:title) |
 				\ let l:index += 1
-	let l:index = input("--> Go to: ")
-	let l:index_is_valid = l:index =~ '\d\+'
-	let l:goto_section = "norm!" .. l:section_lines[l:index] .. "G0"
-	execute l:index_is_valid ? l:goto_section : "call setpos('.', l:pos)"
+
+	" Prompt for Index if Not Provided
+	let l:index = a:index
+	if l:index == ""
+		let l:header_format = "%6s %6s  %s"
+		let l:header = printf(l:header_format, "Line", "Index", "1  2  3  4  5  6")
+		echo l:header .. "\n" .. repeat("=", len(l:header))
+		for l:index in range(len(l:section_lines))
+			let l:line = l:section_lines[l:index]
+			let l:title = l:section_titles[l:index]
+			echo printf(l:header_format, l:line, l:index, l:title)
+		endfor
+		let l:index = input("--> Go to: ")
+	endif
+
+	" Jump to the Selected Section
+	if l:index =~ '\d\+'
+		execute "norm! " .. l:section_lines[l:index] .. "G0"
+	else
+		call setpos('.',l:pos)
+	endif
 endfunction
 
 " creates quote object in latex.

@@ -9,10 +9,10 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { language = language }
+source.is_available = snippet.is_available { language = language }
 
 function source:complete(_, callback)
-	local items = {
+	callback {
 		{ label = ":skeleton", insertText = snippet:get "cpp/skeleton.cpp" },
 		{ label = ":sign",     insertText = snippet:get "cpp/sign.cpp" },
 		{ label = ":rcpp",     insertText = snippet:get "cpp/Rcpp.cpp" },
@@ -25,7 +25,6 @@ function source:complete(_, callback)
 		snippet.snippet { label = ":out",     insertText = "std::cout << $0 << std::endl;" },
 		snippet.snippet { label = ":in",      insertText = "std::cin >> $0;" },
 	}
-	callback(items)
 end
 
 return source

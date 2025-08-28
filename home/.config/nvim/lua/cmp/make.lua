@@ -9,14 +9,16 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { language = language }
+source.is_available = snippet.is_available { language = language }
 
 function source:complete(_, callback)
-	local items = {
-		{ label = ":quarto", insertText = snippet:get "css/quarto.css" },
-		{ label = ":style",  insertText = snippet:get "css/style.css" },
+	callback {
+		{ label = ":sign",     insertText = snippet:get "make/sign.make" },
+		{ label = ":markdown", insertText = snippet:get "make/markdown.make" },
+		{ label = ":quarto",   insertText = snippet:get "make/quarto.make" },
+		{ label = ":tex",      insertText = snippet:get "make/tex.make" },
+		{ label = ":texfull",  insertText = snippet:get "make/tex-full.make" },
 	}
-	callback(items)
 end
 
 return source

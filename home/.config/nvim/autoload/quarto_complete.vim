@@ -43,9 +43,8 @@ function! <SID>generate_labs(files=g:quarto_complete_labsfiles) abort
 	let l:labs = []
 	for l:file in a:files
 		for l:line in readfile(l:file)
-			if matchstrpos(l:line, l:lab_pattern_detect)[1] < 0
-				continue
-			endif
+			let l:contains_lab = matchstrpos(l:line, l:lab_pattern_detect)[1] >= 0
+			if !l:contains_lab | continue | endif
 			let l:word = matchstr(l:line, l:lab_pattern_extract)
 			let l:type = matchstr(l:line, l:lab_pattern_extract_type)
 			let l:menu = "(" .. l:type .. ") [" .. l:file .. "]"
@@ -82,9 +81,8 @@ function! <SID>generate_bibs(files=g:quarto_complete_bibsfiles)
 	let l:bibs = []
 	for l:file in a:files
 		for l:line in readfile(l:file)
-			if matchstrpos(l:line, l:bib_pattern_detect)[1] < 0
-				continue
-			endif
+			let l:contains_bib = matchstrpos(l:line, l:bib_pattern_detect)[1] >= 0
+			if !l:contains_bib | continue | endif
 			let l:word = matchstr(l:line, l:bib_pattern_extract)
 			let l:type = matchstr(l:line, l:bib_pattern_extract_type)
 			let l:menu = '[' .. l:type .. ']'

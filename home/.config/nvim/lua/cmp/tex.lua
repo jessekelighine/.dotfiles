@@ -9,7 +9,7 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { language = language }
+source.is_available = snippet.is_available { language = language }
 
 ---@param opts table with fields `append`, `content`, and `env`.
 ---@return string snippet LaTeX environment snippet
@@ -24,58 +24,68 @@ local environment = function(opts)
 	return env
 end
 
+---@param item table completion item
+---@return table completion item with kind set to Module
+local preamble = function(item)
+	item.kind = vim.lsp.protocol.CompletionItemKind.Module
+	return item
+end
+
 function source:complete(_, callback)
-	local items = {
+	callback {
 		-- PREAMBLE:
-		snippet.snippet { label = ":skeleton", insertText = snippet:get "tex/skeleton.snippet.tex" },
-		{ label = ":letter",       insertText = snippet:get "tex/skeleton-letter.tex" },
-		{ label = ":beamer",       insertText = snippet:get "tex/preamble-beamer.tex" },
-		{ label = ":standalone",   insertText = snippet:get "tex/preamble-standalone.tex" },
-		{ label = ":algorithm",    insertText = snippet:get "tex/preamble-algorithm.tex" },
-		{ label = ":cjk",          insertText = snippet:get "tex/preamble-xeCJK.tex" },
-		{ label = ":cwtex",        insertText = snippet:get "tex/preamble-cwtex.tex" },
-		{ label = ":punct",        insertText = snippet:get "tex/preamble-punct.tex" },
-		{ label = ":bib",          insertText = snippet:get "tex/preamble-biblatex.tex" },
-		{ label = ":title",        insertText = snippet:get "tex/preamble-title.tex" },
-		{ label = ":chenum",       insertText = snippet:get "tex/preamble-chineseenumerate.tex" },
-		{ label = ":chnum",        insertText = snippet:get "tex/preamble-chinesenumber.tex" },
-		{ label = ":color",        insertText = snippet:get "tex/preamble-color.tex" },
-		{ label = ":csv",          insertText = snippet:get "tex/preamble-csv.tex" },
-		{ label = ":columns",      insertText = snippet:get "tex/preamble-column.tex" },
-		{ label = ":customtitle",  insertText = snippet:get "tex/preamble-customtitle.tex" },
-		{ label = ":enumitem",     insertText = snippet:get "tex/preamble-enumerate.tex" },
-		{ label = ":fauxsc",       insertText = snippet:get "tex/preamble-fauxsc.tex" },
-		{ label = ":figure",       insertText = snippet:get "tex/preamble-graphics.tex" },
-		{ label = ":footnote",     insertText = snippet:get "tex/preamble-footnote.tex" },
-		{ label = ":font",         insertText = snippet:get "tex/preamble-font.tex" },
-		{ label = ":german",       insertText = snippet:get "tex/preamble-german.tex" },
-		{ label = ":hyperref",     insertText = snippet:get "tex/preamble-hyperreference.tex" },
-		{ label = ":lof",          insertText = snippet:get "tex/preamble-listoffigures.tex" },
-		{ label = ":math",         insertText = snippet:get "tex/preamble-math.tex" },
-		{ label = ":mathnotes",    insertText = snippet:get "tex/preamble-mathnotes.tex" },
-		{ label = ":noorphan",     insertText = snippet:get "tex/preamble-noorphanwidow.tex" },
-		{ label = ":problem",      insertText = snippet:get "tex/preamble-problem.tex" },
-		{ label = ":probability",  insertText = snippet:get "tex/preamble-mathprob.tex" },
-		{ label = ":pagebeamer",   insertText = snippet:get "tex/preamble-pagebeamer.tex" },
-		{ label = ":page",         insertText = snippet:get "tex/preamble-fancyhdr.tex" },
-		{ label = ":ruby",         insertText = snippet:get "tex/preamble-ruby.tex" },
-		{ label = ":table",        insertText = snippet:get "tex/preamble-table.tex" },
-		{ label = ":sectionfont",  insertText = snippet:get "tex/preamble-sectionfont.tex" },
-		{ label = ":settings",     insertText = snippet:get "tex/preamble-package.tex" },
-		{ label = ":shruggie",     insertText = snippet:get "tex/preamble-shruggie.tex" },
-		{ label = ":sign",         insertText = snippet:get "tex/preamble-sign.tex" },
-		{ label = ":tikz",         insertText = snippet:get "tex/preamble-tikz.tex" },
-		{ label = ":toc",          insertText = snippet:get "tex/preamble-tableofcontents.tex" },
-		{ label = ":underdot",     insertText = snippet:get "tex/preamble-underdotxe.tex" },
-		{ label = ":verbatim",     insertText = snippet:get "tex/preamble-fancyvrb.tex" },
-		{ label = ":date",         insertText = snippet:get "tex/preamble-datetime.tex" },
-		{ label = ":dinkus",       insertText = snippet:get "tex/preamble-dinkus.tex" },
-		{ label = ":glossary",     insertText = snippet:get "tex/preamble-glossaries.tex" },
-		{ label = ":beamertheme",  insertText = snippet:get "tex/preamble-beamer_theme.tex" },
-		{ label = ":tcolorbox",    insertText = snippet:get "tex/preamble-tcolorbox.tex" },
-		{ label = ":minted",       insertText = snippet:get "tex/preamble-minted.tex" },
+		preamble { label = ":skeleton",     insertText = snippet:get "tex/skeleton.tex" },
+		preamble { label = ":letter",       insertText = snippet:get "tex/skeleton-letter.tex" },
+		preamble { label = ":beamer",       insertText = snippet:get "tex/preamble-beamer.tex" },
+		preamble { label = ":standalone",   insertText = snippet:get "tex/preamble-standalone.tex" },
+		preamble { label = ":algorithm",    insertText = snippet:get "tex/preamble-algorithm.tex" },
+		preamble { label = ":cjk",          insertText = snippet:get "tex/preamble-xeCJK.tex" },
+		preamble { label = ":cwtex",        insertText = snippet:get "tex/preamble-cwtex.tex" },
+		preamble { label = ":punct",        insertText = snippet:get "tex/preamble-punct.tex" },
+		preamble { label = ":bib",          insertText = snippet:get "tex/preamble-biblatex.tex" },
+		preamble { label = ":title",        insertText = snippet:get "tex/preamble-title.tex" },
+		preamble { label = ":chenum",       insertText = snippet:get "tex/preamble-chineseenumerate.tex" },
+		preamble { label = ":chnum",        insertText = snippet:get "tex/preamble-chinesenumber.tex" },
+		preamble { label = ":color",        insertText = snippet:get "tex/preamble-color.tex" },
+		preamble { label = ":csv",          insertText = snippet:get "tex/preamble-csv.tex" },
+		preamble { label = ":columns",      insertText = snippet:get "tex/preamble-column.tex" },
+		preamble { label = ":customtitle",  insertText = snippet:get "tex/preamble-customtitle.tex" },
+		preamble { label = ":enumitem",     insertText = snippet:get "tex/preamble-enumerate.tex" },
+		preamble { label = ":fauxsc",       insertText = snippet:get "tex/preamble-fauxsc.tex" },
+		preamble { label = ":figure",       insertText = snippet:get "tex/preamble-graphics.tex" },
+		preamble { label = ":footnote",     insertText = snippet:get "tex/preamble-footnote.tex" },
+		preamble { label = ":font",         insertText = snippet:get "tex/preamble-font.tex" },
+		preamble { label = ":german",       insertText = snippet:get "tex/preamble-german.tex" },
+		preamble { label = ":hyperref",     insertText = snippet:get "tex/preamble-hyperreference.tex" },
+		preamble { label = ":lof",          insertText = snippet:get "tex/preamble-listoffigures.tex" },
+		preamble { label = ":math",         insertText = snippet:get "tex/preamble-math.tex" },
+		preamble { label = ":mathnotes",    insertText = snippet:get "tex/preamble-mathnotes.tex" },
+		preamble { label = ":noorphan",     insertText = snippet:get "tex/preamble-noorphanwidow.tex" },
+		preamble { label = ":problem",      insertText = snippet:get "tex/preamble-problem.tex" },
+		preamble { label = ":probability",  insertText = snippet:get "tex/preamble-mathprob.tex" },
+		preamble { label = ":pagebeamer",   insertText = snippet:get "tex/preamble-pagebeamer.tex" },
+		preamble { label = ":page",         insertText = snippet:get "tex/preamble-fancyhdr.tex" },
+		preamble { label = ":ruby",         insertText = snippet:get "tex/preamble-ruby.tex" },
+		preamble { label = ":table",        insertText = snippet:get "tex/preamble-table.tex" },
+		preamble { label = ":sectionfont",  insertText = snippet:get "tex/preamble-sectionfont.tex" },
+		preamble { label = ":settings",     insertText = snippet:get "tex/preamble-package.tex" },
+		preamble { label = ":shruggie",     insertText = snippet:get "tex/preamble-shruggie.tex" },
+		preamble { label = ":sign",         insertText = snippet:get "tex/preamble-sign.tex" },
+		preamble { label = ":tikz",         insertText = snippet:get "tex/preamble-tikz.tex" },
+		preamble { label = ":toc",          insertText = snippet:get "tex/preamble-tableofcontents.tex" },
+		preamble { label = ":underdot",     insertText = snippet:get "tex/preamble-underdotxe.tex" },
+		preamble { label = ":verbatim",     insertText = snippet:get "tex/preamble-fancyvrb.tex" },
+		preamble { label = ":date",         insertText = snippet:get "tex/preamble-datetime.tex" },
+		preamble { label = ":dinkus",       insertText = snippet:get "tex/preamble-dinkus.tex" },
+		preamble { label = ":glossary",     insertText = snippet:get "tex/preamble-glossaries.tex" },
+		preamble { label = ":beamertheme",  insertText = snippet:get "tex/preamble-beamer_theme.tex" },
+		preamble { label = ":tcolorbox",    insertText = snippet:get "tex/preamble-tcolorbox.tex" },
+		preamble { label = ":minted",       insertText = snippet:get "tex/preamble-minted.tex" },
+
+		-- BLIND:
 		{ label = ":blind",        insertText = snippet:get "tex/indoc-blindtext.tex" },
 		{ label = ":blindchinese", insertText = snippet:get "tex/indoc-blindtext-zh.tex" },
+
 		-- ENVIRONMENTS:
 		snippet.snippet { label = ":bfigure",     insertText = snippet:get "tex/env-figure.snippet.tex" },
 		snippet.snippet { label = ":subfigure",   insertText = snippet:get "tex/env-subfigure.snippet.tex" },
@@ -108,10 +118,12 @@ function source:complete(_, callback)
 				append = "[label=${1:(\\\\alph*)}]"
 			}
 		},
+
 		-- MATH:
 		snippet.snippet { label = ":sum",  insertText = "\\sum_{${1:i=1}}^{${2:n}}$0" },
 		snippet.snippet { label = ":prod", insertText = "\\prod_{${1:i=1}}^{${2:n}}$0" },
 		snippet.snippet { label = ":frac", insertText = "\\frac{$1}{$2}$0" },
+
 		-- MATH NOTES:
 		snippet.snippet { label = ":corollary",   insertText = environment { env = "corollary", append = "\\label{cor-$1}" } },
 		snippet.snippet { label = ":definition",  insertText = environment { env = "definition", append = "\\label{def-$1}" } },
@@ -124,14 +136,15 @@ function source:complete(_, callback)
 		snippet.snippet { label = ":assumption",  insertText = environment { env = "assumption", append = "[$1]\\label{ass-$2}" } },
 		snippet.snippet { label = ":claim",       insertText = environment { env = "claim" } },
 		snippet.snippet { label = ":axiom",       insertText = environment { env = "axiom", append = "[$1]\\label{axm-$2}" } },
+
 		-- TIKZ:
 		snippet.snippet { label = ":tikz",             insertText = snippet:get "tex/env-tikz.snippet.tex" },
 		snippet.snippet { label = ":tikzintersection", insertText = "\\path[name intersections={of= $1 and $2}]; % (intersection-1)" },
+
 		-- MISC:
 		snippet.snippet { label = ":columnbreak",   insertText = "\\vfill\\null\\columnbreak" },
 		snippet.snippet { label = ":verbatiminput", insertText = "\\VerbatimInput[${1:frame=single,numbers=left}]{$0}" },
 	}
-	callback(items)
 end
 
 return source

@@ -20,10 +20,9 @@ return {
 		vindent.map.Object("ii", "ii", block_opts.loose)
 		vindent.map.Object("ai", "ai", block_opts.loose)
 		vindent.map.Object("aI", "aI", block_opts.loose)
-		vindent.setup {
-			begin = true,
-			noisy = true,
-		}
+		vim.g.vindent_begin = true
+		vim.g.vindent_noisy = true
+
 		-- TOGGLE BEGIN:
 		vim.api.nvim_create_user_command("VindentBegin", function(opts)
 			if not opts.bang then
@@ -33,6 +32,7 @@ return {
 			local message = ":VindentBegin " .. status
 			vim.notify(message, vim.log.levels.INFO)
 		end, { bang = true })
+
 		-- TOGGLE NOISY:
 		vim.api.nvim_create_user_command("VindentNoisy", function(opts)
 			if not opts.bang then

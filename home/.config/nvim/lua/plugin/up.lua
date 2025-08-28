@@ -2,5 +2,5 @@
 
 return {
 	"jessekelighine/up.nvim",
-	config = function() require("up").map "<C-U>" end
+	config = function() require("up").map "<C-U>" end,
 }

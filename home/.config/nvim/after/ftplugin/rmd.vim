@@ -16,7 +16,7 @@ command! -buffer -nargs=? AutoLastMod call markdown#AutoLastMod(<q-args>)
 silent AutoLastMod on
 
 let b:rmarkdown_knit_command = "echo . | whenever make"
-nnoremap <silent><buffer> <leader><Space> :call vimslime#OpenTmux(b:rmarkdown_knit_command)<CR>
+nnoremap <silent><buffer> <leader><Space> :call vimslime#Open(b:rmarkdown_knit_command)<CR>
 
 " SNIPPET:
 inoremap <buffer> :qui<Tab> <Esc>:call snippet#Get('rmd','skeleton.Rmd')<CR>:LastMod<CR>:FillAuthor<CR>G

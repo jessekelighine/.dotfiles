@@ -25,10 +25,9 @@ inoremap <buffer> :bl<Tab>   <Cmd>call snippet#Get('python', 'block.py')<CR><Esc
 
 " IDE:
 let b:python_command = "ipython --no-autoindent"
-let b:python_exit_command = "\<C-D>"
-nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#OpenTmux(b:python_command, "-D 5", b:python_exit_command)<CR>
-nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#OpenTmux(b:python_command, "-D 5", b:python_exit_command)<CR>
-nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#CloseTmux(b:python_exit_command)<CR>
+nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#Open(b:python_command, "-l 10")<CR>
+nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#Open(b:python_command, "-l 10")<CR>
+nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#Close()<CR>
 nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("\<C-l>")<CR>
 nnoremap <buffer><silent> <leader>cc      <Cmd>call vimslime#Send("\<C-C>")<CR>
 nnoremap <buffer><silent> <leader>d       <Cmd>call vimslime#Forward("line")<CR>

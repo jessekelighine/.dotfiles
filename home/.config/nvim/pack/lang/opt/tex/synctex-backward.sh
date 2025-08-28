@@ -10,7 +10,7 @@
 
 line="$1"
 file="$2"
-terminal="Alacritty"
+terminal="kitty"
 vim_command="<Esc><Esc>:${line}<CR><CR>zz"
 tex_server_file="$HOME/.config/nvim/pack/lang/opt/tex/.tex-server"
 server="$(cat "${tex_server_file}")"

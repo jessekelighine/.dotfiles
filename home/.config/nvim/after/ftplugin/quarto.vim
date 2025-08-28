@@ -44,9 +44,9 @@ function! <SID>Compile(open) abort
 	let l:quarto_compile_preview = "quarto preview " .. expand("%")
 	let l:quarto_compile_command = l:quarto_compile_preview
 	if a:open
-		call vimslime#OpenTmux(l:quarto_compile_command)
+		call vimslime#Open(l:quarto_compile_command)
 	else
-		call vimslime#CloseTmux("\<C-C>\<C-D>")
+		call vimslime#Close("\<C-C>\<C-D>")
 	endif
 endfunction
 command! -buffer -bang -nargs=0 Compile call <SID>Compile(<bang>1)

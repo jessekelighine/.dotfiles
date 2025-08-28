@@ -90,3 +90,4 @@ xecjk
 tcolorbox
 tikzfill
 epsf
+footmisc

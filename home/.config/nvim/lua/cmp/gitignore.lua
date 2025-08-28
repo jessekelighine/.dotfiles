@@ -9,13 +9,12 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { filetype = filetype, language = language }
+source.is_available = snippet.is_available { language = language }
 
 function source:complete(_, callback)
-	local items = {
+	callback {
 		{ label = ":tex", insertText = snippet:get "tex/.gitignore" },
 	}
-	callback(items)
 end
 
 return source

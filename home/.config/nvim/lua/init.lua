@@ -3,7 +3,7 @@
 vim.api.nvim_create_autocmd('TextYankPost', {
 	desc = 'Highlight when yanking (copying) text',
 	group = vim.api.nvim_create_augroup('HighlightYank', { clear = true }),
-	callback = function() vim.highlight.on_yank() end,
+	callback = function() vim.hl.on_yank() end,
 })
 
 vim.loader.enable()
@@ -14,6 +14,9 @@ vim.diagnostic.config {
 }
 
 -- Lazy.nvim ------------------------------------------------------------------
+
+-- For Neovim 0.12 and later, lazy.nvim is no longer needed and we can use the
+-- built-in package manager `vim.pack`.
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

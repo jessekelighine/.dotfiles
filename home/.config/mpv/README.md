@@ -9,7 +9,7 @@ date:   "2023-03-07"
 (**2023-03-07**) Due to a problem from `yt-dlp`, YouTube cannot be played. The
 error message is `EDL specifies no segments.'`.  A work-around is to patch
 the script `./scripts/ytdl_hook.lua` with the following change:
-```lua
+```
 -       local url = edl_track or track.url
 +       local url = track.url
 ```

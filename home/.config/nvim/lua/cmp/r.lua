@@ -9,10 +9,10 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet:is_available { language = language }
+source.is_available = snippet.is_available { language = language }
 
 function source:complete(_, callback)
-	local items = {
+	callback {
 		snippet.snippet { label = ":skeleton",   insertText = snippet:get "r/skeleton.R" },
 		snippet.snippet { label = ":sign",       insertText = snippet:get "r/sign.R" },
 		snippet.snippet { label = ":future",     insertText = snippet:get "r/future.R" },
@@ -29,10 +29,9 @@ function source:complete(_, callback)
 		snippet.snippet { label = ":showtext",   insertText = snippet:get "r/showtext.R" },
 		snippet.snippet { label = ":datatable",  insertText = snippet:get "r/datatable.R" },
 		snippet.snippet { label = ":block",      insertText = "$0###############################################################################" },
-		snippet.snippet { label = ":for",        insertText = "for ($1 in $2) {\n\t$0\n}" },
-		snippet.snippet { label = ":function",   insertText = "$1 <- function($2) {\n\t$0\n}" },
+		-- snippet.snippet { label = ":for",        insertText = "for ($1 in $2) {\n\t$0\n}" },
+		-- snippet.snippet { label = ":function",   insertText = "$1 <- function($2) {\n\t$0\n}" },
 	}
-	callback(items)
 end
 
 return source

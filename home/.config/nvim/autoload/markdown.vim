@@ -61,13 +61,12 @@ function! markdown#ClearCodeSyntax()
 endfunction
 
 " Index sections
-function! markdown#FindSection() abort
+function! markdown#FindSection(index="") abort
+	" Populate Section Lines and Titles
 	let l:pos = getpos('.')
 	let l:index = 0
 	let l:section_lines = []
-	let l:header_format = "%6s %6s  %s"
-	let l:header = printf(l:header_format, "Line", "Index", "1   2   3   4   5")
-	echo l:header .. "\n" .. repeat("=", len(l:header))
+	let l:section_titles = []
 	global/^#\+/
 				\ let l:temp = getline(".") |
 				\ let l:temp = substitute(l:temp, repeat("#",5) .. '\s\+\(.*\)', repeat(' ',16) .. '\1', '') |
@@ -75,9 +74,28 @@ function! markdown#FindSection() abort
 				\ let l:temp = substitute(l:temp, repeat("#",3) .. '\s\+\(.*\)', repeat(' ', 8) .. '\1', '') |
 				\ let l:temp = substitute(l:temp, repeat("#",2) .. '\s\+\(.*\)', repeat(' ', 4) .. '\1', '') |
 				\ let l:temp = substitute(l:temp, repeat("#",1) .. '\s\+\(.*\)', repeat(' ', 0) .. '\1', '') |
-				\ echo printf(l:header_format, line("."), l:index, l:temp) |
 				\ call add(l:section_lines, line(".")) |
+				\ call add(l:section_titles, l:temp) |
 				\ let l:index += 1
-	let l:index = input("--> Go to: ")
-	execute l:index =~ '^\d\+$' ? "norm! " .. l:section_lines[l:index] .. "G" : "call setpos('.',l:pos)"
+
+	" Prompt for Index if Not Provided
+	let l:index = a:index 
+	if l:index == ""
+		let l:header_format = "%6s %6s  %s"
+		let l:header = printf(l:header_format, "Line", "Index", "1   2   3   4   5")
+		echo l:header .. "\n" .. repeat("=", len(l:header))
+		for l:index in range(len(l:section_lines))
+			let l:line = l:section_lines[l:index]
+			let l:title = l:section_titles[l:index]
+			echo printf(l:header_format, l:line, l:index, l:title)
+		endfor
+		let l:index = input("--> Go to: ")
+	endif
+
+	" Jump to the Selected Section
+	if l:index =~ '\d\+'
+		execute "norm! " .. l:section_lines[l:index] .. "G0"
+	else
+		call setpos('.',l:pos)
+	endif
 endfunction
