@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 config="$HOME/.config/alacritty/alacritty.toml"
 original=$(awk -F = '/^opacity/ { print $2; exit }' "$config" | xargs)

@@ -11,18 +11,18 @@ language en_US.UTF-8
 " nnoremap <Down> gj
 xnoremap >      >gv
 xnoremap <      <gv
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
+" nnoremap <expr> n 'Nn'[v:searchforward]
+" nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <silent> <CR> :nohlsearch<CR>:echo<CR>
 " nnoremap Y      y$
 " xnoremap //     y/\V<C-R>=escape(@", '/\')<CR><CR>
 " nnoremap <C-N>  :Texplore<CR>
 " nnoremap -      :Explore<CR>
-" nnoremap <CR>   :nohlsearch<CR>:echo ""<CR>
 
 nnoremap <Space> <Nop>
 nnoremap zS zszH
 inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
-xnoremap <leader>p pgvy
+xnoremap p pgvy
 nnoremap <F12> :tabnew ~/.config/nvim/init.vim<CR>
 noremap  '' "*y
 
@@ -93,6 +93,7 @@ set noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 set autochdir
 set history=1000
 set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:·
+set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:˙
 set splitbelow
 set nrformats+=alpha
 set nrformats-=bin,hex

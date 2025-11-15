@@ -3,15 +3,15 @@
 
 -- FONT STYLES ----------------------------------------------------------------
 
-vim.keymap.set("i", "\\em<Tab>", function() vim.snippet.expand("\\emph{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\it<Tab>", function() vim.snippet.expand("\\textit{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\bf<Tab>", function() vim.snippet.expand("\\textbf{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\sc<Tab>", function() vim.snippet.expand("\\textsc{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\tt<Tab>", function() vim.snippet.expand("\\texttt{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\sf<Tab>", function() vim.snippet.expand("\\textsf{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\ud<Tab>", function() vim.snippet.expand("\\underdot{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\v<Tab>", function() vim.snippet.expand('\\verb"$1" $0') end, { buffer = true })
-vim.keymap.set("i", "\\V<Tab>", function() vim.snippet.expand('\\Verb"$1" $0') end, { buffer = true })
+vim.keymap.set("i", "\\em<Tab>", function() vim.snippet.expand("\\emph{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\it<Tab>", function() vim.snippet.expand("\\textit{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\bf<Tab>", function() vim.snippet.expand("\\textbf{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\sc<Tab>", function() vim.snippet.expand("\\textsc{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\tt<Tab>", function() vim.snippet.expand("\\texttt{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\sf<Tab>", function() vim.snippet.expand("\\textsf{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\ud<Tab>", function() vim.snippet.expand("\\underdot{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\v<Tab>", function() vim.snippet.expand('\\verb"$1"$0') end, { buffer = true })
+vim.keymap.set("i", "\\V<Tab>", function() vim.snippet.expand('\\Verb"$1"$0') end, { buffer = true })
 
 -- MATH FONT STYLES -----------------------------------------------------------
 
@@ -28,25 +28,33 @@ vim.keymap.set("i", "\\bs<Tab>", function() vim.snippet.expand("\\boldsymbol{$1}
 
 -- MATH STUFF -----------------------------------------------------------------
 
--- vim.keymap.set("i", "_<Tab>", function() vim.snippet.expand("_{$1}$0") end, { buffer = true })
--- vim.keymap.set("i", "^<Tab>", function() vim.snippet.expand("^{$1}$0") end, { buffer = true })
--- vim.keymap.set("i", "$<Tab>", function() vim.snippet.expand("\\$$0\\$") end, { buffer = true })
-vim.keymap.set("i", "\\f<Tab>", function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer  = true })
-vim.keymap.set("i", "\\sum<Tab>", function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
-vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
+vim.keymap.set("i", "\\f<Tab>", function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer = true })
+vim.keymap.set("i", "\\sum<Tab>", function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}}$0") end, { buffer = true })
+vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}}$0") end, { buffer = true })
+vim.keymap.set("i", "$<Tab>", function() vim.snippet.expand("\\$$1\\$$0") end, { buffer = true })
+vim.keymap.set("i", "_<Tab>", function() vim.snippet.expand("_{$0}") end, { buffer = true })
+vim.keymap.set("i", "^<Tab>", function() vim.snippet.expand("^{$0}") end, { buffer = true })
+vim.keymap.set("i", "]<Tab>", function() vim.snippet.expand("\\left[$0\\right]") end, { buffer = true })
+vim.keymap.set("i", ")<Tab>", function() vim.snippet.expand("\\left($0\\right)") end, { buffer = true })
+vim.keymap.set("i", "}<Tab>", function() vim.snippet.expand("\\left\\{$0\\right\\}") end, { buffer = true })
+vim.keymap.set("i", "{{<Tab>", function() vim.snippet.expand("\\{$0\\\\}") end, { buffer = true })
+vim.keymap.set("i", "<bar><bar><Tab>", function() vim.snippet.expand("\\left|$0\\right|") end, { buffer = true })
+vim.keymap.set("i", "<bar><Tab>", function() vim.snippet.expand("|$0|") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><Tab>", function() vim.snippet.expand("\\|$0\\|") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><bar><Tab>", function() vim.snippet.expand("\\left\\|$0\\right\\|") end, { buffer = true })
 
 -- GLOSSARIES -----------------------------------------------------------------
 
-vim.keymap.set("i", "\\as<Tab>", function() vim.snippet.expand("\\acrshort{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\al<Tab>", function() vim.snippet.expand("\\acrlong{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls*{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\gl<Tab>", function() vim.snippet.expand("\\glsentrylong{$1} $0") end, { buffer = true })
-vim.keymap.set("i", "\\gs<Tab>", function() vim.snippet.expand("\\glsentryshort{$1} $0") end, { buffer = true })
+vim.keymap.set("i", "\\as<Tab>", function() vim.snippet.expand("\\acrshort{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\al<Tab>", function() vim.snippet.expand("\\acrlong{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls*{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\gl<Tab>", function() vim.snippet.expand("\\glsentrylong{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\gs<Tab>", function() vim.snippet.expand("\\glsentryshort{$1}$0") end, { buffer = true })
 
 -- QUOTES ---------------------------------------------------------------------
 
-vim.keymap.set("i", "`<Tab>", function() vim.snippet.expand("`$1' $0") end, { buffer = true })
-vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("``$1'' $0") end, { buffer = true })
+vim.keymap.set("i", "`<Tab>", function() vim.snippet.expand("`$1'$0") end, { buffer = true })
+vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("``$1''$0") end, { buffer = true })
 
 -- ENVIRONMENT ----------------------------------------------------------------
 

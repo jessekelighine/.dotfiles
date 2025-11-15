@@ -30,8 +30,7 @@ function source:complete(_, callback)
 			documentation = snippet.wrap_code(snippet:get "quarto/skeleton.qmd", "yaml"),
 		},
 
-		-- MISC:
-		snippet.snippet { label = ":comment", insertText = "<!-- $0 -->" },
+		snippet.snippet { label = ":code", insertText = "```{$1}\n$0\n```" },
 
 		-- BLOCKS:
 		snippet.snippet { label = ":block",       insertText = block {} },

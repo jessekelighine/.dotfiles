@@ -44,14 +44,16 @@ let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 			\ .. "'" .. expand("%:r") .. ".png" .. "'"
 let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none " .. "'" .. expand("%") .. "'"
 let b:tex_compile_make    = "make; echo . | whenever make"
-let b:tex_compile_command = "" .. ( filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex )
+let b:tex_compile_command = "\<C-C>" .. ( filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex )
+" nnoremap <silent><buffer> <leader>rq       <Cmd>call terminal#Close()<CR>
+" nnoremap <silent><buffer> <leader>rf       <Cmd>call terminal#Open(b:tex_compile_command)<CR>
+" nnoremap <silent><buffer> <leader><Space>  <Cmd>call terminal#Open(b:tex_compile_command)<CR>
+" nnoremap <silent><buffer> <leader><leader> <Cmd>call terminal#Send("\<C-D>")<CR>
 nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#Close()<CR>
+nnoremap <silent><buffer> <F5>             <Cmd>call vimslime#Open(b:tex_compile_xelatex, "-l 30")<CR>
 nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
 nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
 nnoremap <silent><buffer> <leader><leader> <Cmd>call vimslime#Send("\<C-D>")<CR>
-" command! -buffer -nargs=0 OpenTmuxLatexmk :call vimslime#Open(b:tex_compile_xelatex)
-" command! -buffer -nargs=0 OpenTmuxMake    :call vimslime#Open(b:tex_compile_make)
-" nnoremap <silent><buffer><expr> <Space><Space> vimslime#Send("\<C-D>")
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 ServerSetup call tex#ServerSetup()
@@ -64,9 +66,9 @@ nnoremap <buffer><silent> <leader>c <Cmd>call tex#EnvironmentChange()<CR>
 nnoremap <buffer><silent> <leader>d <Cmd>call tex#EnvironmentDelete()<CR>
 nnoremap <buffer><silent> <leader>, <Cmd>call tex#DelLeftRight()<CR>
 nnoremap <buffer><silent> <leader>8 <Cmd>call tex#EnvironmentStar()<CR>
-" nnoremap <buffer><silent> <leader>g <Cmd>call tex#SkimForward()<CR>
 nnoremap <buffer><silent> <leader>t <Cmd>call tex_toggle#Master()<CR>
 nnoremap <buffer><silent> <leader>; <Cmd>call funcargs#DeleteFunction('\\','[a-zA-Z]','{}')<CR>
+nnoremap <buffer><silent> <leader>g <Cmd>call tex#SkimForward()<CR>
 nnoremap <buffer><silent> <leader>p <Cmd>call tex#SkimForward()<CR>
 " nnoremap <buffer><silent> <leader>p :! open %:r.pdf<CR><CR>
 silent ServerSetup
@@ -92,8 +94,6 @@ onoremap <silent><buffer> ia      :call funcargs#SelectArgument("i",'{\<bar>[','
 onoremap <silent><buffer> aa      :call funcargs#SelectArgument("a",'{\<bar>[',']\<bar>}')<CR>
 
 " LATEX QUOTES:
-inoremap <silent><buffer>  `<Tab> <C-G>u`'<Left>
-inoremap <silent><buffer> ``<Tab> <C-G>u``''<Left><Left>
 xnoremap <silent><buffer> iQ :<C-U>call tex#Quotes("i",1)<CR>
 xnoremap <silent><buffer> aQ :<C-U>call tex#Quotes("a",1)<CR>
 onoremap <silent><buffer> iQ :<C-U>call tex#Quotes("i",1)<CR>
@@ -114,18 +114,3 @@ xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
 xnoremap <silent><buffer> a$     <Esc>:norm! F$vf$<CR>
 onoremap <silent><buffer> i$     :norm! F$lvt$<CR>
 onoremap <silent><buffer> a$     :norm! F$vf$<CR>
-
-" MATH:
-inoremap <buffer> _<Tab>           <C-G>u_{}<Left>
-inoremap <buffer> ^<Tab>           <C-G>u^{}<Left>
-inoremap <buffer> $<Tab>           <C-G>u$$<Left>
-inoremap <buffer> ]<Tab>           <C-G>u\left[\right]<Esc><S-F>[a
-inoremap <buffer> )<Tab>           <C-G>u\left(\right)<Esc><S-F>(a
-inoremap <buffer> }<Tab>           <C-G>u\left\{\right\}<Esc><S-F>{a
-inoremap <buffer> {{<Tab>          <C-G>u\{\}<Esc><S-F>{a
-inoremap <buffer> <bar><Tab>       <C-G>u<bar><bar><Left>
-inoremap <buffer> <bar><bar><Tab>  <C-G>u\left<bar>\right<bar><Esc>6hi
-inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
-inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
-inoremap <buffer> $$<Tab>          <C-G>u$$<CR>$$<Esc>O
-inoremap <buffer> $$<CR>           <C-G>u$$<CR>$$<Esc>O

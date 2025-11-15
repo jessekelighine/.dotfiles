@@ -2,6 +2,14 @@
 
 local M = {}
 
+M.known_networks = {
+	["Utopie"]          = "1997aaaaaa", -- Phone
+	["sheep"]           = "1997aaaaaa", -- iPhone
+	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
+	["cos"]             = "0906802822", -- Room 645
+	["RickyWramLin_5G"] = "room656656", -- Room 656
+}
+
 M.interface = "en0"
 
 M.wifi_menubar = hs.menubar.new()

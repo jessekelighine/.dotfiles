@@ -27,6 +27,9 @@ function! tex#FindSection(index="") abort
 				\ call add(l:section_titles, l:title) |
 				\ let l:index += 1
 
+	" Return if No Sections Found
+	if len(l:section_lines) == 0 | return | endif
+
 	" Prompt for Index if Not Provided
 	let l:index = a:index
 	if l:index == ""

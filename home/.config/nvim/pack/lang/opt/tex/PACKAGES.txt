@@ -91,3 +91,8 @@ tcolorbox
 tikzfill
 epsf
 footmisc
+comment
+gensymb
+doublestroke
+tabularray
+ninecolors

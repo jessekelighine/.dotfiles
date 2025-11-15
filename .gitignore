@@ -23,11 +23,15 @@ home/.config/python/.python_history
 
 home/.config/nvim/undodir/*
 home/.config/nvim/spell/*.spl
+home/.config/nvim/snippets/email
+home/.config/nvim/snippets/website
+home/.config/nvim/snippets/name
 
 home/.config/b2/file-with-key-id.txt
 home/.config/b2/file-with-key.txt
 home/.config/b2/.b2_account_info
 
+.openai-recovery-codes.txt.enc
 .github-recovery-codes.txt.enc
 .github-token
 

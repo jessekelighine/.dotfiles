@@ -12,6 +12,9 @@ setlocal smartindent smarttab expandtab shiftwidth=2 softtabstop=2 tabstop=2
 " SURROUND:
 let b:surround_98 = "**\r**"
 let b:surround_99 = "```\r```"
+let b:surround_66  = "\\Big\r\\Big"
+let b:surround_98  = "\\big\r\\big"
+let b:surround_108 = "\\left\r\\right"
 let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 
 " COMMANDS:
@@ -25,8 +28,6 @@ command! -buffer -nargs=0 -bang View  call markdown#View(<bang>0)
 " LASTMOD:
 let b:lastmod_pattern = '^\(date:\s\{-}' .. "[\"']" .. '\)' .. '.\{-}' .. '\(' .. "[\"']" .. '\)'
 command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
-command! -buffer -nargs=? AutoLastMod call markdown#AutoLastMod(<q-args>)
-silent! AutoLastMod on
 
 " COMPILER:
 function! <SID>Compile(open) abort
@@ -35,7 +36,6 @@ function! <SID>Compile(open) abort
 	let l:pandoc_command_plain = join([
 				\ "pandoc",
 				\ "--from markdown+east_asian_line_breaks",
-				\ "--css", l:pandoc_command_css_file,
 				\ "--mathjax",
 				\ "--standalone",
 				\ expand("%"),
@@ -74,18 +74,3 @@ xnoremap <silent><buffer> i$     <Esc>:norm! F$lvt$<CR>
 xnoremap <silent><buffer> a$     <Esc>:norm! F$vf$<CR>
 onoremap <silent><buffer> i$     :norm! F$lvt$<CR>
 onoremap <silent><buffer> a$     :norm! F$vf$<CR>
-
-" MATH:
-inoremap <buffer> _<Tab>           <C-G>u_{}<Left>
-inoremap <buffer> ^<Tab>           <C-G>u^{}<Left>
-inoremap <buffer> $<Tab>           <C-G>u$$<Left>
-inoremap <buffer> ]<Tab>           <C-G>u\left[\right]<Esc><S-F>[a
-inoremap <buffer> )<Tab>           <C-G>u\left(\right)<Esc><S-F>(a
-inoremap <buffer> }<Tab>           <C-G>u\left\{\right\}<Esc><S-F>{a
-inoremap <buffer> {{<Tab>          <C-G>u\{\}<Esc><S-F>{a
-inoremap <buffer> <bar><Tab>       <C-G>u<bar><bar><Left>
-inoremap <buffer> <bar><bar><Tab>  <C-G>u\left<bar>\right<bar><Esc>6hi
-inoremap <buffer> \<bar><Tab>      <C-G>u\<bar>\<bar><Left><Left>
-inoremap <buffer> \<bar><bar><Tab> <C-G>u\left\<bar>\right\<bar><Esc>7hi
-inoremap <buffer> $$<Tab>          <C-G>u$$<CR>$$<Esc>O
-inoremap <buffer> $$<CR>           <C-G>u$$<CR>$$<Esc>O

@@ -23,7 +23,12 @@ function! snippet#Get(type, name, args={}) abort
 	endif
 endfunction
 
-function! snippet#GetAuthor() abort
-	let l:signature_path = join([s:snippet_path, "website"], "/")
+function! snippet#Sign(type) abort
+	let l:known_types = ["website", "email", "name"]
+	if index(l:known_types, a:type) == -1
+		echoerr "Unknown signature type: " .. a:type
+		return ""
+	endif
+	let l:signature_path = join([s:snippet_path, a:type], "/")
 	return readfile(l:signature_path)[0]
 endfunction

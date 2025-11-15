@@ -69,3 +69,54 @@ spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
 spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
 spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
 spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
+spiel 'https://www.youtube.com/watch?v=_1d-Axi4mhY' # David Brubeck - Time Out
+spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3' # YOASOBI - The Book Series
+spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://www.youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=7kPe4jx1ueFFn73s' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=7kPe4jx1ueFFn73s' # MrSuicideSheep - House
+spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
+spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
+spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me

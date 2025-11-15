@@ -12,8 +12,6 @@ command! -buffer -nargs=0 FillAuthor  :call markdown#FillAuthor()
 " LASTMOD:
 let b:lastmod_pattern = '^\(date:\s\{-}' .. "[\"']" .. '\).\{-}\(' .. "[\"']" .. '\)'
 command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
-command! -buffer -nargs=? AutoLastMod call markdown#AutoLastMod(<q-args>)
-silent AutoLastMod on
 
 let b:rmarkdown_knit_command = "echo . | whenever make"
 nnoremap <silent><buffer> <leader><Space> :call vimslime#Open(b:rmarkdown_knit_command)<CR>

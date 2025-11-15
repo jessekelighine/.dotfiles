@@ -9,7 +9,7 @@ return {
 	Variable      = "",
 	Class         = "",
 	Interface     = "",
-	Module        = "",
+	Module        = "𝕄",
 	Property      = "",
 	Unit          = "",
 	Value         = "",

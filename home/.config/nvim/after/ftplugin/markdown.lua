@@ -1,10 +1,30 @@
 -- ~/.config/nvim/after/ftplugin/markdown.lua
 -- ~/.config/nvim/after/ftplugin/markdown.vim
 
-vim.keymap.set("i", "`<Tab>",  function() vim.snippet.expand("`$1` $0") end, { buffer = true })
+vim.keymap.set("i", "`<Tab>",  function() vim.snippet.expand("`$1`$0") end, { buffer = true })
 vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("```$1\n$0\n```") end, { buffer = true })
-vim.keymap.set("i", "*<Tab>",  function() vim.snippet.expand("*$1* $0") end, { buffer = true })
-vim.keymap.set("i", "**<Tab>", function() vim.snippet.expand("**$1** $0") end, { buffer = true })
+vim.keymap.set("i", "*<Tab>",  function() vim.snippet.expand("*$1*$0") end, { buffer = true })
+vim.keymap.set("i", "**<Tab>", function() vim.snippet.expand("**$1**$0") end, { buffer = true })
+
+-- MATH -----------------------------------------------------------------------
+
+vim.keymap.set("i", "$$<Tab>", function() vim.snippet.expand("\\$\\$\n$0\n\\$\\$") end, { buffer = true })
+vim.keymap.set("i", "$$<Cr>",  function() vim.snippet.expand("\\$\\$\n$0\n\\$\\$") end, { buffer = true })
+
+vim.keymap.set("i", "\\f<Tab>",          function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer  = true })
+vim.keymap.set("i", "\\sum<Tab>",        function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}}$0") end, { buffer  = true })
+vim.keymap.set("i", "\\prod<Tab>",       function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}}$0") end, { buffer  = true })
+vim.keymap.set("i", "$<Tab>",            function() vim.snippet.expand("\\$$1\\$$0") end, { buffer = true })
+vim.keymap.set("i", "_<Tab>",            function() vim.snippet.expand("_{$0}") end, { buffer = true })
+vim.keymap.set("i", "^<Tab>",            function() vim.snippet.expand("^{$0}") end, { buffer = true })
+vim.keymap.set("i", "]<Tab>",            function() vim.snippet.expand("\\left[$0\\right]") end, { buffer = true })
+vim.keymap.set("i", ")<Tab>",            function() vim.snippet.expand("\\left($0\\right)") end, { buffer = true })
+vim.keymap.set("i", "}<Tab>",            function() vim.snippet.expand("\\left\\{$0\\right\\}") end, { buffer = true })
+vim.keymap.set("i", "{{<Tab>",           function() vim.snippet.expand("\\{$0\\}") end, { buffer = true })
+vim.keymap.set("i", "<bar><bar><Tab>",   function() vim.snippet.expand("\\left|$0\\right|") end, { buffer = true })
+vim.keymap.set("i", "<bar><Tab>",        function() vim.snippet.expand("|$0|") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><Tab>",      function() vim.snippet.expand("\\|$0\\|") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><bar><Tab>", function() vim.snippet.expand("\\left\\|$0\\right\\|") end, { buffer = true })
 
 -- MATH FONT STYLES -----------------------------------------------------------
 

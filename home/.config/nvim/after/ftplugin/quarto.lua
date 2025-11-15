@@ -2,8 +2,11 @@
 -- ~/.config/nvim/after/ftplugin/quarto.vim
 
 vim.keymap.set("i", "``<Tab>", function() vim.snippet.expand("```{r}\n$0\n```") end, { buffer = true })
+vim.keymap.set("i", "`<Tab>",  function() vim.snippet.expand("`$1`$0") end, { buffer = true })
 vim.keymap.set("i", "*<Tab>",  function() vim.snippet.expand("*$1* $0") end, { buffer = true })
 vim.keymap.set("i", "**<Tab>", function() vim.snippet.expand("**$1** $0") end, { buffer = true })
+
+-- MATH FONT STYLES -----------------------------------------------------------
 
 vim.keymap.set("i", "\\t<Tab>", function() vim.snippet.expand("\\text{$1}$0") end, { buffer  = true })
 vim.keymap.set("i", "\\mb<Tab>", function() vim.snippet.expand("\\mathbf{$1}$0") end, { buffer  = true })
@@ -16,12 +19,25 @@ vim.keymap.set("i", "\\ms<Tab>", function() vim.snippet.expand("\\mathscr{$1}$0"
 vim.keymap.set("i", "\\mk<Tab>", function() vim.snippet.expand("\\mathfrak{$1}$0") end, { buffer  = true })
 vim.keymap.set("i", "\\bs<Tab>", function() vim.snippet.expand("\\boldsymbol{$1}$0") end, { buffer  = true })
 
-vim.keymap.set("i", "_<Tab>", function() vim.snippet.expand("_{$1}$0") end, { buffer = true })
-vim.keymap.set("i", "^<Tab>", function() vim.snippet.expand("^{$1}$0") end, { buffer = true })
-vim.keymap.set("i", "$<Tab>", function() vim.snippet.expand("\\$$0\\$") end, { buffer = true })
-vim.keymap.set("i", "\\f<Tab>", function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer  = true })
-vim.keymap.set("i", "\\sum<Tab>", function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
-vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}} $0") end, { buffer  = true })
+-- MATH -----------------------------------------------------------------------
+
+vim.keymap.set("i", "$$<Tab>", function() vim.snippet.expand("\\$\\$\n$0\n\\$\\$") end, { buffer = true })
+vim.keymap.set("i", "$$<Cr>",  function() vim.snippet.expand("\\$\\$\n$0\n\\$\\$") end, { buffer = true })
+
+vim.keymap.set("i", "\\f<Tab>",          function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer  = true })
+vim.keymap.set("i", "\\sum<Tab>",        function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}}$0") end, { buffer  = true })
+vim.keymap.set("i", "\\prod<Tab>",       function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}}$0") end, { buffer  = true })
+vim.keymap.set("i", "$<Tab>",            function() vim.snippet.expand("\\$$1\\$$0") end, { buffer = true })
+vim.keymap.set("i", "_<Tab>",            function() vim.snippet.expand("_{$0}") end, { buffer = true })
+vim.keymap.set("i", "^<Tab>",            function() vim.snippet.expand("^{$0}") end, { buffer = true })
+vim.keymap.set("i", "]<Tab>",            function() vim.snippet.expand("\\left[$0\\right]") end, { buffer = true })
+vim.keymap.set("i", ")<Tab>",            function() vim.snippet.expand("\\left($0\\right)") end, { buffer = true })
+vim.keymap.set("i", "}<Tab>",            function() vim.snippet.expand("\\left\\{$0\\right\\}") end, { buffer = true })
+vim.keymap.set("i", "{{<Tab>",           function() vim.snippet.expand("\\{$0\\}") end, { buffer = true })
+vim.keymap.set("i", "<bar><bar><Tab>",   function() vim.snippet.expand("\\left|$0\\right|") end, { buffer = true })
+vim.keymap.set("i", "<bar><Tab>",        function() vim.snippet.expand("|$0|") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><Tab>",      function() vim.snippet.expand("\\|$0\\|") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><bar><Tab>", function() vim.snippet.expand("\\left\\|$0\\right\\|") end, { buffer = true })
 
 -- HIGHLIGHT BLOCK ------------------------------------------------------------
 
@@ -30,7 +46,7 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
 	desc = "Highlight Quarto Blocks",
 	group = vim.api.nvim_create_augroup("HighlightQuartoBlocks", { clear = true }),
 	callback = function()
-		vim.cmd[[
+		vim.cmd [[
 		syntax match quartoTag /{#.\{-}}/
 		syntax match quartoDiv /^:::.*$/
 		syntax match quartoCite /@[a-zA-Z0-9-_:]\+/

@@ -1,25 +1,5 @@
 " ~/.config/nvim/autoload/r.vim
 
-" Toggle/Set augroup MarkdownAutoLastMod
-function! <SID>LastMod() abort
-	try
-		undojoin | LastMod
-	catch
-		LastMod
-	endtry
-endfunction
-function! r#AutoLastMod(set = "")
-	let l:status = exists("#RAutoLastMod#BufWritePost")
-	let l:switch_on = a:set =~? "on" ? 1 : ( a:set =~? "off" ? 0 : !l:status )
-	augroup RAutoLastMod
-		autocmd!
-		if l:switch_on
-			autocmd BufWritePost *.R,*.r call <SID>LastMod()
-		endif
-	augroup END
-	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
-endfunction
-
 " Print the line number (sub)sections.
 function! r#FindSection() abort
 	let l:index = 0
@@ -44,15 +24,19 @@ endfunction
 
 " expand pipe symbol
 function! r#PipeExpand(type)
-	execute "norm! a" .. ( getline(".")[col(".") - 1] != " " ? " " : "" ) .. b:r_pipe
-	if     a:type =~ "CR"  | call feedkeys("a\<CR>")
-	elseif a:type =~ "Tab" | call feedkeys("a" .. ( getline(".")[col(".")]==" " ? "" : " " ))
-	endif
+	let l:curr_char = getline(".")[col(".") - 1]
+	let l:next_char = getline(".")[col(".")]
+	let l:space_before_pipe = l:curr_char == " " ? "" : " "
+	let l:space_after_pipe  = l:next_char == " " ? "" : " "
+	let l:keys = a:type == "cr" ? "a\<CR>" : ( "a" .. l:space_after_pipe )
+	exec "norm! a" .. l:space_before_pipe .. b:r_pipe
+	call feedkeys(l:keys)
 endfunction
 
 " guess the pipe symbol
 function! r#PipeAutoDetect() abort
-	let l:recognized_packages = [ 'tidyverse', 'magrittr' ]
+	" let l:recognized_packages = [ 'tidyverse', 'magrittr' ]
+	let l:recognized_packages = ['NOPIPES']
 	let l:package_pattern = join(l:recognized_packages, '\|')
 	let b:r_pipe = search(l:package_pattern, 'nw') > 0 ? "%>%" : "|>"
 endfunction

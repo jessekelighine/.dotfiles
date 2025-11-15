@@ -8,7 +8,11 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet.is_available { filetype = filetype }
+source.is_available = function()
+	if vim.bo.filetype == "markdown" then return true end
+	if vim.bo.filetype == "quarto" then return true end
+	return false
+end
 
 function source:complete(_, callback)
 	callback {

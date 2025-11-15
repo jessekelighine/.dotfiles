@@ -24,11 +24,11 @@ function source:complete(_, callback)
 		snippet.snippet { label = ":consolelog", insertText = snippet:get "r/consolelog.R" },
 		snippet.snippet { label = ":mode",       insertText = snippet:get "r/modus.R" },
 		snippet.snippet { label = ":rm",         insertText = snippet:get "r/rm.R" },
-		snippet.snippet { label = ":timer",      insertText = snippet:get "r/timer.R" },
 		snippet.snippet { label = ":curry",      insertText = snippet:get "r/curry.R" },
 		snippet.snippet { label = ":showtext",   insertText = snippet:get "r/showtext.R" },
 		snippet.snippet { label = ":datatable",  insertText = snippet:get "r/datatable.R" },
 		snippet.snippet { label = ":block",      insertText = "$0###############################################################################" },
+		{ label = ":timer",      insertText = snippet:get "r/timer.R" },
 		-- snippet.snippet { label = ":for",        insertText = "for ($1 in $2) {\n\t$0\n}" },
 		-- snippet.snippet { label = ":function",   insertText = "$1 <- function($2) {\n\t$0\n}" },
 	}

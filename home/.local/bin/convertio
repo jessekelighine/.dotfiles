@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Convertio Website: https://developers.convertio.co/
 
 apikey='71769a54cf2f24c91cd68a737434f884'

@@ -25,21 +25,9 @@ return {
 
 		-- TOGGLE BEGIN:
 		vim.api.nvim_create_user_command("VindentBegin", function(opts)
-			if not opts.bang then
-				vim.g.vindent_begin = not vim.g.vindent_begin
-			end
+			if not opts.bang then vim.g.vindent_begin = not vim.g.vindent_begin end
 			local status = vim.g.vindent_begin and "ON" or "OFF"
 			local message = ":VindentBegin " .. status
-			vim.notify(message, vim.log.levels.INFO)
-		end, { bang = true })
-
-		-- TOGGLE NOISY:
-		vim.api.nvim_create_user_command("VindentNoisy", function(opts)
-			if not opts.bang then
-				vim.g.vindent_noisy = not vim.g.vindent_noisy
-			end
-			local status = vim.g.vindent_noisy and "ON" or "OFF"
-			local message = ":VindentNoisy " .. status
 			vim.notify(message, vim.log.levels.INFO)
 		end, { bang = true })
 	end

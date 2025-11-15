@@ -1,10 +1,8 @@
 -- ~/.config/nvim/after/plugin/lspconfig.lua
 -- ~/.config/nvim/lua/plugin/lspconfig.lua
 
-local lspconfig = require "lspconfig"
-
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('KickstartLspAttach', { clear = true }),
+	group = vim.api.nvim_create_augroup('LspAttach', { clear = true }),
 	desc = "LSP Actions on Attach",
 	callback = function()
 		vim.opt.signcolumn = "yes:1"
@@ -13,7 +11,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- R --------------------------------------------------------------------------
 
-lspconfig.r_language_server.setup {
+vim.lsp.config("r_language_server", {
 	on_attach = function(client, _)
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentRangeFormattingProvider = false
@@ -23,9 +21,9 @@ lspconfig.r_language_server.setup {
 			line_length_linter = { enable = false }
 		}
 	},
-}
+})
 
-lspconfig.air.setup {
+vim.lsp.config("air", {
 	on_attach = function(_, bufnr)
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = vim.api.nvim_create_augroup('AirFormatter', { clear = true }),
@@ -33,11 +31,14 @@ lspconfig.air.setup {
 			callback = function() vim.lsp.buf.format() end,
 		})
 	end,
-}
+})
+
+vim.lsp.enable("r_language_server")
+vim.lsp.enable("air")
 
 -- LUA ------------------------------------------------------------------------
 
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
 	vim.diagnostic.config { signs = true },
 	settings = {
 		Lua = {
@@ -47,14 +48,19 @@ lspconfig.lua_ls.setup {
 			-- workspace = { library = vim.api.nvim_get_runtime_file("", true) },
 		},
 	},
-}
+})
+
+vim.lsp.enable("lua_ls")
 
 -- PYTHON ---------------------------------------------------------------------
 
-lspconfig.pyright.setup {}
+vim.lsp.enable("pyright")
 
 -- BASH -----------------------------------------------------------------------
 
-lspconfig.bashls.setup {
-	vim.diagnostic.config { signs = true }
-}
+vim.lsp.config("bashls", { vim.diagnostic.config { signs = true } })
+vim.lsp.enable("bashls")
+
+-- JULIA ----------------------------------------------------------------------
+
+vim.lsp.enable("julials")

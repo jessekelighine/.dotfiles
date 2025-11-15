@@ -3,6 +3,7 @@
 
 function! chinese#WordCount(line1, line2)
 	let l:char_set = "[^\\x00-\\xff]"
+	let l:char_set = "[^ -~]"
 	exe a:line1 .. "," .. a:line2 .. "s/" .. l:char_set .. "//gn"
 endfunction
 

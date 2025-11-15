@@ -3,29 +3,37 @@
 local HYPER = { "alt" }
 local HYPER_SHIFT = { table.unpack(HYPER), "shift" }
 
--- Window Manager -------------------------------------------------------------
+-- Clean Keyboard -------------------------------------------------------------
 
-local wm = require "window-management"
-
-hs.hotkey.bindSpec({ HYPER,       "down"  }, function() wm.move_to("bottom") end)
-hs.hotkey.bindSpec({ HYPER,       "left"  }, function() wm.move_to("left")   end)
-hs.hotkey.bindSpec({ HYPER,       "right" }, function() wm.move_to("right")  end)
-hs.hotkey.bindSpec({ HYPER,       "up"    }, function() wm.move_to("top")    end)
-hs.hotkey.bindSpec({ HYPER_SHIFT, "up"    }, function() wm.move_to("full")   end)
+local clean_keyboard = require "clean-keyboard"
+hs.hotkey.bindSpec({ HYPER_SHIFT, "k" }, clean_keyboard.lock_keyboard)
 
 -- Applications and Shortcuts -------------------------------------------------
 
-hs.hotkey.bindSpec({ HYPER, "a" }, function() hs.application.open("Kitty")      end)
+hs.hotkey.bindSpec({ HYPER, "a" }, function() hs.application.open("iterm")      end)
 hs.hotkey.bindSpec({ HYPER, "d" }, function() hs.application.open("Dictionary") end)
 hs.hotkey.bindSpec({ HYPER, "f" }, function() hs.application.open("Finder")     end)
 hs.hotkey.bindSpec({ HYPER, "x" }, function() hs.application.open("Firefox")    end)
 hs.hotkey.bindSpec({ HYPER, "s" }, function() hs.application.open("Skim")       end)
+hs.hotkey.bindSpec({ HYPER, "z" }, function() hs.application.open("Zotero")     end)
+hs.hotkey.bindSpec({ HYPER, "v" }, function() hs.application.open("Visual Studio Code")     end)
 -- hs.hotkey.bindSpec({ HYPER, "l" }, function() hs.application.open("Line")       end)
 -- hs.hotkey.bindSpec({ HYPER, "p" }, function() hs.application.open("Preview")    end)
 -- hs.hotkey.bindSpec({ HYPER, "e" }, function ()
 -- 	local resp = hs.execute("eject-auto", true)
 -- 	print(resp)
 -- end)
+
+-- Window Manager -------------------------------------------------------------
+
+local wm = require "window-management"
+
+hs.hotkey.bindSpec({ HYPER, "down"  }, function() wm.move_to("bottom") end)
+hs.hotkey.bindSpec({ HYPER, "left"  }, function() wm.move_to("left")   end)
+hs.hotkey.bindSpec({ HYPER, "right" }, function() wm.move_to("right")  end)
+hs.hotkey.bindSpec({ HYPER, "up"    }, function() wm.move_to("top")    end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "up"   }, function() wm.full()   end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "down" }, function() wm.center() end)
 
 -- Bluetooth ------------------------------------------------------------------
 
@@ -38,13 +46,6 @@ hs.hotkey.bindSpec({ HYPER_SHIFT, "b" }, function() hs.execute(blueutil_off)    
 -- Wifi -----------------------------------------------------------------------
 
 local wifi = require "wifi-menubar"
--- local known_networks = {
--- 	["Utopie"]          = "1997aaaaaa", -- Phone
--- 	["sheep"]           = "1997aaaaaa", -- iPhone
--- 	["EDIMAX"]          = "1997aaaaaa", -- NYC #41A
--- 	["cos"]             = "0906802822", -- Room 645
--- 	["RickyWramLin_5G"] = "room656656", -- Room 656
--- }
 
 hs.hotkey.bindSpec({ HYPER_SHIFT, "w" }, function() hs.wifi.setPower(false, wifi.interface) end)
 hs.hotkey.bindSpec({ HYPER,       "w" }, function() hs.wifi.setPower(true,  wifi.interface) end)

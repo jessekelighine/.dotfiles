@@ -13,9 +13,10 @@ source.is_available = snippet.is_available { language = language }
 
 function source:complete(_, callback)
 	callback {
-		{ label = ":quarto", insertText = snippet:get "css/quarto.css" },
-		{ label = ":style",  insertText = snippet:get "css/style.css" },
-		{ label = ":sign",   insertText = snippet:get "css/sign.css" },
+		{ label = ":quarto",  insertText = snippet:get "css/quarto.css" },
+		{ label = ":style",   insertText = snippet:get "css/style.css" },
+		{ label = ":sign",    insertText = snippet:get "css/sign.css" },
+		snippet.snippet { label = ":comment", insertText = "/* $0 */" },
 	}
 end
 

@@ -1,25 +1,5 @@
 " ~/.config/nvim/autoload/markdown.vim
 
-" Toggle/Set augroup MarkdownAutoLastMod
-function! <SID>LastMod() abort
-	try
-		undojoin | LastMod
-	catch
-		LastMod
-	endtry
-endfunction
-function! markdown#AutoLastMod(set = "") abort
-	let l:status = exists("#MarkdownAutoLastMod#BufWritePost")
-	let l:switch_on = a:set =~? "on" ? 1 : ( a:set =~? "off" ? 0 : !l:status )
-	augroup MarkdownAutoLastMod
-		autocmd!
-		if l:switch_on
-			autocmd BufWritePost *.qmd,*.md,*.markdown,*.Rmd,*.rmd call <SID>LastMod()
-		endif
-	augroup END
-	echo " AutoLastMod is now " .. ( l:switch_on ? "ON" : "OFF" )
-endfunction
-
 " fill-in Author
 function! markdown#FillAuthor(author=snippet#GetAuthor())
 	let l:position = getpos(".")

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [[ $# -lt 1 ]] && {
 	cat << EOF >&2

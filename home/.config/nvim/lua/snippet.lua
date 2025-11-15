@@ -66,6 +66,7 @@ end
 ---@return boolean boolean whether the current position is in the
 ---language specified by `language` based on treesitter parser.
 local is_available_by_language = function(language)
+	if not language then return false end
 	local ok, parser = pcall(vim.treesitter.get_parser)
 	if not ok or parser == nil then return false end
 	local line = vim.fn.line(".")
@@ -78,6 +79,7 @@ end
 ---@return boolean boolean whether the current buffer's filetype matches the
 ---given filetype.
 local is_available_by_filetype = function(filetype)
+	if not filetype then return false end
 	return vim.bo.filetype == filetype
 end
 

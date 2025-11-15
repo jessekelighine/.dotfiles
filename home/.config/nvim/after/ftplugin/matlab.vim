@@ -12,7 +12,7 @@ command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 
 " MAPPSINGS: useful mappings.
 inoremap <buffer> ^<Tab>    ^()<Left>
-nnoremap <buffer> <leader>; :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9_]')<CR>
+nnoremap <buffer> <leader>; <Cmd>call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9_]')<CR>
 
 " visual select "a section".
 xnoremap <buffer><silent> as :call matlab#GetSection('a')<CR>
@@ -26,15 +26,15 @@ nnoremap <silent><buffer> <leader><Space> <Cmd>call vimslime#Open(b:matlab_comma
 nnoremap <silent><buffer> <leader>rf      <Cmd>call vimslime#Open(b:matlab_command, '-l 10')<CR>
 nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#Close()<CR>
 xnoremap <buffer><silent> <leader>cc      <Cmd>call vimslime#Send("\<C-C>")<CR>
-nnoremap <buffer><silent> <leader>ro      <Cmd>call vimslime#Send("who", 1)<CR>
-nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("clc", 1)<CR>
+nnoremap <buffer><silent> <leader>ro      <Cmd>call vimslime#Send("who", { "return": 1 })<CR>
+nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("clc", { "return": 1 })<CR>
 nnoremap <buffer><silent> <leader>d       <Cmd>call vimslime#Forward("line")<CR>
-nnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("word")<CR>
+nnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("word", { "return": 1 })<CR>
 nnoremap <buffer><silent> <leader>rG      <Cmd>call vimslime#Forward("end")<CR>
 nnoremap <buffer><silent> <leader>pp      <Cmd>call vimslime#Forward("paragraph")<CR>
 xnoremap <buffer><silent> <leader>ss      <Cmd>call vimslime#Forward("selection")<CR>
 xnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("selection")<CR>
-nnoremap <buffer><silent> <leader>rh      <Cmd>call vimslime#Forward("word", 1, { x -> "help " .. x })<CR>
-nnoremap <buffer><silent> <leader>rs      <Cmd>call vimslime#Forward("word", 1, { x -> "size(" .. x .. ")" })<CR>
-xnoremap <buffer><silent> <leader>rs      <Cmd>call vimslime#Forward("selection", 1, { x -> "size(" .. x .. ")" })<CR>
+nnoremap <buffer><silent> <leader>rh      <Cmd>call vimslime#Forward("word", { "return": 1, "wrapper": { x -> "help " .. x } })<CR>
+nnoremap <buffer><silent> <leader>rs      <Cmd>call vimslime#Forward("word", { "return": 1, "wrapper": { x -> "size(" .. x .. ")" } })<CR>
+xnoremap <buffer><silent> <leader>rs      <Cmd>call vimslime#Forward("selection", { "return": 1, "wrapper": { x -> "size(" .. x .. ")" } })<CR>
 nnoremap <buffer><silent> <leader>ss      m':call matlab#GetSection('i')<CR>"9y:call vimslime#Send(@9)<CR>`'

@@ -1,7 +1,7 @@
 ---
 title: "Notes on `fd`"
 author: "https://jessekelighine.com"
-date: "2025-07-22"
+date: "2025-08-30"
 ---
 
 # About `.fdignore`
@@ -22,3 +22,5 @@ To *unignore* files/directories, put
 ```
 
 in `.fdignore` in the root of the project.
+
+*Note*: The file `~/.config/fd/ignore` is a global ignore file.

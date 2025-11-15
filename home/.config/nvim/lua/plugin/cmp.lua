@@ -35,6 +35,10 @@ return {
 				["<CR>"]  = cmp.mapping.confirm { select = false },
 			},
 			window = {
+				completion = {
+					border = "single",
+					winhighlight = "Normal:CmpNormal",
+				},
 				documentation = cmp.config.window.bordered {
 					border = "single"
 				}

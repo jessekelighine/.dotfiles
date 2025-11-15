@@ -25,8 +25,6 @@ silent! PipeAutoDetect
 " LASTMOD:
 let b:lastmod_pattern = '^\(' .. "#' @note Date Created: " .. '\)' .. '[^ ]*' .. '\(.*\)$'
 command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
-command! -buffer -nargs=? AutoLastMod call r#AutoLastMod(<q-args>)
-silent! AutoLastMod off
 
 " R MACROS:
 nnoremap <buffer><silent> <leader>;  :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>
