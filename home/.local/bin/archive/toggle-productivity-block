@@ -1,0 +1,204 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BLOCK_START="### START PRODUCTIVITY BLOCK"
+BLOCK_END="### END PRODUCTIVITY BLOCK"
+DEFAULT_HOSTS="/etc/hosts"
+UNBLOCK_DELAY=300
+
+message() {
+	local command; command="$(tput setaf 12)==>$(tput sgr0)"
+	echo "${command} $*"
+}
+
+usage() {
+	local command; command="$(tput bold)$(basename "$0")$(tput sgr0)"
+	local usage; usage=$(tput bold)USAGE:$(tput sgr0)
+	local options; options=$(tput bold)OPTIONS:$(tput sgr0)
+	local example; example=$(tput bold)EXAMPLE:$(tput sgr0)
+	local note; note=$(tput bold)NOTE:$(tput sgr0)
+	cat <<EOF
+${usage} ${command} [--hosts path] [enable|disable|toggle|status]
+${options}
+	--hosts path  Path to the hosts file (default: ${DEFAULT_HOSTS}).
+	enable        Ensure the productivity block is active.
+	disable       Comment out the productivity block.
+	toggle        Flip between enable and disable (default action).
+	status        Show whether the block is currently active.
+${example}
+	sudo ${command} --hosts /etc/hosts toggle
+${note}
+	In the /etc/hosts file, the productivity block should be
+	delimited by the following markers:
+
+		${BLOCK_START}
+		...entries to block...
+		${BLOCK_END}
+EOF
+}
+
+for arg in "$@"; do
+	if [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
+		usage
+		exit 0
+	fi
+done
+
+HOSTS_FILE="${HOSTS_FILE:-$DEFAULT_HOSTS}"
+ACTION="toggle"
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		--hosts)
+			shift || { message "--hosts requires a path" >&2; exit 1; }
+			HOSTS_FILE="$1"
+			;;
+		enable)
+			ACTION="on"
+			;;
+		disable)
+			ACTION="off"
+			;;
+		toggle)
+			ACTION="toggle"
+			;;
+		status)
+			ACTION="status"
+			;;
+		-h|--help)
+			usage
+			exit 0
+			;;
+		*)
+			message "Unknown argument: $1" >&2
+			usage >&2
+			exit 1
+			;;
+	esac
+	shift
+done
+
+if [[ ! -f "$HOSTS_FILE" ]]; then
+	message "Hosts file not found: $HOSTS_FILE" >&2
+	exit 1
+fi
+
+if ! grep -qF "$BLOCK_START" "$HOSTS_FILE"; then
+	message "Could not find block start marker '$BLOCK_START' in $HOSTS_FILE" >&2
+	exit 1
+fi
+
+if ! grep -qF "$BLOCK_END" "$HOSTS_FILE"; then
+	message "Could not find block end marker '$BLOCK_END' in $HOSTS_FILE" >&2
+	exit 1
+fi
+
+block_active() {
+	awk -v start="$BLOCK_START" -v end="$BLOCK_END" '
+		$0 == start { in_block=1; next }
+		$0 == end { exit active ? 0 : 1 }
+		in_block && $0 !~ /^[[:space:]]*#/ && $0 !~ /^[[:space:]]*$/ { active=1; exit 0 }
+		END { exit active ? 0 : 1 }
+	' "$HOSTS_FILE"
+}
+
+confirm_unblock() {
+	local delay="$1"
+	local reply
+	read -r -p "Unblock now? (y/N): " reply
+	case "$(printf '%s' "$reply" | tr '[:upper:]' '[:lower:]')" in
+		y|yes)
+			;;
+		*)
+			message "Keeping the block enabled."
+			exit 0
+			;;
+	esac
+	if (( delay > 0 )); then
+		message "Waiting $delay seconds before unblocking (Ctrl+C to cancel)."
+		for ((i=delay; i>0; i--)); do
+			printf "\rUnblocking in %02d seconds..." "$i"
+			sleep 1
+		done
+		printf "\rProceeding with unblock.            \n"
+	else
+		message "Proceeding with unblock immediately."
+	fi
+}
+
+update_block() {
+	local desired="$1"
+	local tmp
+	tmp="$(mktemp)"
+	trap 'rm -f "$tmp"' EXIT
+
+	awk -v start="$BLOCK_START" -v end="$BLOCK_END" -v desired="$desired" '
+		$0 == start { in_block=1; print; next }
+		$0 == end { in_block=0; print; next }
+		{
+			if (in_block) {
+				if (desired == "on") {
+					if ($0 ~ /^[[:space:]]*#[[:space:]]*/) {
+						sub(/^[[:space:]]*#[[:space:]]*/, "", $0)
+					}
+				} else if (desired == "off") {
+					if ($0 !~ /^[[:space:]]*#/ && $0 !~ /^[[:space:]]*$/) {
+						$0 = "# " $0
+					}
+				}
+			}
+			print
+		}
+	' "$HOSTS_FILE" > "$tmp"
+
+	mv "$tmp" "$HOSTS_FILE"
+	trap - EXIT
+}
+
+print_status() {
+	if block_active; then
+		message "Productivity block is currently ON in $HOSTS_FILE"
+	else
+		message "Productivity block is currently OFF in $HOSTS_FILE"
+	fi
+}
+
+ensure_hosts_writable() {
+	if [[ ! -w "$HOSTS_FILE" ]]; then
+		message "Hosts file is not writable: $HOSTS_FILE" >&2
+		message "Privilege escalation may be required to modify it." >&2
+		usage >&2
+		exit 1
+	fi
+}
+
+case "$ACTION" in
+	status)
+		print_status
+		;;
+	on|off)
+		ensure_hosts_writable
+		if [[ "$ACTION" == "off" ]] && block_active; then
+			confirm_unblock "$UNBLOCK_DELAY"
+		fi
+		update_block "$ACTION"
+		print_status
+		;;
+	toggle)
+		ensure_hosts_writable
+		if block_active; then
+			ACTION="off"
+		else
+			ACTION="on"
+		fi
+		if [[ "$ACTION" == "off" ]]; then
+			confirm_unblock "$UNBLOCK_DELAY"
+		fi
+		update_block "$ACTION"
+		print_status
+		;;
+	*)
+		message "Unknown action: $ACTION" >&2
+		exit 1
+		;;
+esac

@@ -10,30 +10,27 @@ hs.hotkey.bindSpec({ HYPER_SHIFT, "k" }, clean_keyboard.lock_keyboard)
 
 -- Applications and Shortcuts -------------------------------------------------
 
-hs.hotkey.bindSpec({ HYPER, "a" }, function() hs.application.open("iterm")      end)
-hs.hotkey.bindSpec({ HYPER, "d" }, function() hs.application.open("Dictionary") end)
-hs.hotkey.bindSpec({ HYPER, "f" }, function() hs.application.open("Finder")     end)
-hs.hotkey.bindSpec({ HYPER, "x" }, function() hs.application.open("Firefox")    end)
-hs.hotkey.bindSpec({ HYPER, "s" }, function() hs.application.open("Skim")       end)
-hs.hotkey.bindSpec({ HYPER, "z" }, function() hs.application.open("Zotero")     end)
-hs.hotkey.bindSpec({ HYPER, "v" }, function() hs.application.open("Visual Studio Code")     end)
--- hs.hotkey.bindSpec({ HYPER, "l" }, function() hs.application.open("Line")       end)
--- hs.hotkey.bindSpec({ HYPER, "p" }, function() hs.application.open("Preview")    end)
--- hs.hotkey.bindSpec({ HYPER, "e" }, function ()
--- 	local resp = hs.execute("eject-auto", true)
--- 	print(resp)
--- end)
+local am = require "app-manager"
+
+hs.hotkey.bindSpec({ HYPER, "a" }, function() am.lauch_focus_or_rotate("iterm")      end)
+hs.hotkey.bindSpec({ HYPER, "d" }, function() am.lauch_focus_or_rotate("Dictionary") end)
+hs.hotkey.bindSpec({ HYPER, "f" }, function() am.lauch_focus_or_rotate("Finder")     end)
+hs.hotkey.bindSpec({ HYPER, "x" }, function() am.lauch_focus_or_rotate("Firefox")    end)
+hs.hotkey.bindSpec({ HYPER, "s" }, function() am.lauch_focus_or_rotate("Skim")       end)
+hs.hotkey.bindSpec({ HYPER, "z" }, function() am.lauch_focus_or_rotate("Zotero")     end)
 
 -- Window Manager -------------------------------------------------------------
 
-local wm = require "window-management"
+local wm = require "window-manager"
 
-hs.hotkey.bindSpec({ HYPER, "down"  }, function() wm.move_to("bottom") end)
-hs.hotkey.bindSpec({ HYPER, "left"  }, function() wm.move_to("left")   end)
-hs.hotkey.bindSpec({ HYPER, "right" }, function() wm.move_to("right")  end)
-hs.hotkey.bindSpec({ HYPER, "up"    }, function() wm.move_to("top")    end)
-hs.hotkey.bindSpec({ HYPER_SHIFT, "up"   }, function() wm.full()   end)
-hs.hotkey.bindSpec({ HYPER_SHIFT, "down" }, function() wm.center() end)
+hs.hotkey.bindSpec({ HYPER,       "down"  }, function() wm.move_to("bottom")          end)
+hs.hotkey.bindSpec({ HYPER,       "left"  }, function() wm.move_to("left")            end)
+hs.hotkey.bindSpec({ HYPER,       "right" }, function() wm.move_to("right")           end)
+hs.hotkey.bindSpec({ HYPER,       "up"    }, function() wm.move_to("top")             end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "down"  }, function() wm.center()                   end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "left"  }, function() wm.adjust_width("left",  1/8) end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "right" }, function() wm.adjust_width("right", 1/8) end)
+hs.hotkey.bindSpec({ HYPER_SHIFT, "up"    }, function() wm.full()                     end)
 
 -- Bluetooth ------------------------------------------------------------------
 

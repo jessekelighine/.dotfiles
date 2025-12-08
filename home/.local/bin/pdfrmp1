@@ -12,7 +12,7 @@ EOF
 }
 
 temp="$(mktemp)"
-pages=$(pdfinfo "$1" | awk -F : '/Pages/ { print $2 ; exit }' | xargs)
+pages=$(pdfinfo "$1" | grep 'Pages' | awk -F : '/Pages/ { print $2 ; exit }' | xargs)
 
 pdfsplit "$1" 2 "$pages" "$temp"
 

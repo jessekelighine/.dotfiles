@@ -120,3 +120,13 @@ spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
 spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
 spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
+spiel 'https://www.youtube.com/watch?v=yebNIHKAC4A' # Golden
+spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
+spiel 'https://www.youtube.com/watch?v=yebNIHKAC4A' # Golden
+spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
+spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites

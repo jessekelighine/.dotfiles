@@ -28,6 +28,7 @@ vim.keymap.set("i", "\\bs<Tab>", function() vim.snippet.expand("\\boldsymbol{$1}
 
 -- MATH STUFF -----------------------------------------------------------------
 
+vim.keymap.set("i", "\\D<Tab>", function() vim.snippet.expand("\\Deriv$1{$2}{$3}$0") end, { buffer = true })
 vim.keymap.set("i", "\\f<Tab>", function() vim.snippet.expand("\\frac{$1}{$2}$0") end, { buffer = true })
 vim.keymap.set("i", "\\sum<Tab>", function() vim.snippet.expand("\\sum_{${1:i=1}}^{${2:n}}$0") end, { buffer = true })
 vim.keymap.set("i", "\\prod<Tab>", function() vim.snippet.expand("\\prod_{${1:i=1}}^{${2:n}}$0") end, { buffer = true })

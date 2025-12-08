@@ -64,6 +64,7 @@ function source:complete(_, callback)
 		preamble { label = ":noorphan",     insertText = snippet:get "tex/preamble-noorphanwidow.tex" },
 		preamble { label = ":problem",      insertText = snippet:get "tex/preamble-problem.tex" },
 		preamble { label = ":probability",  insertText = snippet:get "tex/preamble-mathprob.tex" },
+		preamble { label = ":calculus",     insertText = snippet:get "tex/preamble-mathcalc.tex" },
 		preamble { label = ":pagebeamer",   insertText = snippet:get "tex/preamble-pagebeamer.tex" },
 		preamble { label = ":page",         insertText = snippet:get "tex/preamble-fancyhdr.tex" },
 		preamble { label = ":ruby",         insertText = snippet:get "tex/preamble-ruby.tex" },
@@ -141,7 +142,7 @@ function source:complete(_, callback)
 
 		-- TIKZ:
 		snippet.snippet { label = ":tikz",             insertText = snippet:get "tex/env-tikz.snippet.tex" },
-		snippet.snippet { label = ":tikzintersection", insertText = "\\path[name intersections={of= $1 and $2}]; % (intersection-1)" },
+		snippet.snippet { label = ":tikzintersection", insertText = "\\path[name intersections={of=$1 and $2}] (intersection-1) coordinate ($0);" },
 
 		-- MISC:
 		snippet.snippet { label = ":columnbreak",   insertText = "\\vfill\\null\\columnbreak" },

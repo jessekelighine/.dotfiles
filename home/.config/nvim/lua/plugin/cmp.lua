@@ -23,6 +23,7 @@ return {
 			table.insert(sources, { name = source_name })
 		end
 
+		vim.keymap.set("i", "<C-C>", function() vim.snippet.stop() end, { desc = "Stop Snippet" })
 		cmp.setup {
 			sources = sources,
 			snippet = {

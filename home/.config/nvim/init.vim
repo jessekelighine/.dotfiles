@@ -11,15 +11,15 @@ language en_US.UTF-8
 " nnoremap <Down> gj
 xnoremap >      >gv
 xnoremap <      <gv
-" nnoremap <expr> n 'Nn'[v:searchforward]
-" nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
 nnoremap <silent> <CR> :nohlsearch<CR>:echo<CR>
 " nnoremap Y      y$
 " xnoremap //     y/\V<C-R>=escape(@", '/\')<CR><CR>
 " nnoremap <C-N>  :Texplore<CR>
 " nnoremap -      :Explore<CR>
 
-nnoremap <Space> <Nop>
+nnoremap <silent> <Space> :e<CR>
 nnoremap zS zszH
 inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
 xnoremap p pgvy

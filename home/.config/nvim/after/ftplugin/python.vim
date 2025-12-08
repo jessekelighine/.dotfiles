@@ -27,10 +27,13 @@ function! <SID>Forward(type) abort
 				\ }
 	silent exec "norm! \<Esc>"
 	silent exec "norm! m'" .. l:types[a:type].pre .. '"9' .. l:types[a:type].yank
-	let l:last_line = split(@9, "\n")[-1]
+	let l:lines = split(@9, "\n")
+	let l:filtered_lines = filter(l:lines, { key, val -> val =~# '\S' }) " Remove empty lines
+	let l:filtered_text = join(l:filtered_lines, "\n") .. "\n"
+	let l:last_line = l:filtered_lines[-1]
 	let l:last_line_is_indented = l:last_line =~ '^\s\+'
 	let l:return = l:last_line_is_indented
-	silent call vimslime#Send(@9, l:return)
+	silent call vimslime#Send(l:filtered_text, l:return)
 	silent exec "norm! `'"
 endfunction
 function! <SID>IDE() abort
