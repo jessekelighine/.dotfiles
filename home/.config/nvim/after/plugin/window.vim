@@ -27,10 +27,11 @@ endfunction
 
 command! -nargs=? -bang Scratch call <SID>Scratch(<bang>0, <args>)
 
-nnoremap <silent> g<Up>     <Cmd>call <SID>Resize("Up", v:count == 0 ? 5 : v:count)<CR>
-nnoremap <silent> g<Down>   <Cmd>call <SID>Resize("Down", v:count == 0 ? 5 : v:count)<CR>
-nnoremap <silent> g<Left>   <Cmd>call <SID>Resize("Left", v:count == 0 ? 5 : v:count)<CR>
-nnoremap <silent> g<Right>  <Cmd>call <SID>Resize("Right", v:count == 0 ? 5 : v:count)<CR>
+nnoremap <silent> g<Up>    <Cmd>call <SID>Resize("Up", v:count == 0 ? 5 : v:count)<CR>
+nnoremap <silent> g<Down>  <Cmd>call <SID>Resize("Down", v:count == 0 ? 5 : v:count)<CR>
+nnoremap <silent> g<Left>  <Cmd>call <SID>Resize("Left", v:count == 0 ? 5 : v:count)<CR>
+nnoremap <silent> g<Right> <Cmd>call <SID>Resize("Right", v:count == 0 ? 5 : v:count)<CR>
+
 nnoremap <silent> <S-Up>    <Cmd>call <SID>Resize("Up", v:count == 0 ? 5 : v:count)<CR>
 nnoremap <silent> <S-Down>  <Cmd>call <SID>Resize("Down", v:count == 0 ? 5 : v:count)<CR>
 nnoremap <silent> <S-Left>  <Cmd>call <SID>Resize("Left", v:count == 0 ? 5 : v:count)<CR>

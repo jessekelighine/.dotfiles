@@ -70,7 +70,6 @@ function source:complete(_, callback)
 		preamble { label = ":ruby",         insertText = snippet:get "tex/preamble-ruby.tex" },
 		preamble { label = ":table",        insertText = snippet:get "tex/preamble-table.tex" },
 		preamble { label = ":sectionfont",  insertText = snippet:get "tex/preamble-sectionfont.tex" },
-		preamble { label = ":settings",     insertText = snippet:get "tex/preamble-package.tex" },
 		preamble { label = ":shruggie",     insertText = snippet:get "tex/preamble-shruggie.tex" },
 		preamble { label = ":sign",         insertText = snippet:get "tex/preamble-sign.tex" },
 		preamble { label = ":tikz",         insertText = snippet:get "tex/preamble-tikz.tex" },
@@ -83,6 +82,7 @@ function source:complete(_, callback)
 		preamble { label = ":beamertheme",  insertText = snippet:get "tex/preamble-beamer_theme.tex" },
 		preamble { label = ":tcolorbox",    insertText = snippet:get "tex/preamble-tcolorbox.tex" },
 		preamble { label = ":minted",       insertText = snippet:get "tex/preamble-minted.tex" },
+		snippet.snippet { label = ":settings",     insertText = snippet:get "tex/preamble-package.snippet.tex" },
 
 		-- BLIND:
 		{ label = ":blind",        insertText = snippet:get "tex/indoc-blindtext.tex" },
@@ -147,6 +147,7 @@ function source:complete(_, callback)
 		-- MISC:
 		snippet.snippet { label = ":columnbreak",   insertText = "\\vfill\\null\\columnbreak" },
 		snippet.snippet { label = ":verbatiminput", insertText = "\\VerbatimInput[${1:frame=single,numbers=left}]{$0}" },
+		snippet.snippet { label = ":pdfstring",     insertText = "\\texorpdfstring{${1:\\$\\\\beta\\$}}{${2:beta}}"}
 	}
 end
 

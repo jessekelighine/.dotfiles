@@ -2,7 +2,7 @@
 
 local M = {}
 
-M.grid_size = 6
+M.grid_size = 8
 M.margin_size = 5
 
 hs.grid.setGrid(M.grid_size .. "x" .. M.grid_size)

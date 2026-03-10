@@ -22,11 +22,3 @@ make update
 cd .dotfiles
 make uninstall
 ```
-
------
-
-## Dependencies
-
-- `git`
-- `stow`: If `stow` is not available, symlinking directly will be performed.
-- `make`

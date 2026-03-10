@@ -18,5 +18,10 @@ function! <SID>RemoveTrailingSpaces(line1 = 1,line2 = line('$'))
 	call setpos(".", l:pos)
 endfunction
 
+function! <SID>SplitSentence(bang)
+	execute 's/\v([.?!' .. (a:bang ? "," : "") .. '])\s+/\1\r/g'
+endfunction
+
 command! -nargs=0 SudoWrite            write ! sudo tee % > /dev/null " This only works for Vim, not NeoVim.
 command! -nargs=0 RemoveTrailingSpaces call <SID>RemoveTrailingSpaces()
+command! -nargs=0 -bang -range SplitSentences call <SID>SplitSentence(<bang>0)

@@ -19,8 +19,8 @@ let s:mode_map = {
 			\ 'r':       { 'color': '%2*', 'text': 'REPLCE' },
 			\ 'i':       { 'color': '%3*', 'text': 'INSERT' },
 			\ 'v':       { 'color': '%4*', 'text': 'VISUAL' },
-			\ "\<C-V>":  { 'color': '%4*', 'text': 'V:BLOC' },
-			\ 'V':       { 'color': '%4*', 'text': 'V:LINE' },
+			\ "\<C-V>":  { 'color': '%4*', 'text': 'V-BLCK' },
+			\ 'V':       { 'color': '%4*', 'text': 'V-LINE' },
 			\ 's':       { 'color': '%4*', 'text': 'SELECT' },
 			\ 'snippet': { 'color': '%5*', 'text': 'SNIPPT' },
 			\ 't':       { 'color': '%5*', 'text': 'TERMNL' },
@@ -47,21 +47,35 @@ function! <SID>DefineColors() abort
 	call <SID>Highlight("9", s:colors.black,  s:colors.white, 0) " Background: Black
 endfunction
 
-function! <SID>cwd() abort
-	let l:oil_prefix = "oil://"
-	let l:is_oil = &filetype == "oil"
+function! <SID>SpecialFiletypePrefix() abort
+	let l:special_filetypes = {
+				\ "oil":      { "prefix": "oil://",  "is_this": &filetype == "oil"      },
+				\ "terminal": { "prefix": "term://", "is_this": &buftype  == "terminal" },
+				\ }
+	for l:type in keys(l:special_filetypes)
+		if l:special_filetypes[l:type].is_this
+			return l:special_filetypes[l:type].prefix
+		endif
+	endfor
+	return ""
+endfunction
+
+function! <SID>CWD() abort
 	let l:cwd = getcwd()
 	let l:cwd_length = strlen(l:cwd)
 	let l:cwd_base = fnamemodify(l:cwd, ":t")
 	let l:cwd_dir  = fnamemodify(l:cwd, ":h") == "/" ? "/" : fnamemodify(l:cwd, ":h") .. "/"
 	let l:cwd_display = l:cwd_dir .. "%7*" .. l:cwd_base .. "%8*"
-	let l:cwd_display = l:cwd == "/"   ? "%7*" .. "/" .. "%8*" : l:cwd_display
-	let l:cwd_display = l:cwd == $HOME ? "%7*" .. "~" .. "%8*" : l:cwd_display
+	if  l:cwd == "/"   | let l:cwd_display = "%7*" .. "/" .. "%8*" | endif
+	if  l:cwd == $HOME | let l:cwd_display = "%7*" .. "~" .. "%8*" | endif
 	let l:cwd_display = substitute(l:cwd_display, "^" .. $HOME, "~", "")
-	let l:file = substitute(expand("%:p"), "^" .. l:oil_prefix, "", "")
+	" DETERMINE SPECIAL FILETYPES WITH PREFIXES:
+	let l:prefix = <SID>SpecialFiletypePrefix()
+	" FINAL FILE PATH DISPLAY:
+	let l:file = substitute(expand("%:p"), "^" .. l:prefix,  "", "")->expand()
 	if  l:file == "" | return l:cwd_display | endif
 	if  l:file[0:(l:cwd_length - 1)] != l:cwd | return "%F" | endif
-	return ( l:is_oil ? l:oil_prefix : "" ) .. l:cwd_display .. l:file[l:cwd_length:]
+	return l:prefix .. l:cwd_display .. l:file[l:cwd_length:]
 endfunction
 
 function! statusline#Generate() abort
@@ -75,8 +89,8 @@ function! statusline#Generate() abort
 	let l:mode = g:statusline_snippet_mode_active ? l:mode_snippet : l:mode_regular
 	" LEFT-HAND SIDE:
 	let l:empty_filetype = "[?]"
-	let l:filetype = &filetype == "" ? l:empty_filetype : "%y"
-	let l:lefthandside = join([l:mode, "%8*", <SID>cwd(), l:filetype, "%9*"])
+	let l:filetype = &filetype != "" ? "%y" : l:empty_filetype
+	let l:lefthandside = join([l:mode, "%8*", <SID>CWD(), l:filetype, "%9*"])
 	" RIGHT-HAND SIDE:
 	let l:column_number = "%c%V"
 	let l:line_number = "%{%'%' .. len(line('$')) .. 'l'%}/%L"

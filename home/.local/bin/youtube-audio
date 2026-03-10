@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+message () {
+	cat << EOF
+USAGE: $(basename "$0") [url]
+DESCRIPTION: Download the best audio from a YouTube video URL as an MP3 file.
+EOF
+}
+
+[[ $# -lt 1 ]] && {
+	message >&2
+	exit 1
+}
+
+yt-dlp -f bestaudio -o "%(creator)s-%(title)s.mp3"

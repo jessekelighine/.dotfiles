@@ -41,16 +41,16 @@ function! <SID>IDE() abort
 	call vimslime#Open("\<C-C>" .. b:python_command, "-l 15")
 endfunction
 command! -buffer -nargs=0 IDE call <SID>IDE()
-nnoremap <silent><buffer> <leader><Space>  <Cmd>IDE<CR>
-nnoremap <silent><buffer> <leader>rf       <Cmd>IDE<CR>
-nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#Close()<CR>
-nnoremap <silent><buffer> <leader><CR>     <Cmd>call vimslime#Send("\n")<CR>
-nnoremap <buffer><silent> <leader>rr       <Cmd>call vimslime#Send("\<C-l>")<CR>
-nnoremap <buffer><silent> <leader>cc       <Cmd>call vimslime#Send("\<C-C>")<CR>
-nnoremap <buffer><silent> <leader>d        <Cmd>call vimslime#Forward("line")<CR>
-xnoremap <buffer><silent> <leader>d        <Cmd>call <SID>Forward("selection")<CR>
-xnoremap <buffer><silent> <leader>ss       <Cmd>call <SID>Forward("selection")<CR>
-xnoremap <buffer><silent> <leader>rp       <Cmd>call <SID>Forward("selection")<CR>
-nnoremap <buffer><silent> <leader>pp       <Cmd>call <SID>Forward("paragraph")<CR>
-nnoremap <buffer><silent> <leader>rp       <Cmd>call vimslime#Forward("word", { "return": 1 })<CR>
-nnoremap <buffer><silent> <leader>rt       <Cmd>call vimslime#Forward("word", { "return": 1, "wrapper": { x -> "type(" .. x .. ")" } })<CR>
+nnoremap <silent><buffer> <leader><Space> <Cmd>IDE<CR>
+nnoremap <silent><buffer> <leader>rf      <Cmd>IDE<CR>
+nnoremap <silent><buffer> <leader>rq      <Cmd>call vimslime#Close()<CR>
+nnoremap <silent><buffer> <leader><CR>    <Cmd>call vimslime#Send("\n")<CR>
+nnoremap <buffer><silent> <leader>rr      <Cmd>call vimslime#Send("\<C-l>")<CR>
+nnoremap <buffer><silent> <leader>cc      <Cmd>call vimslime#Send("\<C-C>")<CR>
+nnoremap <buffer><silent> <leader>d       <Cmd>call vimslime#Forward("line")<CR>
+xnoremap <buffer><silent> <leader>d       <Cmd>call <SID>Forward("selection")<CR>
+xnoremap <buffer><silent> <leader>ss      <Cmd>call <SID>Forward("selection")<CR>
+xnoremap <buffer><silent> <leader>rp      <Cmd>call <SID>Forward("selection")<CR>
+nnoremap <buffer><silent> <leader>pp      <Cmd>call <SID>Forward("paragraph")<CR>
+nnoremap <buffer><silent> <leader>rp      <Cmd>call vimslime#Forward("word", { "return": 1 })<CR>
+nnoremap <buffer><silent> <leader>rt      <Cmd>call vimslime#Forward("word", { "return": 1, "wrapper": { x -> "type(" .. x .. ")" } })<CR>

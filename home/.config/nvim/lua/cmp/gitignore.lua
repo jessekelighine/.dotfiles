@@ -1,6 +1,5 @@
 -- ~/.config/nvim/lua/cmp/gitignore.lua
 -- ~/.config/nvim/after/ftplugin/gitignore.vim
--- ~/.config/nvim/snippets/gitignore/
 
 local snippet = require "snippet"
 local filetype = "gitignore"

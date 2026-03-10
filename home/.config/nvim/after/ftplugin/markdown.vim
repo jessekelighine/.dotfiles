@@ -13,7 +13,7 @@ setlocal smartindent smarttab expandtab shiftwidth=2 softtabstop=2 tabstop=2
 let b:surround_98 = "**\r**"
 let b:surround_99 = "```\r```"
 let b:surround_66  = "\\Big\r\\Big"
-let b:surround_98  = "\\big\r\\big"
+" let b:surround_98  = "\\big\r\\big"
 let b:surround_108 = "\\left\r\\right"
 let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 
@@ -26,7 +26,7 @@ command! -buffer -nargs=? FindSection call markdown#FindSection(<q-args>)
 command! -buffer -nargs=0 -bang View  call markdown#View(<bang>0)
 
 " LASTMOD:
-let b:lastmod_pattern = '^\(date:\s\{-}' .. "[\"']" .. '\)' .. '.\{-}' .. '\(' .. "[\"']" .. '\)'
+let b:lastmod_pattern = '^\(date:\s*' .. '\)' .. '.*' .. '\(\)'
 command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
 
 " COMPILER:
@@ -46,7 +46,11 @@ function! <SID>Compile(open) abort
 				\ ? "make"
 				\ : l:pandoc_command_plain
 				\ )
-	let l:command = l:live_server .. " & " .. l:tmux_command
+	if file_readable("Makefile")
+		let l:command = "make"
+	else
+		let l:command = l:live_server .. " & " .. l:tmux_command
+	endif
 	if a:open
 		call vimslime#Open("" .. l:command, "-l 30")
 	else

@@ -18,8 +18,6 @@ alias rg='rg --smart-case'
 
 alias 'd'='del'
 alias 'd-restore'="del -l | fzf | sed \"s/\(.*\)/'\\1'/\" | xargs -J % mv % $HOME/Desktop"
-alias 'scim'='sc-im'
-alias 'youtube-audio'='yt-dlp -f bestaudio -o "~/Desktop/%(creator)s-%(title)s.mp3"'
 
 alias pd='pushd'
 alias ppd='popd'
@@ -34,7 +32,6 @@ alias tmm='tmux new -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
-# alias tin='tmux new -s "$(pwd | xargs basename)" -n main'
 tmn () { tmux new -s "$1" -n "$1"; }
 
 for vim_cmd in ":q" ":qa" ":w" ":wa" ":x" ":wq" ":wqa" ; do

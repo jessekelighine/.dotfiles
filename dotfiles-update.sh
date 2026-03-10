@@ -42,4 +42,5 @@ echo "${script_name}: added changes to repository"
 	fi
 }
 
+echo "${script_name}: consider using \`mo optimize\` or \`mo clean\`"
 echo "${script_name}: finished"

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+message () {
+	cat << EOF
+USAGE: $(basename "$0") [url]
+DESCRIPTION: Play a video from a URL using mpv with hardware acceleration.
+EOF
+}
+
+[[ $# -lt 1 ]] && {
+	message >&2
+	exit 1
+}
+
+mpv --hwdec=videotoolbox "$1"

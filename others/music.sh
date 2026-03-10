@@ -29,6 +29,7 @@ spiel 'https://www.youtube.com/watch?v=Sjll7yySgMs' # ELLIE GOULDING - Your song
 spiel 'https://www.youtube.com/watch?v=5OxrrXYkKj4' # F.I.R. - 把愛傳出來
 spiel 'https://www.youtube.com/watch?v=MB3GQNnzgXM' # Flowstrong - 行囊
 spiel 'https://www.youtube.com/watch?v=bOTGKod9ZS8' # Gimme Gimme Gimme - Slowed + Reverb
+spiel 'https://www.youtube.com/watch?v=yebNIHKAC4A' # Golden
 spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
 spiel 'https://www.youtube.com/watch?v=TQaySQQONXs' # Je crois entendre encore
 spiel 'https://www.youtube.com/watch?v=j9hXeBXAs9Y' # Kings Singers - The Rose
@@ -50,6 +51,29 @@ spiel 'https://www.youtube.com/watch?v=QG_YH7jxVy0' # The Cat Returns - Theme
 spiel 'https://www.youtube.com/watch?v=UPdR8lh4a1o' # Tommy Baynen - Laminar Flow
 spiel 'https://www.youtube.com/watch?v=uJ_1HMAGb4k' # Vance Joy - Riptide
 
+spiel 'https://youtu.be/8BNRHW8kwbY?si=RDze-mxum4voeoYU' # Sky Restaurant - Hi-Fi Set
+spiel 'https://youtu.be/DfGKn_mMyeo?si=NVIkLKTROmujRmaz' # Rainy Saturday and Coffee Break - JUNKO OHASHI and Minoya Central Station
+spiel 'https://youtu.be/xpfO7FneTbQ?si=d71LAWUCURvvQkPS' # Epilogue ni sayonara - Masaki Kyomoto
+spiel 'https://youtu.be/7pPb5fmumNo?si=5JLEITsEpCwqyAZ3' # Midnight Pretenders - Tomoko Aran
+spiel 'https://youtu.be/n79SqFZFQcQ?si=5XViNEffdaiJ7r4x' # Mayonakano Joke - Takako Mamiya
+spiel 'https://youtu.be/vaqWUVXeoQ0?si=mK0oUlREeY9B0eKx' # Love Space -Tatsuro Yamashita
+spiel 'https://youtu.be/hyvdIPlI_CY?si=-i0l7fm5aeQq1OAl' # September - Tomoyo  Harada
+spiel 'https://youtu.be/yHKb38-nl3U?si=xVTOPS-dVroPYxd3' # Remember Summer - Anri
+spiel 'https://youtu.be/8O8m36Jr1Uk?si=Bu6edJL4LX9Z_3DC' # Tokai - Taeko Onuki
+spiel 'https://youtu.be/SnEPavjpSAo?si=PkqahdwLlbFDOzFl' # Nostalgia of Island - Tatsuro Yamashita
+spiel 'https://youtu.be/T_lC2O1oIew?si=YgU6W-noAfnQtfKR' # Plastic Love - Mariya Takeuchi
+spiel 'https://youtu.be/mCBNnOxgT8U?si=RCEpoV-N1e-GzNfl' # Lovely City - Noriko Miyamoto
+spiel 'https://youtu.be/HFzJ__anzTs?si=aHAx0TGNtKqoodS1' # Koisuru tsumorini nareba - Hisako Manda
+spiel 'https://youtu.be/tRkIogyjP9U?si=IKTw6JAXYXmx09hs' # Shikisai Toshi - Taeko Onuki
+spiel 'https://youtu.be/lmfXflZ06hg?si=q9olbSPHKCbteoGn' # Passion Flower - Shigeru Suzuki 
+spiel 'https://youtu.be/Ury5uH7pPnM?si=C1sMR7E7MSJR2ovQ' # Blind Curve - Momoko Kikuchi
+spiel 'https://youtu.be/LXAP8yixEgI?si=MEGIONxabFpPydRd' # BLUE AND MOODY MUSIC - Hiroshi Sato
+spiel 'https://youtu.be/VDuDQNkSC6g?si=mWvi7qQV1yKODnJx' # Machi no Dorufin - Kingo Hamada
+spiel 'https://youtu.be/rJRr6FKDZIw?si=yVSELmW3vw_qwcHc' # The Cheater - Marlene
+spiel 'https://youtu.be/A3AE1MYMHTw?si=jKd8gUaboFs9V7K6' # Lazy Night - Makoto Matsushita
+spiel 'https://youtu.be/g0p_jI6T2WQ?si=KF-hKgcPTpM3VYQ5' # Fly-day Chinatown -Yasuha
+spiel 'https://youtu.be/k0ynTKJZirg?si=pAKGObCcj62xKK7Q' # Brasilian Skies - Masayoshi Takanaka
+
 ### Playlist ##################################################################
 
 spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
@@ -58,75 +82,30 @@ spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
 spielliste 'https://www.youtube.com/watch?v=wsDOo9gQcQU' # German Playlist - Roadtrips
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
 spielliste 'https://www.youtube.com/watch?v=skkiVoI7sBk' # Keith Jarret - The Koeln Concert
+spielliste 'https://music.youtube.com/playlist?list=RDCLAK5uy_lreHzXUqXcoHfNcdPKh-aL-h4k5fckfY4' # Morning Drive
 spielliste 'https://www.youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt' # MrSuicideSheep - House
+spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=7kPe4jx1ueFFn73s' # MrSuicideSheep - House
 spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwrQd5k05Z97U6eEAXyeaaJ' # Paramore
 spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
-spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3' # YOASOBI - The Book Series
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3' # YOASOBI - The Book Series
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=OLAK5uy_nHe5hVtukqASnq-q7RNW9AfUSxogeeK7E&si=meBHyMfRAlXiUZV0' # Pomplamoose En Francais
 
 ### Logs ######################################################################
-spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
-spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
-spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
-spiel 'https://www.youtube.com/watch?v=wjHgiSx0RNQ' # The 1975 - Robbers
-spiel 'https://www.youtube.com/watch?v=_1d-Axi4mhY' # David Brubeck - Time Out
-spielliste 'https://youtube.com/playlist?list=PLBO2h-GzDvIagBxY3S5x_vVF8vY8AY3u3' # YOASOBI - The Book Series
-spielliste 'https://www.youtube.com/watch?v=76Wygb_Aqz0' # Road Trip - An Indie/Pop/Folk/Rock Playlist
+
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spiel 'https://youtu.be/6H9XkqlBQ0c?si=cNTcDXqMRIUux23g' # The Cranberries - Dreams
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3' # Japanese City Pop
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3' # Japanese City Pop
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3' # Japanese City Pop
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://www.youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt' # MrSuicideSheep - House
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=7kPe4jx1ueFFn73s' # MrSuicideSheep - House
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLDfKAXSi6kUakvzXfiA0DdSl-OzBi2fVt&si=7kPe4jx1ueFFn73s' # MrSuicideSheep - House
-spielliste 'https://www.youtube.com/watch?v=_3Jy1wc8pOg' # Folk Indie
-spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
-spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
-spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
-spiel 'https://www.youtube.com/watch?v=yebNIHKAC4A' # Golden
-spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # Stay with Me
-spiel 'https://www.youtube.com/watch?v=yebNIHKAC4A' # Golden
-spiel 'https://www.youtube.com/watch?v=HyHNuVaZJ-k' # Gorillaz - Feel Good Inc
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
-spiel 'https://www.youtube.com/watch?v=8scL5oJX6CM' # Cigarette after Sex
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
-spielliste 'https://www.youtube.com/watch?v=DNIMjB9fGwA' # Alvvays - Antisocialites
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3' # Japanese City Pop
+spiel 'https://youtu.be/6H9XkqlBQ0c?si=cNTcDXqMRIUux23g' # The Cranberries - Dreams
+spielliste 'https://music.youtube.com/playlist?list=RDCLAK5uy_lreHzXUqXcoHfNcdPKh-aL-h4k5fckfY4' # Morning Drive
+spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # 松原みき - 真夜中の
+spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spiel 'https://www.youtube.com/watch?v=EwqNIMlmkzs' # Patrick Watson - Lost With You

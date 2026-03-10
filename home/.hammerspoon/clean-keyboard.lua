@@ -17,7 +17,6 @@ M.lock_keyboard = function()
 	)
 	M.tap:start()
 	M.sys_tap:start()
-	M.keyboard_locked = true
 	hs.alert.show("Keyboard Locked 🔒")
 end
 

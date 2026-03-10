@@ -23,8 +23,10 @@ command! -buffer -nargs=0 PipeAutoDetect call r#PipeAutoDetect() | echom ' Pipe:
 silent! PipeAutoDetect
 
 " LASTMOD:
-let b:lastmod_pattern = '^\(' .. "#' @note Date Created: " .. '\)' .. '[^ ]*' .. '\(.*\)$'
+let b:lastmod_pattern = '^\(' .. "#' @note Last Modified: " .. '\)' .. '[^ ]*' .. '\(.*\)$'
+let b:datecreated_pattern = '^\(' .. "#' @note Date Created: " .. '\)' .. '[^ ]*' .. '\(.*\)$'
 command! -buffer -nargs=0 LastMod call lastmod#Update(b:lastmod_pattern)
+command! -buffer -nargs=0 DateCreated call lastmod#Update(b:datecreated_pattern)
 
 " R MACROS:
 nnoremap <buffer><silent> <leader>;  :call funcargs#DeleteFunction('[a-zA-Z]','[a-zA-Z0-9._]')<CR>

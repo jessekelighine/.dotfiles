@@ -1,8 +1,8 @@
 -- app-manager.lua
 
-local module = {}
+local M = {}
 
-module.lauch_focus_or_rotate = function(app_name)
+M.lauch_focus_or_rotate = function(app_name)
 	local window = hs.window.focusedWindow()
 	if window and window:application():name() == app_name then
 		local app_windows = hs.application.get(app_name):allWindows()
@@ -14,4 +14,4 @@ module.lauch_focus_or_rotate = function(app_name)
 	hs.application.launchOrFocus(app_name)
 end
 
-return module
+return M

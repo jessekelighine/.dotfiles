@@ -24,7 +24,8 @@ function source:complete(_, callback)
 		snippet.snippet { label = ":comment", insertText = "<!-- $0 -->" },
 		snippet.snippet { label = ":ahref",   insertText = "<a href=\"$1\">$0</a>" },
 		snippet.snippet { label = ":img",     insertText = "<img src=\"$0\" loading=\"lazy\" />" },
-		snippet.snippet { label = ":ruby",    insertText = "<ruby><rb>$1</rb><rp>（</rp><rt>$2</rt><rp>）</rp></ruby>" },
+		snippet.snippet { label = ":ruby",    insertText = "<ruby><rb>${1:大學}</rb><rp>（</rp><rt>${2:だいがく}</rt><rp>）</rp></ruby>" },
+		snippet.snippet { label = ":tag",     insertText = "<$1>$0</$1>" },
 	}
 end
 
