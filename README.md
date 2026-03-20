@@ -1,7 +1,6 @@
----
-title:  ".dotfiles"
-author: "jessekelighine.com"
----
+# .dotfiles
+
+## Install
 
 ```sh
 git clone --recurse-submodules "https://github.com/jessekelighine/.dotfiles"

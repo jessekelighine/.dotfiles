@@ -48,14 +48,14 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 	source "$HOME/.config/shell-source/pyenv.sh"
 }
 
-# confucius-said --random
+confucius-said --random
 
 # xiaolin-said --random
 
-mencius_chapters=(7 8 9 10 11 12 13 14)
-random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
-random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
-mencius-said --random-from-chapter "$random_mencius_chapter"
+# mencius_chapters=(7 8 9 10 11 12 13 14)
+# random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
+# random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
+# mencius-said --random-from-chapter "$random_mencius_chapter"
 # mencius-said --random
 
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh

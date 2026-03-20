@@ -109,3 +109,10 @@ spiel 'https://www.youtube.com/watch?v=VEe_yIbW64w' # 松原みき - 真夜中�
 spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
 spiel 'https://www.youtube.com/watch?v=EwqNIMlmkzs' # Patrick Watson - Lost With You
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me

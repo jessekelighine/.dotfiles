@@ -12,7 +12,7 @@ hyper.bindShiftKey("k", clean_keyboard.lock_keyboard)
 
 local am = require "app-manager"
 
-hyper.bindKey("a", function() am.lauch_focus_or_rotate("iterm")      end)
+hyper.bindKey("a", function() am.lauch_focus_or_rotate("ghostty")    end)
 hyper.bindKey("d", function() am.lauch_focus_or_rotate("Dictionary") end)
 hyper.bindKey("f", function() am.lauch_focus_or_rotate("Finder")     end)
 hyper.bindKey("x", function() am.lauch_focus_or_rotate("Firefox")    end)
@@ -27,8 +27,8 @@ hyper.bindKey("down",   function() wm.move_to("bottom") end)
 hyper.bindKey("left",   function() wm.move_to("left")   end)
 hyper.bindKey("right",  function() wm.move_to("right")  end)
 hyper.bindKey("up",     function() wm.move_to("top")    end)
-hyper.bindKey("return", function() wm.center()          end)
-hyper.bindKey("space",  function() wm.full()            end)
+hyper.bindKey("return", function() wm.full()            end)
+hyper.bindKey("space",  function() wm.center()          end)
 
 hyper.bindShiftKey("left",  function() wm.adjust_width("left") end)
 hyper.bindShiftKey("right", function() wm.adjust_width("right") end)

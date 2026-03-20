@@ -35,7 +35,7 @@ alias tmk='tmux kill-session'
 tmn () { tmux new -s "$1" -n "$1"; }
 
 for vim_cmd in ":q" ":qa" ":w" ":wa" ":x" ":wq" ":wqa" ; do
-	alias "${vim_cmd}"='cowsay -d "You are not in Vim!" | rainbowize'
+	alias "${vim_cmd}"='cowsay -d "You are not in Vim!"'
 done
 
 tar-compress () { tar zvcf "$@"; }
