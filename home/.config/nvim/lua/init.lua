@@ -1,11 +1,5 @@
 -- ~/.config/nvim/lua/init.lua
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Highlight when yanking (copying) text',
-	group = vim.api.nvim_create_augroup('HighlightYank', { clear = true }),
-	callback = function() vim.hl.on_yank() end,
-})
-
 vim.loader.enable()
 vim.opt.winborder = "single"
 vim.diagnostic.config {
@@ -13,24 +7,51 @@ vim.diagnostic.config {
 	float = { solid = true },
 }
 
--- Lazy.nvim ------------------------------------------------------------------
+vim.api.nvim_create_autocmd('TextYankPost', {
+	desc = 'Highlight when yanking (copying) text',
+	group = vim.api.nvim_create_augroup('HighlightYank', { clear = true }),
+	callback = function() vim.hl.on_yank() end,
+})
 
--- For Neovim 0.12 and later, lazy.nvim is no longer needed and we can use the
--- built-in package manager `vim.pack`.
+-- VIM.PACK -------------------------------------------------------------------
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
-require("lazy").setup {
-	spec = {{ import = "plugin" }},
-	ui = { border = "single" },
-}
+vim.pack.add({
+	{ src = "https://github.com/R-nvim/R.nvim" },
+	{ src = "https://github.com/folke/lazydev.nvim" },
+	{ src = "https://github.com/github/copilot.vim" },
+	{ src = "https://github.com/hrsh7th/nvim-cmp" },
+	{ src = "https://github.com/jessekelighine/miramare" },
+	{ src = "https://github.com/jessekelighine/up.nvim" },
+	{ src = "https://github.com/jessekelighine/vindent.nvim" },
+	{ src = "https://github.com/junegunn/vim-easy-align" },
+	{ src = "https://github.com/mbbill/undotree" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/tpope/vim-surround" },
+	{ src = "https://github.com/tpope/vim-repeat" },
+	{ src = "https://github.com/unblevable/quick-scope" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+})
+
+vim.pack.add({
+	{ src = "https://github.com/jessekelighine/vim-bunttex" },
+}, { load = false })
+
+require "plugin.cmp"
+require "plugin.copilot"
+require "plugin.lazydev"
+require "plugin.lspconfig"
+require "plugin.miramare"
+require "plugin.oil"
+require "plugin.quick-scope"
+require "plugin.r-nvim"
+require "plugin.telescope"
+require "plugin.treesitter"
+require "plugin.undotree"
+require "plugin.up"
+require "plugin.vim-bunttex"
+require "plugin.vim-easy-align"
+require "plugin.vim-surround"
+require "plugin.vindent"

@@ -20,6 +20,13 @@ vim.api.nvim_set_hl(0, "@punctuation.delimiter.latex", { link = "Number" })
 vim.api.nvim_set_hl(0, "@function.macro.latex", { link = "Label" })
 vim.api.nvim_set_hl(0, "@module.latex", { link = "Statement" })
 vim.api.nvim_set_hl(0, "@label.latex", { link = "Identifier" })
+vim.api.nvim_set_hl(0, "texDelimiter", { link = "Ignore" })
+
+-- VIM ------------------------------------------------------------------------
+
+vim.api.nvim_set_hl(0, "vimVar", { link = "Identifier" })
+vim.api.nvim_set_hl(0, "vimVarScope", { link = "Label" })
+vim.api.nvim_set_hl(0, "vimFunctionName", { link = "Function" })
 
 -- Inspect Language -----------------------------------------------------------
 

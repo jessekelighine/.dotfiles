@@ -21,6 +21,7 @@ home/.config/zsh/zsh_sessions/*
 home/.config/bash/.bash_history
 home/.config/python/.python_history
 
+home/.config/nvim/nvim-pack-lock.json
 home/.config/nvim/undodir/*
 home/.config/nvim/spell/*.spl
 home/.config/nvim/snippets/email

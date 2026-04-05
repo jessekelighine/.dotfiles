@@ -15,8 +15,9 @@ local am = require "app-manager"
 hyper.bindKey("a", function() am.lauch_focus_or_rotate("ghostty")    end)
 hyper.bindKey("d", function() am.lauch_focus_or_rotate("Dictionary") end)
 hyper.bindKey("f", function() am.lauch_focus_or_rotate("Finder")     end)
-hyper.bindKey("x", function() am.lauch_focus_or_rotate("Firefox")    end)
+hyper.bindKey("l", function() am.lauch_focus_or_rotate("Line")       end)
 hyper.bindKey("s", function() am.lauch_focus_or_rotate("Skim")       end)
+hyper.bindKey("x", function() am.lauch_focus_or_rotate("Firefox")    end)
 hyper.bindKey("z", function() am.lauch_focus_or_rotate("Zotero")     end)
 
 -- Window Manager -------------------------------------------------------------

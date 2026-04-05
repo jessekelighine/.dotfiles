@@ -1,0 +1,76 @@
+{
+  "plugins": {
+    "R.nvim": {
+      "rev": "c37d1cfd46fe0c5ab7e5384154adf985c537cbcc",
+      "src": "https://github.com/R-nvim/R.nvim"
+    },
+    "copilot.vim": {
+      "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
+      "src": "https://github.com/github/copilot.vim"
+    },
+    "lazydev.nvim": {
+      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
+    "miramare": {
+      "rev": "76edd60956fdbec56adc721c6654df0c5616c636",
+      "src": "https://github.com/jessekelighine/miramare"
+    },
+    "nvim-cmp": {
+      "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
+      "src": "https://github.com/hrsh7th/nvim-cmp"
+    },
+    "nvim-lspconfig": {
+      "rev": "97774019cb17697f35872b28bc020a72b4ca1b51",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "6620ae1c44dfa8623b22d0cbf873a9e8d073b849",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "quick-scope": {
+      "rev": "6cee1d9e0b9ac0fbffeb538d4a5ba9f5628fabbc",
+      "src": "https://github.com/unblevable/quick-scope"
+    },
+    "telescope.nvim": {
+      "rev": "5255aa27c422de944791318024167ad5d40aad20",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "undotree": {
+      "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
+      "src": "https://github.com/mbbill/undotree"
+    },
+    "up.nvim": {
+      "rev": "dd14042ae06cdae4f887ee2f9059d0b99f089cfc",
+      "src": "https://github.com/jessekelighine/up.nvim"
+    },
+    "vim-bunttex": {
+      "rev": "955755770b957b4dce3351449c6e3611bc06d299",
+      "src": "https://github.com/jessekelighine/vim-bunttex"
+    },
+    "vim-easy-align": {
+      "rev": "9815a55dbcd817784458df7a18acacc6f82b1241",
+      "src": "https://github.com/junegunn/vim-easy-align"
+    },
+    "vim-repeat": {
+      "rev": "65846025c15494983dafe5e3b46c8f88ab2e9635",
+      "src": "https://github.com/tpope/vim-repeat"
+    },
+    "vim-surround": {
+      "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
+      "src": "https://github.com/tpope/vim-surround"
+    },
+    "vindent.nvim": {
+      "rev": "ee5a0651e0c4d938875bc6cf0677db7aec60a7d8",
+      "src": "https://github.com/jessekelighine/vindent.nvim"
+    }
+  }
+}

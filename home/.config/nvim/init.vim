@@ -93,7 +93,6 @@ set noexpandtab shiftwidth=4 softtabstop=4 tabstop=4 smarttab
 set autochdir
 set history=1000
 set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:·
-set listchars=tab:┊\ ,trail:–,extends:»,precedes:«,nbsp:␣,eol:¬,space:˙
 set splitbelow
 set nrformats+=alpha
 set nrformats-=bin,hex
