@@ -2,6 +2,10 @@
 
 local M = {}
 
+local swallowEvent = function()
+	return true
+end
+
 M.lock_keyboard = function()
 	M.tap = hs.eventtap.new(
 		{
@@ -9,11 +13,11 @@ M.lock_keyboard = function()
 			hs.eventtap.event.types.keyUp,
 			hs.eventtap.event.types.flagsChanged
 		},
-		function(event) return true end
+		swallowEvent
 	)
 	M.sys_tap = hs.eventtap.new(
 		{ hs.eventtap.event.types.systemDefined },
-		function(event) return true end
+		swallowEvent
 	)
 	M.tap:start()
 	M.sys_tap:start()

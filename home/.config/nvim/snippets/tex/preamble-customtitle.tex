@@ -17,9 +17,17 @@
 \makeatother
 %-----------------------------------------------------------------------------%
 %%% Minimal Title %%%
-\makeatletter\def\@maketitle{%
-\raggedright\noindent{\bfseries\@title}%
-\hfill\texttt{\@date}\\%
-\raggedleft\ttfamily\@author%
-\par\vskip1em}\makeatother
+\makeatletter
+\newsavebox{\titledatebox}
+\def\@maketitle{%
+\begingroup
+\sbox{\titledatebox}{{\bfseries\@title}\quad\texttt{\@date}}
+\noindent
+\ifdim\wd\titledatebox>\textwidth
+{\raggedright\bfseries\@title\par}{\raggedleft\texttt{\@date}\par}
+\else
+{\raggedright\noindent\bfseries\@title}\hfill\texttt{\@date}\par
+\fi
+{\raggedleft\ttfamily\@author\par}\vskip1em\endgroup
+}\makeatother
 %-----------------------------------------------------------------------------%

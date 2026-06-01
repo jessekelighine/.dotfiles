@@ -40,15 +40,15 @@ vim.keymap.set("i", ")<Tab>", function() vim.snippet.expand("\\left($0\\right)")
 vim.keymap.set("i", "}<Tab>", function() vim.snippet.expand("\\left\\{$0\\right\\\\}") end, { buffer = true })
 vim.keymap.set("i", "{{<Tab>", function() vim.snippet.expand("\\{$0\\\\}") end, { buffer = true })
 vim.keymap.set("i", "<bar><bar><Tab>", function() vim.snippet.expand("\\left|$0\\right|") end, { buffer = true })
-vim.keymap.set("i", "<bar><Tab>", function() vim.snippet.expand("|$0|") end, { buffer = true })
-vim.keymap.set("i", "\\<bar><Tab>", function() vim.snippet.expand("\\|$0\\|") end, { buffer = true })
-vim.keymap.set("i", "\\<bar><bar><Tab>", function() vim.snippet.expand("\\left\\|$0\\right\\|") end, { buffer = true })
+vim.keymap.set("i", "<bar><Tab>", function() vim.snippet.expand("|$1|$0") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><Tab>", function() vim.snippet.expand("\\|$1\\|$0") end, { buffer = true })
+vim.keymap.set("i", "\\<bar><bar><Tab>", function() vim.snippet.expand("\\left\\|$1\\right\\|$0") end, { buffer = true })
 
 -- GLOSSARIES -----------------------------------------------------------------
 
 vim.keymap.set("i", "\\as<Tab>", function() vim.snippet.expand("\\acrshort{$1}$0") end, { buffer = true })
 vim.keymap.set("i", "\\al<Tab>", function() vim.snippet.expand("\\acrlong{$1}$0") end, { buffer = true })
-vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls*{$1}$0") end, { buffer = true })
+vim.keymap.set("i", "\\g<Tab>",  function() vim.snippet.expand("\\gls{$1}$0") end, { buffer = true })
 vim.keymap.set("i", "\\gl<Tab>", function() vim.snippet.expand("\\glsentrylong{$1}$0") end, { buffer = true })
 vim.keymap.set("i", "\\gs<Tab>", function() vim.snippet.expand("\\glsentryshort{$1}$0") end, { buffer = true })
 

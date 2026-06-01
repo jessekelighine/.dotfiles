@@ -1,11 +1,13 @@
 -- init.lua
 
 local hyper = require "hyper"
+
 hyper.install "F18"
 
 -- Clean Keyboard -------------------------------------------------------------
 
 local clean_keyboard = require "clean-keyboard"
+
 hyper.bindShiftKey("k", clean_keyboard.lock_keyboard)
 
 -- Applications and Shortcuts -------------------------------------------------
@@ -34,20 +36,21 @@ hyper.bindKey("space",  function() wm.center()          end)
 hyper.bindShiftKey("left",  function() wm.adjust_width("left") end)
 hyper.bindShiftKey("right", function() wm.adjust_width("right") end)
 
--- Bluetooth ------------------------------------------------------------------
-
-local blueutil         = "/opt/homebrew/bin/blueutil"
-local blueutil_off     = blueutil .. " -p 0; "
-local blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect 2c-41-a1-88-27-9a"
-hyper.bindKey("b",      function() hs.execute(blueutil_connect) end)
-hyper.bindShiftKey("b", function() hs.execute(blueutil_off)     end)
-
 -- Wifi -----------------------------------------------------------------------
 
 local wifi = require "wifi-menubar"
 
 hyper.bindKey("w",      function() hs.wifi.setPower(true,  wifi.interface) end)
 hyper.bindShiftKey("w", function() hs.wifi.setPower(false, wifi.interface) end)
+
+-- Bluetooth ------------------------------------------------------------------
+
+local blueutil         = "/opt/homebrew/bin/blueutil"
+local blueutil_off     = blueutil .. " -p 0; "
+local blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect 2c-41-a1-88-27-9a"
+
+hyper.bindKey("b",      function() hs.execute(blueutil_connect) end)
+hyper.bindShiftKey("b", function() hs.execute(blueutil_off)     end)
 
 -- Clipboard ------------------------------------------------------------------
 
@@ -59,7 +62,6 @@ spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool.show_copied_alert = false
 spoon.ClipboardTool.max_size = false
 spoon.ClipboardTool.hist_size = 1000
--- spoon.ClipboardTool.max_entry_size = 10000
 spoon.ClipboardTool:bindHotkeys { toggle_clipboard = { clipboard_toggle, "v" } }
 spoon.ClipboardTool:start()
 
@@ -67,7 +69,6 @@ spoon.ClipboardTool:start()
 
 hs.loadSpoon "Caffeine"
 hyper.bindKey("c", spoon.Caffeine.clicked)
--- spoon.Caffeine:bindHotkeys { toggle = { HYPER, "c" } }
 spoon.Caffeine:start()
 
 -- Reload Config --------------------------------------------------------------

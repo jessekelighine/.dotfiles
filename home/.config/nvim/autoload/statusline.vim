@@ -19,8 +19,8 @@ let s:mode_map = {
 			\ 'r':       { 'color': '%2*', 'text': 'REPLCE' },
 			\ 'i':       { 'color': '%3*', 'text': 'INSERT' },
 			\ 'v':       { 'color': '%4*', 'text': 'VISUAL' },
-			\ "\<C-V>":  { 'color': '%4*', 'text': 'V-BLCK' },
-			\ 'V':       { 'color': '%4*', 'text': 'V-LINE' },
+			\ "\<C-V>":  { 'color': '%4*', 'text': 'V.BLOC' },
+			\ 'V':       { 'color': '%4*', 'text': 'V.LINE' },
 			\ 's':       { 'color': '%4*', 'text': 'SELECT' },
 			\ 'snippet': { 'color': '%5*', 'text': 'SNIPPT' },
 			\ 't':       { 'color': '%5*', 'text': 'TERMNL' },
@@ -49,11 +49,11 @@ endfunction
 
 function! <SID>SpecialFiletypePrefix() abort
 	let l:special_filetypes = {
-				\ "oil":      { "prefix": "oil://",  "is_this": &filetype == "oil"      },
-				\ "terminal": { "prefix": "term://", "is_this": &buftype  == "terminal" },
+				\ "oil":      { "prefix": "oil://",  "detected": &filetype == "oil"      },
+				\ "terminal": { "prefix": "term://", "detected": &buftype  == "terminal" },
 				\ }
 	for l:type in keys(l:special_filetypes)
-		if l:special_filetypes[l:type].is_this
+		if l:special_filetypes[l:type].detected
 			return l:special_filetypes[l:type].prefix
 		endif
 	endfor
@@ -87,11 +87,11 @@ function! statusline#Generate() abort
 	let l:mode_regular = join([s:mode_map[mode()].color, s:mode_map[mode()].text, l:modified])
 	let l:mode_snippet = join([s:mode_map.snippet.color, s:mode_map[mode()].text, l:modified])
 	let l:mode = g:statusline_snippet_mode_active ? l:mode_snippet : l:mode_regular
-	" LEFT-HAND SIDE:
+	" LEFT:
 	let l:empty_filetype = "[?]"
 	let l:filetype = &filetype != "" ? "%y" : l:empty_filetype
 	let l:lefthandside = join([l:mode, "%8*", <SID>CWD(), l:filetype, "%9*"])
-	" RIGHT-HAND SIDE:
+	" RIGHT:
 	let l:column_number = "%c%V"
 	let l:line_number = "%{%'%' .. len(line('$')) .. 'l'%}/%L"
 	let l:percentage = "%3p%%"

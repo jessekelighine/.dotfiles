@@ -120,3 +120,23 @@ spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma&si=OPp12LlyJ9weYtpB' # GoodGood
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma&si=OPp12LlyJ9weYtpB' # GoodGood
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma&si=OPp12LlyJ9weYtpB' # GoodGood
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma&si=OPp12LlyJ9weYtpB' # GoodGood
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://www.youtube.com/playlist?list=PLQVLoPxRqFQyO92yHu2k0F4ZrzKDrngwJ' # Japanese Breakfast
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma&si=OPp12LlyJ9weYtpB' # GoodGood
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwOTsThayy9ovz69-10Pvma&si=OPp12LlyJ9weYtpB' # GoodGood
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI

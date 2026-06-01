@@ -33,18 +33,16 @@ vim.api.nvim_set_hl(0, "vimFunctionName", { link = "Function" })
 vim.api.nvim_create_user_command(
 	"InspectLanguage",
 	function()
-		-- NOTE: In Neovim 0.12 and later, `vim.treesitter.get_parser` will
-		-- return `nil` if no parser is available for the current buffer, so
-		-- this implementation with `pcall` needs to be changed in the future.
-		local ok, parser = pcall(vim.treesitter.get_parser)
-		if not ok or parser == nil then
-			print("No Treesitter Parser Available")
+		local parser, err = vim.treesitter.get_parser(0)
+		if not parser then
+			vim.notify(err or "No Treesitter parser available", vim.log.levels.WARN)
 		else
-			local line = vim.fn.line(".")
-			local col = vim.fn.col(".")
-			local language = parser:language_for_range({line, col, line, col}):lang()
-			print(language)
+			local cursor = vim.api.nvim_win_get_cursor(0)
+			local line = cursor[1] - 1
+			local col = cursor[2]
+			local lang_tree = parser:language_for_range({ line, col, line, col })
+			print(lang_tree:lang())
 		end
 	end,
-	{ desc = "Inspect the Language of the Current Line based on Treesitter" }
+	{ desc = "Inspect the language at the cursor based on Treesitter" }
 )

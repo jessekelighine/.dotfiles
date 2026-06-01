@@ -35,25 +35,27 @@ let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 let b:surround_108 = "\\left\r\\right"
 let b:surround_103 = "($\r$)"
 
-" COMPILATION:
-let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
-			\ .. "convert "
-			\ .. "-background '#FFFFFF' -flatten "
-			\ .. "-density 600 "
-			\ .. "'" .. expand("%:r") .. ".pdf" .. "'" .. " "
-			\ .. "'" .. expand("%:r") .. ".png" .. "'"
-let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none " .. "'" .. expand("%") .. "'"
-let b:tex_compile_make    = "make; echo . | whenever make"
-let b:tex_compile_command = "\<C-C>" .. ( filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex )
-" nnoremap <silent><buffer> <leader>rq       <Cmd>call terminal#Close()<CR>
-" nnoremap <silent><buffer> <leader>rf       <Cmd>call terminal#Open(b:tex_compile_command)<CR>
-" nnoremap <silent><buffer> <leader><Space>  <Cmd>call terminal#Open(b:tex_compile_command)<CR>
-" nnoremap <silent><buffer> <leader><leader> <Cmd>call terminal#Send("\<C-D>")<CR>
-nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#Close()<CR>
-nnoremap <silent><buffer> <F5>             <Cmd>call vimslime#Open(b:tex_compile_xelatex, "-l 30")<CR>
-nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
-nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
-nnoremap <silent><buffer> <leader><leader> <Cmd>call vimslime#Send("\<C-D>")<CR>
+" COMPILATION: Only define compilation commands if the file is a TeX file.
+if expand('%:e') == 'tex'
+	let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
+				\ .. "convert "
+				\ .. "-background '#FFFFFF' -flatten "
+				\ .. "-density 600 "
+				\ .. "'" .. expand("%:r") .. ".pdf" .. "'" .. " "
+				\ .. "'" .. expand("%:r") .. ".png" .. "'"
+	let b:tex_compile_xelatex = "latexmk -pdfxe -pvc -synctex=1 -view=none " .. "'" .. expand("%") .. "'"
+	let b:tex_compile_make    = "make; echo . | whenever make"
+	let b:tex_compile_command = "\<C-C>" .. ( filereadable("Makefile") ? b:tex_compile_make : b:tex_compile_xelatex )
+	" nnoremap <silent><buffer> <leader>rq       <Cmd>call terminal#Close()<CR>
+	" nnoremap <silent><buffer> <leader>rf       <Cmd>call terminal#Open(b:tex_compile_command)<CR>
+	" nnoremap <silent><buffer> <leader><Space>  <Cmd>call terminal#Open(b:tex_compile_command)<CR>
+	" nnoremap <silent><buffer> <leader><leader> <Cmd>call terminal#Send("\<C-D>")<CR>
+	nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#Close()<CR>
+	nnoremap <silent><buffer> <F5>             <Cmd>call vimslime#Open(b:tex_compile_xelatex, "-l 30")<CR>
+	nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
+	nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
+	nnoremap <silent><buffer> <leader><leader> <Cmd>call vimslime#Send("\<C-D>")<CR>
+endif
 
 " UTILITIES: utilities.
 command! -buffer -nargs=0 ServerSetup call tex#ServerSetup()
