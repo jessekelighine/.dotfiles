@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -e
+
+message () {
+	local script_name; script_name="$(basename "$0")"
+	cat << EOF
+USAGE: $script_name <output.epub>
+DESCRIPTION:
+	Repack an EPUB file. Any file in the current directory will be assumed
+	to be part of the EPUB, and will be added to the output file.
+EXAMPLE WORKFLOW:
+	# Unzip an EPUB file
+	unzip input.epub -d output_dir
+	# Make changes to the files in output_dir
+	# Repack the EPUB file
+	cd output_dir
+	$script_name output.epub
+EOF
+}
+
+if [ "$#" -ne 1 ]; then
+	message
+	exit 1
+fi
+
+output="$1"
+if [ -f "$output" ]; then
+	echo "Output file already exists: $output"
+	exit 1
+fi
+
+zip -X0 "$output" mimetype
+zip -rgq "$output" * -x "*.DS_Store"

@@ -80,23 +80,21 @@ endfunction
 
 " SyncTeX: Backwards setup
 function! tex#ServerSetup() abort
-	let g:tex_server_file = "~/.config/nvim/pack/lang/opt/tex/.tex-server"
-	let l:command = join([ "echo", v:servername, ">", g:tex_server_file ])
-	call system(l:command)
+	let g:tex_server_file = expand("~/.config/nvim/pack/lang/opt/tex/.tex-server")
+	call writefile([v:servername], g:tex_server_file)
 	echom " Server Saved: " .. v:servername
 	augroup TeXRemoveServerFile
 		autocmd!
-		autocmd VimLeave * call system("rm -rf " .. g:tex_server_file)
+		autocmd VimLeave * call delete(g:tex_server_file, "rf")
 	augroup END
 endfunction
 
 " SyncTeX: Forwards function
 function! tex#SkimForward() abort
 	let l:utility = "/Applications/Skim.app/Contents/SharedSupport/displayline"
-	let l:pdf_file = "'" .. expand("%:p:r") .. ".pdf" .. "'"
-	let l:command = join([ l:utility, line('.'), l:pdf_file ])
+	let l:pdf_file = expand("%:p:r") .. ".pdf"
 	silent call tex#ServerSetup()
-	silent call system(l:command)
+	silent call system([ l:utility, string(line('.')), l:pdf_file ])
 endfunction
 
 """ Environments """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

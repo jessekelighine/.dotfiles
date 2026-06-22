@@ -82,7 +82,7 @@ function source:complete(_, callback)
 		preamble { label = ":beamerbeginsection", insertText = snippet:get "tex/preamble-beamerbeginsection.tex" },
 		preamble { label = ":tcolorbox",          insertText = snippet:get "tex/preamble-tcolorbox.tex" },
 		preamble { label = ":minted",             insertText = snippet:get "tex/preamble-minted.tex" },
-		snippet.snippet { label = ":settings",     insertText = snippet:get "tex/preamble-package.snippet.tex" },
+		snippet.snippet { label = ":settings",    insertText = snippet:get "tex/preamble-package.snippet.tex" },
 
 		-- BLIND:
 		{ label = ":blind",        insertText = snippet:get "tex/indoc-blindtext.tex" },

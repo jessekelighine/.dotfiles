@@ -12,20 +12,16 @@ function! <SID>MatchGitConflict() abort
 endfunction
 
 " check if GitConflict highlight group is active.
-function! <SID>GitConflictActive() abort
-	if !hlexists("GitConflict")
-		return 0
-	endif
+function! <SID>ActiveGitConflict() abort
+	if !hlexists("GitConflict") | return 0 | endif
 	let l:highlight_output = execute("highlight GitConflict")
 	let l:highlight_status = match(l:highlight_output, "cleared") < 0
 	return l:highlight_status
 endfunction
 
 " highlight git merge conflict.
-function! <SID>ToggleGitConflictHighlight()
-	call <SID>MatchGitConflict()
-	let l:active = <SID>GitConflictActive()
-	if l:active
+function! <SID>HighlightGitConflict(activate) abort
+	if a:activate
 		highlight clear GitConflict
 		syntax clear GitConflict
 	else
@@ -34,6 +30,17 @@ function! <SID>ToggleGitConflictHighlight()
 		syntax match GitConflict /^>>>>>>>/
 		highlight GitConflict ctermbg=red ctermfg=white
 	endif
+endfunction
+
+" toggle git merge conflict highlight.
+function! <SID>ToggleGitConflictHighlight() abort
+	call <SID>MatchGitConflict()
+	let l:active = <SID>ActiveGitConflict()
+	call <SID>HighlightGitConflict(!l:active)
+	try
+		exec "keepjumps keeppatterns /^<<<<<<<"
+	catch
+	endtry
 	let l:status = !l:active ? "ON" : "OFF"
 	redraw | echom "--> Git Merge Conflict Highlight: " .. l:status
 endfunction

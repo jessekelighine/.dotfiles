@@ -5,7 +5,7 @@ message () {
 	local blue;  blue=$(tput bold && tput setaf 12)
 	local norm;  norm=$(tput sgr0)
 	cat << EOF
-${green}usage:${norm} ${blue}$(basename $0)${norm} [options]
+${green}usage:${norm} ${blue}$(basename "$0")${norm} [options]
 ${green}options:${norm}
         on                          turn on wifi
         off                         turn off wifi

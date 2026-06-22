@@ -140,3 +140,7 @@ spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
 spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQzlPlTU_L8zE4wi4uRuDue1&si=IAcuBDVHJ4PhMFrG' # YOASOBI
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spielliste 'https://youtube.com/playlist?list=PLQVLoPxRqFQwtd0nW1s6WjiQr43WK_Cx3&si=F5m-LFPjKkBjy5-o' # Japanese City Pop
+spiel 'https://www.youtube.com/watch?v=D5drYkLiLI8' # Kygo - It aint me

@@ -3,13 +3,13 @@
 " remove trailing white spaces.
 function! <SID>RemoveTrailingSpaces(line1 = 1,line2 = line('$'))
 	let l:pos = getpos(".")
+	let l:range = join([a:line1, a:line2], ',')
+	let l:command = join([
+				\ "keepjumps",
+				\ "keeppatterns",
+				\  l:range .. 's/^\(.\{-}\)\s\+$/\1/g'
+				\ ])
 	try
-		let l:range = join([a:line1, a:line2], ',')
-		let l:command = join([
-					\ "keepjumps",
-					\ "keeppatterns",
-					\  l:range .. 's/^\(.\{-}\)\s\+$/\1/g'
-					\ ])
 		silent execute l:command
 		redraw | echom " Remove Trailing Spaces: REMOVED!"
 	catch

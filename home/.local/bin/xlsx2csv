@@ -39,6 +39,4 @@ if (file.exists(newname)) {
   help("file", paste0("\"", newname, "\""), "already exists, aborting...")
 }
 
-filename |>
-  readxl::read_excel() |>
-  readr::write_csv(file = newname)
+readxl::read_excel(filename) |> readr::write_csv(file = newname)
