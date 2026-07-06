@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+config="$HOME/.config/ghostty/config"
+original=$(awk -F = '/^background-opacity/ { print $2; exit }' "$config" | xargs)
+default_inc=0.1
+
+message () {
+	echo "$(tput bold)$(basename "$0")$(tput sgr0): $1"
+}
+
+help_message () {
+	local usage; usage="$(tput bold)USAGE$(tput sgr0)"
+	local cmd; cmd="$(tput bold)$(basename "$0")$(tput sgr0)"
+	local subcmds; subcmds="$(tput bold)COMMANDS$(tput sgr0)"
+	cat << EOF
+$usage: $cmd [COMMAND] [VALUE]
+$subcmds:
+	set <VALUE>   set opacity to <VALUE> 
+	inc [VALUE]   increase opacity by [VALUE], default: $default_inc
+	dec [VALUE]   decrease opacity by [VALUE], default: $default_inc
+	get           print current opacity (current: $original)
+EOF
+}
+
+modify_and_reload () {
+	local value; value="$1"
+	perl -0pi -e 's/^(background-opacity).*/$1 = '"$value"'/m' "$config"
+	# Ghostty manual reload hack, see [here](https://github.com/ghostty-org/ghostty/discussions/3643#discussioncomment-15084564).
+	osascript -e 'tell application "System Events" to tell process "ghostty" to keystroke "," using {command down, shift down}'
+}
+
+[[ -z "$original" ]] && {
+	message "\`background-opacity\` not found in $config" >&2
+	exit 1
+}
+
+[[ $# -lt 1 ]] && {
+	help_message
+	exit 0
+}
+
+[[ $# -gt 2 ]] && {
+	message "too many arguments"
+	exit 1
+}
+
+case "$1" in
+	s|se|set)
+		[[ -z "$2" ]] && exit 1
+		bc_cmd="x = $2; if (x > 1) { x = 1 } else if (x < 0) { x = 0 }; x"
+		modify_and_reload "$(bc <<< "$bc_cmd" | xargs printf "%1.2f")"
+		exit 0
+		;;
+	i|in|inc)
+		[[ -n "$2" ]] && inc="$2"
+		bc_cmd="x = $original - ${inc:-$default_inc}; if (x < 0) x = 0; x"
+		modify_and_reload "$(bc <<< "$bc_cmd" | xargs printf "%1.2f")"
+		exit 0
+		;;
+	d|de|dec)
+		[[ -n "$2" ]] && inc="$2"
+		bc_cmd="x = $original + ${inc:-$default_inc}; if (x > 1) x = 1; x"
+		modify_and_reload "$(bc <<< "$bc_cmd" | xargs printf "%1.2f")"
+		exit 0
+		;;
+	g|ge|get)
+		echo "$original"
+		exit 0
+		;;
+	*)
+		message "unknown command '$1'"
+		exit 1
+		;;
+esac

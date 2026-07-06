@@ -15,7 +15,7 @@ setlocal commentstring=%\ %s
 setlocal spellfile=~/.config/nvim/spell/en.utf-8.add,~/.config/nvim/spell/latex.utf-8.add
 setlocal foldmethod=manual
 setlocal foldnestmax=1
-let g:tex_noindent_env = 'document\|verbatim\|lstlisting\|multicols\|letter\|appendix\|spacing'
+let g:tex_noindent_env = 'document\|verbatim\|lstlisting\|multicols\|letter\|appendix\|spacing\|titlepage'
 let g:tex_indent_brace = 0
 let b:match_words ..= ','
 			\ .. '\\left\>:\\right\>,'

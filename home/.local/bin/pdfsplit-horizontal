@@ -2,13 +2,13 @@
 
 [[ $# -lt 1 ]] && {
 	cat << EOF >&2
-usage: $(basename $0) [input.pdf] [output.pdf]
+usage: $(basename "$0") [input.pdf] [output.pdf]
 description:
-	+-----------------+       +--------+--------+
-	|                 |       | output | output |
-	|      input      |  -->  | 1      | 2      |
-	|                 |       |        |        |
-	+-----------------+       +--------+--------+
+	+---------------+       +------------+------------+
+	|               |       |            |            |
+	|     input     |  -->  | output p.1 | output p.2 |
+	|               |       |            |            |
+	+---------------+       +------------+------------+
 EOF
 	exit 1
 }

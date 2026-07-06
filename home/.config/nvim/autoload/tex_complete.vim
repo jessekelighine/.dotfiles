@@ -54,7 +54,7 @@ endfunction
 
 function! tex_complete#Labs(findstart, base) abort
 	if a:findstart
-		let l:trigger_pattern = '\\\([a-zA-Z]*ref[a-zA-Z]\|hyperlink\)*{'
+		let l:trigger_pattern = '\\\([a-zA-Z]*ref[a-zA-Z]*\|hyperlink\){'
 		let l:look_ahead_length = 20
 		let l:start_column = col('.') - l:look_ahead_length
 		return matchstrpos(getline('.'), l:trigger_pattern, l:start_column)[2]
@@ -92,8 +92,8 @@ endfunction
 
 function! tex_complete#Bibs(findstart, base)
 	if a:findstart
-		let l:trigger_pattern = '\\[a-zA-Z]*cite[a-zA-Z]*{'
-		let l:look_ahead_length = 20
+		let l:trigger_pattern = '\\[a-zA-Z]*cite[a-zA-Z]*{\|,'
+		let l:look_ahead_length = 15
 		let l:start_column = col('.') - l:look_ahead_length
 		return matchstrpos(getline('.'), l:trigger_pattern, l:start_column)[2]
 	else
