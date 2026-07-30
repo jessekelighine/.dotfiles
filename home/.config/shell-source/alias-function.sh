@@ -16,9 +16,6 @@ alias grep='grep --color=auto'
 alias md5sum='md5 -r'
 alias rg='rg --smart-case'
 
-alias 'd'='del'
-alias 'd-restore'="del -l | fzf | sed \"s/\(.*\)/'\\1'/\" | xargs -J % mv % $HOME/Desktop"
-
 alias pd='pushd'
 alias ppd='popd'
 alias dirs='dirs -v'

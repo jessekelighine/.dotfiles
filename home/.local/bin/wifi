@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
 message () {
-	local green; green=$(tput bold && tput setaf 10)
-	local blue;  blue=$(tput bold && tput setaf 12)
-	local norm;  norm=$(tput sgr0)
+	local bold; bold=$(tput bold)
+	local norm; norm=$(tput sgr0)
 	cat << EOF
-${green}usage:${norm} ${blue}$(basename "$0")${norm} [options]
-${green}options:${norm}
+${bold}USAGE${norm}: ${bold}$(basename "$0")${norm} [options]
+${bold}OPTIONS${norm}:
         on                          turn on wifi
         off                         turn off wifi
         connect <NAME> <PASSWORD>   connect to wifi device
         status                      show power status of wifi
-        list                        list available wifi networks
+        settings                    open wifi settings
 EOF
 }
 
@@ -27,14 +26,14 @@ case "$1" in
 	status)
 		networksetup -getairportpower $interface && exit 0
 		;;
-	list)
-		/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan
-		;;
 	connect)
 		[[ $# -gt 3 || $# -lt 2 ]] && message >&2 && exit 1
 		networksetup -setairportpower $interface on
 		networksetup -setairportnetwork $interface "$2" "$3" 
 		exit 0
+		;;
+	settings)
+		open x-apple.systempreferences:com.apple.wifi-settings-extension
 		;;
 	*)
 		message >&2

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+TRASH="$HOME/.Trash"
+
+message () {
+	local bold; bold="$(tput bold)"
+	local norm; norm="$(tput sgr0)"
+	cat << EOF
+${bold}USAGE${norm}: ${bold}del-restore${norm}
+${bold}DESCRIPTION${norm}:
+	Restore files from Trash to Desktop.
+	Assumes that fzf is installed.
+EOF
+}
+
+[[ "$#" -ne 0 ]] && {
+	message
+	exit 1
+}
+
+find "$TRASH" | fzf | sed "s/\(.*\)/'\\1'/" | xargs -J % mv % "$HOME/Desktop"

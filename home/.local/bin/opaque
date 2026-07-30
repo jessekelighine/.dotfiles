@@ -44,22 +44,24 @@ modify_and_reload () {
 	exit 1
 }
 
+bc_cmd_guard='if (x > 1) { x = 1 } else if (x < 0) { x = 0 }; x'
+
 case "$1" in
 	s|se|set)
 		[[ -z "$2" ]] && exit 1
-		bc_cmd="x = $2; if (x > 1) { x = 1 } else if (x < 0) { x = 0 }; x"
+		bc_cmd="x = $2; $bc_cmd_guard"
 		modify_and_reload "$(bc <<< "$bc_cmd" | xargs printf "%1.2f")"
 		exit 0
 		;;
 	i|in|inc)
 		[[ -n "$2" ]] && inc="$2"
-		bc_cmd="x = $original - ${inc:-$default_inc}; if (x < 0) x = 0; x"
+		bc_cmd="x = $original - ${inc:-$default_inc}; $bc_cmd_guard"
 		modify_and_reload "$(bc <<< "$bc_cmd" | xargs printf "%1.2f")"
 		exit 0
 		;;
 	d|de|dec)
 		[[ -n "$2" ]] && inc="$2"
-		bc_cmd="x = $original + ${inc:-$default_inc}; if (x > 1) x = 1; x"
+		bc_cmd="x = $original + ${inc:-$default_inc}; $bc_cmd_guard"
 		modify_and_reload "$(bc <<< "$bc_cmd" | xargs printf "%1.2f")"
 		exit 0
 		;;

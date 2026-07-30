@@ -4,6 +4,14 @@ local hyper = require "hyper"
 
 hyper.install "F18"
 
+-- Sleepy ---------------------------------------------------------------------
+
+local sleepy = require "sleepy"
+
+hyper.bindKey("c", sleepy.toggleDisplay)
+hyper.bindShiftKey("s", sleepy.toggleSystem)
+sleepy.enableMenubar()
+
 -- Clean Keyboard -------------------------------------------------------------
 
 local clean_keyboard = require "clean-keyboard"
@@ -65,12 +73,6 @@ spoon.ClipboardTool.max_size = false
 spoon.ClipboardTool.hist_size = 1000
 spoon.ClipboardTool:bindHotkeys { toggle_clipboard = { clipboard_toggle, "v" } }
 spoon.ClipboardTool:start()
-
--- Caffeine -------------------------------------------------------------------
-
-hs.loadSpoon "Caffeine"
-hyper.bindKey("c", spoon.Caffeine.clicked)
-spoon.Caffeine:start()
 
 -- Reload Config --------------------------------------------------------------
 

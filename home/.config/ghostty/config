@@ -2,8 +2,9 @@
 
 # Font
 font-family = "BlexMono Nerd Font Mono"
-font-style = "Regular"
+font-family = "jf-openhuninn-2.0"
 font-family = "Noto Sans CJK TC"
+font-style = "Regular"
 font-family-bold = "BlexMono Nerd Font Mono"
 font-style-bold = "Bold"
 font-family-italic = "BlexMono Nerd Font Mono"

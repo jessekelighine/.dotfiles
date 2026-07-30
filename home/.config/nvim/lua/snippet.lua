@@ -59,20 +59,17 @@ end
 
 -- AVAILABILITY ---------------------------------------------------------------
 
----In Neovim 0.12 and later, vim.treesitter.get_parser will
----return nil if no parser is available for the current buffer, so this
----implementation with pcall needs to be changed in the future.
 ---@param language string language name
----@return boolean boolean whether the current position is in the
----language specified by `language` based on treesitter parser.
+---@return boolean boolean whether the current position is in the language
+---specified by `language` based on treesitter parser.
 local is_available_by_language = function(language)
 	if not language then return false end
-	local ok, parser = pcall(vim.treesitter.get_parser)
-	if not ok or parser == nil then return false end
-	local line = vim.fn.line(".")
-	local col = vim.fn.col(".")
-	local lang = parser:language_for_range({line, col, line, col}):lang()
-	return language == lang
+	local parser = vim.treesitter.get_parser()
+	if not parser then return false end
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local row, col = cursor[1] - 1, cursor[2]
+	local tree = parser:language_for_range({ row, col, row, col })
+	return tree:lang() == language
 end
 
 ---@param filetype string filetype name

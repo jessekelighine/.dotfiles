@@ -1,6 +1,7 @@
 -- ~/.config/nvim/lua/plugin/oil.lua
 
 local oil = require	"oil"
+
 oil.setup {
 	default_file_explorer = true,
 	view_options = { show_hidden = true },
@@ -8,6 +9,7 @@ oil.setup {
 		["<C-t>"] = false
 	}
 }
+
 local explore = ":Oil<CR>"
 local newtab = ":" .. table.concat({
 	"tabnew",
@@ -16,5 +18,6 @@ local newtab = ":" .. table.concat({
 	"setlocal noswapfile",
 	"setlocal nobuflisted"
 }, " | ") .. "<CR>"
+
 vim.keymap.set("n", "-", explore, { silent = true })
 vim.keymap.set("n", "<C-N>", newtab .. explore, { silent = true })

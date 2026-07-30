@@ -3,11 +3,4 @@
 set -e
 
 dotfiles_directory="$HOME/.dotfiles"
-cd "$dotfiles_directory"
-
-[[ "$1" == "noninteractive" ]] && {
-	make update-noninteractive
-	exit 0
-}
-
-make update
+cd "$dotfiles_directory" && make update

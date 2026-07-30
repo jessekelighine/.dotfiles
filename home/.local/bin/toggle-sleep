@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+message() {
+	local bold; bold=$(tput bold)
+	local norm; norm=$(tput sgr0)
+	cat << EOF
+${bold}USAGE${norm}: ${bold}$(basename "$0")${norm} [toggle|on|off|status]
+${bold}DESCRIPTION${norm}:
+	Toggles sleep behavior. If sleep is enabled, the Mac
+	bahaves regularly; if sleep is ${bold}disabled${norm}, then the Mac
+	will not sleep even when the lid is closed.
+EOF
+}
+
+get_status() {
+    pmset -g | awk 'tolower($1) == "sleepdisabled" { print $2; exit }'
+}
+
+show_status() {
+    status=$(get_status)
+    case "$status" in
+        1) echo "Sleep is DISABLED. Do not put the Mac in a bag." ;;
+        0) echo "Sleep is enabled." ;;
+        *) echo "Unable to determine disablesleep status." >&2; return 1 ;;
+    esac
+}
+
+case "${1}" in
+    on)
+        sudo pmset -a disablesleep 1
+        show_status
+        ;;
+    off)
+        sudo pmset -a disablesleep 0
+        show_status
+        ;;
+    status)
+        show_status
+        ;;
+    toggle)
+        if [[ "$(get_status)" == "1" ]]; then
+            sudo pmset -a disablesleep 0
+        else
+            sudo pmset -a disablesleep 1
+        fi
+        show_status
+        ;;
+    *)
+        message >&2
+        exit 1
+        ;;
+esac

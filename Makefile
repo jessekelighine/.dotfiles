@@ -12,10 +12,6 @@ all:
 
 .PHONY: update
 update:
-	./dotfiles-update.sh interactive
-
-.PHONY: update-noninteractive
-update-noninteractive:
 	./dotfiles-update.sh
 
 .PHONY: install

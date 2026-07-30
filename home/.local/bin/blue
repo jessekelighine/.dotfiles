@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
 message () {
-	local green; green=$(tput bold && tput setaf 10)
-	local blue;  blue=$(tput bold && tput setaf 12)
-	local norm;  norm=$(tput sgr0)
+	local bold; bold=$(tput bold)
+	local norm; norm=$(tput sgr0)
 	cat << EOF
-${green}usage:${norm} ${blue}$(basename "$0")${norm} [options]
-${green}options:${norm}
-        on               turn on bluetooth power
-        off              turn off bluetooth power
+${bold}USAGE${norm}: ${bold}$(basename "$0")${norm} [options]
+${bold}OPTIONS${norm}:
+        on               turn on bluetooth
+        off              turn off bluetooth
         connect <NAME>   connect to bluetooth device
         status           show power status of bluetooth
 EOF

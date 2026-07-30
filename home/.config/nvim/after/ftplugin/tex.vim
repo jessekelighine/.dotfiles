@@ -35,7 +35,7 @@ let b:surround_101 = "\\begin{\1--> Environment name: \1}\r\\end{\1\1}"
 let b:surround_108 = "\\left\r\\right"
 let b:surround_103 = "($\r$)"
 
-" COMPILATION: Only define compilation commands if the file is a TeX file.
+" COMPILATION: Only define compilation commands if the file is a .tex file.
 if expand('%:e') == 'tex'
 	let b:tex_compile_png = "xelatex " .. "'" .. expand("%") .. "'" .. "; "
 				\ .. "convert "

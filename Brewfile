@@ -1,9 +1,10 @@
-tap "flewid-ab/pdfjam", "https://github.com/FLEWID-AB/homebrew-pdfjam"
+tap "flewid-ab/pdfjam", "https://github.com/FLEWID-AB/homebrew-pdfjam", trusted: true
 tap "homebrew/bundle"
-tap "r-lib/rig"
-tap "thom4parisot/brew", "https://github.com/thom4parisot/homebrew-brew.git"
-tap "tw93/tap"
-tap "visidata/vd", "https://github.com/visidata/homebrew-vd.git"
+tap "r-lib/rig", trusted: true
+tap "thom4parisot/brew", "https://github.com/thom4parisot/homebrew-brew.git", trusted: true
+tap "turtletech-ehf/tap", "https://github.com/TurtleTech-ehf/homebrew-tap"
+tap "tw93/tap", trusted: true
+tap "visidata/vd", "https://github.com/visidata/homebrew-vd.git", trusted: true
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Cryptography and SSL/TLS Toolkit
@@ -58,6 +59,8 @@ brew "libyaml"
 brew "lua-language-server"
 # Mac App Store command-line interface
 brew "mas"
+# Deep clean and optimize your Mac
+brew "mole"
 # Media player based on MPlayer and mplayer2
 brew "mpv"
 # Lightweight PDF and XPS viewer
@@ -110,10 +113,10 @@ brew "xpdf", link: false
 cask "appcleaner"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# E-books management software
+cask "calibre"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# Client for the Dropbox cloud storage service
-cask "dropbox"
 # Web browser
 cask "firefox"
 cask "font-blex-mono-nerd-font"
@@ -132,8 +135,6 @@ cask "hammerspoon"
 cask "karabiner-elements"
 # VPN client focusing on security
 cask "protonvpn"
-# Scientific and technical publishing system built on Pandoc
-cask "quarto"
 # PDF reader and note-taking application
 cask "skim"
 # Web browser focusing on security
