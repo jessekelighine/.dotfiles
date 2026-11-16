@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
+# Works on macOS (Homebrew pyenv) and Linux (pyenv in ~/.pyenv)
 
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
+[[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+command -v pyenv >/dev/null && eval "$(pyenv init -)"

@@ -2,6 +2,11 @@
 .netrwhist
 .tex-server
 
+home/.claude/*
+!home/.claude/CLAUDE.md
+!home/.claude/settings.json
+!home/.claude/skills/
+
 home/.gnupg/*
 home/.password-store/*
 

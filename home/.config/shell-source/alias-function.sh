@@ -2,20 +2,25 @@
 
 alias mv='mv -i'
 
-alias ov='ssh -t ovile "tmux new -A -s main"'
+# Attach to ovile's main tmux session (not needed on ovile itself)
+[[ "$(hostname -s)" != ovile ]] && alias ov='ssh -t ovile "tmux new -A -s main"'
 
 if command -v eza >/dev/null 2>&1
 then
 	alias la='eza --long --all'
 	alias lad='eza --long --all --group-directories-last'
-else
-	alias la='ls -lAhG'
+elif [[ "$(uname -s)" == Darwin ]]
+then
+	alias la='ls -lAhG'      # BSD ls: -G means colour
 	alias lad='ls -lAhGd */'
+else
+	alias la='ls -lAh --color=auto'      # GNU ls: -G would hide the group column
+	alias lad='ls -lAhd --color=auto */'
 fi
 
 alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
-alias md5sum='md5 -r'
+[[ "$(uname -s)" == Darwin ]] && alias md5sum='md5 -r' # Linux has a real md5sum
 alias rg='rg --smart-case'
 
 alias pd='pushd'

@@ -4,7 +4,7 @@
 # -*- encoding: UTF-8 -*-                                                     #
 # Author: jessekelighine.com                                                  #
 #                                                                             #
-# Last Modified: 2024-05-04                                                   #
+# Last Modified: 2026-11-16                                                   #
 ###############################################################################
 
 # - Fonts:
@@ -23,21 +23,36 @@
 #     - Vimium: put `map s passNextKey` so original youtube keybindings
 #       can be used.
 
-### Homebrew ##################################################################
+cd "$(dirname "$0")" || exit 1
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle install
+case "$(uname -s)" in
+	Darwin)
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		brew bundle install
+		defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+		defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+		defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && killall Finder
+		# defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.dock autohide-time-modifier -int 0; killall Dock
+		;;
+	Linux)
+		command -v stow >/dev/null || {
+			printf "%s: install stow first: sudo apt install stow\n" "$0"
+			exit 1
+		}
+		# Distro defaults that would block stow: move aside (once) as *.distro-default
+		for f in .bashrc .tmux.conf; do
+			[[ -f "$HOME/$f" && ! -L "$HOME/$f" ]] && mv -v "$HOME/$f" "$HOME/$f.distro-default"
+		done
+		;;
+esac
 
-### MacOS Settings ############################################################
+### Submodules (confucius-said, del, zsh plugins, ...) ########################
 
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && killall Finder
-# defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.dock autohide-time-modifier -int 0; killall Dock
+git submodule update --init --recursive
 
 ### Symlinking ################################################################
 
-stow home -t "$HOME" && {
+stow --no-folding home -t "$HOME" && {
 	printf "%s: installed with 'stow'\n" "$0"
 	exit 0
 }
