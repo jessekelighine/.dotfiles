@@ -2,7 +2,6 @@ tap "flewid-ab/pdfjam", "https://github.com/FLEWID-AB/homebrew-pdfjam", trusted:
 tap "homebrew/bundle"
 tap "r-lib/rig", trusted: true
 tap "thom4parisot/brew", "https://github.com/thom4parisot/homebrew-brew.git", trusted: true
-tap "turtletech-ehf/tap", "https://github.com/TurtleTech-ehf/homebrew-tap"
 tap "tw93/tap", trusted: true
 tap "visidata/vd", "https://github.com/visidata/homebrew-vd.git", trusted: true
 # Tool for generating GNU Standards-compliant Makefiles
@@ -45,6 +44,8 @@ brew "ghostscript"
 brew "htop"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Julia installer and version multiplexer
@@ -61,6 +62,8 @@ brew "lua-language-server"
 brew "mas"
 # Deep clean and optimize your Mac
 brew "mole"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp", args: ["HEAD"]
 # Media player based on MPlayer and mplayer2
 brew "mpv"
 # Lightweight PDF and XPS viewer
@@ -103,20 +106,20 @@ brew "tmux"
 brew "tokei"
 # Parser generator tool
 brew "tree-sitter-cli"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Terminal spreadsheet multitool for discovering and arranging data
 brew "visidata"
 # XML command-line utilities
 brew "xmlstarlet"
 # PDF viewer
 brew "xpdf", link: false
-# Application uninstaller
-cask "appcleaner"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # E-books management software
 cask "calibre"
-# OpenAI's coding agent that runs in your terminal
-cask "codex"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # Web browser
 cask "firefox"
 cask "font-blex-mono-nerd-font"
@@ -131,12 +134,18 @@ cask "ghostty"
 cask "google-drive"
 # Desktop automation application
 cask "hammerspoon"
+# Vector graphics editor
+cask "inkscape"
 # Keyboard customiser
 cask "karabiner-elements"
+# Free cross-platform office suite, fresh version
+cask "libreoffice"
 # VPN client focusing on security
 cask "protonvpn"
 # PDF reader and note-taking application
 cask "skim"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # Web browser focusing on security
 cask "tor-browser"
 # Native desktop client for WhatsApp
@@ -148,6 +157,7 @@ cask "zoom"
 # Collect, organise, cite, and share research sources
 cask "zotero"
 mas "LINE", id: 539883307
+uv "zotero-mcp-server[pdf,semantic]"
 npm "bash-language-server"
 npm "live-server"
 npm "yarn"

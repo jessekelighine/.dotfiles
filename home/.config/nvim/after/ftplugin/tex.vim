@@ -51,7 +51,6 @@ if expand('%:e') == 'tex'
 	" nnoremap <silent><buffer> <leader><Space>  <Cmd>call terminal#Open(b:tex_compile_command)<CR>
 	" nnoremap <silent><buffer> <leader><leader> <Cmd>call terminal#Send("\<C-D>")<CR>
 	nnoremap <silent><buffer> <leader>rq       <Cmd>call vimslime#Close()<CR>
-	nnoremap <silent><buffer> <F5>             <Cmd>call vimslime#Open(b:tex_compile_xelatex, "-l 30")<CR>
 	nnoremap <silent><buffer> <leader>rf       <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
 	nnoremap <silent><buffer> <leader><Space>  <Cmd>call vimslime#Open(b:tex_compile_command, "-l 30")<CR>
 	nnoremap <silent><buffer> <leader><leader> <Cmd>call vimslime#Send("\<C-D>")<CR>

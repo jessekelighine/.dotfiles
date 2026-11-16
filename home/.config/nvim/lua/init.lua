@@ -16,6 +16,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- VIM.PACK -------------------------------------------------------------------
 
 vim.pack.add({
+	{ src = "https://github.com/jessekelighine/vim-bunttex" },
+}, { load = false })
+
+vim.pack.add({
 	{ src = "https://github.com/R-nvim/R.nvim" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
 	{ src = "https://github.com/github/copilot.vim" },
@@ -34,10 +38,6 @@ vim.pack.add({
 	{ src = "https://github.com/unblevable/quick-scope" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 })
-
-vim.pack.add({
-	{ src = "https://github.com/jessekelighine/vim-bunttex" },
-}, { load = false })
 
 require "plugin.cmp"
 require "plugin.copilot"

@@ -26,7 +26,7 @@ endfunction
 
 " Reload the toggle dictionary
 function! <SID>ReloadToggleDict() abort
-	let l:syntax = 'source ~/.local/share/nvim/lazy/vim-bunttex/syntax-additional/'
+	let l:syntax = 'source ~/.local/share/nvim/site/pack/core/opt/vim-bunttex/syntax-additional/'
 	let l:plugin = 'source ~/.config/nvim/pack/lang/opt/tex/ftplugin/'
 	for l:key in keys(g:tex_toggle_dict)
 		if <SID>Get(l:key, "status")

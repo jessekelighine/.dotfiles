@@ -1,19 +1,8 @@
 ---
-title:  "MPV"
-author: "jessekelighine.com"
-date:   "2023-03-07"
+title: MPV
+author: Jesse Chieh Chen
+date:  2026-08-18
 ---
-
-# Miscellaneous
-
-(**2023-03-07**) Due to a problem from `yt-dlp`, YouTube cannot be played. The
-error message is `EDL specifies no segments.'`.  A work-around is to patch
-the script `./scripts/ytdl_hook.lua` with the following change:
-```
--       local url = edl_track or track.url
-+       local url = track.url
-```
-For `mpv` to use this local script, use the `--ytdl=no` option.
 
 # Controls
 

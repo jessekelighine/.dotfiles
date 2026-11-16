@@ -1,13 +1,12 @@
 %%% Probability %%%
 \let\Pr\relax
-\DeclareMathOperator{\Pr}{\text{\upshape\textbf{P}}}
-\DeclareMathOperator{\E}{\text{\upshape\textbf{E}}}
-\DeclareMathOperator{\var}{\text{\upshape\textbf{Var}}}
-\DeclareMathOperator{\cov}{\text{\upshape\textbf{Cov}}}
+\DeclareMathOperator{\Pr}{\text{\upshape{Pr}}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\text{\upshape{Var}}}
+\DeclareMathOperator{\Cov}{\text{\upshape{Cov}}}
 \newcommand{\iidto}{\overset{\text{\scriptsize iid}}{\sim}}
 \newcommand{\asto}{\overset{as}{\longrightarrow}}
 \newcommand{\pto}{\overset{p}{\longrightarrow}}
-\newcommand{\dto}{\overset{d}{\longrightarrow}}
-\newcommand{\given}{\mathbin{|}}
-\newcommand{\middlegiven}{\,\middle|\,}
+\newcommand{\dto}[1][]{\overset{#1}{\leadsto}}
+\newcommand{\given}[1][]{\mathpunct{}#1|\mathpunct{}}
 %-----------------------------------------------------------------------------%

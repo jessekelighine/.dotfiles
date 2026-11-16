@@ -84,3 +84,6 @@ xcolor
 xecjk
 xifthen
 xstring
+preprint
+forloop
+mathpazo

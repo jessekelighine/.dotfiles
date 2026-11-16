@@ -2,10 +2,12 @@
 
 alias mv='mv -i'
 
+alias ov='ssh -t ovile "tmux new -A -s main"'
+
 if command -v eza >/dev/null 2>&1
 then
 	alias la='eza --long --all'
-	alias lad='eza --long --all --only-dirs'
+	alias lad='eza --long --all --group-directories-last'
 else
 	alias la='ls -lAhG'
 	alias lad='ls -lAhGd */'
@@ -25,7 +27,7 @@ alias 'opencc-2s'='opencc -c t2s.json'
 
 alias wordsegment='python -m wordsegment'
 
-alias tmm='tmux new -s main -n main'
+alias tmm='tmux new -A -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
@@ -101,7 +103,7 @@ eject-auto () {
 ### Spiel #####################################################################
 
 SPIEL_LOCATION="$HOME/.dotfiles/others/music.sh"
-spiel           () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop "$1"; }
-spiel-mono      () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --loop --audio-channels=mono "$1"; }
-spielliste      () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video "$1"; }
-spielliste-mono () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --ytdl=no --no-video --audio-channels=mono "$1"; }
+spiel           () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --no-video --ytdl-format='bestaudio/best' --loop-file=inf "$1"; }
+spiel-mono      () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --no-video --ytdl-format='bestaudio/best' --loop-file=inf --audio-channels=mono "$1"; }
+spielliste      () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --no-video --ytdl-format='bestaudio/best' "$1"; }
+spielliste-mono () { echo "$0 '$1' ${@:2}" >> "$SPIEL_LOCATION" && mpv --no-video --ytdl-format='bestaudio/best' --audio-channels=mono "$1"; }

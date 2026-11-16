@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ZOTERO_API_KEY="$(security find-generic-password -a "$USER" -s zotero-api-key -w)" || exit 1
+export ZOTERO_API_KEY
+exec /Users/jessechen/.local/bin/zotero-mcp "$@"

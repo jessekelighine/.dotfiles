@@ -34,9 +34,7 @@ brew bundle dump --force
 
 last_update="$(git log -1 --pretty='format:%cd' --date='format:%Y-%m-%d')"
 
-git add .
-echo "${script_name}: added changes to repository"
 echo "${script_name}: last commit: ${last_update}"
-echo "${script_name}: this update: $(date "+%Y-%m-%d %H:%M:%S")"
+echo "${script_name}: this update: $(date "+%Y-%m-%d")"
 echo "${script_name}: consider using 'mo optimize' or 'mo clean'"
 echo "${script_name}: finished"

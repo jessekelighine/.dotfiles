@@ -19,3 +19,6 @@
 [submodule "home/.local/bin-sources/xiaolin-said"]
 	path = home/.local/bin-sources/xiaolin-said
 	url = https://github.com/jessekelighine/xiaolin-said
+[submodule "home/.local/bin-sources/dowlings-wheel"]
+	path = home/.local/bin-sources/dowlings-wheel
+	url = https://github.com/jessekelighine/dowlings-wheel.git

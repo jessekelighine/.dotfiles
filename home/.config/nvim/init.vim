@@ -5,24 +5,23 @@ filetype indent plugin on
 syntax on
 language en_US.UTF-8
 
-" inoremap jk     <Esc>
-" inoremap kj     <Esc>
-" nnoremap <Up>   gk
+" inoremap jk <Esc>
+" inoremap kj <Esc>
+" nnoremap <Up> gk
 " nnoremap <Down> gj
-xnoremap >      >gv
-xnoremap <      <gv
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
+" nnoremap <expr> n 'Nn'[v:searchforward]
+" nnoremap <expr> N 'nN'[v:searchforward]
+" nnoremap Y y$
+" xnoremap // y/\V<C-R>=escape(@", '/\')<CR><CR>
+" nnoremap - :Explore<CR>
+xnoremap > >gv
+xnoremap < <gv
 nnoremap <silent> <CR> :nohlsearch<CR>:echo<CR>
-" nnoremap Y      y$
-" xnoremap //     y/\V<C-R>=escape(@", '/\')<CR><CR>
-" nnoremap <C-N>  :Texplore<CR>
-" nnoremap -      :Explore<CR>
 
 nnoremap <silent> <Space> :e<CR>
 nnoremap zS zszH
 inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
-xnoremap p pgvy
+" xnoremap p pgvy
 nnoremap <F12> :tabnew ~/.config/nvim/init.vim<CR>
 noremap  '' "*y
 
@@ -45,8 +44,8 @@ xnoremap a` 2i`
 onoremap a' 2i'
 onoremap a" 2i"
 onoremap a` 2i`
-onoremap F  vF
-onoremap T  vT
+" onoremap F  vF
+" onoremap T  vT
 
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
@@ -72,7 +71,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set spelllang=en
 set fileformats=unix,dos,mac
-set mouse=
+set mouse=nv
 set hidden
 set noswapfile
 set switchbuf=useopen

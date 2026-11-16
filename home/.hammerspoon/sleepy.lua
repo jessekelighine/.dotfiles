@@ -10,12 +10,7 @@
 --- display sleep uses Hammerspoon's own hs.caffeinate module.
 ---
 --- A note on terminology: "caffed" means that the system or display is
---- prevented from sleeping, while "sleepy" means that it is allowed to
---- sleep.
----
---- The menubar combines both states:
----   * 🫪/😴: system caffed/sleepy
----   * 🌕/🌘: display caffed/sleepy
+--- prevented from sleeping, while "sleepy" means that it is allowed to sleep.
 ---
 --- Usage Example:
 ---   local sleepy = require "sleepy"
@@ -23,65 +18,94 @@
 ---   hs.hotkey.bind({ "cmd", "alt" }, "D", sleepy.toggleDisplay)
 ---   sleepy.enableMenubar()
 
-local symbol_system_caffed    = "🫪"
-local symbol_system_sleepy    = "😴"
-local symbol_display_caffed   = "🌕"
-local symbol_display_sleepy   = "🌘"
-local message_system_caffed   = symbol_system_caffed  .. " System stays awake"
-local message_system_sleepy   = symbol_system_sleepy  .. " System can sleep"
-local message_display_caffed  = symbol_display_caffed .. " Display stays awake"
-local message_display_sleepy  = symbol_display_sleepy .. " Display can sleep"
+local CAFFED = true
+local SLEEPY = false
 
-local sleepy = {}
 local menubar = nil
 
-function sleepy.isSystemCaffed()
-    local output = hs.execute("/usr/bin/pmset -g")
+local symbol = {
+	system  = {
+		[CAFFED] = "🫪",
+		[SLEEPY] = "😴",
+	},
+	display = {
+		[CAFFED] = "🌕",
+		[SLEEPY] = "🌘",
+	},
+}
+
+local message = {
+	system = {
+		[CAFFED] = symbol.system[CAFFED] .. " System stays awake",
+		[SLEEPY] = symbol.system[SLEEPY] .. " System can sleep",
+	},
+	display = {
+		[CAFFED] = symbol.display[CAFFED] .. " Display stays awake",
+		[SLEEPY] = symbol.display[SLEEPY] .. " Display can sleep",
+	},
+}
+
+local M = {
+	use_sudo = true,
+	verbose = true,
+}
+
+function M.getSystemState()
+    local output = hs.execute("pmset -g")
     return output:match("SleepDisabled%s+1") ~= nil
 end
 
-function sleepy.isDisplayCaffed()
+function M.getDisplayState()
 	return hs.caffeinate.get("displayIdle")
 end
 
-local function updateMenubar()
+local updateMenubar = function()
 	if not menubar then return end
-	local system_caffed  = sleepy.isSystemCaffed()
-	local display_caffed = sleepy.isDisplayCaffed()
-	local system_symbol   = system_caffed  and symbol_system_caffed   or symbol_system_sleepy
-	local system_message  = system_caffed  and message_system_caffed  or message_system_sleepy
-	local display_symbol  = display_caffed and symbol_display_caffed  or symbol_display_sleepy
-	local display_message = display_caffed and message_display_caffed or message_display_sleepy
+	local system_state    = M.getSystemState()
+	local display_state   = M.getDisplayState()
+	local system_symbol   = symbol.system[system_state]
+	local system_message  = message.system[system_state]
+	local display_symbol  = symbol.display[display_state]
+	local display_message = message.display[display_state]
 	menubar:setTitle(system_symbol .. display_symbol)
 	menubar:setTooltip(system_message .. "\n" .. display_message)
 end
 
-function sleepy.setSystem(caffed)
-	local value = caffed and "1" or "0"
-	local shell_command = "sudo pmset -a disablesleep " .. value
-	local apple_script = 'do shell script "' .. shell_command .. '"'
-	--- Alternative: Use Applescript to envoke administrator privileges
-	---   local shell_command = "pmset -a disablesleep " .. value
-	---   local apple_script = 'do shell script "' .. shell_command .. '" with administrator privileges'
-	local success = hs.osascript.applescript(apple_script)
-	if success then updateMenubar() end
-	return success
+local setSystemState = function(state)
+	local shell_command = "pmset -a disablesleep " .. (state and "1" or "0")
+	local apple_script = 'do shell script ' .. (
+		M.use_sudo and
+		( '"sudo ' .. shell_command .. '"' ) or
+		( '"' .. shell_command .. '" with administrator privileges' )
+	)
+	return hs.osascript.applescript(apple_script)
 end
 
-function sleepy.toggleSystem()
-	local caffed = sleepy.isSystemCaffed()
-	return sleepy.setSystem(not caffed)
+function M.toggleSystem()
+	local state = M.getSystemState()
+	local new_state = not state
+	local success = setSystemState(new_state)
+	if not success then return nil end
+	if menubar then updateMenubar() end
+	if M.verbose then
+		hs.alert.closeAll(0)
+		hs.alert.show(message.system[new_state])
+	end
+	return new_state
 end
 
-function sleepy.toggleDisplay(show_message)
-	show_message = show_message or false
-	local caffed = hs.caffeinate.toggle("displayIdle")
-	if caffed == nil then return nil end
-	updateMenubar()
-	return caffed
+function M.toggleDisplay()
+	local new_state = hs.caffeinate.toggle("displayIdle")
+	if new_state == nil then return nil end
+	if menubar then updateMenubar() end
+	if M.verbose then
+		hs.alert.closeAll(0)
+		hs.alert.show(message.display[new_state])
+	end
+	return new_state
 end
 
-function sleepy.enableMenubar()
+function M.enableMenubar()
 	if menubar then return menubar end
 	menubar = hs.menubar.new()
 	menubar:autosaveName("sleepy")
@@ -90,13 +114,13 @@ function sleepy.enableMenubar()
 			return {
 				{
 					title = "System Sleepy",
-					checked = not sleepy.isSystemCaffed(),
-					fn = sleepy.toggleSystem,
+					checked = not M.getSystemState(),
+					fn = M.toggleSystem,
 				},
 				{
 					title = "Display Sleepy",
-					checked = not sleepy.isDisplayCaffed(),
-					fn = sleepy.toggleDisplay,
+					checked = not M.getDisplayState(),
+					fn = M.toggleDisplay,
 				},
 			}
 		end
@@ -105,11 +129,10 @@ function sleepy.enableMenubar()
 	return menubar
 end
 
-function sleepy.disableMenubar()
-	if menubar then
-		menubar:delete()
-		menubar = nil
-	end
+function M.disableMenubar()
+	if not menubar then return end
+	menubar:delete()
+	menubar = nil
 end
 
-return sleepy
+return M

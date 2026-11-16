@@ -8,7 +8,10 @@ local source = {}
 
 function source:get_keyword_pattern() return [[:\k\+]] end
 function source:resolve(item, callback) callback(snippet:add_doc(item, filetype)) end
-source.is_available = snippet.is_available { language = language }
+source.is_available = snippet.is_available {
+	language = language,
+	filetype = filetype
+}
 
 function source:complete(_, callback)
 	callback {

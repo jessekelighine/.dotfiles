@@ -22,6 +22,8 @@ export LSCOLORS='exfxcxdxbxegedabagacad'
 export CLICOLOR=1
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$ZDOTDIR/.zsh_history"
+export CODEX_UI_REDUCED_MOTION=1
+export ZOTERO_LOCAL=true
 
 export PS1="%B%{$fg[red]%}["           # [
 export PS1="$PS1%{$fg[yellow]%}%n"     # username
@@ -48,15 +50,13 @@ export PS1="$PS1%{$reset_color%}%%%b " # %
 	source "$HOME/.config/shell-source/pyenv.sh"
 }
 
-confucius-said --random
-# xiaolin-said --random
-
-# mencius_chapters=(13 14)
-# random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
-# random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
-# mencius-said --random-from-chapter "$random_mencius_chapter"
-# mencius-said --random
-
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.4.1 # run chruby to see actual version
+
+confucius-said --random
+
+# mencius_chapters=(11 12 13 14)
+# random_mencius_index=$((1 + RANDOM % ${#mencius_chapters[@]})) # zsh is 1-indexed
+# random_mencius_chapter=${mencius_chapters[$random_mencius_index]}
+# mencius-said --random-from-chapter "$random_mencius_chapter"

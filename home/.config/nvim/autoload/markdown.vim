@@ -18,7 +18,7 @@ function! markdown#View(force_open_file=0)
 	if a:force_open_file || !exists("b:markdown_view")
 		let l:html_file = expand("%:p:r") .. ".html"
 		let l:view_file = file_readable(l:html_file) ? l:html_file : expand("%:p")
-		let l:command = l:command .. " file://" .. l:view_file
+		let l:command = l:command .. " file://" .. shellescape(l:view_file)
 		let b:markdown_view = 1
 	endif
 	call system(l:command)

@@ -47,9 +47,9 @@ function! <SID>Compile(open) abort
 				\ : l:pandoc_command_plain
 				\ )
 	if file_readable("Makefile")
-		let l:command = "make"
-	else
 		let l:command = l:live_server .. " & " .. l:tmux_command
+	else
+		let l:command = l:pandoc_command_plain
 	endif
 	if a:open
 		call vimslime#Open("" .. l:command, "-l 30")
