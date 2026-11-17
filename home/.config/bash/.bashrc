@@ -51,4 +51,8 @@ if ! shopt -oq posix && [ -f /usr/share/bash-completion/bash_completion ]; then
 	. /usr/share/bash-completion/bash_completion
 fi
 
-command -v confucius-said >/dev/null && confucius-said --random
+if [[ "$(uname -s)" == Linux ]]; then
+	command -v ovile-hello >/dev/null && ovile-hello;
+else
+	command -v confucius-said >/dev/null && confucius-said --random
+fi

@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# ovile-hello — the sheepfold's greeting:
+# Latin hello, a sheep that reflects the machine's mood.
+
+[[ "$(uname -s)" == Linux ]] || exit 0
+
+G='\033[1;32m'; Y='\033[1;33m'; C='\033[1;36m'; W='\033[1;37m'
+M='\033[1;35m'; B='\033[1;34m'; D='\033[2m'; R='\033[0m'
+
+### Greeting by time of day ###################################################
+
+hour=$((10#$(date +%H)))
+if   (( hour >= 5  && hour < 12 )); then greet="Salvē, pāstor! Sōl oritur.";
+elif (( hour >= 12 && hour < 18 )); then greet="Salvē, pāstor!";
+elif (( hour >= 18 && hour < 21 )); then greet="Vesper adest, pāstor.";
+else                                     greet="Etiamne vigilās, pāstor?";
+fi
+
+### The sheep speaks: its words follow load and temperature ###################
+
+threads=$(nproc)
+load1=$(cut -d' ' -f1 /proc/loadavg)
+temp=$(sensors 2>/dev/null | awk '/^Package id 0:/ { gsub(/[+°C]/, "", $4); print int($4); exit }')
+mood=$(awk -v l="$load1" -v t="$threads" 'BEGIN { r=l/t; if (r<0.2) print "sleep"; else if (r<0.7) print "graze"; else print "run" }')
+
+case "$mood" in
+	sleep) say="Ovis in ovīlī dormit..." ;;
+	graze) say="Ovis in pāscuā pāscitur~" ;;
+	run)   say="Ovis in campō currit!" ;;
+esac
+
+[[ -n "$temp" ]] && (( temp >= 70 )) && say="$say Et sūdat!"
+
+echo
+command -v figlet >/dev/null && printf "${G}%s${R}\n" "$(figlet -f slant ovile)"
+printf "   ${G}%s${R}\n\n" "$greet"
+
+if [[ "$mood" == sleep ]]; then
+art=$(cat <<'SHEEP'
+                            Z
+                      ,:  z
+                     /ﾉ z
+         (＼ ;''~ ⌒ ヾ,
+          ~'ミ   －   ｪ)   @SAY@
+              ゝ     i"
+  ヘ,"''"~          ミ
+    (,,つ,,,,,,,,,,,,つ,ﾉ
+SHEEP
+)
+else
+art=$(cat <<'SHEEP'
+                      ,:
+                     /ﾉ
+         (＼ ;''~ ⌒ ヾ,
+          ~'ミ   ・   ｪ)   @SAY@
+              ゝ     i"
+  ヘ,"''"~          ミ
+    ,)  ノ,,_,  ,;' ヽ)
+    し'し'    l,ﾉ
+SHEEP
+)
+fi
+printf "%b\n\n" "${W}${art/@SAY@/${R}${M}${say}${R}${W}}${R}"
+
+### Vital signs ###############################################################
+
+up=$(uptime -p | sed 's/^up //')
+load=$(cut -d' ' -f1-3 /proc/loadavg)
+mem=$(free -h | awk '/^Mem:/ {print $3 " / " $2}')
+disk=$(df -h / | awk 'NR==2 {print $3 " / " $2 " (" $5 ")"}')
+ts_ip=$(tailscale ip -4 2>/dev/null | head -1)
+
+printf "   ${C}uptime${R}    %s\n" "$up"
+printf "   ${C}load${R}      %s  ${D}(%s threads)${R}\n" "$load" "$threads"
+printf "   ${C}memory${R}    %s\n" "$mem"
+printf "   ${C}disk${R}      %s\n" "$disk"
+temp_str="n/a"; [[ -n "$temp" ]] && temp_str="${temp}°C"
+printf "   ${C}cpu temp${R}  %s\n" "$temp_str"
+printf "   ${C}tailscale${R} %s\n\n" "${ts_ip:-offline}"
