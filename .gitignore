@@ -2,6 +2,20 @@
 .netrwhist
 .tex-server
 
+# Machine-local files (on ovile, ~/.config and ~/.local/bin are folded into this repo)
+home/.config/mimeapps.list
+home/.config/scout.env
+home/.config/uv/
+home/.config/zotkit/
+home/.config/tmux/*.bak
+home/.local/bin/claude
+home/.local/bin/fd
+home/.local/bin/nvim
+home/.local/bin/tree-sitter
+home/.local/bin/uv
+home/.local/bin/uvx
+home/.local/bin/zotkit
+
 home/.claude/*
 !home/.claude/CLAUDE.md
 !home/.claude/settings.json

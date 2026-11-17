@@ -52,7 +52,9 @@ git submodule update --init --recursive
 
 ### Symlinking ################################################################
 
-stow --no-folding home -t "$HOME" && {
+mkdir -p "$HOME/.claude"
+
+stow home -t "$HOME" && {
 	printf "%s: installed with 'stow'\n" "$0"
 	exit 0
 }
