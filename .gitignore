@@ -2,7 +2,13 @@
 .netrwhist
 .tex-server
 
-# Machine-local files (on ovile, ~/.config and ~/.local/bin are folded into this repo)
+home/.config/iterm2/AppSupport
+home/.config/skim/Scripts
+home/.local/bin/zotero-cli
+home/.local/bin/zotero-mcp
+home/.local/bin/zotero-mcp-server
+
+# Machine-local files: safety net in case a folder gets folded into the repo again
 home/.config/mimeapps.list
 home/.config/scout.env
 home/.config/uv/

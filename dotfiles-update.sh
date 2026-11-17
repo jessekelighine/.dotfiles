@@ -38,7 +38,7 @@ esac
 ### Dotfiles: submodules and newly added files ################################
 
 git submodule update --init --recursive
-stow --restow home -t "$HOME"
+stow --no-folding --restow home -t "$HOME"
 
 ### Finish ####################################################################
 
