@@ -25,8 +25,8 @@ mood=$(awk -v l="$load1" -v t="$threads" 'BEGIN { r=l/t; if (r<0.2) print "sleep
 
 case "$mood" in
 	sleep) say="Ovis in ovīlī dormit..." ;;
-	graze) say="Ovis in pāscuā pāscitur~" ;;
-	run)   say="Ovis in campō currit!" ;;
+	graze) say="Ovis in campō pāscitur." ;;
+	run)   say="Ovis currit!" ;;
 esac
 
 [[ -n "$temp" ]] && (( temp >= 70 )) && say="$say Et sūdat!"
@@ -35,7 +35,8 @@ echo
 command -v figlet >/dev/null && printf "${G}%s${R}\n" "$(figlet -f slant ovile)"
 printf "   ${G}%s${R}\n\n" "$greet"
 
-if [[ "$mood" == sleep ]]; then
+case "$mood" in
+sleep)
 art=$(cat <<'SHEEP'
                             Z
                       ,:  z
@@ -46,8 +47,20 @@ art=$(cat <<'SHEEP'
   ヘ,"''"~          ミ
     (,,つ,,,,,,,,,,,,つ,ﾉ
 SHEEP
-)
-else
+) ;;
+run)
+art=$(cat <<'SHEEP'
+                      ,:
+                     /ﾉ
+   三    (＼ ;''~ ⌒ ヾ,
+ 三       ~'ミ   ＞   ｪ)   @SAY@
+     三       ゝ     i"
+  ヘ,"''"~          ミ
+    ,)  ノ,,_,  ,;' ヽ)
+    し'し'    l,ﾉ
+SHEEP
+) ;;
+*)
 art=$(cat <<'SHEEP'
                       ,:
                      /ﾉ
@@ -58,8 +71,8 @@ art=$(cat <<'SHEEP'
     ,)  ノ,,_,  ,;' ヽ)
     し'し'    l,ﾉ
 SHEEP
-)
-fi
+) ;;
+esac
 printf "%b\n\n" "${W}${art/@SAY@/${R}${M}${say}${R}${W}}${R}"
 
 ### Vital signs ###############################################################

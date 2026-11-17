@@ -71,8 +71,42 @@ spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool.show_copied_alert = false
 spoon.ClipboardTool.max_size = false
 spoon.ClipboardTool.hist_size = 1000
+
+-- Do no store images
+-- do
+-- 	local origStore = spoon.ClipboardTool.pasteboardToClipboard
+-- 	function spoon.ClipboardTool:pasteboardToClipboard(item_type, item)
+-- 		if item_type == "image" then return end
+-- 		return origStore(self, item_type, item)
+-- 	end
+-- end
+
 spoon.ClipboardTool:bindHotkeys { toggle_clipboard = { clipboard_toggle, "v" } }
 spoon.ClipboardTool:start()
+
+-- Remove images from clipboard history
+hs.hotkey.bind({ "cmd", "alt", "shift" }, "v", function()
+	local ct = spoon.ClipboardTool
+	local clipboard_key = "ClipboardTool.items"
+	-- Pause the clipboard watcher so nothing is added mid-cleanup
+	if ct.timer then ct.timer:stop() end
+	if ct.selectorobj then ct.selectorobj:hide() end
+	-- Look through the clipboard history and remove any images
+	local kept, removed = {}, 0
+	for _, entry in ipairs(hs.settings.get(clipboard_key) or {}) do
+		if entry.type == "image" then
+			removed = removed + 1
+		else
+			table.insert(kept, entry)
+		end
+	end
+	-- Update the clipboard history and restart the watcher
+	hs.settings.set(clipboard_key, kept)
+	ct:start()
+	local images = removed == 1 and "image" or "images"
+	local message = ("📋 Removed %d " .. images):format(removed)
+	hs.alert.show(message, 0.5)
+end)
 
 -- Reload Config --------------------------------------------------------------
 

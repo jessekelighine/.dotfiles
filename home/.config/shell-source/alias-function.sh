@@ -2,9 +2,6 @@
 
 alias mv='mv -i'
 
-# Attach to ovile's main tmux session (not needed on ovile itself)
-[[ "$(hostname -s)" != ovile ]] && alias ov='ssh -t ovile "tmux new -A -s main"'
-
 if command -v eza >/dev/null 2>&1
 then
 	alias la='eza --long --all'
@@ -37,6 +34,12 @@ alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
 tmn () { tmux new -s "$1" -n "$1"; }
+
+[[ "$(hostname -s)" != ovile ]] && {
+	alias omm='ssh -t ovile "tmux new -A -s main"'
+	alias oml='ssh ovile tmux ls'
+	oma () { ssh -t ovile "tmux attach -t $1"; }
+}
 
 for vim_cmd in ":q" ":qa" ":w" ":wa" ":x" ":wq" ":wqa" ; do
 	alias "${vim_cmd}"='cowsay -d "You are not in Vim!"'
