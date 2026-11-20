@@ -23,28 +23,6 @@ M.move_to = function(position)
 	hs.grid.set(window, M.grid_position[position], screen)
 end
 
-M.adjust_width = function(direction)
-	local window = hs.window.focusedWindow()
-	local screen = window:screen()
-	local grid = hs.grid.get(window)
-	if direction == "right" then
-		if grid.x == 0 then
-			grid.w = math.min(grid.w + 1, M.grid_size)
-		else
-			grid.x = math.min(grid.x + 1, M.grid_size - 1)
-			grid.w = math.max(grid.w - 1, 1)
-		end
-	elseif direction == "left" then
-		if grid.x == 0 then
-			grid.w = math.max(grid.w - 1, 1)
-		else
-			grid.x = math.max(grid.x - 1, 0)
-			grid.w = math.min(grid.w + 1, M.grid_size)
-		end
-	end
-	hs.grid.set(window, grid, screen)
-end
-
 M.full = function()
 	M.move_to("full")
 end

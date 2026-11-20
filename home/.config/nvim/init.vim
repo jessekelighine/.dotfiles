@@ -21,7 +21,7 @@ nnoremap <silent> <CR> :nohlsearch<CR>:echo<CR>
 nnoremap <silent> <Space> :e<CR>
 nnoremap zS zszH
 inoremap <C-l> <C-G>u<Esc>[s1z=`]a<C-G>u
-" xnoremap p pgvy
+xnoremap p pgvy
 nnoremap <F12> :tabnew ~/.config/nvim/init.vim<CR>
 noremap  '' "*y
 

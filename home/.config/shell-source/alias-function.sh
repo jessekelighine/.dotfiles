@@ -38,7 +38,8 @@ tmn () { tmux new -s "$1" -n "$1"; }
 [[ "$(hostname -s)" != ovile ]] && {
 	alias omm='ssh -t ovile "tmux new -A -s main"'
 	alias oml='ssh ovile tmux ls'
-	oma () { ssh -t ovile "tmux attach -t $1"; }
+	alias oh='ssh ovile .local/bin/ovile-hello'
+	oma () { ssh -t ovile "tmux attach ${1:+-t $1}"; }
 }
 
 for vim_cmd in ":q" ":qa" ":w" ":wa" ":x" ":wq" ":wqa" ; do

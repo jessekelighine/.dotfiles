@@ -27,7 +27,6 @@ hyper.bindKey("d", function() am.lauch_focus_or_rotate("Dictionary") end)
 hyper.bindKey("f", function() am.lauch_focus_or_rotate("Finder")     end)
 hyper.bindKey("l", function() am.lauch_focus_or_rotate("Line")       end)
 hyper.bindKey("s", function() am.lauch_focus_or_rotate("Skim")       end)
-hyper.bindKey("t", function() am.lauch_focus_or_rotate("ChatGPT")    end)
 hyper.bindKey("x", function() am.lauch_focus_or_rotate("Firefox")    end)
 hyper.bindKey("z", function() am.lauch_focus_or_rotate("Zotero")     end)
 
@@ -42,9 +41,6 @@ hyper.bindKey("up",     function() wm.move_to("top")    end)
 hyper.bindKey("return", function() wm.full()            end)
 hyper.bindKey("space",  function() wm.center()          end)
 
-hyper.bindShiftKey("left",  function() wm.adjust_width("left") end)
-hyper.bindShiftKey("right", function() wm.adjust_width("right") end)
-
 -- Wifi -----------------------------------------------------------------------
 
 local wifi = require "wifi-menubar"
@@ -55,8 +51,8 @@ hyper.bindShiftKey("w", function() hs.wifi.setPower(false, wifi.interface) end)
 -- Bluetooth ------------------------------------------------------------------
 
 local blueutil         = "/opt/homebrew/bin/blueutil"
-local blueutil_off     = blueutil .. " -p 0; "
-local blueutil_connect = blueutil .. " -p 1; " .. blueutil .. " --connect 2c-41-a1-88-27-9a"
+local blueutil_off     = blueutil .. " -p 0;"
+local blueutil_connect = blueutil .. " -p 1;"
 
 hyper.bindKey("b",      function() hs.execute(blueutil_connect) end)
 hyper.bindShiftKey("b", function() hs.execute(blueutil_off)     end)
@@ -104,7 +100,7 @@ hs.hotkey.bind({ "cmd", "alt", "shift" }, "v", function()
 	hs.settings.set(clipboard_key, kept)
 	ct:start()
 	local images = removed == 1 and "image" or "images"
-	local message = ("📋 Removed %d " .. images):format(removed)
+	local message = ("📋 Removed %d " .. images .. " from Clipboard"):format(removed)
 	hs.alert.show(message, 0.5)
 end)
 

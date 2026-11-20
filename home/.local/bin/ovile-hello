@@ -4,8 +4,8 @@
 
 [[ "$(uname -s)" == Linux ]] || exit 0
 
-G='\033[1;32m'; Y='\033[1;33m'; C='\033[1;36m'; W='\033[1;37m'
-M='\033[1;35m'; B='\033[1;34m'; D='\033[2m'; R='\033[0m'
+G='\033[1;32m'; C='\033[1;36m'; W='\033[1;37m'
+M='\033[1;35m'; D='\033[2m'; R='\033[0m'
 
 ### Greeting by time of day ###################################################
 
@@ -24,12 +24,12 @@ temp=$(sensors 2>/dev/null | awk '/^Package id 0:/ { gsub(/[+°C]/, "", $4); pri
 mood=$(awk -v l="$load1" -v t="$threads" 'BEGIN { r=l/t; if (r<0.2) print "sleep"; else if (r<0.7) print "graze"; else print "run" }')
 
 case "$mood" in
-	sleep) say="Ovis in ovīlī dormit..." ;;
-	graze) say="Ovis in campō pāscitur." ;;
-	run)   say="Ovis currit!" ;;
+	sleep) say="In ovīlī dormiō..." ;;
+	graze) say="In campō pāscor." ;;
+	run)   say="Currō!" ;;
 esac
 
-[[ -n "$temp" ]] && (( temp >= 70 )) && say="$say Et sūdat!"
+[[ -n "$temp" ]] && (( temp >= 70 )) && say="$say Et sūdō!"
 
 echo
 command -v figlet >/dev/null && printf "${G}%s${R}\n" "$(figlet -f slant ovile)"
@@ -38,38 +38,38 @@ printf "   ${G}%s${R}\n\n" "$greet"
 case "$mood" in
 sleep)
 art=$(cat <<'SHEEP'
-                            Z
-                      ,:  z
-                     /ﾉ z
-         (＼ ;''~ ⌒ ヾ,
-          ~'ミ   －   ｪ)   @SAY@
-              ゝ     i"
-  ヘ,"''"~          ミ
-    (,,つ,,,,,,,,,,,,つ,ﾉ
+                           Z
+                   ,:    z  
+                  /ﾉ   z    
+        (＼;''~⌒ ヾ, .
+         ~'ﾐ   －  ｪ)  @SAY@
+          .,ゝ    i”
+   ヘ'””~          ﾐ
+     (,_つ,,,,,,,_つ_つ
 SHEEP
 ) ;;
 run)
 art=$(cat <<'SHEEP'
-                      ,:
-                     /ﾉ
-   三    (＼ ;''~ ⌒ ヾ,
- 三       ~'ミ   ＞   ｪ)   @SAY@
-     三       ゝ     i"
-  ヘ,"''"~          ミ
-    ,)  ノ,,_,  ,;' ヽ)
-    し'し'    l,ﾉ
+                   ,:
+                  /ﾉ
+   三   (＼;''~⌒ ヾ,
+ 二      ~'ﾐ   ＞  ｪ)  @SAY@
+     一   .,ゝ    i”
+  ~ヘ'””~          ﾐ
+     ,)  ﾉ,,_,  ,;'ヽ)
+     し'し'  l,ﾉ
 SHEEP
 ) ;;
 *)
 art=$(cat <<'SHEEP'
-                      ,:
-                     /ﾉ
-         (＼ ;''~ ⌒ ヾ,
-          ~'ミ   ・   ｪ)   @SAY@
-              ゝ     i"
-  ヘ,"''"~          ミ
-    ,)  ノ,,_,  ,;' ヽ)
-    し'し'    l,ﾉ
+                   ,:
+                  /ﾉ
+        (＼;''~⌒ ヾ,
+         ~'ﾐ   ・  ｪ)  @SAY@
+          .,ゝ    i”
+   ヘ'””~          ﾐ
+     ,)  ﾉ,,_,  ,;'ヽ)
+     し'し'  l,ﾉ
 SHEEP
 ) ;;
 esac
