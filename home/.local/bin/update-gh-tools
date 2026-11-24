@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# update-gh-tools: install or update tools that come from GitHub releases (Linux).
+
+[[ "$(uname -s)" == Linux ]] || exit 0
+
+# Tools installed from GitHub releases instead of a package manager.
+# To add one: append "name|owner/repo|release asset|tar or gz".
+gh_tools=(
+	"nvim|neovim/neovim|nvim-linux-x86_64.tar.gz|tar"
+	"tree-sitter|tree-sitter/tree-sitter|tree-sitter-linux-x64.gz|gz"
+)
+
+update_gh_tool () {
+	local name=$1 repo=$2 asset=$3 kind=$4
+	local bin="$HOME/.local/bin" opt="$HOME/.local/opt"
+	local state="$HOME/.local/share/gh-tools/$name"
+	local latest current tmp
+
+	# The /releases/latest page redirects to .../tag/<version>
+	latest=$(curl -fsSLI -o /dev/null -w '%{url_effective}' "https://github.com/$repo/releases/latest") || {
+		echo "$name: could not reach GitHub, skipped"; return 1; }
+	latest=${latest##*/}
+	current=$(cat "$state" 2>/dev/null)
+	[[ "$latest" == "$current" ]] && { echo "$name: $current (up to date)"; return 0; }
+
+	tmp=$(mktemp -d)
+	curl -fsSL "https://github.com/$repo/releases/download/$latest/$asset" -o "$tmp/$asset" || {
+		echo "$name: download failed, skipped"; rm -rf "$tmp"; return 1; }
+
+	mkdir -p "$bin" "$opt" "${state%/*}"
+	case "$kind" in
+	tar) # whole directory: unpack beside the old version, then switch the link
+		rm -rf "$opt/$name-$latest" && mkdir -p "$opt/$name-$latest" &&
+			tar -xzf "$tmp/$asset" -C "$opt/$name-$latest" --strip-components=1 &&
+			[[ -x "$opt/$name-$latest/bin/$name" ]] || {
+			echo "$name: unpacking failed, kept $current"; rm -rf "$tmp" "$opt/$name-$latest"; return 1; }
+		ln -sfn "$opt/$name-$latest/bin/$name" "$bin/$name"
+		find "$opt" -maxdepth 1 -name "$name-*" ! -name "$name-$latest" -exec rm -rf {} +
+		;;
+	gz) # single binary
+		gunzip -c "$tmp/$asset" > "$tmp/$name" && chmod +x "$tmp/$name" || {
+			echo "$name: unpacking failed, kept $current"; rm -rf "$tmp"; return 1; }
+		mv "$tmp/$name" "$bin/$name"
+		;;
+	esac
+	echo "$latest" > "$state"
+	rm -rf "$tmp"
+	echo "$name: ${current:-unknown} → $latest"
+}
+
+for entry in "${gh_tools[@]}"; do
+	IFS='|' read -r name repo asset kind <<< "$entry"
+	update_gh_tool "$name" "$repo" "$asset" "$kind"
+done

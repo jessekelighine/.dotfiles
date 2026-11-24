@@ -33,7 +33,7 @@ alias tmm='tmux new -A -s main -n main'
 alias tml='tmux ls'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session'
-tmn () { tmux new -s "$1" -n "$1"; }
+tmn () { tmux new -s "$1"; }
 
 [[ "$(hostname -s)" != ovile ]] && {
 	alias omm='ssh -t ovile "tmux new -A -s main"'
