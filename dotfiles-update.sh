@@ -31,7 +31,7 @@ case "$(uname -s)" in
 		sudo apt update
 		sudo apt full-upgrade
 		sudo apt autoremove
-		echo "${arrow} $(tput bold)Not covered by apt:$(tput sgr0) neovim (/opt/nvim-linux-x86_64), tree-sitter (~/.local/bin)"
+		update-gh-tools
 		;;
 esac
 
